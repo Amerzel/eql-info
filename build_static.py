@@ -67,6 +67,9 @@ def main():
     copy_tree(os.path.join(SRC_STATIC, "icons"),
               os.path.join(OUT_STATIC, "icons"),
               label="icons")
+    copy_tree(os.path.join(SRC_STATIC, "icons", "classes"),
+              os.path.join(OUT_STATIC, "icons", "classes"),
+              label="class banners")
     copy_file(SRC_DB,
               os.path.join(OUT_STATIC, "data", "spells.sqlite"),
               label="spells.sqlite")

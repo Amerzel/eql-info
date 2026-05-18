@@ -42,7 +42,9 @@ export async function renderHome() {
 
   const cards = Array.from({ length: 16 }, (_, i) => {
     const c = counts.get(i) || 0;
+    const banner = `static/icons/classes/${String(i).padStart(2, "0")}.png`;
     return `<a class="class-card" href="#/class/${i}">
+              <img class="class-banner" src="${banner}" alt="" loading="lazy">
               <span class="class-name">${escapeHtml(CLASS_NAMES[i])}</span>
               <span class="class-count">${c} spells</span>
             </a>`;

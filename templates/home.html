@@ -11,6 +11,7 @@ the rest.</span></p>
 <div class="class-grid">
 {% for class_index, class_name, count in classes %}
   <a class="class-card" href="{{ url_for('class_page', class_index=class_index) }}">
+    <img class="class-banner" src="{{ url_for('static', filename='icons/classes/%02d.png' % class_index) }}" alt="" loading="lazy">
     <span class="class-name">{{ class_name }}</span>
     <span class="class-count">{{ count }} spells</span>
   </a>

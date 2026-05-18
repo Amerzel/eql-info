@@ -50,13 +50,17 @@ footer { color: var(--muted); text-align: center; padding: 1.5em;
 .class-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 12px; }
 .class-card { background: var(--bg-2); border: 1px solid var(--border);
-  padding: 1em 1.2em; border-radius: 4px; display: flex; flex-direction: column;
+  padding: 1em 1em 0.8em; border-radius: 4px; display: flex;
+  flex-direction: column; align-items: center; gap: 0.5em;
   transition: border-color 0.15s, background 0.15s; }
 .class-card:hover { border-color: var(--accent); background: var(--bg-3);
   text-decoration: none; }
+.class-banner { width: 64px; height: 128px; image-rendering: pixelated;
+  border: 1px solid var(--border); background: #000; border-radius: 3px; }
+.class-card:hover .class-banner { border-color: var(--accent); }
 .class-name { color: var(--accent); font-family: "Times New Roman", serif;
-  font-size: 1.15rem; letter-spacing: 0.03em; }
-.class-count { color: var(--muted); font-size: 0.9em; margin-top: 0.3em; }
+  font-size: 1.15rem; letter-spacing: 0.03em; text-align: center; }
+.class-count { color: var(--muted); font-size: 0.9em; }
 
 .spell-table, .effects-table, table.kv {
   width: 100%; border-collapse: collapse; background: var(--bg-2);
