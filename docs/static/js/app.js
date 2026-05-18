@@ -9,12 +9,24 @@ import {
   renderSkills, renderSkill, renderAAs, renderAA, renderSearch,
 } from "./views.js";
 import { initDb } from "./db.js";
+import { prefetchSpells } from "./tooltip.js";
 
 const app = document.getElementById("app");
 
 function setHtml(html) {
   app.innerHTML = html;
   window.scrollTo(0, 0);
+  // After the new view is in the DOM, kick off a background prefetch of the
+  // tooltip data for every spell link currently visible. The first hovers
+  // will then be instant.
+  const ids = [];
+  for (const a of app.querySelectorAll('a[href^="#/spell/"]')) {
+    const m = a.getAttribute("href").match(/#\/spell\/(\d+)/);
+    if (m) ids.push(parseInt(m[1], 10));
+  }
+  // Dedupe and cap at 100 so we don't drown the worker on /class pages with
+  // hundreds of rows. Hovering past the first 100 will fall back to lazy fetch.
+  prefetchSpells([...new Set(ids)].slice(0, 100));
 }
 
 function loading(label = "Loading…") {

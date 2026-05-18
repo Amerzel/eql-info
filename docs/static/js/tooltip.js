@@ -48,6 +48,21 @@ async function loadSpell(spellId) {
   return p;
 }
 
+// Background prefetch: warm the cache for a list of spell IDs (called by
+// views after they render a list). One spell at a time so we don't overload
+// the worker; each load is fast because individual lookups touch few pages.
+let _prefetchAbort = 0;
+export function prefetchSpells(spellIds) {
+  const generation = ++_prefetchAbort;
+  (async () => {
+    for (const id of spellIds) {
+      if (generation !== _prefetchAbort) return;  // a newer page took over
+      if (cache.has(id)) continue;
+      try { await loadSpell(id); } catch (e) { /* swallow */ }
+    }
+  })();
+}
+
 function renderTooltip(data) {
   const { spell, effects, classes, duration, description, category } = data;
   const padded = String(spell.new_icon || 0).padStart(4, "0");

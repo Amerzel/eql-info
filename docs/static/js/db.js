@@ -34,6 +34,11 @@ function dbUrl() {
 
 let _workerPromise = null;
 
+// 64 KB fetches (vs default 4 KB) cut round-trip count ~16x for table scans.
+// Larger is even better for sequential reads but wastes bandwidth on random
+// lookups; 64 KB hits a good balance.
+const REQUEST_CHUNK_SIZE = 65536;
+
 export function initDb() {
   if (_workerPromise) return _workerPromise;
   _workerPromise = createDbWorker(
@@ -42,7 +47,7 @@ export function initDb() {
       config: {
         serverMode: "full",
         url: dbUrl(),
-        requestChunkSize: 4096,
+        requestChunkSize: REQUEST_CHUNK_SIZE,
       },
     }],
     WORKER_URL,
@@ -51,10 +56,36 @@ export function initDb() {
   return _workerPromise;
 }
 
+// ---------------------------------------------------------------------------
+// In-memory query cache.
+// Same SQL + params returns the same rows for the lifetime of the page, so
+// re-navigating to a previously-visited view is instant. We keep it modest;
+// the values are reasonably small structured rows.
+// ---------------------------------------------------------------------------
+const _cache = new Map();
+const _CACHE_LIMIT = 200;
+
+function _cacheKey(sql, params) {
+  return sql + "\x1f" + JSON.stringify(params);
+}
+
 /** Run a parameterized SELECT and return rows as plain objects. */
 export async function query(sql, params = []) {
+  const key = _cacheKey(sql, params);
+  if (_cache.has(key)) {
+    // LRU touch.
+    const v = _cache.get(key);
+    _cache.delete(key); _cache.set(key, v);
+    return v;
+  }
   const worker = await initDb();
   const rows = await worker.db.query(sql, params);
+  _cache.set(key, rows);
+  if (_cache.size > _CACHE_LIMIT) {
+    // Drop oldest insertion.
+    const oldest = _cache.keys().next().value;
+    _cache.delete(oldest);
+  }
   return rows;
 }
 
