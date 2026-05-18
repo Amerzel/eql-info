@@ -8,9 +8,15 @@
 </nav>
 <h1>{{ name }}</h1>
 <p class="muted">{{ ranks | length }} rank{% if ranks|length != 1 %}s{% endif %}
-found in <code>dbstr_us.txt</code>.
-AA prerequisites, point cost, and per-class eligibility are server-side and
-not available from client data.</p>
+found in <code>dbstr_us.txt</code>.</p>
+
+<aside class="notice">
+  <strong>Note:</strong> AA prerequisites, point cost, per-class eligibility,
+  and rank-progression rules are server-side data we don't have access to.
+  If the name starts with <code>Item:</code> or <code>Focus:</code>, this is
+  not a player-trainable AA at all — it's an effect granted by gear that
+  the client surfaces in the same dbstr table.
+</aside>
 
 <table class="effects-table">
   <thead><tr><th>Rank #</th><th>dbstr id</th><th>Description</th></tr></thead>

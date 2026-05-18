@@ -485,10 +485,18 @@ export async function renderAAs(params) {
     : await query(`${baseSql} ${order}`);
   return `<nav class="breadcrumb"><a href="#/">Classes</a> › Alternate Advancement</nav>
     <h1>Alternate Advancement</h1>
-    <p class="lede">${rows.length} distinct AAs catalogued from <code>dbstr_us.txt</code>
-    (type 1 names + type 4 descriptions).
-    <span class="muted">AA prerequisites, costs, and per-class restrictions are
-    server-side and not shown here.</span></p>
+    <p class="lede">${rows.length} distinct entries catalogued from <code>dbstr_us.txt</code>
+    (type 1 names + type 4 descriptions).</p>
+    <aside class="notice">
+      <strong>Note:</strong> This list mixes real player AAs with
+      <em>item-bestowed effect descriptors</em>. About 500 of the entries
+      (look for <code>Item:</code> and <code>Focus:</code> prefixes) are
+      effects granted by gear, not abilities a character can train.
+      Per-class restrictions, prerequisites, point costs, and rank
+      progressions are server-side data we don't have, so we can't tell
+      you which class can train a given AA or how much it costs &mdash;
+      only what the dbstr name and description say.
+    </aside>
     <form class="diff-form" data-form="aas">
       <div class="diff-controls">
         <label>Filter by name:
@@ -517,9 +525,15 @@ export async function renderAA(name) {
       <a href="#/aas">AAs</a> › ${escapeHtml(ranks[0].name)}</nav>
     <h1>${escapeHtml(ranks[0].name)}</h1>
     <p class="muted">${ranks.length} rank${ranks.length === 1 ? '' : 's'}
-    found in <code>dbstr_us.txt</code>.
-    AA prerequisites, point cost, and per-class eligibility are server-side
-    and not available from client data.</p>
+    found in <code>dbstr_us.txt</code>.</p>
+    <aside class="notice">
+      <strong>Note:</strong> AA prerequisites, point cost, per-class
+      eligibility, and rank-progression rules are server-side data we
+      don't have access to. If the name starts with <code>Item:</code>
+      or <code>Focus:</code>, this is not a player-trainable AA at all
+      &mdash; it's an effect granted by gear that the client surfaces in
+      the same dbstr table.
+    </aside>
     <table class="effects-table">
       <thead><tr><th>Rank #</th><th>dbstr id</th><th>Description</th></tr></thead>
       <tbody>${ranks.map((r, i) => `<tr>

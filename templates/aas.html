@@ -3,10 +3,19 @@
 {% block content %}
 <nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Alternate Advancement</nav>
 <h1>Alternate Advancement</h1>
-<p class="lede">{{ rows | length }} distinct AAs catalogued from <code>dbstr_us.txt</code>
-(type 1 names + type 4 descriptions).
-<span class="muted">AA prerequisites, costs, and per-class restrictions are
-server-side data and not shown here.</span></p>
+<p class="lede">{{ rows | length }} distinct entries catalogued from <code>dbstr_us.txt</code>
+(type 1 names + type 4 descriptions).</p>
+
+<aside class="notice">
+  <strong>Note:</strong> This list mixes real player AAs with
+  <em>item-bestowed effect descriptors</em>. About 500 of the entries
+  (look for <code>Item:</code> and <code>Focus:</code> prefixes) are
+  effects granted by gear, not abilities a character can train.
+  Per-class restrictions, prerequisites, point costs, and rank
+  progressions are server-side data we don't have, so we can't tell
+  you which class can train a given AA or how much it costs — only
+  what the dbstr name and description say.
+</aside>
 
 <form method="get" class="diff-form">
   <div class="diff-controls">
