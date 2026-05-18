@@ -5,13 +5,16 @@
 // We import the library from jsDelivr to avoid an npm build step. Pin the
 // version explicitly so we don't accidentally break on upgrades.
 
-// The jsDelivr build of sql.js-httpvfs is UMD; we import the ES-module
-// flavor via esm.sh which auto-converts npm packages. The Web Worker and
-// WASM binary stay on jsDelivr because the worker is a classic script.
-import { createDbWorker } from "https://esm.sh/sql.js-httpvfs@0.8.12";
+// We import the main library via esm.sh (it ESM-wraps the UMD bundle).
+// The Web Worker and WASM binary are vendored locally because the Worker
+// constructor enforces same-origin — loading sqlite.worker.js from a CDN
+// throws a SecurityError. esm.sh only re-exports the UMD result as
+// `default`, so we destructure createDbWorker off it.
+import sqlJsHttpvfs from "https://esm.sh/sql.js-httpvfs@0.8.12";
+const { createDbWorker } = sqlJsHttpvfs;
 
-const WORKER_URL = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
-const WASM_URL   = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sql-wasm.wasm";
+const WORKER_URL = new URL("static/vendor/sqlite.worker.js", document.baseURI).href;
+const WASM_URL   = new URL("static/vendor/sql-wasm.wasm",   document.baseURI).href;
 
 let _workerPromise = null;
 

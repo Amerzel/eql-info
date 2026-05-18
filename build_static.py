@@ -70,6 +70,10 @@ def main():
     copy_file(SRC_DB,
               os.path.join(OUT_STATIC, "data", "spells.sqlite"),
               label="spells.sqlite")
+    # docs/static/vendor/{sqlite.worker.js, sql-wasm.wasm} are vendored once
+    # from jsDelivr (see README) — Web Workers must be same-origin, so the
+    # files cannot be CDN-loaded at runtime. Nothing for this build step to
+    # do; they live under docs/static/vendor/ and are tracked in git.
 
     print("\nDone.")
     print("To preview locally:  python3 -m http.server --directory docs 8000")
