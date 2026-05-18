@@ -8,6 +8,14 @@ Pick a class to browse its spell list by level, or search by name above.
 Live); only L1–{{ max_level }} are obtainable on this server, so we hard-hide
 the rest.</span></p>
 
+<aside class="notice">
+  <strong>Note:</strong> These lists are generated from the EQL client's
+  spell data. A spell appearing here means the client recognises that the
+  class can cast it &mdash; not that the scroll is actually distributed on
+  the server (via vendor, quest, or drop). The final in-game spell lists
+  may differ.
+</aside>
+
 <div class="class-grid">
 {% for class_index, class_name, count in classes %}
   <a class="class-card" href="{{ url_for('class_page', class_index=class_index) }}">

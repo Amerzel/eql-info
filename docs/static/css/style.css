@@ -26,6 +26,11 @@ h2 { font-size: 1.2rem; margin-top: 1.2em; }
 .muted { color: var(--muted); }
 .lede { color: var(--muted); margin-bottom: 1.5em; }
 
+.notice { background: var(--bg-2); border-left: 3px solid var(--accent-2);
+  padding: 0.7em 1em; border-radius: 0 4px 4px 0; margin: 0 0 1.4em;
+  color: var(--fg); font-size: 0.92em; line-height: 1.45; }
+.notice strong { color: var(--accent-2); margin-right: 0.3em; }
+
 header { display: flex; align-items: center; justify-content: space-between;
   padding: 0.8em 1.5em; background: var(--bg-2);
   border-bottom: 1px solid var(--border); }

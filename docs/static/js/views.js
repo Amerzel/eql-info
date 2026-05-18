@@ -57,6 +57,13 @@ export async function renderHome() {
     <span class="muted">EQL ships spells through L125 in the file (inherited
     from Live); only L1–${MAX_LEVEL} are obtainable on this server, so we
     hard-hide the rest.</span></p>
+    <aside class="notice">
+      <strong>Note:</strong> These lists are generated from the EQL client's
+      spell data. A spell appearing here means the client recognises that the
+      class can cast it — not that the scroll is actually distributed on the
+      server (via vendor, quest, or drop). The final in-game spell lists may
+      differ.
+    </aside>
     <div class="class-grid">${cards}</div>
     <h2>Catalogs</h2>
     <ul class="tool-list">
@@ -164,6 +171,13 @@ export async function renderClass(classIndex, params) {
   return `
     <nav class="breadcrumb"><a href="#/">Classes</a> › <span>${escapeHtml(CLASS_NAMES[classIndex])}</span></nav>
     <h1>${escapeHtml(CLASS_NAMES[classIndex])} spell list</h1>
+    <aside class="notice">
+      <strong>Note:</strong> This list is generated from the EQL client's
+      spell data and may not exactly match what's available in game. The
+      client says these spells are castable by this class at the levels
+      shown — server-side distribution (vendors, quests, drops) determines
+      what's actually obtainable.
+    </aside>
     ${filterForm}
     <p class="muted">${rows.length} spells match, grouped by minimum level.</p>
     ${body}`;
