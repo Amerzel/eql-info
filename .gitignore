@@ -10,9 +10,10 @@ racedata.txt
 eq_txt/
 uifiles/
 
-# Built artifacts derived from game data
-spells.sqlite
-static/icons/
+# Dev-time artifacts at the repo root (the docs/ bundled versions are
+# intentionally committed for GitHub Pages deployment).
+/spells.sqlite
+/static/icons/
 
 # Python
 __pycache__/

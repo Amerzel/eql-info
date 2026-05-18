@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EQL Spell Explorer</title>
+<base href="./">
+<link rel="stylesheet" href="static/css/style.css">
+<script type="module" src="static/js/app.js"></script>
+<script type="module" src="static/js/tooltip.js"></script>
+</head>
+<body>
+<header>
+  <a href="#/" class="brand">EQL Spell Explorer</a>
+  <form data-topform="search" class="search">
+    <input type="text" name="q" placeholder="Search spell name…" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+</header>
+<main>
+  <div id="app">
+    <p class="muted" style="padding:2em 0">Loading SQLite database… this may take a moment on first visit.</p>
+  </div>
+</main>
+<footer>
+  <a href="#/">Home</a> · EQL spell data ·
+  <span class="muted">Static build · Pages-hosted · client-side SQLite via WASM</span>
+</footer>
+</body>
+</html>
