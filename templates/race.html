@@ -13,13 +13,10 @@
 
 {% if lore %}<div class="desc desc-rendered">{{ lore | safe }}</div>{% endif %}
 
-<h2>Allowed classes</h2>
-<table class="kv">
-  {% for c in class_rows %}
-    <tr>
-      <th><a href="{{ url_for('class_page', class_index=c.index) }}">{{ c.name }}</a></th>
-      <td><a href="{{ url_for('class_page', class_index=c.index) }}" class="link-tiny">view spell list →</a></td>
-    </tr>
-  {% endfor %}
-</table>
+<aside class="notice">
+  <strong>Note:</strong> Which classes a {{ singular }} can roll is determined
+  by the EQL server's character-creation rules, not the client data we have
+  access to. Browse the
+  <a href="{{ url_for('home') }}">class list</a> directly for spell lists.
+</aside>
 {% endblock %}

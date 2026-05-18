@@ -6,7 +6,7 @@ import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
   targetName, resistName, className, spaName, skillName,
 } from "./data.js";
-import { PLAYER_RACES, RACE_CLASSES } from "./races_data.js";
+import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
   escapeHtml,
@@ -425,33 +425,35 @@ export async function renderSkill(skillId) {
 // ---------------------------------------------------------------------------
 
 export async function renderRaces() {
-  // Pull race name (type 11) for each.
   const rows = [];
   for (const r of PLAYER_RACES) {
     const name = (await dbstr(r.id, 11)) || r.code;
-    rows.push({ ...r, name, n_classes: (RACE_CLASSES[r.id] || new Set()).size });
+    rows.push({ ...r, name });
   }
   return `<nav class="breadcrumb"><a href="#/">Classes</a> › Races</nav>
     <h1>Player Races</h1>
-    <p class="lede">${rows.length} player races available across all EQ expansions.
-    <span class="muted">Race↔class permissions are hardcoded EQ lore (Live convention).</span></p>
+    <p class="lede">${rows.length} player races. Click into a race for lore.</p>
+    <aside class="notice">
+      <strong>Note:</strong> Race↔class permissions (which races can roll which
+      classes) are server-side character-creation rules and aren't available
+      from the EQL client files we have. We deliberately don't publish a
+      race→class table since EQL may differ from Live and we'd just be guessing.
+    </aside>
     <table class="spell-table">
-      <thead><tr><th>Race</th><th>Code</th><th>Expansion</th><th>Classes</th></tr></thead>
+      <thead><tr><th>Race</th><th>Code</th><th>Expansion</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td><a href="#/race/${r.id}">${escapeHtml(r.name)}</a></td>
         <td class="muted"><code>${r.code}</code></td>
-        <td class="muted">${escapeHtml(r.expansion)}</td>
-        <td>${r.n_classes}</td></tr>`).join("")}</tbody>
+        <td class="muted">${escapeHtml(r.expansion)}</td></tr>`).join("")}</tbody>
     </table>`;
 }
 
 export async function renderRace(raceId) {
-  if (!RACE_CLASSES[raceId]) return `<p>Unknown race id ${raceId}.</p>`;
+  if (!PLAYER_RACE_IDS.has(raceId)) return `<p>Unknown race id ${raceId}.</p>`;
   const meta = PLAYER_RACES.find(r => r.id === raceId);
   const singular = (await dbstr(raceId, 11)) || meta.code;
   const plural   = (await dbstr(raceId, 12)) || singular;
   const lore     = (await dbstr(raceId, 8))  || "";
-  const classes = [...RACE_CLASSES[raceId]].sort((a, b) => a - b);
   return `<nav class="breadcrumb">
       <a href="#/">Classes</a> ›
       <a href="#/races">Races</a> ›
@@ -462,13 +464,12 @@ export async function renderRace(raceId) {
       introduced in <em>${escapeHtml(meta.expansion)}</em> ·
       plural: <em>${escapeHtml(plural)}</em></p>
     ${lore ? `<div class="desc desc-rendered">${lore}</div>` : ""}
-    <h2>Allowed classes</h2>
-    <table class="kv">
-      ${classes.map(ci => `<tr>
-        <th><a href="#/class/${ci}">${escapeHtml(CLASS_NAMES[ci])}</a></th>
-        <td><a href="#/class/${ci}" class="link-tiny">view spell list →</a></td>
-      </tr>`).join("")}
-    </table>`;
+    <aside class="notice">
+      <strong>Note:</strong> Which classes a ${escapeHtml(singular)} can roll
+      is determined by the EQL server's character-creation rules, not the
+      client data we have access to. Browse the
+      <a href="#/">class list</a> directly for spell lists.
+    </aside>`;
 }
 
 // ---------------------------------------------------------------------------
