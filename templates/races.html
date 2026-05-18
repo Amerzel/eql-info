@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Races — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Races</nav>
+<h1>Player Races</h1>
+<p class="lede">{{ races | length }} player races available across all EQ expansions.
+Click into a race to see lore, allowed classes, and starting context.
+<span class="muted">Race↔class permissions are hardcoded EQ lore (Live convention).</span></p>
+
+<table class="spell-table">
+  <thead><tr><th>Race</th><th>Code</th><th>Expansion</th><th>Classes</th></tr></thead>
+  <tbody>
+    {% for r in races %}
+    <tr>
+      <td><a href="{{ url_for('race_page', race_id=r.id) }}">{{ r.name }}</a></td>
+      <td class="muted"><code>{{ r.code }}</code></td>
+      <td class="muted">{{ r.expansion }}</td>
+      <td>{{ r.class_count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

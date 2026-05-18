@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ singular }} — Race — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb">
+  <a href="{{ url_for('home') }}">Classes</a> ›
+  <a href="{{ url_for('races_index') }}">Races</a> ›
+  <span>{{ singular }}</span>
+</nav>
+<h1>{{ singular }}</h1>
+<p class="muted"><code>{{ code }}</code> · race id {{ race_id }} ·
+  introduced in <em>{{ expansion }}</em> ·
+  plural: <em>{{ plural }}</em></p>
+
+{% if lore %}<div class="desc desc-rendered">{{ lore | safe }}</div>{% endif %}
+
+<h2>Allowed classes</h2>
+<table class="kv">
+  {% for c in class_rows %}
+    <tr>
+      <th><a href="{{ url_for('class_page', class_index=c.index) }}">{{ c.name }}</a></th>
+      <td><a href="{{ url_for('class_page', class_index=c.index) }}" class="link-tiny">view spell list →</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

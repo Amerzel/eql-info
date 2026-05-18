@@ -7,6 +7,7 @@
 import {
   renderHome, renderClass, renderSpell, renderGroup, renderEffect,
   renderSkills, renderSkill, renderAAs, renderAA, renderSearch,
+  renderRaces, renderRace,
 } from "./views.js";
 import { initDb } from "./db.js";
 import { prefetchSpells } from "./tooltip.js";
@@ -59,6 +60,8 @@ async function route() {
       case "skill":  return setHtml(await renderSkill(parseInt(arg1, 10)));
       case "aas":    return setHtml(await renderAAs(params));
       case "aa":     return setHtml(await renderAA(decodeURIComponent(arg1)));
+      case "races":  return setHtml(await renderRaces());
+      case "race":   return setHtml(await renderRace(parseInt(arg1, 10)));
       case "search": return setHtml(await renderSearch(params));
       default:       return setHtml(`<p>Unknown route: ${head}</p>`);
     }

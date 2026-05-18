@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from flask import Flask, render_template, abort, request, g, url_for, jsonify
 from skills_data import SKILLS, CATEGORIES as SKILL_CATEGORIES, skill_name as _skill_name
 from spa_data import spa_name
+from races_data import PLAYER_RACES, RACE_CLASSES
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(APP_DIR, "spells.sqlite")
@@ -341,6 +342,42 @@ def effect_page(effect_id: int):
         " ORDER BY s.name LIMIT 500",
         (effect_id, MAX_LEVEL)).fetchall()
     return render_template("effect.html", effect_id=effect_id, rows=rows)
+
+
+@app.route("/races")
+def races_index():
+    db = get_db()
+    races = []
+    for race_id, code, expansion in PLAYER_RACES:
+        name = (db.execute(
+            "SELECT text FROM dbstr WHERE id=? AND type=11", (race_id,)
+        ).fetchone() or {"text": code})["text"]
+        races.append({
+            "id": race_id, "code": code, "expansion": expansion, "name": name,
+            "class_count": len(RACE_CLASSES.get(race_id, set())),
+        })
+    return render_template("races.html", races=races)
+
+
+@app.route("/race/<int:race_id>")
+def race_page(race_id: int):
+    if race_id not in RACE_CLASSES:
+        abort(404)
+    db = get_db()
+    code = next((c for r, c, _ in PLAYER_RACES if r == race_id), str(race_id))
+    expansion = next((e for r, _, e in PLAYER_RACES if r == race_id), "")
+    singular = (db.execute("SELECT text FROM dbstr WHERE id=? AND type=11", (race_id,)
+                           ).fetchone() or {"text": code})["text"]
+    plural   = (db.execute("SELECT text FROM dbstr WHERE id=? AND type=12", (race_id,)
+                           ).fetchone() or {"text": singular})["text"]
+    lore     = (db.execute("SELECT text FROM dbstr WHERE id=? AND type=8", (race_id,)
+                           ).fetchone() or {"text": ""})["text"]
+    classes = sorted(RACE_CLASSES[race_id])
+    class_rows = [{"index": ci, "name": CLASS_NAMES[ci]} for ci in classes]
+    return render_template("race.html",
+                           race_id=race_id, code=code, expansion=expansion,
+                           singular=singular, plural=plural, lore=lore,
+                           class_rows=class_rows)
 
 
 @app.route("/aas")

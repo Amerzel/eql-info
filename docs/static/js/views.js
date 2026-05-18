@@ -6,6 +6,7 @@ import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
   targetName, resistName, className, spaName, skillName,
 } from "./data.js";
+import { PLAYER_RACES, RACE_CLASSES } from "./races_data.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
   escapeHtml,
@@ -67,6 +68,7 @@ export async function renderHome() {
     <div class="class-grid">${cards}</div>
     <h2>Catalogs</h2>
     <ul class="tool-list">
+      <li><a href="#/races">Races</a> — 16 player races with lore + class permissions.</li>
       <li><a href="#/skills">Skill list</a> — 77 EQ skills with the spells that use each.</li>
       <li><a href="#/aas">Alternate Advancement</a> — ~1,500 distinct AAs with rank-folded descriptions.</li>
     </ul>
@@ -416,6 +418,57 @@ export async function renderSkill(skillId) {
         <td>${fmtSeconds(r.cast_time)}s</td>
       </tr>`).join("")}</tbody></table>`
       : '<p class="muted">No spells/disciplines reference this skill in EQL data at L≤' + MAX_LEVEL + '.</p>'}`;
+}
+
+// ---------------------------------------------------------------------------
+// RACES
+// ---------------------------------------------------------------------------
+
+export async function renderRaces() {
+  // Pull race name (type 11) for each.
+  const rows = [];
+  for (const r of PLAYER_RACES) {
+    const name = (await dbstr(r.id, 11)) || r.code;
+    rows.push({ ...r, name, n_classes: (RACE_CLASSES[r.id] || new Set()).size });
+  }
+  return `<nav class="breadcrumb"><a href="#/">Classes</a> › Races</nav>
+    <h1>Player Races</h1>
+    <p class="lede">${rows.length} player races available across all EQ expansions.
+    <span class="muted">Race↔class permissions are hardcoded EQ lore (Live convention).</span></p>
+    <table class="spell-table">
+      <thead><tr><th>Race</th><th>Code</th><th>Expansion</th><th>Classes</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <td><a href="#/race/${r.id}">${escapeHtml(r.name)}</a></td>
+        <td class="muted"><code>${r.code}</code></td>
+        <td class="muted">${escapeHtml(r.expansion)}</td>
+        <td>${r.n_classes}</td></tr>`).join("")}</tbody>
+    </table>`;
+}
+
+export async function renderRace(raceId) {
+  if (!RACE_CLASSES[raceId]) return `<p>Unknown race id ${raceId}.</p>`;
+  const meta = PLAYER_RACES.find(r => r.id === raceId);
+  const singular = (await dbstr(raceId, 11)) || meta.code;
+  const plural   = (await dbstr(raceId, 12)) || singular;
+  const lore     = (await dbstr(raceId, 8))  || "";
+  const classes = [...RACE_CLASSES[raceId]].sort((a, b) => a - b);
+  return `<nav class="breadcrumb">
+      <a href="#/">Classes</a> ›
+      <a href="#/races">Races</a> ›
+      <span>${escapeHtml(singular)}</span>
+    </nav>
+    <h1>${escapeHtml(singular)}</h1>
+    <p class="muted"><code>${meta.code}</code> · race id ${raceId} ·
+      introduced in <em>${escapeHtml(meta.expansion)}</em> ·
+      plural: <em>${escapeHtml(plural)}</em></p>
+    ${lore ? `<div class="desc desc-rendered">${lore}</div>` : ""}
+    <h2>Allowed classes</h2>
+    <table class="kv">
+      ${classes.map(ci => `<tr>
+        <th><a href="#/class/${ci}">${escapeHtml(CLASS_NAMES[ci])}</a></th>
+        <td><a href="#/class/${ci}" class="link-tiny">view spell list →</a></td>
+      </tr>`).join("")}
+    </table>`;
 }
 
 // ---------------------------------------------------------------------------
