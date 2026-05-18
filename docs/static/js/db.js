@@ -16,6 +16,22 @@ const { createDbWorker } = sqlJsHttpvfs;
 const WORKER_URL = new URL("static/vendor/sqlite.worker.js", document.baseURI).href;
 const WASM_URL   = new URL("static/vendor/sql-wasm.wasm",   document.baseURI).href;
 
+// GitHub Pages opportunistically gzips application/octet-stream and serves
+// byte ranges in the compressed-byte space, which makes sql.js-httpvfs fail
+// (it expects ranges in uncompressed bytes). raw.githubusercontent.com does
+// not gzip and sends proper Range responses with CORS, so we route the
+// DB fetch through it when running on Pages. Local dev keeps the relative
+// path so serve_docs.py (range-capable) can serve the file directly.
+const RAW_URL = "https://raw.githubusercontent.com/Amerzel/eql-info/main/docs/static/data/spells.sqlite";
+
+function dbUrl() {
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1" || host === "") {
+    return new URL("static/data/spells.sqlite", document.baseURI).href;
+  }
+  return RAW_URL;
+}
+
 let _workerPromise = null;
 
 export function initDb() {
@@ -25,9 +41,7 @@ export function initDb() {
       from: "inline",
       config: {
         serverMode: "full",
-        // Relative to the page's URL; works on Pages, on local file:// (after
-        // serving via http.server), and on any subpath deployment.
-        url: new URL("static/data/spells.sqlite", document.baseURI).href,
+        url: dbUrl(),
         requestChunkSize: 4096,
       },
     }],
