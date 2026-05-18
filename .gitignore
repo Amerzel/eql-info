@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# Raw EverQuest Legends game data — NEVER commit
+# These files are extracted from the EQL install and may be NDA-protected.
+# ---------------------------------------------------------------------------
+spells_us.txt
+spells_us_str.txt
+dbstr_us.txt
+eqstr_us.txt
+racedata.txt
+eq_txt/
+uifiles/
+
+# Built artifacts derived from game data
+spells.sqlite
+static/icons/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.python-version
+*.egg-info/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Local logs / scratch
+*.log
+.scratch/

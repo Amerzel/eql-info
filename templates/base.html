@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}EQL Spell Explorer{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="{{ url_for('static', filename='js/tooltip.js') }}" defer></script>
+</head>
+<body>
+<header>
+  <a href="{{ url_for('home') }}" class="brand">EQL Spell Explorer</a>
+  <form action="{{ url_for('search') }}" method="get" class="search">
+    <input type="text" name="q" placeholder="Search spell name…"
+           value="{{ request.args.get('q', '') }}" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+</header>
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer>
+  <a href="{{ url_for('home') }}">Home</a>
+  · EQL spell data ·
+  <span class="muted">{% block footnote %}{% endblock %}</span>
+</footer>
+</body>
+</html>

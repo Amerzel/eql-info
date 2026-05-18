@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Spell group {{ spell_group }} — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Spell group {{ spell_group }}</nav>
+<h1>Spell group {{ spell_group }}</h1>
+<table class="spell-table">
+  <thead><tr><th>Icon</th><th>Rank</th><th>Name</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{% set icp = r.new_icon | icon_path %}{% if icp %}<img src="{{ icp }}" class="icon">{% endif %}</td>
+      <td>Rk.{{ r.rank }}</td>
+      <td><a href="{{ url_for('spell_page', spell_id=r.id) }}">{{ r.name }}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

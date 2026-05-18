@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ skill_name }} — Skill — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb">
+  <a href="{{ url_for('home') }}">Classes</a> ›
+  <a href="{{ url_for('skills_index') }}">Skills</a> ›
+  <span>{{ skill_name }}</span>
+</nav>
+<h1>{{ skill_name }}</h1>
+<p class="muted"><code>{{ skill_code }}</code> · skill id {{ skill_id }} · {{ spells | length }} spells/disciplines use this skill.</p>
+
+{% if spells %}
+<table class="spell-table">
+  <thead><tr>
+    <th>Icon</th><th>Name</th><th>First Level</th><th>Classes</th>
+    <th>Mana</th><th>End</th><th>Cast</th>
+  </tr></thead>
+  <tbody>
+  {% for sp in spells %}
+    <tr>
+      <td>{% set icp = sp.new_icon | icon_path %}{% if icp %}<img src="{{ icp }}" class="icon">{% endif %}</td>
+      <td><a href="{{ url_for('spell_page', spell_id=sp.id) }}">{{ sp.name }}</a>
+          {% if sp.is_discipline %}<span class="tag tag-disc">disc</span>{% endif %}</td>
+      <td>{{ sp.first_level if sp.first_level else '—' }}</td>
+      <td class="muted">{{ sp.class_list or '—' }}</td>
+      <td>{{ sp.mana }}</td>
+      <td>{{ sp.endurance_cost }}</td>
+      <td>{{ sp.cast_time | ms_to_seconds }}s</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p class="muted">No spells/disciplines reference this skill in EQL data.</p>
+{% endif %}
+{% endblock %}

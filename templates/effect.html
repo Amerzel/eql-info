@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}SPA {{ effect_id }} — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Effect SE {{ effect_id }}</nav>
+<h1>Spells using SE {{ effect_id }}</h1>
+<p class="muted">First 500 spells matching this spell-affect.</p>
+<table class="spell-table">
+  <thead><tr>
+    <th>Icon</th><th>Name</th><th>Slot</th>
+    <th>Base</th><th>Limit</th><th>Formula</th><th>Max</th>
+  </tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{% set icp = r.new_icon | icon_path %}{% if icp %}<img src="{{ icp }}" class="icon">{% endif %}</td>
+      <td><a href="{{ url_for('spell_page', spell_id=r.id) }}">{{ r.name }}</a></td>
+      <td>{{ r.slot + 1 }}</td>
+      <td>{{ r.base_value }}</td>
+      <td>{{ r.limit_value }}</td>
+      <td>{{ r.formula }}</td>
+      <td>{{ r.max_value }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

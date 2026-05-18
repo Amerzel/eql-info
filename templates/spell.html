@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}{{ spell.name }} — EQL Spell #{{ spell.id }}{% endblock %}
+{% block content %}
+<nav class="breadcrumb">
+  <a href="{{ url_for('home') }}">Classes</a> ›
+  <span>{{ spell.name }} <span class="muted">(#{{ spell.id }})</span></span>
+</nav>
+
+<div class="spell-header">
+  {% set icp = spell.new_icon | icon_path %}
+  {% if icp %}<img src="{{ icp }}" alt="" class="icon icon-lg">{% endif %}
+  <div>
+    <h1>{{ spell.name }}</h1>
+    <div class="muted">
+      Spell #{{ spell.id }} ·
+      {% if spell.is_discipline %}Discipline{% else %}Spell{% endif %} ·
+      {% if spell.spell_group %}<a href="{{ url_for('group_page', spell_group=spell.spell_group) }}">Spell group {{ spell.spell_group }}</a> (Rk.{{ spell.rank }}) ·{% endif %}
+      Target: {{ target_types.get(spell.target_type, spell.target_type) }} ·
+      Resist: {{ resist_types.get(spell.resist_type, spell.resist_type) }}
+    </div>
+  </div>
+</div>
+
+<div class="cols">
+  <section class="col-left">
+    <h2>Description</h2>
+    {% if desc_rendered %}
+      <div class="desc desc-rendered">{{ desc_rendered | safe }}</div>
+    {% endif %}
+    {% if desc_text %}
+      <details class="raw-detail">
+        <summary>Template text (placeholders visible)</summary>
+        <pre class="desc-raw">{{ desc_text }}</pre>
+      </details>
+    {% endif %}
+    {% if category_text %}<p class="muted"><strong>Category:</strong> {{ category_text }} <span class="muted">(code {{ spell.spell_category }})</span></p>{% endif %}
+    {% if type_text %}<p class="muted"><strong>Type:</strong> {{ type_text }}</p>{% endif %}
+    {% if effect_text %}<p class="muted"><strong>Effect:</strong> {{ effect_text }}</p>{% endif %}
+    {% if secondary_text %}<p class="muted"><strong>Secondary:</strong> {{ secondary_text }}</p>{% endif %}
+
+    <h2>Effects</h2>
+    {% if effects %}
+    <table class="effects-table">
+      <thead><tr>
+        <th>Slot</th><th>Effect</th><th>Base</th><th>Limit</th>
+        <th>Formula</th><th>Max</th>
+      </tr></thead>
+      <tbody>
+        {% for e in effects %}
+        <tr>
+          <td>{{ e.slot + 1 }}</td>
+          <td><a href="{{ url_for('effect_page', effect_id=e.effect_id) }}">{{ e.effect_id | spa_name }}</a>
+              <span class="muted">#{{ e.effect_id }}</span></td>
+          <td>{{ e.base_value }}</td>
+          <td>{{ e.limit_value }}</td>
+          <td>{{ e.formula }}</td>
+          <td>{{ e.max_value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p class="muted">No effects recorded.</p>
+    {% endif %}
+
+    {% if msgs %}
+    <h2>Messages</h2>
+    <dl class="msgs">
+      {% if msgs.you_cast %}<dt>When you cast</dt><dd>{{ msgs.you_cast }}</dd>{% endif %}
+      {% if msgs.other_casts %}<dt>When someone else casts</dt><dd>{{ msgs.other_casts }}</dd>{% endif %}
+      {% if msgs.cast_on_you %}<dt>Cast on you</dt><dd>{{ msgs.cast_on_you }}</dd>{% endif %}
+      {% if msgs.cast_on_other %}<dt>Cast on other</dt><dd>{{ msgs.cast_on_other }}</dd>{% endif %}
+      {% if msgs.spell_fades %}<dt>Fades</dt><dd>{{ msgs.spell_fades }}</dd>{% endif %}
+    </dl>
+    {% endif %}
+  </section>
+
+  <aside class="col-right">
+    <h2>Stats</h2>
+    <table class="kv">
+      <tr><th>Mana</th><td>{{ spell.mana }}</td></tr>
+      {% if spell.endurance_cost %}<tr><th>Endurance</th><td>{{ spell.endurance_cost }}</td></tr>{% endif %}
+      <tr><th>Cast time</th><td>{{ spell.cast_time | ms_to_seconds }}s</td></tr>
+      <tr><th>Recast</th><td>{{ spell.recast_time | ms_to_seconds }}s</td></tr>
+      <tr><th>Recovery</th><td>{{ spell.recovery_time | ms_to_seconds }}s</td></tr>
+      <tr><th>Duration</th><td>{{ duration }}{% if spell.buff_duration %} <span class="muted">(formula {{ spell.buff_duration_formula }}, cap {{ spell.buff_duration }})</span>{% endif %}</td></tr>
+      <tr><th>Range</th><td>{{ spell.range }}</td></tr>
+      {% if spell.aoe_range %}<tr><th>AoE range</th><td>{{ spell.aoe_range }}</td></tr>{% endif %}
+      <tr><th>Resist diff</th><td>{{ spell.resist_difficulty }}</td></tr>
+      {% if spell.pet_template %}<tr><th>Pet template</th><td>{{ spell.pet_template }}</td></tr>{% endif %}
+      {% if spell.teleport_zone %}<tr><th>Teleport / pet</th><td>{{ spell.teleport_zone }}</td></tr>{% endif %}
+      {% if spell.recourse_link %}<tr><th>Recourse</th><td><a href="{{ url_for('spell_page', spell_id=spell.recourse_link) }}">spell #{{ spell.recourse_link }}</a></td></tr>{% endif %}
+    </table>
+
+    <h2>Classes</h2>
+    {% if classes %}
+    <table class="kv">
+      {% for c in classes %}
+        <tr>
+          <th><a href="{{ url_for('class_page', class_index=c.class_index) }}">{{ c.class_name }}</a></th>
+          <td>L{{ c.min_level | level_display }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+      <p class="muted">No player classes can cast this.</p>
+    {% endif %}
+
+    {% if group_siblings | length > 1 %}
+    <h2>Spell line</h2>
+    <ul class="line">
+      {% for s in group_siblings %}
+        <li{% if s.id == spell.id %} class="current"{% endif %}>
+          Rk.{{ s.rank }}: <a href="{{ url_for('spell_page', spell_id=s.id) }}">{{ s.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

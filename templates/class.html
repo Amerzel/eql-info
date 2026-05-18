@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ class_name }} spells — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb">
+  <a href="{{ url_for('home') }}">Classes</a> ›
+  <span>{{ class_name }}</span>
+</nav>
+<h1>{{ class_name }} spell list</h1>
+
+<form method="get" class="diff-form">
+  <div class="diff-controls">
+    <label>Kind:
+      <select name="kind">
+        <option value="all" {% if kind=='all' %}selected{% endif %}>All</option>
+        <option value="spells" {% if kind=='spells' %}selected{% endif %}>Spells only</option>
+        <option value="disc" {% if kind=='disc' %}selected{% endif %}>Disciplines only</option>
+      </select>
+    </label>
+    <label>Mode:
+      <select name="good">
+        <option value="all" {% if good=='all' %}selected{% endif %}>All</option>
+        <option value="buff" {% if good=='buff' %}selected{% endif %}>Beneficial</option>
+        <option value="det" {% if good=='det' %}selected{% endif %}>Detrimental</option>
+      </select>
+    </label>
+    <label>Level min:
+      <input type="number" name="level_min" value="{{ level_min if level_min is not none else '' }}" style="width:5em" min="1" max="50">
+    </label>
+    <label>Level max:
+      <input type="number" name="level_max" value="{{ level_max if level_max is not none else '' }}" style="width:5em" min="1" max="50">
+    </label>
+    <button type="submit">Apply</button>
+    <a href="{{ url_for('class_page', class_index=class_index) }}" class="muted">reset</a>
+  </div>
+</form>
+
+<p class="muted">{{ total }} spells match, grouped by minimum level.</p>
+
+{% for level, spells in by_level %}
+<section class="level-block">
+  <h2>Level {{ level | level_display }}</h2>
+  <table class="spell-table">
+    <thead><tr>
+      <th>Icon</th><th>Name</th><th>Mana</th><th>Cast</th>
+      <th>Duration</th><th>Targets</th><th></th>
+    </tr></thead>
+    <tbody>
+    {% for sp in spells %}
+      <tr>
+        <td>{% set icp = sp.new_icon | icon_path %}
+          {% if icp %}<img src="{{ icp }}" alt="" class="icon">{% endif %}</td>
+        <td><a href="{{ url_for('spell_page', spell_id=sp.id) }}">{{ sp.name }}</a>
+            {% if sp.is_discipline %}<span class="tag tag-disc">disc</span>{% endif %}
+            {% if sp.good_effect == 1 %}<span class="tag tag-buff">buff</span>
+            {% elif sp.good_effect == 2 %}<span class="tag tag-grp">group buff</span>
+            {% else %}<span class="tag tag-deb">det</span>{% endif %}
+        </td>
+        <td>{{ sp.mana }}</td>
+        <td>{{ sp.cast_time | ms_to_seconds }}s</td>
+        <td>{{ sp.buff_duration if sp.buff_duration else '—' }}</td>
+        <td>{{ sp.target_type }}</td>
+        <td><a href="{{ url_for('spell_page', spell_id=sp.id) }}" class="link-tiny">view</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endfor %}
+{% endblock %}

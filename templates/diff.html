@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Spell-list diff — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Diff against screenshot</nav>
+<h1>Spell-list diff</h1>
+<p class="muted">Paste a list of spell names from a leaked screenshot (one per line)
+to verify whether our EQL data matches. We strip <code>Rk. II</code> suffixes
+and parentheticals automatically.</p>
+
+<form method="post" class="diff-form">
+  <div class="diff-controls">
+    <label>Class:
+      <select name="class_index" required>
+        <option value="">— choose —</option>
+        {% for i in range(class_names | length) %}
+          <option value="{{ i }}" {% if class_index == i %}selected{% endif %}>{{ class_names[i] }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Level min:
+      <input type="number" name="level_min" min="1" max="50" value="{{ level_min }}" style="width: 5em">
+    </label>
+    <label>Level max:
+      <input type="number" name="level_max" min="1" max="50" value="{{ level_max }}" style="width: 5em">
+    </label>
+    <button type="submit">Compare</button>
+  </div>
+  <textarea name="pasted" rows="12" placeholder="Paste one spell name per line:&#10;Cavorting Bones&#10;Lifetap&#10;Disease Cloud&#10;..." style="width:100%;background:var(--bg-3);color:var(--fg);border:1px solid var(--border);padding:0.6em;font-family:monospace;font-size:0.95em">{{ pasted }}</textarea>
+</form>
+
+{% if result %}
+<div class="diff-results">
+  <h2>Results</h2>
+  <p class="muted">
+    {{ result.n_pasted }} names pasted ·
+    {{ result.n_eql }} EQL spells in range ·
+    {{ result.exact_match | length }} exact match ·
+    {{ result.fuzzy | length }} fuzzy match ·
+    {{ result.missing_from_eql | length }} not in EQL ·
+    {{ result.extra_in_eql | length }} EQL has but paste doesn't
+  </p>
+
+  <div class="diff-cols">
+    <section>
+      <h3>Exact matches ({{ result.exact_match | length }})</h3>
+      <ul class="diff-list ok">
+        {% for orig, eqlrow in result.exact_match %}
+          <li><a href="{{ url_for('spell_page', spell_id=eqlrow.id) }}">{{ eqlrow.name }}</a> <span class="muted">L{{ eqlrow.min_level }}</span></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    {% if result.fuzzy %}
+    <section>
+      <h3>Fuzzy matches ({{ result.fuzzy | length }}) — possible transcription drift</h3>
+      <ul class="diff-list warn">
+        {% for orig, eqlrow in result.fuzzy %}
+          <li><code>{{ orig }}</code> → <a href="{{ url_for('spell_page', spell_id=eqlrow.id) }}">{{ eqlrow.name }}</a> <span class="muted">L{{ eqlrow.min_level }}</span></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <section>
+      <h3>In paste but NOT in EQL data ({{ result.missing_from_eql | length }})</h3>
+      {% if result.missing_from_eql %}
+        <ul class="diff-list bad">
+          {% for n in result.missing_from_eql %}<li>{{ n }}</li>{% endfor %}
+        </ul>
+      {% else %}<p class="muted">None — every pasted name has an EQL match.</p>{% endif %}
+    </section>
+
+    <section>
+      <h3>In EQL data but NOT in paste ({{ result.extra_in_eql | length }})</h3>
+      {% if result.extra_in_eql %}
+        <ul class="diff-list extra">
+          {% for r in result.extra_in_eql %}
+            <li><a href="{{ url_for('spell_page', spell_id=r.id) }}">{{ r.name }}</a> <span class="muted">L{{ r.min_level }}</span></li>
+          {% endfor %}
+        </ul>
+      {% else %}<p class="muted">None — your paste covers every EQL spell in this range.</p>{% endif %}
+    </section>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

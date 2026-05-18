@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Skills — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Skills</nav>
+<h1>Skills</h1>
+<p class="lede">EQ has {{ groups | sum(attribute=1, start=[]) | length }} skills.
+Click into a skill to see which spells/disciplines use it.
+<span class="muted">Per-class skill caps and skill-up rates are server-side
+and not represented here — this page is the recoverable client view only.</span></p>
+
+{% for cat, items in groups %}
+<section class="skill-cat">
+  <h2>{{ cat }}</h2>
+  <table class="spell-table">
+    <thead><tr><th>Skill</th><th>Code</th><th>Spells / Disciplines</th></tr></thead>
+    <tbody>
+    {% for sid, code, name, count in items %}
+      <tr>
+        <td><a href="{{ url_for('skill_page', skill_id=sid) }}">{{ name }}</a></td>
+        <td class="muted"><code>{{ code }}</code> · id {{ sid }}</td>
+        <td>{{ count if count else '—' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endfor %}
+{% endblock %}

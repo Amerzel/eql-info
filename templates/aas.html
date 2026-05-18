@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}AAs — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb"><a href="{{ url_for('home') }}">Classes</a> › Alternate Advancement</nav>
+<h1>Alternate Advancement</h1>
+<p class="lede">{{ rows | length }} distinct AAs catalogued from <code>dbstr_us.txt</code>
+(type 1 names + type 4 descriptions).
+<span class="muted">AA prerequisites, costs, and per-class restrictions are
+server-side data and not shown here.</span></p>
+
+<form method="get" class="diff-form">
+  <div class="diff-controls">
+    <label>Filter by name:
+      <input type="text" name="q" value="{{ q }}" placeholder="Combat, Innate, Hastened…">
+    </label>
+    <button type="submit">Search</button>
+    {% if q %}<a href="{{ url_for('aa_index') }}" class="muted">clear</a>{% endif %}
+  </div>
+</form>
+
+<table class="spell-table">
+  <thead><tr><th>Name</th><th>Ranks</th><th>First dbstr id</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td><a href="{{ url_for('aa_detail', name=r.name) }}">{{ r.name }}</a></td>
+      <td>{{ r.ranks }}</td>
+      <td class="muted">{{ r.first_id }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

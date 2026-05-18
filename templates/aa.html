@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ name }} — AA — EQL{% endblock %}
+{% block content %}
+<nav class="breadcrumb">
+  <a href="{{ url_for('home') }}">Classes</a> ›
+  <a href="{{ url_for('aa_index') }}">AAs</a> ›
+  <span>{{ name }}</span>
+</nav>
+<h1>{{ name }}</h1>
+<p class="muted">{{ ranks | length }} rank{% if ranks|length != 1 %}s{% endif %}
+found in <code>dbstr_us.txt</code>.
+AA prerequisites, point cost, and per-class eligibility are server-side and
+not available from client data.</p>
+
+<table class="effects-table">
+  <thead><tr><th>Rank #</th><th>dbstr id</th><th>Description</th></tr></thead>
+  <tbody>
+  {% for r in ranks %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td class="muted">{{ r.dbstr_id }}</td>
+      <td>{{ (r.description or "—") | safe }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Search — EQL{% endblock %}
+{% block content %}
+<h1>Search: <span class="muted">{{ q }}</span></h1>
+{% if rows %}
+<table class="spell-table">
+  <thead><tr><th>Icon</th><th>Name</th><th>#</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{% set icp = r.new_icon | icon_path %}{% if icp %}<img src="{{ icp }}" class="icon">{% endif %}</td>
+      <td><a href="{{ url_for('spell_page', spell_id=r.id) }}">{{ r.name }}</a></td>
+      <td class="muted">{{ r.id }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>No matches.</p>
+{% endif %}
+{% endblock %}
