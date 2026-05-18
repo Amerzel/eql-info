@@ -98,26 +98,37 @@ def render_duration(formula: int | None, cap: int | None) -> str:
 
 
 def substitute(text: str, effects: list, duration: str) -> str:
-    """#N, $N, @N positional substitution from effect slots."""
+    """#N, $N, @N positional substitution from effect slots.
+
+    EQ encodes damage spells with NEGATIVE base_value (effect_id=0 = decrease
+    HP), and the live client displays the absolute value in descriptions
+    ("causing 8 damage", not "causing -8 damage"). We do the same.
+    """
     if not text:
         return ""
 
     def get(idx: int):
         return effects[idx] if 0 <= idx < len(effects) else None
 
+    def fmt(v):
+        try:
+            return str(abs(int(v)))
+        except (TypeError, ValueError):
+            return "0"
+
     def hash_repl(m):
         e = get(int(m.group(1)) - 1)
-        return str(e["base_value"]) if e else m.group(0)
+        return fmt(e["base_value"]) if e else m.group(0)
 
     def dollar_repl(m):
         e = get(int(m.group(1)) - 1)
         if not e:
             return m.group(0)
-        return str(e["max_value"] if e["max_value"] else e["base_value"])
+        return fmt(e["max_value"] if e["max_value"] else e["base_value"])
 
     def at_repl(m):
         e = get(int(m.group(1)) - 1)
-        return str(e["max_value"]) if e else m.group(0)
+        return fmt(e["max_value"]) if e else m.group(0)
 
     text = re.sub(r"#(\d+)", hash_repl, text)
     text = re.sub(r"\$(\d+)", dollar_repl, text)

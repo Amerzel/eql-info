@@ -24,23 +24,29 @@ export function renderDuration(formula, cap) {
  *         level; for a level-agnostic browser this is a reasonable fallback.
  *   @N -> max_value (cap) of effect slot N
  *   %z -> the duration string ("20 min", "instant", …)
+ *
+ * EQ encodes damage spells with NEGATIVE base_value (effect_id=0 =
+ * decrease HP) and the live client renders the absolute value in
+ * descriptions ("causing 8 damage", not "causing -8 damage"). We follow
+ * the same convention.
  */
 export function substitute(text, effects, durationStr) {
   if (!text) return "";
   const get = idx => (idx >= 0 && idx < effects.length) ? effects[idx] : null;
+  const fmt = v => String(Math.abs(parseInt(v, 10) || 0));
 
   text = text.replace(/#(\d+)/g, (m, n) => {
     const e = get(parseInt(n, 10) - 1);
-    return e ? String(e.base_value) : m;
+    return e ? fmt(e.base_value) : m;
   });
   text = text.replace(/\$(\d+)/g, (m, n) => {
     const e = get(parseInt(n, 10) - 1);
     if (!e) return m;
-    return String(e.max_value || e.base_value);
+    return fmt(e.max_value || e.base_value);
   });
   text = text.replace(/@(\d+)/g, (m, n) => {
     const e = get(parseInt(n, 10) - 1);
-    return e ? String(e.max_value) : m;
+    return e ? fmt(e.max_value) : m;
   });
   text = text.split("%z").join(durationStr || "");
 
