@@ -17,7 +17,8 @@ export const TARGET_TYPES = {
   36: "Group v2", 38: "Directional AE", 39: "Group Teleport",
   40: "Beam", 41: "Single in Group", 42: "Directional AE Caster",
   43: "Free Target", 44: "Beam", 45: "Pet Owner", 46: "Target Of Target",
-  47: "Free Target", 50: "Tap (group)", 52: "All Group Members",
+  47: "Free Target", 50: "Tap (group)", 51: "Single Friendly (or Self)",
+  52: "All Group Members",
 };
 
 export const RESIST_TYPES = {

@@ -96,6 +96,8 @@ CREATE TABLE spells (
   recourse_link     INTEGER,
   pet_template      INTEGER,
   resist_difficulty INTEGER,
+  timer_id          INTEGER,
+  reflectable       INTEGER,
   min_level         INTEGER,
   teleport_zone     TEXT
 );
@@ -183,7 +185,7 @@ def main():
         print(f"  WARN: dbstr_us.txt not found at {dbstr_path}; skipping")
 
     # --- Load spell messages from spells_us_str.txt ------------------------
-    msg_path = os.path.join(ROOT, "spells_us_str.txt")
+    msg_path = os.path.join(DATA_DIR, "spells_us_str.txt")
     msgs = load_str_file(msg_path) if os.path.exists(msg_path) else {}
     if msgs:
         conn.executemany(
@@ -219,7 +221,9 @@ def main():
             d.get("spell_group"), d.get("rank"), d.get("spell_category"),
             d.get("is_discipline"), d.get("endurance_cost"),
             d.get("recourse_link"), d.get("eql_pet_template"),
-            d.get("resist_difficulty"), min_level, d.get("teleport_zone"),
+            d.get("resist_difficulty"),
+            d.get("timer_id"), d.get("reflectable"),
+            min_level, d.get("teleport_zone"),
         ))
 
         for ci, lvl in enumerate(d["classes"]):
@@ -238,7 +242,7 @@ def main():
 
     conn.executemany(
         "INSERT INTO spells VALUES "
-        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         spell_rows)
     conn.executemany(
         "INSERT INTO spell_classes VALUES (?,?,?,?)", class_rows)

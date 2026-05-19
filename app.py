@@ -47,7 +47,8 @@ TARGET_TYPES = {
     36: "Group v2", 38: "Directional AE", 39: "Group Teleport",
     40: "Beam", 41: "Single in Group", 42: "Directional AE Caster",
     43: "Free Target", 44: "Beam", 45: "Pet Owner", 46: "Target Of Target",
-    47: "Free Target", 50: "Tap (group)", 52: "All Group Members",
+    47: "Free Target", 50: "Tap (group)", 51: "Single Friendly (or Self)",
+    52: "All Group Members",
 }
 
 RESIST_TYPES = {0: "Unresistable", 1: "Magic", 2: "Fire", 3: "Cold",
@@ -290,6 +291,8 @@ def api_spell(spell_id: int):
                      if spell["spell_category"] and spell["spell_category"] > 0
                      else None)
 
+    # In-game tooltip "Reuse" display is floor(recast_time / 1000).
+    reuse_display_sec = (spell["recast_time"] or 0) // 1000
     return jsonify({
         "id": spell["id"],
         "name": spell["name"],
@@ -299,6 +302,7 @@ def api_spell(spell_id: int):
         "endurance_cost": spell["endurance_cost"],
         "cast_time_s": (spell["cast_time"] or 0) / 1000.0,
         "recast_s": (spell["recast_time"] or 0) / 1000.0,
+        "reuse_s": reuse_display_sec,         # in-game display (floored)
         "recovery_s": (spell["recovery_time"] or 0) / 1000.0,
         "range": spell["range"],
         "aoe_range": spell["aoe_range"],
@@ -306,6 +310,10 @@ def api_spell(spell_id: int):
         "target": TARGET_TYPES.get(spell["target_type"], f"#{spell['target_type']}"),
         "resist": RESIST_TYPES.get(spell["resist_type"], f"#{spell['resist_type']}"),
         "resist_difficulty": spell["resist_difficulty"],
+        "timer_id": spell["timer_id"] or 0,
+        # In EQ, reflectable=-1 means Yes, 0 means No.
+        "reflectable": ("Yes" if spell["reflectable"] == -1
+                        else ("No" if spell["reflectable"] == 0 else None)),
         "is_discipline": bool(spell["is_discipline"]),
         "good_effect": spell["good_effect"],
         "category": category_text,

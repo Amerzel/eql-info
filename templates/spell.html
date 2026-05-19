@@ -81,12 +81,16 @@
       <tr><th>Mana</th><td>{{ spell.mana }}</td></tr>
       {% if spell.endurance_cost %}<tr><th>Endurance</th><td>{{ spell.endurance_cost }}</td></tr>{% endif %}
       <tr><th>Cast time</th><td>{{ spell.cast_time | ms_to_seconds }}s</td></tr>
-      <tr><th>Recast</th><td>{{ spell.recast_time | ms_to_seconds }}s</td></tr>
-      <tr><th>Recovery</th><td>{{ spell.recovery_time | ms_to_seconds }}s</td></tr>
+      <tr><th>Reuse <span class="muted">(in-game)</span></th><td>{{ (spell.recast_time or 0) // 1000 }}s
+          <span class="muted">(raw recast: {{ spell.recast_time | ms_to_seconds }}s)</span></td></tr>
+      <tr><th>Recovery <span class="muted">(internal)</span></th><td>{{ spell.recovery_time | ms_to_seconds }}s</td></tr>
       <tr><th>Duration</th><td>{{ duration }}{% if spell.buff_duration %} <span class="muted">(formula {{ spell.buff_duration_formula }}, cap {{ spell.buff_duration }})</span>{% endif %}</td></tr>
       <tr><th>Range</th><td>{{ spell.range }}</td></tr>
       {% if spell.aoe_range %}<tr><th>AoE range</th><td>{{ spell.aoe_range }}</td></tr>{% endif %}
       <tr><th>Resist diff</th><td>{{ spell.resist_difficulty }}</td></tr>
+      {% if spell.timer_id %}<tr><th>Timer (shared cooldown)</th><td>{{ spell.timer_id }}</td></tr>{% endif %}
+      {% if spell.reflectable == -1 %}<tr><th>Reflectable</th><td>Yes</td></tr>
+      {% elif spell.reflectable == 0 and spell.good_effect == 0 %}<tr><th>Reflectable</th><td>No</td></tr>{% endif %}
       {% if spell.pet_template %}<tr><th>Pet template</th><td>{{ spell.pet_template }}</td></tr>{% endif %}
       {% if spell.teleport_zone %}<tr><th>Teleport / pet</th><td>{{ spell.teleport_zone }}</td></tr>{% endif %}
       {% if spell.recourse_link %}<tr><th>Recourse</th><td><a href="{{ url_for('spell_page', spell_id=spell.recourse_link) }}">spell #{{ spell.recourse_link }}</a></td></tr>{% endif %}

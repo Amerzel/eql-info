@@ -102,13 +102,14 @@ function renderTooltip(data) {
     <dl class="tt-stats">
       ${cost}
       <dt>Cast</dt><dd>${fmtSeconds(spell.cast_time)}s</dd>
-      <dt>Recast</dt><dd>${fmtSeconds(spell.recast_time)}s</dd>
-      <dt>Recov</dt><dd>${fmtSeconds(spell.recovery_time)}s</dd>
+      <dt>Reuse</dt><dd>${Math.floor((spell.recast_time || 0) / 1000)}s</dd>
       <dt>Range</dt><dd>${fmtFloat(spell.range)}</dd>
       ${spell.aoe_range ? `<dt>AoE</dt><dd>${fmtFloat(spell.aoe_range)}</dd>` : ""}
       <dt>Duration</dt><dd>${duration}</dd>
       <dt>Target</dt><dd>${escapeHtml(targetName(spell.target_type))}</dd>
       <dt>Resist</dt><dd>${escapeHtml(resistName(spell.resist_type))} (${spell.resist_difficulty})</dd>
+      ${spell.timer_id ? `<dt>Timer</dt><dd>${spell.timer_id}</dd>` : ""}
+      ${spell.reflectable === -1 ? `<dt>Reflectable</dt><dd>Yes</dd>` : ""}
     </dl>
     <div class="tt-section-label">Effects</div>${effectsHtml}
     <div class="tt-section-label">Classes</div>${classesHtml}`;

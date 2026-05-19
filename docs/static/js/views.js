@@ -282,12 +282,17 @@ export async function renderSpell(spellId) {
           <tr><th>Mana</th><td>${spell.mana}</td></tr>
           ${spell.endurance_cost ? `<tr><th>Endurance</th><td>${spell.endurance_cost}</td></tr>` : ""}
           <tr><th>Cast time</th><td>${fmtSeconds(spell.cast_time)}s</td></tr>
-          <tr><th>Recast</th><td>${fmtSeconds(spell.recast_time)}s</td></tr>
-          <tr><th>Recovery</th><td>${fmtSeconds(spell.recovery_time)}s</td></tr>
+          <tr><th>Reuse <span class="muted">(in-game)</span></th><td>${Math.floor((spell.recast_time || 0) / 1000)}s
+              <span class="muted">(raw recast: ${fmtSeconds(spell.recast_time)}s)</span></td></tr>
+          <tr><th>Recovery <span class="muted">(internal)</span></th><td>${fmtSeconds(spell.recovery_time)}s</td></tr>
           <tr><th>Duration</th><td>${duration}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
           <tr><th>Range</th><td>${spell.range}</td></tr>
           ${spell.aoe_range ? `<tr><th>AoE range</th><td>${spell.aoe_range}</td></tr>` : ""}
           <tr><th>Resist diff</th><td>${spell.resist_difficulty}</td></tr>
+          ${spell.timer_id ? `<tr><th>Timer (shared cooldown)</th><td>${spell.timer_id}</td></tr>` : ""}
+          ${spell.reflectable === -1 ? `<tr><th>Reflectable</th><td>Yes</td></tr>` :
+            (spell.reflectable === 0 && spell.good_effect === 0
+              ? `<tr><th>Reflectable</th><td>No</td></tr>` : "")}
           ${spell.pet_template ? `<tr><th>Pet template</th><td>${spell.pet_template}</td></tr>` : ""}
           ${spell.teleport_zone ? `<tr><th>Teleport / pet</th><td>${escapeHtml(spell.teleport_zone)}</td></tr>` : ""}
           ${spell.recourse_link ? `<tr><th>Recourse</th><td><a href="#/spell/${spell.recourse_link}">spell #${spell.recourse_link}</a></td></tr>` : ""}
