@@ -28,68 +28,40 @@ function link(href, text) {
 
 export async function renderHome() {
   const totalRow = await queryOne(
-    "SELECT COUNT(DISTINCT spell_id) AS c FROM spell_classes WHERE min_level <= ?",
+    "SELECT COUNT(DISTINCT spell_id) AS c FROM spell_classes " +
+    "WHERE min_level <= ? AND verified = 1",
     [MAX_LEVEL]);
   const total = totalRow ? totalRow.c : 0;
 
   const classRows = await query(
     `SELECT class_index, class_name, COUNT(*) AS n
        FROM spell_classes
-      WHERE min_level <= ?
-      GROUP BY class_index
-      ORDER BY class_index`,
-    [MAX_LEVEL]);
-  const counts = new Map(classRows.map(r => [r.class_index, r.n]));
-
-  // Verified counts per class (for classes whose verified/ file has been
-  // reviewed). If a class has any verified rows we show "V/T verified"
-  // instead of just "T spells".
-  const verifiedRows = await query(
-    `SELECT class_index, COUNT(*) AS n
-       FROM spell_classes
       WHERE min_level <= ? AND verified = 1
       GROUP BY class_index`,
     [MAX_LEVEL]);
-  const vcounts = new Map(verifiedRows.map(r => [r.class_index, r.n]));
+  const counts = new Map(classRows.map(r => [r.class_index, r.n]));
 
-  // Class cards listed alphabetically by display name.
+  // Class cards listed alphabetically by display name. Pure-melee classes
+  // (Warrior, Monk, Rogue, Berserker) have no spell data so they're hidden.
+  const HIDE = new Set([0, 6, 8, 15]);
   const classIndices = Array.from({ length: 16 }, (_, i) => i)
+    .filter(i => !HIDE.has(i))
     .sort((a, b) => CLASS_NAMES[a].localeCompare(CLASS_NAMES[b]));
   const cards = classIndices.map(i => {
     const c = counts.get(i) || 0;
-    const v = vcounts.get(i);
     const banner = `static/icons/classes/${String(i).padStart(2, "0")}.png`;
-    const countHtml = v !== undefined
-      ? `<span class="class-count">${v} of ${c} verified</span>`
-      : `<span class="class-count">${c} spells</span>`;
     return `<a class="class-card" href="#/class/${i}">
               <img class="class-banner" src="${banner}" alt="" loading="lazy">
               <span class="class-name">${escapeHtml(CLASS_NAMES[i])}</span>
-              ${countHtml}
+              <span class="class-count">${c} spells</span>
             </a>`;
   }).join("");
 
   return `
     <h1>EverQuest Legends — Spell Explorer</h1>
     <p class="lede">${total.toLocaleString()} spells obtainable at L1–${MAX_LEVEL}.
-    Pick a class to browse its spell list by level, or search by name above.
-    <span class="muted">EQL ships spells through L125 in the file (inherited
-    from Live); only L1–${MAX_LEVEL} are obtainable on this server, so we
-    hard-hide the rest.</span></p>
-    <aside class="notice">
-      <strong>Note:</strong> These lists are generated from the EQL client's
-      spell data. A spell appearing here means the client recognises that the
-      class can cast it — not that the scroll is actually distributed on the
-      server (via vendor, quest, or drop). The final in-game spell lists may
-      differ.
-    </aside>
+    Pick a class to browse its spell list by level, or search by name above.</p>
     <div class="class-grid">${cards}</div>
-    <h2>Catalogs</h2>
-    <ul class="tool-list">
-      <li><a href="#/races">Races</a> — 16 player races with lore + class permissions.</li>
-      <li><a href="#/skills">Skill list</a> — 77 EQ skills with the spells that use each.</li>
-      <li><a href="#/aas">Alternate Advancement</a> — ~1,500 distinct AAs with rank-folded descriptions.</li>
-    </ul>
   `;
 }
 
@@ -108,24 +80,14 @@ export async function renderClass(classIndex, params) {
                         parseInt(params.get("level_max") || String(MAX_LEVEL), 10)
                         || MAX_LEVEL);
 
-  // Verified filter: default is "verified" if this class has any verified
-  // rows (i.e. the screenshot review has happened); otherwise "all" since
-  // there's nothing to filter to yet.
-  const vTotalRow = await queryOne(
-    "SELECT COUNT(*) AS n FROM spell_classes WHERE class_index = ? AND verified = 1",
-    [classIndex]);
-  const hasVerified = vTotalRow && vTotalRow.n > 0;
-  const verified = params.get("verified") ||
-                   (hasVerified ? "verified" : "all");
-
   const where = ["sc.class_index = ?", "sc.min_level <= ?",
-                 "sc.min_level >= ?", "sc.min_level <= ?"];
+                 "sc.min_level >= ?", "sc.min_level <= ?",
+                 "sc.verified = 1"];
   const args = [classIndex, MAX_LEVEL, lMin, lMax];
   if (kind === "spells") where.push("s.is_discipline = 0");
   else if (kind === "disc") where.push("s.is_discipline = 1");
   if (good === "buff") where.push("s.good_effect IN (1, 2)");
   else if (good === "det") where.push("s.good_effect = 0");
-  if (verified === "verified") where.push("sc.verified = 1");
 
   const rows = await query(
     `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time,
@@ -160,12 +122,6 @@ export async function renderClass(classIndex, params) {
             <option value="det"${sel(good, "det")}>Detrimental</option>
           </select>
         </label>
-        ${hasVerified ? `<label>Source:
-          <select name="verified">
-            <option value="verified"${sel(verified, "verified")}>In-game only</option>
-            <option value="all"${sel(verified, "all")}>All client data</option>
-          </select>
-        </label>` : ""}
         <label>Level min:
           <input type="number" name="level_min" value="${lMin}" min="1" max="${MAX_LEVEL}" style="width:5em">
         </label>
@@ -208,13 +164,6 @@ export async function renderClass(classIndex, params) {
   return `
     <nav class="breadcrumb"><a href="#/">Classes</a> › <span>${escapeHtml(CLASS_NAMES[classIndex])}</span></nav>
     <h1>${escapeHtml(CLASS_NAMES[classIndex])} spell list</h1>
-    <aside class="notice">
-      <strong>Note:</strong> This list is generated from the EQL client's
-      spell data and may not exactly match what's available in game. The
-      client says these spells are castable by this class at the levels
-      shown — server-side distribution (vendors, quests, drops) determines
-      what's actually obtainable.
-    </aside>
     ${filterForm}
     <p class="muted">${rows.length} spells match, grouped by minimum level.</p>
     ${body}`;

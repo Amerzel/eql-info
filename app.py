@@ -151,27 +151,20 @@ def home():
     # Only count spells that are obtainable at L1..MAX_LEVEL.
     n_spells = db.execute(
         "SELECT COUNT(DISTINCT spell_id) AS c FROM spell_classes "
-        "WHERE min_level <= ?", (MAX_LEVEL,)).fetchone()["c"]
+        "WHERE min_level <= ? AND verified = 1", (MAX_LEVEL,)).fetchone()["c"]
     counts = {}
     for r in db.execute(
         "SELECT class_index, class_name, COUNT(*) AS n "
-        "FROM spell_classes WHERE min_level <= ? "
-        "GROUP BY class_index ORDER BY class_index", (MAX_LEVEL,)
-    ):
-        counts[r["class_index"]] = (r["class_name"], r["n"])
-    vcounts = {}
-    for r in db.execute(
-        "SELECT class_index, COUNT(*) AS n "
         "FROM spell_classes WHERE min_level <= ? AND verified = 1 "
         "GROUP BY class_index", (MAX_LEVEL,)
     ):
-        vcounts[r["class_index"]] = r["n"]
-    # Alphabetical by class display name.
-    indices = sorted(range(16), key=lambda i: CLASS_NAMES[i])
-    classes = [(i, CLASS_NAMES[i],
-                counts.get(i, (CLASS_NAMES[i], 0))[1],
-                vcounts.get(i))
-               for i in indices]
+        counts[r["class_index"]] = r["n"]
+    # Alphabetical by class display name. Pure-melee classes (Warrior,
+    # Monk, Rogue, Berserker) have no spell data so they're hidden.
+    HIDE = {0, 6, 8, 15}
+    indices = sorted((i for i in range(16) if i not in HIDE),
+                     key=lambda i: CLASS_NAMES[i])
+    classes = [(i, CLASS_NAMES[i], counts.get(i, 0)) for i in indices]
     return render_template("home.html",
                            classes=classes,
                            n_spells=n_spells, max_level=MAX_LEVEL)
@@ -188,17 +181,8 @@ def class_page(class_index: int):
     level_max = request.args.get("level_max", type=int)
 
     db = get_db()
-    # Verified filter: if this class has any verified rows, default the view
-    # to "verified only" (the screenshot-confirmed in-game set); otherwise
-    # show all client-data spells.
-    has_verified = bool(db.execute(
-        "SELECT 1 FROM spell_classes WHERE class_index = ? AND verified = 1 LIMIT 1",
-        (class_index,)).fetchone())
-    verified = request.args.get(
-        "verified", "verified" if has_verified else "all")
-
     # Hard-cap: never show entries above MAX_LEVEL.
-    where = ["sc.class_index = ?", "sc.min_level <= ?"]
+    where = ["sc.class_index = ?", "sc.min_level <= ?", "sc.verified = 1"]
     params = [class_index, MAX_LEVEL]
     if kind == "spells":
         where.append("s.is_discipline = 0")
@@ -208,8 +192,6 @@ def class_page(class_index: int):
         where.append("s.good_effect IN (1, 2)")
     elif good == "det":
         where.append("s.good_effect = 0")
-    if verified == "verified":
-        where.append("sc.verified = 1")
     if level_min is not None:
         where.append("sc.min_level >= ?")
         params.append(level_min)
@@ -234,7 +216,6 @@ def class_page(class_index: int):
                            by_level=sorted(by_level.items()),
                            total=len(rows),
                            kind=kind, good=good,
-                           verified=verified, has_verified=has_verified,
                            level_min=level_min, level_max=level_max)
 
 

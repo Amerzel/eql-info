@@ -7,14 +7,6 @@
 </nav>
 <h1>{{ class_name }} spell list</h1>
 
-<aside class="notice">
-  <strong>Note:</strong> This list is generated from the EQL client's spell
-  data and may not exactly match what's available in game. The client says
-  these spells are castable by this class at the levels shown &mdash;
-  server-side distribution (vendors, quests, drops) determines what's
-  actually obtainable.
-</aside>
-
 <form method="get" class="diff-form">
   <div class="diff-controls">
     <label>Kind:
@@ -31,14 +23,6 @@
         <option value="det" {% if good=='det' %}selected{% endif %}>Detrimental</option>
       </select>
     </label>
-    {% if has_verified %}
-    <label>Source:
-      <select name="verified">
-        <option value="verified" {% if verified=='verified' %}selected{% endif %}>In-game only</option>
-        <option value="all" {% if verified=='all' %}selected{% endif %}>All client data</option>
-      </select>
-    </label>
-    {% endif %}
     <label>Level min:
       <input type="number" name="level_min" value="{{ level_min if level_min is not none else '' }}" style="width:5em" min="1" max="50">
     </label>
