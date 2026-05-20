@@ -1,0 +1,148 @@
+# Necromancer — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 174 spells.
+
+L 1  Cavorting Bones
+L 1  Coldlight
+L 1  Disease Cloud
+L 1  Invisibility Versus Undead
+L 1  Lifetap
+L 1  Minor Shielding
+L 1  Reclaim Energy
+L 1  Sense the Dead
+L 1  Siphon Strength
+L 2  Fear
+L 2  Numb the Dead
+L 2  True North
+L 3  Endure Cold
+L 3  Grim Aura
+L 3  Lifespike
+L 4  Clinging Darkness
+L 4  Gate
+L 4  Leering Corpse
+L 4  Poison Bolt
+L 5  Deadeye
+L 5  Shadow Step
+L 6  Dark Empathy
+L 6  Dark Pact
+L 6  Ward Undead
+L 7  Gather Shadows
+L 7  Mend Bones
+L 7  Vampiric Embrace
+L 8  Bone Walk
+L 8  Cancelling of Life
+L 8  Impart Strength
+L 8  Lesser Shielding
+L 9  Leech
+L 9  Sight Graft
+L 9  Wave of Enfeeblement
+L10  Heat Blood
+L10  Scent of Dusk
+L10  Spook the Dead
+L11  Endure Disease
+L11  Engulfing Darkness
+L11  Focus Death
+L12  Bind Affinity
+L12  Convoke Shadow
+L12  Lifedraw
+L13  Cure Disease
+L13  Heart Flutter
+L14  Shieldskin
+L15  Banshee Aura
+L15  Cancel Magic
+L15  Infectious Cloud
+L15  Voice Graft
+L16  Feign Death
+L16  Form of Chilled Bone
+L16  Hungry Earth
+L16  Restless Bones
+L16  Shielding
+L16  Spirit Armor
+L17  Shackle of Bone
+L17  Shadow Compact
+L18  Allure of Death
+L18  Dominate Undead
+L18  Negation of Life
+L19  Expulse Undead
+L19  Shadow Vortex
+L19  Tiny Companion
+L20  Animate Dead
+L20  Harmshield
+L20  Siphon Life
+L20  Word of Shadow
+L21  Breath of the Dead
+L21  Rapacious Subvention
+L21  Scent of Shadow
+L21  Shock of Poison
+L22  Leatherskin
+L22  Screaming Terror
+L22  Shadow Sight
+L23  Intensify Death
+L23  Rest the Dead
+L24  Haunting Corpse
+L24  Major Shielding
+L24  Resist Cold
+L25  Panic the Dead
+L26  Renew Bones
+L26  Spirit Tap
+L27  Dooming Darkness
+L27  Eternities Torment
+L27  Word of Spirit
+L28  Boil Blood
+L28  Dismiss Undead
+L29  Summon Dead
+L29  Vampiric Curse
+L30  Invoke Fear
+L31  Beguile Undead
+L31  Call of Bones
+L31  Resist Disease
+L32  Steelskin
+L32  Surge of Enfeeblement
+L32  Torbas' Acid Blast
+L33  Greater Shielding
+L33  Invoke Shadow
+L34  Root
+L34  Venom of the Snake
+L35  Augment Death
+L35  Scourge
+L36  Chilling Embrace
+L36  Counteract Disease
+L36  Word of Souls
+L37  Cessation of Life
+L37  Nullify Magic
+L37  Scent of Darkness
+L38  Expel Undead
+L38  Shackle of Spirit
+L39  Dark Soul
+L39  Drain Spirit
+L39  Malignant Dead
+L40  Asystole
+L40  Summon Companion
+L41  Arch Shielding
+L41  Dead Man Floating
+L42  Ignite Bones
+L42  Incinerate Bones
+L43  Corporeal Empathy
+L43  Covetous Subversion
+L43  Diamondskin
+L44  Bounce
+L44  Cackling Bones
+L44  Form of Bleached Bone
+L44  Pact of Shadow
+L45  Auspice
+L45  Dead Men Floating
+L46  Banish Undead
+L46  Insidious Retrogression
+L46  Paralyzing Earth
+L47  Cajole Undead
+L47  Cascading Darkness
+L47  Ignite Blood
+L48  Drain Soul
+L48  Invoke Death
+L48  Lich
+L49  Bond of Death
+L49  Torbas' Poison Blast
+L49  Ward of Calliav
+L50  Envenomed Bolt
+L50  Improved Invisibility to Undead

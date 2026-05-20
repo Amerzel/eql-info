@@ -1,0 +1,165 @@
+# Shaman — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 174 spells.
+
+L 1  Burst of Flame
+L 1  Cure Disease
+L 1  Dexterous Aura
+L 1  Endure Cold
+L 1  Flash of Light
+L 1  Inner Fire
+L 1  Minor Healing
+L 1  Strengthen
+L 1  True North
+L 2  Cure Poison
+L 2  Spirit Pouch
+L 2  Summon Drink
+L 3  Feet like Cat
+L 3  Scale Skin
+L 4  Fleeting Fury
+L 4  Frost Rift
+L 4  Sicken
+L 5  Drowsy
+L 5  Endure Fire
+L 5  Gate
+L 6  Serpent Sight
+L 6  Spirit of Bear
+L 6  Summon Food
+L 7  Cure Blindness
+L 7  Sense Animals
+L 7  Spirit Sight
+L 8  Endure Disease
+L 8  Tainted Breath
+L 8  Talisman of the Beast
+L 9  Light Healing
+L 9  Remove Minor Curse
+L 9  Spirit of Wolf
+L10  Invisibility Versus Animals
+L10  Levitate
+L10  Spirit of Snake
+L11  Burst of Strength
+L11  Endure Poison
+L11  Turtle Skin
+L12  Disempower
+L12  Enduring Breath
+L12  Root
+L13  Walking Sleep
+L14  Bind Affinity
+L14  Spirit Strike
+L15  Infectious Cloud
+L15  Shrink
+L16  Frenzy
+L16  Grow
+L16  Rancor
+L16  Tiny Companion
+L17  Insidious Fever
+L17  Vision
+L18  Malaise
+L18  Spirit of Cat
+L18  Spirit Strength
+L19  Affliction
+L19  Cancel Magic
+L19  Endure Magic
+L19  Healing
+L20  Creeping Vision
+L20  Protect
+L21  Spirit of Cheetah
+L21  Spirit of Monkey
+L21  Spirit of Ox
+L22  Counteract Disease
+L22  Poison Storm
+L22  Scale of Wolf
+L23  Cannibalize
+L23  Frost Strike
+L23  Regeneration
+L24  Envenomed Breath
+L24  Remove Lesser Curse
+L24  Resist Cold
+L25  Befriend Animal
+L25  Form of the Bear
+L25  Rising Dexterity
+L26  Counteract Poison
+L26  Quickness
+L26  Ultravision
+L27  Invisibility
+L27  Resist Fire
+L27  Tagar's Insects
+L28  Alluring Aura
+L28  Raging Strength
+L29  Greater Healing
+L29  Imbue Amber
+L29  Imbue Diamond
+L29  Imbue Ivory
+L29  Imbue Jade
+L29  Imbue Sapphire
+L29  Listless Power
+L29  Mass Imbue Amber
+L29  Mass Imbue Diamond
+L29  Mass Imbue Ivory
+L29  Mass Imbue Jade
+L29  Mass Imbue Sapphire
+L29  Spirit of the Shrew
+L30  Fury
+L30  Health
+L30  Resist Disease
+L31  Nimble
+L31  Scourge
+L31  Shifting Shield
+L32  Charm Animals
+L32  Companion Spirit
+L32  Malaisement
+L32  Talisman of Tnarg
+L33  Instill
+L33  Winter's Roar
+L34  Curse
+L34  Pack Shrew
+L34  Shock of the Tainted
+L35  Resist Poison
+L35  Tumultuous Strength
+L36  Assiduous Vision
+L36  Gale of Poison
+L36  Spirit of Bih`Li
+L37  Glamour
+L37  Venom of the Snake
+L37  Vigilant Spirit
+L38  Cannibalize II
+L38  Insidious Malady
+L38  Remove Curse
+L38  Togor's Insects
+L39  Blinding Luminance
+L39  Chloroplast
+L39  Deftness
+L39  Furious Strength
+L40  Spirit Salve
+L40  Summon Companion
+L40  Talisman of Altuna
+L41  Agility
+L41  Guardian Spirit
+L41  Incapacitate
+L42  Alacrity
+L42  Blast of Poison
+L42  Guardian
+L43  Odium
+L43  Resist Magic
+L43  Stamina
+L44  Blizzard Blast
+L44  Nullify Magic
+L44  Stoicism
+L45  Frenzied Spirit
+L45  Rage
+L45  Superior Healing
+L46  Harnessing of Spirit
+L46  Strength
+L47  Charisma
+L47  Shock of Venom
+L48  Abolish Disease
+L48  Dexterity
+L48  Malosi
+L49  Envenomed Bolt
+L49  Infusion of Spirit
+L49  Plague
+L50  Kragg's Salve
+L50  Spirit of the Puma
+L50  Spirit Quickening
+L50  Talisman of Jasinth

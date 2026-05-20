@@ -1,0 +1,80 @@
+# Beastlord — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 75 spells.
+
+L 1  Minor Healing
+L 1  Wild Spirit
+L 2  Sense Animals
+L 3  Endure Cold
+L 4  Cure Disease
+L 4  Tame Spirit
+L 5  Flash of Light
+L 7  Inner Fire
+L 8  Spirit of Sharik
+L 9  Endure Fire
+L 9  Sharik's Replenishing
+L10  Scale Skin
+L11  Fleeting Fury
+L12  Blast of Frost
+L13  Cure Poison
+L13  Spirit of Lightning
+L14  Light Healing
+L14  Sicken
+L14  Strengthen
+L15  Keshuval's Rejuvenation
+L15  Spirit of Khaliz
+L16  Serpent Sight
+L17  Spirit of Bear
+L17  Summon Drink
+L18  Endure Poison
+L18  Spirit of the Blizzard
+L19  Tainted Breath
+L19  Tiny Companion
+L20  Drowsy
+L21  Spirit of Keshuval
+L22  Endure Disease
+L23  Frost Dagger
+L23  Shrink
+L24  Healing
+L24  Spirit of Wolf
+L25  Enduring Breath
+L26  Spirit Strike
+L26  Turtle Skin
+L27  Herikol's Soothing
+L28  Spirit of Inferno
+L28  Spirit Strength
+L29  Spirit Sight
+L29  Summon Food
+L30  Spirit of Herikol
+L31  Summon Companion
+L32  Levitate
+L33  Ice Spear
+L34  Endure Magic
+L34  Greater Healing
+L35  Cancel Magic
+L35  Envenomed Breath
+L36  Yekan's Recovery
+L37  Spirit of Ox
+L37  Yekan's Quickening
+L38  Spirit of Monkey
+L38  Spirit of the Scorpion
+L39  Spirit of the Shrew
+L39  Spirit of Yekan
+L40  Malaria
+L41  Raging Strength
+L41  Spiritual Light
+L42  Spiritual Brawn
+L43  Invisibility
+L44  Listless Power
+L44  Pack Shrew
+L45  Counteract Disease
+L46  Spirit of Kashek
+L46  Spirit of Vermin
+L47  Frenzy
+L47  Frost Shard
+L48  Protect
+L48  Spirit Salve
+L49  Vigor of Zehkes
+L49  Ward of Calliav
+L50  Sha's Lethargy

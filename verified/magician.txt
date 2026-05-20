@@ -1,0 +1,162 @@
+# Magician — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 180 spells.
+
+L 1  Burst of Flame
+L 1  Fire Flux
+L 1  Flare
+L 1  Minor Shielding
+L 1  Reclaim Energy
+L 1  Summon Dagger
+L 1  Summon Drink
+L 1  Summon Food
+L 1  True North
+L 2  Elementalkin: Water
+L 2  Summon Bandages
+L 2  Summon Brass Choker
+L 3  Elementalkin: Fire
+L 3  Sense Summoned
+L 3  Summon Wisp
+L 4  Burn
+L 4  Elementalkin: Air
+L 4  Gate
+L 5  Elementalkin: Earth
+L 5  Flame Bolt
+L 5  Lesser Shielding
+L 6  Elementaling: Water
+L 6  Eye of Zomm
+L 7  Elementaling: Fire
+L 7  Renew Elements
+L 7  Shield of Fire
+L 7  Shock of Blades
+L 8  Elementaling: Air
+L 8  Invisibility
+L 8  Staff of Tracing
+L 8  Summon Linen Mantle
+L 9  Elementaling: Earth
+L 9  Summon Fang
+L 9  Ward Summoned
+L10  Cancel Magic
+L10  Elemental: Water
+L10  Rain of Blades
+L10  Summon Tarnished Bauble
+L11  Burnout
+L11  Elemental: Fire
+L11  Summon Elemental Defender
+L12  Bind Affinity
+L12  Column of Fire
+L12  Elemental: Air
+L13  Elemental: Earth
+L13  Phantom Leather
+L14  Minor Summoning: Water
+L14  Staff of Warding
+L15  Minor Summoning: Fire
+L15  Shock of Flame
+L15  Summon Heatstone
+L15  Summon Throwing Dagger
+L16  Minor Summoning: Air
+L16  See Invisible
+L16  Shielding
+L16  Summon Tiny Ring
+L17  Minor Summoning: Earth
+L17  Rain of Fire
+L17  Summon Phantom Leather
+L17  Summon Waterstone
+L18  Bolt of Flame
+L18  Expulse Summoned
+L18  Lesser Summoning: Water
+L18  Renew Summoning
+L19  Elemental Shield
+L19  Lesser Summoning: Fire
+L19  Shield of Flame
+L19  Tiny Companion
+L20  Lesser Summoning: Air
+L20  Spear of Warding
+L20  Summon Arrows
+L20  Summon Jade Bracelet
+L20  Summon Wooden Bracelet
+L21  Cornucopia
+L21  Lesser Summoning: Earth
+L21  Summon Silver Choker
+L22  Everfount
+L22  Flame Flux
+L22  Malaise
+L22  Summoning: Water
+L23  Shock of Spikes
+L23  Summoning: Fire
+L24  Major Shielding
+L24  Staff of Runes
+L24  Summoning: Air
+L25  Dismiss Summoned
+L25  Phantom Chain
+L25  Summon Phantom Chain
+L25  Summoning: Earth
+L26  Greater Summoning: Water
+L26  Rain of Spikes
+L26  Sword of Runes
+L27  Expedience
+L27  Greater Summoning: Fire
+L27  Summon Leather Mantle
+L28  Expel Summoned
+L28  Greater Summoning: Air
+L28  Inferno Shield
+L29  Burnout II
+L29  Greater Summoning: Earth
+L29  Summon Coldstone
+L30  Dimensional Hole
+L30  Monster Summoning I
+L30  Summon Shiny Bauble
+L31  Blaze
+L31  Minor Conjuration: Water
+L31  Summon Shard of the Core
+L32  Greater Shielding
+L32  Minor Conjuration: Fire
+L32  Nullify Magic
+L33  Cinder Bolt
+L33  Minor Conjuration: Air
+L33  Staff of Symbols
+L34  Minor Conjuration: Earth
+L34  Refresh Summoning
+L35  Dagger of Symbols
+L35  Rain of Lava
+L36  Lesser Conjuration: Water
+L36  Summon Companion
+L37  Lesser Conjuration: Fire
+L37  Summon Ring of Flight
+L37  Summon Twisted Ring
+L38  Barrier of Combustion
+L38  Lesser Conjuration: Air
+L38  Summon Phantom Plate
+L39  Flame Arc
+L39  Lesser Conjuration: Earth
+L41  Conjuration: Water
+L41  Elemental Armor
+L41  Phantom Plate
+L41  Shock of Swords
+L42  Bounce
+L42  Conjuration: Fire
+L42  Summon Opal Bracelet
+L42  Summon: Orb of Exploration
+L43  Arch Shielding
+L43  Conjuration: Air
+L43  Elemental Maelstrom
+L44  Conjuration: Earth
+L44  Malaisement
+L44  Modulating Rod
+L44  Primal Remedy
+L44  Summon Stone Bracelet
+L45  Shield of Lava
+L45  Summon Orb
+L46  Greater Conjuration: Earth
+L46  Ward of Calliav
+L47  Burnout III
+L47  Greater Conjuration: Fire
+L47  Lava Bolt
+L48  Banish Summoned
+L48  Greater Conjuration: Air
+L48  Summon Elemental Blanket
+L49  Greater Conjuration: Water
+L49  Rain of Swords
+L50  Monster Summoning II
+L50  Summon Golden Choker

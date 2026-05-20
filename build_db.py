@@ -19,6 +19,7 @@ Tables:
   dbstr           — (id, type, text)  — full Live string table
 """
 import os
+import re
 import sys
 import sqlite3
 
@@ -56,6 +57,83 @@ CLASS_NAMES = [
     "Druid", "Monk", "Bard", "Rogue", "Shaman",
     "Necromancer", "Wizard", "Magician", "Enchanter", "Beastlord", "Berserker",
 ]
+
+VERIFIED_DIR = os.path.join(os.path.dirname(__file__), "verified")
+
+
+def _slug(name): return name.lower().replace(" ", "")
+
+
+def _norm(s):
+    """Normalize a spell name for case-insensitive comparison: lowercase,
+    collapse whitespace, and treat backtick / curly-quote as straight
+    apostrophe (handles oddities like 'Jaxan's Jig o` Vigor')."""
+    return " ".join(s.lower().replace("`", "'")
+                              .replace("’", "'").split())
+
+
+def load_verified(conn):
+    """Apply verified/<class>.txt lists to spell_classes.verified.
+
+    Each line in a class file is "L## Spell Name". Whitespace-only and
+    "#"-prefixed lines are ignored. Sets verified=1 on matching (class,
+    name, level) rows; reports any line that doesn't match.
+    """
+    if not os.path.isdir(VERIFIED_DIR):
+        print(f"  (no {VERIFIED_DIR}/ — skipping verified-flag pass)")
+        return
+    n_marked = 0
+    unmatched = []
+    for ci, cname in enumerate(CLASS_NAMES):
+        path = os.path.join(VERIFIED_DIR, f"{_slug(cname)}.txt")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            head = f.read(500)
+        if "UNREVIEWED" in head:
+            print(f"  verified: {cname} skipped — file still has UNREVIEWED marker")
+            continue
+        # Existing (lower-normalized name -> level) for this class.
+        existing = {}
+        for r in conn.execute(
+            "SELECT s.name, sc.min_level FROM spells s "
+            "JOIN spell_classes sc ON sc.spell_id = s.id "
+            "WHERE sc.class_index = ?", (ci,)):
+            existing.setdefault(_norm(r[0]), []).append((r[0], r[1]))
+        for lineno, raw in enumerate(open(path, encoding="utf-8"), 1):
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            # Format: "L## Spell Name" — split into level and name.
+            m = re.match(r"^L\s*(\d+)\s+(.+?)\s*$", line)
+            if not m:
+                unmatched.append((cname, lineno, line, "bad format"))
+                continue
+            lvl = int(m.group(1))
+            name = m.group(2)
+            key = _norm(name)
+            candidates = existing.get(key, [])
+            hit = next(((n, l) for (n, l) in candidates if l == lvl), None)
+            if not hit:
+                if candidates:
+                    levels = ", ".join(f"L{l}" for _, l in candidates)
+                    unmatched.append((cname, lineno, line,
+                                      f"name found but at {levels}, not L{lvl}"))
+                else:
+                    unmatched.append((cname, lineno, line, "no matching spell"))
+                continue
+            conn.execute(
+                "UPDATE spell_classes SET verified = 1 "
+                "WHERE class_index = ? AND min_level = ? "
+                "AND spell_id = (SELECT id FROM spells WHERE name = ? COLLATE NOCASE LIMIT 1)",
+                (ci, lvl, hit[0]))
+            n_marked += 1
+    conn.commit()
+    print(f"  verified: marked {n_marked} class-rows")
+    if unmatched:
+        print(f"  verified: {len(unmatched)} unmatched lines:")
+        for cname, lineno, line, why in unmatched:
+            print(f"    {cname}:{lineno} — {line}  [{why}]")
 
 
 SCHEMA = """
@@ -107,9 +185,11 @@ CREATE TABLE spell_classes (
   class_index INTEGER NOT NULL,
   class_name  TEXT NOT NULL,
   min_level   INTEGER NOT NULL,
+  verified    INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (spell_id, class_index)
 );
 CREATE INDEX idx_class_level ON spell_classes (class_index, min_level);
+CREATE INDEX idx_class_verified ON spell_classes (class_index, verified);
 
 CREATE TABLE spell_effects (
   spell_id    INTEGER NOT NULL,
@@ -245,7 +325,8 @@ def main():
         "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         spell_rows)
     conn.executemany(
-        "INSERT INTO spell_classes VALUES (?,?,?,?)", class_rows)
+        "INSERT INTO spell_classes (spell_id, class_index, class_name, min_level) "
+        "VALUES (?,?,?,?)", class_rows)
     conn.executemany(
         "INSERT INTO spell_effects VALUES (?,?,?,?,?,?,?)", effect_rows)
     conn.commit()
@@ -254,6 +335,8 @@ def main():
     n_eff = len(effect_rows)
     print(f"  spells_us.txt: {n_spells} spells, "
           f"{n_class_rows} class-rows, {n_eff} effects")
+
+    load_verified(conn)
 
     # --- Populate AA table from dbstr -------------------------------------
     aa_rows = conn.execute(

@@ -159,9 +159,21 @@ def home():
         "GROUP BY class_index ORDER BY class_index", (MAX_LEVEL,)
     ):
         counts[r["class_index"]] = (r["class_name"], r["n"])
+    vcounts = {}
+    for r in db.execute(
+        "SELECT class_index, COUNT(*) AS n "
+        "FROM spell_classes WHERE min_level <= ? AND verified = 1 "
+        "GROUP BY class_index", (MAX_LEVEL,)
+    ):
+        vcounts[r["class_index"]] = r["n"]
+    # Alphabetical by class display name.
+    indices = sorted(range(16), key=lambda i: CLASS_NAMES[i])
+    classes = [(i, CLASS_NAMES[i],
+                counts.get(i, (CLASS_NAMES[i], 0))[1],
+                vcounts.get(i))
+               for i in indices]
     return render_template("home.html",
-                           classes=[(i, *counts.get(i, (CLASS_NAMES[i], 0)))
-                                    for i in range(16)],
+                           classes=classes,
                            n_spells=n_spells, max_level=MAX_LEVEL)
 
 
@@ -175,6 +187,16 @@ def class_page(class_index: int):
     level_min = request.args.get("level_min", type=int)
     level_max = request.args.get("level_max", type=int)
 
+    db = get_db()
+    # Verified filter: if this class has any verified rows, default the view
+    # to "verified only" (the screenshot-confirmed in-game set); otherwise
+    # show all client-data spells.
+    has_verified = bool(db.execute(
+        "SELECT 1 FROM spell_classes WHERE class_index = ? AND verified = 1 LIMIT 1",
+        (class_index,)).fetchone())
+    verified = request.args.get(
+        "verified", "verified" if has_verified else "all")
+
     # Hard-cap: never show entries above MAX_LEVEL.
     where = ["sc.class_index = ?", "sc.min_level <= ?"]
     params = [class_index, MAX_LEVEL]
@@ -186,6 +208,8 @@ def class_page(class_index: int):
         where.append("s.good_effect IN (1, 2)")
     elif good == "det":
         where.append("s.good_effect = 0")
+    if verified == "verified":
+        where.append("sc.verified = 1")
     if level_min is not None:
         where.append("sc.min_level >= ?")
         params.append(level_min)
@@ -193,7 +217,6 @@ def class_page(class_index: int):
         where.append("sc.min_level <= ?")
         params.append(min(level_max, MAX_LEVEL))
 
-    db = get_db()
     rows = db.execute(
         "SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, "
         "       s.buff_duration, s.buff_duration_formula, s.target_type, "
@@ -211,6 +234,7 @@ def class_page(class_index: int):
                            by_level=sorted(by_level.items()),
                            total=len(rows),
                            kind=kind, good=good,
+                           verified=verified, has_verified=has_verified,
                            level_min=level_min, level_max=level_max)
 
 

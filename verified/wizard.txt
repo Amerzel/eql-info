@@ -1,0 +1,148 @@
+# Wizard — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 205 spells.
+
+L 1  Blast of Cold
+L 1  Frost Bolt
+L 1  Minor Shielding
+L 1  Numbing Cold
+L 1  Sphere of Light
+L 1  True North
+L 2  Glimpse
+L 2  O`Keil's Radiation
+L 3  Fade
+L 3  Root
+L 4  Gate
+L 4  See Invisible
+L 4  Shock of Fire
+L 5  Fingers of Fire
+L 5  Fire Bolt
+L 6  Icestrike
+L 6  Lesser Shielding
+L 7  Sense Summoned
+L 7  Shadow Step
+L 8  Column of Frost
+L 8  Eye of Zomm
+L 8  Shock of Ice
+L 9  Halo of Light
+L 9  Resistant Skin
+L10  O`Keil's Embers
+L10  Shock of Lightning
+L11  Cancel Magic
+L11  Gaze
+L12  Bind Affinity
+L12  Firestorm
+L12  Frost Spiral of Al`Kabor
+L13  Shieldskin
+L14  Project Lightning
+L15  Flame Shock
+L15  Pillar of Fire
+L15  Shielding
+L16  Bind Sight
+L16  Heat Sight
+L16  Invisibility
+L16  Lightning Bolt
+L17  Force Snap
+L17  Instill
+L18  Fire Spiral of Al`Kabor
+L18  Garrison's Mighty Mana Shock
+L18  Lesser Evacuate
+L18  North Karana Gate
+L19  Sight
+L19  Tishan's Clash
+L19  Toxxulia Gate
+L20  Elemental Shield
+L20  Greater Faydark Gate
+L20  Grimling Gate
+L21  Leatherskin
+L21  Stonebrunt Gate
+L21  West Commons Gate
+L22  Levitate
+L22  Nektulos Gate
+L22  North Ro Gate
+L23  Cazic Temple Gate
+L23  Lightning Storm
+L23  Major Shielding
+L23  West Karana Gate
+L24  Cast Force
+L24  Column of Lightning
+L24  Frost Shock
+L25  Minor Familiar
+L25  North Karana Portal
+L25  O`Keil's Levity
+L25  Yonder
+L26  Energy Storm
+L26  Evacuate: North Karana
+L26  Imbue Fire Opal
+L26  Inferno Shock
+L27  Bonds of Force
+L27  Greater Faydark Portal
+L27  Stonebrunt Portal
+L28  Mass Imbue Fire Opal
+L28  Shock Spiral of Al`Kabor
+L28  Thunder Strike
+L28  Toxxulia Portal
+L29  Magnify
+L30  Steelskin
+L30  Thunderclap
+L31  Circle of Force
+L31  O`Keil's Flickering Flame
+L32  Evacuate: Greater Faydark
+L32  Harvest
+L32  Lava Storm
+L32  Nektulos Portal
+L33  Cazic Temple Portal
+L33  Greater Shielding
+L34  Ice Shock
+L34  Nullify Magic
+L35  Elnerick's Entombment of Ice
+L35  Force Spiral of Al`Kabor
+L35  Translocate: North Karana
+L35  Translocate: Stonebrunt
+L35  West Commons Portal
+L36  North Ro Portal
+L36  Tishan's Relocation
+L36  Translocate: Greater Faydark
+L37  Concussion
+L37  Lightning Shock
+L37  Markar's Relocation
+L37  Translocate: Toxxulia
+L37  West Karana Portal
+L38  Chill Sight
+L38  Evacuate: South Ro
+L38  Shifting Sight
+L39  Immobilize
+L39  Invisibility to Undead
+L40  Diamondskin
+L40  Translocate: West Commons
+L40  Vision Shift
+L41  Force Strike
+L41  Frost Storm
+L41  Translocate: Nektulos
+L42  Elemental Armor
+L42  Evacuate: Nektulos
+L42  Greater Mass Imbue Fire Opal
+L42  Translocate: West Karana
+L43  Conflagration
+L43  Gravity Flux
+L43  Translocate: North Ro
+L44  Arch Shielding
+L44  Bounce
+L44  Enticement of Flame
+L44  Mana Ignition
+L44  Translocate: Cazic Temple
+L45  Lesser Familiar
+L45  Supernova
+L46  Alter Plane: Hate
+L46  Alter Plane: Sky
+L47  Evacuate: West Karana
+L47  Markar's Clash
+L47  Rend
+L48  Paralyzing Earth
+L48  Wrath of Al`Kabor
+L49  Ice Comet
+L49  Ward of Calrena
+L50  Levitation
+L50  Mana Detonation
+L50  Translocate

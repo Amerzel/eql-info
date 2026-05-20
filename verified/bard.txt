@@ -1,0 +1,66 @@
+# Bard — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 71 spells.
+
+L 1  Chant of Battle
+L 2  Chords of Dissonance
+L 3  Jaxan's Jig o` Vigor
+L 5  Selo's Accelerando
+L 6  Hymn of Restoration
+L 7  Jonthan's Whistling Warsong
+L 8  Kelin's Lugubrious Lament
+L 9  Elemental Rhythms
+L 9  Magical Monologue
+L10  Anthem de Arms
+L11  Cinda's Charismatic Carillon
+L12  Brusco's Boastful Bellow
+L13  Purifying Rhythms
+L15  Kelin's Lucid Lullaby
+L15  Song of Sustenance
+L16  Tarew's Aquatic Ayre
+L17  Guardian Rhythms
+L18  Denon's Disruptive Discord
+L19  Shauri's Sonorous Clouding
+L20  Cassindra's Chant of Clarity
+L20  Largo's Melodic Binding
+L21  Melanie's Mellifluous Motion
+L22  Alenia's Disenchanting Melody
+L23  Selo's Consonant Chain
+L24  Lyssa's Veracious Concord
+L25  Psalm of Warmth
+L26  Angstlich's Appalling Screech
+L27  Solon's Song of the Sirens
+L28  Crission's Pixie Strike
+L29  Psalm of Vitality
+L30  Amplification
+L30  Fufil's Curtailing Chant
+L31  Agilmente's Aria of Eagles
+L32  Cassindra's Chorus of Clarity
+L33  Psalm of Cooling
+L34  Cantata of Soothing
+L34  Lyssa's Solidarity of Vision
+L35  Denon's Dissension
+L36  Vilia's Verses of Celerity
+L37  Psalm of Purity
+L38  Tuyen's Chant of Flame
+L39  Katta's Song of Sword Dancing
+L39  Solon's Bewitching Bravura
+L40  Sionachie's Dreams
+L40  Syvelian's Anti-Magic Aria
+L41  Psalm of Mystic Shielding
+L42  McVaxius' Berserker Crescendo
+L42  Tuyen's Chant of Disease
+L43  Denon's Desperate Dirge
+L44  Cassindra's Elegy
+L45  Aria of Asceticism
+L45  Jonthan's Provocation
+L45  Rizlona's Embers
+L46  Tuyen's Chant of Frost
+L47  Niv's Melody of Preservation
+L48  Selo's Chords of Cessation
+L49  Selo's Accelerating Chorus
+L49  Shield of Songs
+L50  Melody of Ervaj
+L50  Tuyen's Chant of Poison
+L50  Verses of Victory

@@ -41,13 +41,31 @@ export async function renderHome() {
     [MAX_LEVEL]);
   const counts = new Map(classRows.map(r => [r.class_index, r.n]));
 
-  const cards = Array.from({ length: 16 }, (_, i) => {
+  // Verified counts per class (for classes whose verified/ file has been
+  // reviewed). If a class has any verified rows we show "V/T verified"
+  // instead of just "T spells".
+  const verifiedRows = await query(
+    `SELECT class_index, COUNT(*) AS n
+       FROM spell_classes
+      WHERE min_level <= ? AND verified = 1
+      GROUP BY class_index`,
+    [MAX_LEVEL]);
+  const vcounts = new Map(verifiedRows.map(r => [r.class_index, r.n]));
+
+  // Class cards listed alphabetically by display name.
+  const classIndices = Array.from({ length: 16 }, (_, i) => i)
+    .sort((a, b) => CLASS_NAMES[a].localeCompare(CLASS_NAMES[b]));
+  const cards = classIndices.map(i => {
     const c = counts.get(i) || 0;
+    const v = vcounts.get(i);
     const banner = `static/icons/classes/${String(i).padStart(2, "0")}.png`;
+    const countHtml = v !== undefined
+      ? `<span class="class-count">${v} of ${c} verified</span>`
+      : `<span class="class-count">${c} spells</span>`;
     return `<a class="class-card" href="#/class/${i}">
               <img class="class-banner" src="${banner}" alt="" loading="lazy">
               <span class="class-name">${escapeHtml(CLASS_NAMES[i])}</span>
-              <span class="class-count">${c} spells</span>
+              ${countHtml}
             </a>`;
   }).join("");
 
@@ -90,6 +108,16 @@ export async function renderClass(classIndex, params) {
                         parseInt(params.get("level_max") || String(MAX_LEVEL), 10)
                         || MAX_LEVEL);
 
+  // Verified filter: default is "verified" if this class has any verified
+  // rows (i.e. the screenshot review has happened); otherwise "all" since
+  // there's nothing to filter to yet.
+  const vTotalRow = await queryOne(
+    "SELECT COUNT(*) AS n FROM spell_classes WHERE class_index = ? AND verified = 1",
+    [classIndex]);
+  const hasVerified = vTotalRow && vTotalRow.n > 0;
+  const verified = params.get("verified") ||
+                   (hasVerified ? "verified" : "all");
+
   const where = ["sc.class_index = ?", "sc.min_level <= ?",
                  "sc.min_level >= ?", "sc.min_level <= ?"];
   const args = [classIndex, MAX_LEVEL, lMin, lMax];
@@ -97,6 +125,7 @@ export async function renderClass(classIndex, params) {
   else if (kind === "disc") where.push("s.is_discipline = 1");
   if (good === "buff") where.push("s.good_effect IN (1, 2)");
   else if (good === "det") where.push("s.good_effect = 0");
+  if (verified === "verified") where.push("sc.verified = 1");
 
   const rows = await query(
     `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time,
@@ -131,6 +160,12 @@ export async function renderClass(classIndex, params) {
             <option value="det"${sel(good, "det")}>Detrimental</option>
           </select>
         </label>
+        ${hasVerified ? `<label>Source:
+          <select name="verified">
+            <option value="verified"${sel(verified, "verified")}>In-game only</option>
+            <option value="all"${sel(verified, "all")}>All client data</option>
+          </select>
+        </label>` : ""}
         <label>Level min:
           <input type="number" name="level_min" value="${lMin}" min="1" max="${MAX_LEVEL}" style="width:5em">
         </label>

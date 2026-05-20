@@ -1,0 +1,69 @@
+# Ranger — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 64 spells.
+
+L 1  Minor Healing
+L 2  Glimpse
+L 3  Flame Lick
+L 4  Lull Animal
+L 5  Tangling Weeds
+L 6  Snare
+L 7  Skin like Wood
+L 9  Endure Fire
+L10  Dance of the Fireflies
+L11  Hawk Eye
+L12  Feet like Cat
+L13  Cure Poison
+L13  Thistlecoat
+L14  Burst of Fire
+L14  Camouflage
+L15  Grasping Roots
+L15  Invoke Lightning
+L16  Light Healing
+L16  Panic Animal
+L16  Ward Summoned
+L17  Bind Sight
+L17  Firefist
+L18  Endure Cold
+L19  Ignite
+L20  Enduring Breath
+L21  Skin like Rock
+L22  Cure Disease
+L22  Harmony
+L24  Shield of Thistles
+L25  Stinging Swarm
+L26  Strength of Earth
+L27  Eyes of the Cat
+L28  Healing
+L28  Spirit of Wolf
+L29  Flaming Arrow
+L29  Riftwind's Protection
+L30  Barbcoat
+L30  Cancel Magic
+L31  Calm Animal
+L32  See Invisible
+L33  Dismiss Summoned
+L34  Bramblecoat
+L35  Levitate
+L36  Call of Sky
+L37  Careless Lightning
+L37  Nature's Precision
+L38  Greater Healing
+L38  Skin like Steel
+L39  Burning Arrow
+L39  Harmony of Nature
+L40  Swarm of Pain
+L41  Spirit of the Shrew
+L42  Spikecoat
+L43  Shield of Brambles
+L44  Immolate
+L45  Ensnaring Roots
+L46  Resist Fire
+L47  Superior Camouflage
+L48  Force of Nature
+L48  Wolf Form
+L49  Call of Flame
+L49  Pack Shrew
+L50  Call of Earth
+L50  Jolt

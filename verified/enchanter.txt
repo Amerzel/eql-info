@@ -1,0 +1,194 @@
+# Enchanter — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 398 spells.
+
+L 1  Lull
+L 1  Minor Illusion
+L 1  Minor Shielding
+L 1  Pendril's Animation
+L 1  Reclaim Energy
+L 1  Strengthen
+L 1  Taper Enchantment
+L 1  True North
+L 1  Weaken
+L 2  Illusion: Human
+L 2  Juli's Animation
+L 2  Mesmerize
+L 2  Tashina
+L 3  Color Flux
+L 3  Fear
+L 3  Haze
+L 3  Illusion: Half-Elf
+L 4  Enfeeblement
+L 4  Gate
+L 4  Invisibility
+L 4  Suffocating Sphere
+L 5  Eye of Confusion
+L 5  Illusion: Wood Elf
+L 5  Sentinel
+L 6  Lesser Shielding
+L 6  Root
+L 6  See Invisible
+L 6  Soothe
+L 7  Cancel Magic
+L 7  Chaotic Feedback
+L 7  Enchant Silver
+L 7  Mass Enchant Silver
+L 7  Mircyl's Animation
+L 8  Alliance
+L 8  Bind Sight
+L 8  Enchant Clay
+L 8  Illusion: Gnome
+L 8  Mass Enchant Clay
+L 9  Ebbing Strength
+L 9  Kilan's Animation
+L 9  Languid Pace
+L 9  Whirl Till You Hurl
+L10  Illusion: Dark Elf
+L10  Memory Blur
+L10  Mist
+L10  Serpent Sight
+L11  Charm
+L11  Choke
+L11  Illusion: High Elf
+L11  Intellectual Advancement
+L11  Mass Thicken Mana
+L11  Thicken Mana
+L12  Bind Affinity
+L12  Enduring Breath
+L12  Illusion: Erudite
+L12  Illusion: Halfling
+L13  Enthrall
+L13  Illusion: Dwarf
+L13  Rune I
+L14  Breeze
+L14  Enchant Electrum
+L14  Invisibility Versus Undead
+L14  Mass Enchant Electrum
+L14  Shalee's Animation
+L15  Illusion: Barbarian
+L15  Illusion: Tree
+L15  Levitate
+L15  Quickness
+L16  Chase the Moon
+L16  Disempower
+L16  Mesmerization
+L16  Sanity Warp
+L16  Shielding
+L17  Cloud
+L17  Endure Magic
+L17  Illusion: Ogre
+L17  Intellectual Superiority
+L17  Sisna's Animation
+L18  Calm
+L18  Illusion: Troll
+L18  Sympathetic Aura
+L18  Tashani
+L19  Berserker Strength
+L19  Crystallize Mana
+L19  Feckless Might
+L19  Tiny Companion
+L20  Color Shift
+L20  Illusion: Iksar
+L20  Mass Crystallize Mana
+L20  Shifting Sight
+L21  Alacrity
+L21  Chaos Flux
+L21  Illusion: Earth Elemental
+L22  Rune II
+L22  Sagar's Animation
+L22  Strip Enchantment
+L23  Beguile
+L23  Major Shielding
+L23  Tepid Deeds
+L24  Enchant Gold
+L24  Illusion: Skeleton
+L24  Mass Enchant Gold
+L25  Feedback
+L25  Instill
+L25  Listless Power
+L26  Clarity
+L26  Curse of the Simple Mind
+L26  Haunting Visage
+L26  Suffocate
+L27  Clarify Mana
+L27  Obscure
+L27  Ultravision
+L28  Augmentation
+L28  Dyn's Dizzying Draught
+L28  Illusion: Water Elemental
+L28  Nullify Magic
+L29  Illusion: Air Elemental
+L29  Mass Clarify Mana
+L29  Uleen's Animation
+L29  Ward of Alendar
+L30  Entrance
+L30  Entrancing Lights
+L30  Mana Sieve
+L31  Boltran's Animation
+L31  Greater Shielding
+L31  Radiant Visage
+L32  Anarchy
+L32  Cast Sight
+L32  Enchant Platinum
+L32  Mass Enchant Platinum
+L33  Illusion: Fire Elemental
+L33  Rune III
+L34  Gift of Magic
+L34  Insipid Weakness
+L35  Insight
+L35  Invoke Fear
+L35  Pacify
+L36  Calming Visage
+L36  Gravity Flux
+L36  Mind Wipe
+L37  Aanya's Animation
+L37  Cajoling Whispers
+L37  Illusion: Dry Bone
+L37  Resist Magic
+L37  Shade
+L38  Distill Mana
+L38  Illusion: Spirit Wolf
+L38  Rampage
+L38  Wandering Mind
+L39  Celerity
+L39  Immobilize
+L39  Mass Distill Mana
+L40  Arch Shielding
+L40  Boon of the Garou
+L40  Incapacitate
+L40  Rune IV
+L41  Brilliance
+L41  Shiftless Deeds
+L41  Tashania
+L41  Yegoreff's Animation
+L42  Boon of the Clear Mind
+L42  Illusion: Werewolf
+L42  Pillage Enchantment
+L42  Weakness
+L43  Bounce
+L43  Color Skew
+L43  Discordant Mind
+L43  Summon Companion
+L44  Guard of Alendar
+L44  Illusion: Scaled Wolf
+L44  Leviathan Eyes
+L45  Illusion: Imp
+L45  Paralyzing Earth
+L45  Purify Mana
+L45  Reoccurring Amnesia
+L46  Adorning Grace
+L46  Allure
+L46  Blanket of Forgetfulness
+L47  Berserker Spirit
+L47  Dazzle
+L47  Gasping Embrace
+L47  Mass Purify Mana
+L47  Swift Like the Wind
+L48  Group Resist Magic
+L48  Kintaz's Animation
+L48  Shadow
+L50  Collaboration
+L50  Improved Invisibility
+L50  Theft of Thought

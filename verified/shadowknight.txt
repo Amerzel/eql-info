@@ -1,0 +1,73 @@
+# Shadow Knight — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 68 spells.
+
+L 1  Lifetap
+L 1  Spike of Disease
+L 2  Sense the Dead
+L 4  Invisibility Versus Undead
+L 5  Disease Cloud
+L 6  Siphon Strength
+L 7  Leering Corpse
+L 8  Lifespike
+L 9  Despair
+L 9  Numb the Dead
+L10  Endure Cold
+L11  Clinging Darkness
+L12  Fear
+L13  Shadow Step
+L14  Bone Walk
+L15  Lifedraw
+L15  Scream of Hate
+L15  Vampiric Embrace
+L16  Grim Aura
+L17  Deadeye
+L18  Cancelling of Life
+L18  Ward Undead
+L19  Cure Disease
+L19  Tiny Companion
+L20  Engulfing Darkness
+L20  Spook the Dead
+L21  Dark Empathy
+L22  Convoke Shadow
+L23  Scream of Pain
+L24  Feign Death
+L26  Endure Disease
+L27  Wave of Enfeeblement
+L28  Heat Blood
+L29  Strengthen Death
+L30  Gather Shadows
+L30  Restless Bones
+L30  Siphon Life
+L31  Negation of Life
+L31  Shieldskin
+L32  Dark Temptation
+L33  Terror of Darkness
+L34  Spear of Disease
+L35  Resist Cold
+L35  Shroud of Hate
+L36  Cancel Magic
+L36  Heart Flutter
+L36  Spirit Tap
+L37  Scream of Death
+L37  Shadow Vortex
+L38  Animate Dead
+L39  Expulse Undead
+L39  Voice of Darkness
+L40  Shadow Sight
+L41  Blood of Pain
+L42  Terror of Shadows
+L43  Invoke Fear
+L44  Dooming Darkness
+L45  Breath of the Dead
+L45  Word of Spirit
+L46  Summon Dead
+L46  Voice of Shadows
+L47  Life Leech
+L47  Scythe of Darkness
+L48  Spear of Pain
+L49  Dismiss Undead
+L49  Drain Spirit
+L50  Harmshield
+L50  Shroud of Pain

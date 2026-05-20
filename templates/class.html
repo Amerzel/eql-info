@@ -31,6 +31,14 @@
         <option value="det" {% if good=='det' %}selected{% endif %}>Detrimental</option>
       </select>
     </label>
+    {% if has_verified %}
+    <label>Source:
+      <select name="verified">
+        <option value="verified" {% if verified=='verified' %}selected{% endif %}>In-game only</option>
+        <option value="all" {% if verified=='all' %}selected{% endif %}>All client data</option>
+      </select>
+    </label>
+    {% endif %}
     <label>Level min:
       <input type="number" name="level_min" value="{{ level_min if level_min is not none else '' }}" style="width:5em" min="1" max="50">
     </label>

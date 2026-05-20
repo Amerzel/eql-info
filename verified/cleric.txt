@@ -1,0 +1,170 @@
+# Cleric — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 186 spells.
+
+L 1  Courage
+L 1  Cure Poison
+L 1  Divine Aura
+L 1  Flash of Light
+L 1  Holy Armor
+L 1  Lull
+L 1  Minor Healing
+L 1  Spook the Dead
+L 1  Strike
+L 1  True North
+L 1  Yaulp
+L 2  Reckless Strength
+L 2  Stun
+L 3  Cure Blindness
+L 3  Summon Drink
+L 4  Cure Disease
+L 4  Light Healing
+L 4  Ward Undead
+L 5  Furor
+L 5  Gate
+L 5  Soothe
+L 6  Endure Poison
+L 6  Fear
+L 6  Sanctuary
+L 7  Center
+L 7  Hammer of Wrath
+L 7  Root
+L 8  Blessing of the Page
+L 8  Echo of Health
+L 8  Endure Fire
+L 8  Remove Minor Curse
+L 8  Summon Food
+L 9  Sense the Dead
+L 9  Word of Pain
+L10  Bind Affinity
+L10  Healing
+L11  Endure Disease
+L11  Invisibility Versus Undead
+L11  Symbol of Transal
+L12  Halo of Light
+L12  Reanimation
+L12  Sense Summoned
+L13  Cancel Magic
+L13  Endure Cold
+L13  Expulse Undead
+L14  Echoing Light
+L14  Smite
+L15  Blessing of Piety
+L15  Calm
+L15  Spirit Armor
+L16  Blessing of the Squire
+L16  Endure Magic
+L16  Holy Might
+L16  Yaulp II
+L17  Daring
+L17  Ward Summoned
+L18  Reconstitution
+L19  Celestial Remedy
+L19  Word of Shadow
+L20  Greater Healing
+L20  Hammer of Striking
+L20  Ward of Vie
+L21  Inspire Fear
+L21  Symbol of Ryltan
+L21  Wave of Fear
+L22  Bravery
+L22  Counteract Poison
+L22  Reparation
+L23  Dismiss Undead
+L23  Remove Lesser Curse
+L24  Renewing Echo
+L25  Guard
+L25  Sermon of the Righteous
+L26  Panic the Dead
+L26  Word of Spirit
+L27  Expulse Summoned
+L27  Instill
+L27  Revive
+L28  Abundant Drink
+L28  Counteract Disease
+L29  Celestial Health
+L29  Divine Barrier
+L29  Imbue Amber
+L29  Imbue Black Pearl
+L29  Imbue Black Sapphire
+L29  Imbue Diamond
+L29  Imbue Emerald
+L29  Imbue Opal
+L29  Imbue Peridot
+L29  Imbue Plains Pebble
+L29  Imbue Rose Quartz
+L29  Imbue Ruby
+L29  Imbue Sapphire
+L29  Imbue Topaz
+L29  Mass Imbue Amber
+L29  Mass Imbue Black Pearl
+L29  Mass Imbue Black Sapphire
+L29  Mass Imbue Diamond
+L29  Mass Imbue Emerald
+L29  Mass Imbue Opal
+L29  Mass Imbue Peridot
+L29  Mass Imbue Plains Pebble
+L29  Mass Imbue Rose Quartz
+L29  Mass Imbue Ruby
+L29  Mass Imbue Sapphire
+L29  Mass Imbue Topaz
+L29  Wrath
+L30  Resist Poison
+L30  Superior Healing
+L30  Word of Health
+L31  Force
+L31  Frenzied Strength
+L31  Symbol of Pinzarn
+L32  Atone
+L32  Renewal
+L32  Valor
+L33  Abundant Food
+L33  Expel Undead
+L33  Resist Fire
+L34  Armor of Protection
+L34  Blessing of the Knight
+L34  Blinding Luminance
+L34  Celestial Echo
+L34  Tremor
+L35  Armor of Faith
+L35  Blessing of Faith
+L36  Invoke Fear
+L36  Pacify
+L36  Resist Disease
+L37  Dismiss Summoned
+L37  Resuscitate
+L37  Turning of the Unnatural
+L38  Nullify Magic
+L38  Remove Curse
+L38  Resist Cold
+L39  Promised Renewal
+L39  Sacred Word
+L39  Word of Souls
+L40  Guard of Vie
+L40  Hammer of Requital
+L40  Temperance
+L41  Symbol of Naltron
+L41  Yaulp III
+L42  Resolution
+L42  Restoration
+L43  Banish Undead
+L43  Resist Magic
+L43  Sacred Echo
+L44  Celestial Healing
+L44  Earthquake
+L44  Retribution
+L45  Blessing of Temperance
+L45  Healing Light
+L45  Shield of Words
+L45  Word of Healing
+L46  Immobilize
+L46  Sound of Force
+L47  Expel Summoned
+L47  Resurrection
+L48  Abolish Poison
+L48  Blessing of the Lord Commander
+L48  Improved Invisibility to Undead
+L49  Armor of the Faithful
+L49  Word Divine
+L50  Ward of the Divine

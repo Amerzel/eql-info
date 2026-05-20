@@ -1,0 +1,76 @@
+# Paladin — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Total dumped: 71 spells.
+
+L 1  Minor Healing
+L 1  Strike
+L 1  Ward Undead
+L 2  Flash of Light
+L 3  True North
+L 4  Sense the Dead
+L 5  Cure Poison
+L 7  Cease
+L 8  Courage
+L 8  Furor
+L 9  Spook the Dead
+L 9  Yaulp
+L10  Light Healing
+L10  Lull
+L11  Cure Disease
+L13  Desist
+L14  Hammer of Wrath
+L15  Holy Armor
+L15  Instrument of Nife
+L16  Halo of Light
+L17  Invisibility Versus Undead
+L18  Reckless Strength
+L19  Remove Minor Curse
+L19  Root
+L19  Smite
+L20  Center
+L20  Healing
+L21  Endure Poison
+L22  Reanimation
+L23  Hammer of Striking
+L24  Symbol of Transal
+L25  Soothe
+L28  Stun
+L29  Endure Magic
+L30  Expulse Undead
+L30  Greater Healing
+L30  Reconstitution
+L30  Spirit Armor
+L31  Reparation
+L32  Cancel Magic
+L33  Symbol of Ryltan
+L34  Counteract Poison
+L34  Remove Lesser Curse
+L34  Wrath
+L35  Divine Vigor
+L37  Daring
+L37  Divine Purpose
+L38  Endure Disease
+L38  Yaulp II
+L39  Guard
+L39  Revive
+L39  Wave of Life
+L42  Holy Might
+L43  Calm
+L44  Ethereal Cleansing
+L44  Valor of Marr
+L45  Divine Might
+L45  Remove Curse
+L46  Dismiss Undead
+L46  Superior Healing
+L46  Symbol of Pinzarn
+L47  Thunder of Karana
+L47  Valor
+L48  Armor of Faith
+L48  Divine Aura
+L49  Brell's Steadfast Aegis
+L49  Pacify
+L49  Renewal
+L49  Retribution
+L50  Flame of Light
+L50  Resist Disease
