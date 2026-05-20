@@ -93,13 +93,16 @@ def load_verified(conn):
         if "UNREVIEWED" in head:
             print(f"  verified: {cname} skipped — file still has UNREVIEWED marker")
             continue
-        # Existing (lower-normalized name -> level) for this class.
+        # Existing castable rows for this class, keyed by normalized name.
+        # We need the spell_id too because the same display name can
+        # appear on multiple spells (different ranks) and only one is
+        # actually castable by this class at the declared level.
         existing = {}
         for r in conn.execute(
-            "SELECT s.name, sc.min_level FROM spells s "
+            "SELECT s.id, s.name, sc.min_level FROM spells s "
             "JOIN spell_classes sc ON sc.spell_id = s.id "
             "WHERE sc.class_index = ?", (ci,)):
-            existing.setdefault(_norm(r[0]), []).append((r[0], r[1]))
+            existing.setdefault(_norm(r[1]), []).append((r[0], r[1], r[2]))
         for lineno, raw in enumerate(open(path, encoding="utf-8"), 1):
             line = raw.strip()
             if not line or line.startswith("#"):
@@ -113,10 +116,10 @@ def load_verified(conn):
             name = m.group(2)
             key = _norm(name)
             candidates = existing.get(key, [])
-            hit = next(((n, l) for (n, l) in candidates if l == lvl), None)
+            hit = next(((sid, n, l) for (sid, n, l) in candidates if l == lvl), None)
             if not hit:
                 if candidates:
-                    levels = ", ".join(f"L{l}" for _, l in candidates)
+                    levels = ", ".join(f"L{l}" for _, _, l in candidates)
                     unmatched.append((cname, lineno, line,
                                       f"name found but at {levels}, not L{lvl}"))
                 else:
@@ -124,8 +127,7 @@ def load_verified(conn):
                 continue
             conn.execute(
                 "UPDATE spell_classes SET verified = 1 "
-                "WHERE class_index = ? AND min_level = ? "
-                "AND spell_id = (SELECT id FROM spells WHERE name = ? COLLATE NOCASE LIMIT 1)",
+                "WHERE class_index = ? AND min_level = ? AND spell_id = ?",
                 (ci, lvl, hit[0]))
             n_marked += 1
     conn.commit()

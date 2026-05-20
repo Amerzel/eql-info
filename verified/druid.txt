@@ -122,7 +122,6 @@ L32  Circle of Feerrott
 L32  Circle of South Ro
 L32  Drones of Doom
 L32  Succor: Butcherblock
-L32  Zephyr: Nexus
 L32  Zephyr: Toxxulia
 L33  Beguile Animals
 L33  Expel Summoned
