@@ -155,6 +155,8 @@ function showFor(link, evt) {
 
 function hide() {
   currentSpellId = null;
+  activeLink = null;
+  clearTimeout(hoverTimer);  // cancel any pending show (e.g. on navigation)
   if (tooltipEl) tooltipEl.style.display = "none";
 }
 
@@ -164,7 +166,9 @@ document.addEventListener("mouseover", (evt) => {
   activeLink = link;
   clearTimeout(hoverTimer);
   hoverTimer = setTimeout(() => {
-    if (activeLink === link) showFor(link, evt);
+    // Guard against firing after the link was removed (e.g. a click that
+    // navigated to a new page before the delay elapsed).
+    if (activeLink === link && link.isConnected) showFor(link, evt);
   }, HOVER_DELAY_MS);
 });
 document.addEventListener("mouseout", (evt) => {
