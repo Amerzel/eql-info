@@ -140,6 +140,77 @@ FIELD_NOTES = {
 }
 
 
+def write_index(total, per_class):
+    """A basic landing page linking to every JSON file, so the team only needs
+    one URL. per_class is a list of (class_name, slug, count)."""
+    rows = "\n".join(
+        f'      <li><a href="by_class/{slug}.json">{name}</a> '
+        f'<span class="muted">— {count} spells</span></li>'
+        for name, slug, count in per_class)
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EQL Spell Data — Wiki Export</title>
+<style>
+  body {{ background:#1a1612; color:#ddd4c4; font-family:system-ui,sans-serif;
+         line-height:1.5; margin:0; padding:2rem; }}
+  main {{ max-width:760px; margin:0 auto; }}
+  h1 {{ color:#d5b46a; margin-bottom:.2rem; }}
+  h2 {{ color:#c47b3a; margin-top:1.8rem; border-bottom:1px solid #3b332b;
+        padding-bottom:.2rem; }}
+  a {{ color:#b8d0f2; text-decoration:none; }}
+  a:hover {{ text-decoration:underline; }}
+  code {{ background:#2a241e; padding:.05em .35em; border-radius:3px; }}
+  .muted {{ color:#8a7e6e; }}
+  ul {{ list-style:none; padding-left:0; }}
+  li {{ padding:.15rem 0; }}
+  .fields li {{ list-style:disc; }}
+  .fields {{ padding-left:1.3rem; }}
+</style>
+</head>
+<body>
+<main>
+  <h1>EverQuest Legends — Spell Data</h1>
+  <p class="muted">JSON export for generating <a href="https://eqlwiki.com">eqlwiki</a>
+  spell pages. In-game (verified) spells only — {total} total. Generated {TODAY}.</p>
+
+  <h2>All spells</h2>
+  <ul>
+    <li><a href="spells.json">spells.json</a>
+      <span class="muted">— all {total} spells (use for individual spell detail pages)</span></li>
+  </ul>
+
+  <h2>By class</h2>
+  <p class="muted">Each file lists that class's spells with the per-class
+  <code>level</code> (use for the class overview pages).</p>
+  <ul>
+{rows}
+  </ul>
+
+  <h2>What's in each spell</h2>
+  <ul class="fields">
+    <li><code>name</code>, <code>icon</code>, <code>spell_type</code>, <code>skill</code></li>
+    <li><code>description</code> (rendered) and <code>description_template</code> (raw <code>#N/%z</code> placeholders)</li>
+    <li><code>mana</code>, <code>range</code>, <code>cast_seconds</code>, <code>fizzle_seconds</code>, <code>recast_seconds</code></li>
+    <li><code>duration</code> (+ <code>duration_ticks</code>), <code>target</code>, <code>resist</code></li>
+    <li><code>classes</code> — verified classes + levels</li>
+    <li><code>effects</code> — per slot: <code>effect_id, effect, base, limit, formula, max</code> (raw signed; negative = damage/decrease)</li>
+    <li><code>messages</code> — cast-on-you / cast-on-other / wears-off</li>
+  </ul>
+  <p class="muted">Not included (sourced by hand on the wiki): the spellicon
+  letter code, kind, location / where-to-obtain, other.</p>
+</main>
+</body>
+</html>
+"""
+    path = os.path.join(OUT_DIR, "index.html")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"  wrote {path}")
+
+
 def main():
     if not os.path.exists(DB_PATH):
         raise SystemExit(f"missing {DB_PATH} — run build_db.py first")
@@ -165,6 +236,7 @@ def main():
         json.dump(combined, f, ensure_ascii=False, indent=2)
     print(f"  wrote {out}  ({len(spells)} spells)")
 
+    per_class = []
     for ci, cname in enumerate(CLASS_NAMES):
         cls = []
         for s in spells:
@@ -178,10 +250,14 @@ def main():
         cls.sort(key=lambda s: (s["level"], s["name"].lower()))
         payload = {"generated": TODAY, "class": cname,
                    "spell_count": len(cls), "spells": cls}
-        cpath = os.path.join(BY_CLASS_DIR, f"{_slug(cname)}.json")
+        slug = _slug(cname)
+        cpath = os.path.join(BY_CLASS_DIR, f"{slug}.json")
         with open(cpath, "w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
         print(f"  wrote {cpath}  ({len(cls)} spells)")
+        per_class.append((cname, slug, len(cls)))
+
+    write_index(len(spells), per_class)
 
 
 if __name__ == "__main__":
