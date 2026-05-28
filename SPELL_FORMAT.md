@@ -197,7 +197,8 @@ field.
 | 167  |   —  | **eql_reserved_2**         | int         | **EQL-only.** Always `-1` across all observed spells. |
 | 168  |   —  | **eql_reserved_3**         | int         | **EQL-only.** Always `-1` across all observed spells. |
 | 169  |   —  | **eql_reserved_4**         | int         | **EQL-only.** Always `-1` across all observed spells. |
-| 170  | 165  | **effects_blob**           | string      | Pipe-delimited per-spell effects list. See next section. (Same format as Live col 165.) |
+| 170  |   —  | **eql_patch_flag** (parser: `eql_new_10`) | bool | **EQL-only, added by the 2026-05 patch.** Binary flag: `1` on 55 spells (teleport/utility — Gate, Ring/Circle/Portal ports, Evacuate, Succor, Bind Affinity, Shrink), `0` on all others. Meaning undetermined. Its insertion shifted the effects blob from col 170 → 171. |
+| 171  | 165  | **effects_blob**           | string      | Pipe-delimited per-spell effects list. See next section. (Same format as Live col 165.) |
 
 ### Dropped REF columns (not present in EQL `spells_us.txt`)
 
@@ -216,7 +217,7 @@ field.
 | 169–172 | 4 always-zero fields | dropped |
 | 217     | override_crit_chance | dropped (or merged into one of the new tail fields) |
 
-### Column 170 — effects blob (pipe-delimited)
+### Column 171 — effects blob (pipe-delimited)
 
 Format:
 ```
