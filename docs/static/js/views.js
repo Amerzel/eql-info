@@ -4,7 +4,7 @@
 import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
-  targetName, resistName, className, spaName, skillName,
+  targetName, resistName, className, spaName, skillName, classSlug,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -50,7 +50,7 @@ export async function renderHome() {
   const cards = classIndices.map(i => {
     const c = counts.get(i) || 0;
     const banner = `static/icons/classes/${String(i).padStart(2, "0")}.png`;
-    return `<a class="class-card" href="#/class/${i}">
+    return `<a class="class-card" href="#/class/${classSlug(i)}">
               <img class="class-banner" src="${banner}" alt="" loading="lazy">
               <span class="class-name">${escapeHtml(CLASS_NAMES[i])}</span>
               <span class="class-count">${c} spells</span>
@@ -130,7 +130,7 @@ export async function renderClass(classIndex, params) {
           <input type="number" name="level_max" value="${lMax}" min="1" max="${MAX_LEVEL}" style="width:5em">
         </label>
         <button type="submit">Apply</button>
-        <a href="#/class/${classIndex}" class="muted">reset</a>
+        <a href="#/class/${classSlug(classIndex)}" class="muted">reset</a>
       </div>
     </form>`;
 
@@ -220,7 +220,7 @@ export async function renderSpell(spellId) {
 
   const classesHtml = classes.length ? `
     <table class="kv">${classes.map(c => `<tr>
-      <th><a href="#/class/${c.class_index}">${escapeHtml(c.class_name)}</a></th>
+      <th><a href="#/class/${classSlug(c.class_index)}">${escapeHtml(c.class_name)}</a></th>
       <td>L${levelDisplay(c.min_level)}</td></tr>`).join("")}</table>`
     : `<p class="muted">No player classes can cast this at L≤${MAX_LEVEL}.</p>`;
 

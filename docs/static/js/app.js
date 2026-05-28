@@ -11,6 +11,7 @@ import {
 } from "./views.js";
 import { initDb } from "./db.js";
 import { prefetchSpells } from "./tooltip.js";
+import { classSlug, classIndexFromArg } from "./data.js";
 
 const app = document.getElementById("app");
 
@@ -52,7 +53,7 @@ async function route() {
     if (segs.length === 0) return setHtml(await renderHome());
     const [head, arg1, arg2] = segs;
     switch (head) {
-      case "class":  return setHtml(await renderClass(parseInt(arg1, 10), params));
+      case "class":  return setHtml(await renderClass(classIndexFromArg(arg1), params));
       case "spell":  return setHtml(await renderSpell(parseInt(arg1, 10)));
       case "group":  return setHtml(await renderGroup(parseInt(arg1, 10)));
       case "effect": return setHtml(await renderEffect(parseInt(arg1, 10)));
@@ -82,8 +83,8 @@ app.addEventListener("submit", (e) => {
   const qs = new URLSearchParams(fd).toString();
   if (kind === "class") {
     const { segs } = parseHash();
-    const idx = parseInt(segs[1], 10);
-    window.location.hash = "#/class/" + idx + (qs ? "?" + qs : "");
+    const idx = classIndexFromArg(segs[1]);
+    window.location.hash = "#/class/" + classSlug(idx) + (qs ? "?" + qs : "");
   } else if (kind === "aas") {
     window.location.hash = "#/aas" + (qs ? "?" + qs : "");
   } else if (kind === "search") {
