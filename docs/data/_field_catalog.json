@@ -1,0 +1,1070 @@
+{
+  "generated": "2026-05-28",
+  "note": "All 171 spells_us.txt fields are parsed and exported verbatim. Field 170 is the effects blob (exported as the 'effects' array with effect_name labels). Messages come from spells_us_str.txt.",
+  "raw_field_count": 171,
+  "fields": [
+    {
+      "raw_index": 0,
+      "name": "id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 1,
+      "name": "name",
+      "type": "str",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 2,
+      "name": "eql_new_1",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 3,
+      "name": "teleport_zone",
+      "type": "str",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 4,
+      "name": "range",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 5,
+      "name": "aoe_range",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 6,
+      "name": "push_back",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 7,
+      "name": "push_up",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 8,
+      "name": "cast_time",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 9,
+      "name": "recovery_time",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 10,
+      "name": "recast_time",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 11,
+      "name": "buff_duration_formula",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 12,
+      "name": "buff_duration",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 13,
+      "name": "aoe_duration",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 14,
+      "name": "mana",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 15,
+      "name": "component",
+      "type": "int",
+      "array_len": 4,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 19,
+      "name": "component_count",
+      "type": "int",
+      "array_len": 4,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 23,
+      "name": "no_expend_reagent",
+      "type": "int",
+      "array_len": 4,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 27,
+      "name": "light_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 28,
+      "name": "good_effect",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 29,
+      "name": "resist_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": true,
+      "label_field": "resist_type_name"
+    },
+    {
+      "raw_index": 30,
+      "name": "target_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": true,
+      "label_field": "target_type_name"
+    },
+    {
+      "raw_index": 31,
+      "name": "base_difficulty",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 32,
+      "name": "skill",
+      "type": "int",
+      "array_len": 1,
+      "decoded": true,
+      "label_field": "skill_name"
+    },
+    {
+      "raw_index": 33,
+      "name": "zone_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 34,
+      "name": "environment_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 35,
+      "name": "time_of_day",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 36,
+      "name": "classes",
+      "type": "int",
+      "array_len": 16,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 52,
+      "name": "casting_animation",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 53,
+      "name": "target_animation",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 54,
+      "name": "travel_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 55,
+      "name": "spell_affect_index",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 56,
+      "name": "disallow_sit",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 57,
+      "name": "deity_agnostic",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 58,
+      "name": "deities",
+      "type": "int",
+      "array_len": 16,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 74,
+      "name": "npc_no_cast",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 75,
+      "name": "new_icon",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 76,
+      "name": "spell_anim",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 77,
+      "name": "uninterruptable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 78,
+      "name": "resist_difficulty",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 79,
+      "name": "unstackable_dot",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 80,
+      "name": "deletable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 81,
+      "name": "recourse_link",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 82,
+      "name": "no_partial_resist",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 83,
+      "name": "small_targets_only",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 84,
+      "name": "uses_persistent_particles_or_short_buff",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 85,
+      "name": "description_id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 86,
+      "name": "type_description_id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 87,
+      "name": "effect_description_id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 88,
+      "name": "secondary_category_2",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 89,
+      "name": "npc_no_los",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 90,
+      "name": "feedbackable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 91,
+      "name": "reflectable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 92,
+      "name": "bonus_hate",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 93,
+      "name": "resist_per_level",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 94,
+      "name": "resist_cap",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 95,
+      "name": "ldon_trap",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 96,
+      "name": "endurance_cost",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 97,
+      "name": "timer_id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 98,
+      "name": "is_discipline",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 99,
+      "name": "hate_added",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 100,
+      "name": "endurance_upkeep",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 101,
+      "name": "hit_number_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 102,
+      "name": "hit_number",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 103,
+      "name": "pvp_resist_base",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 104,
+      "name": "pvp_resist_per_level",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 105,
+      "name": "pvp_resist_cap",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 106,
+      "name": "pvp_duration",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 107,
+      "name": "pvp_duration_cap",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 108,
+      "name": "pcnpc_only_flag",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 109,
+      "name": "cast_not_standing",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 110,
+      "name": "can_mgb",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 111,
+      "name": "dispel_flag",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 112,
+      "name": "npc_category",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 113,
+      "name": "npc_usefulness",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 114,
+      "name": "min_resist",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 115,
+      "name": "max_resist",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 116,
+      "name": "viral_targets",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 117,
+      "name": "viral_timer",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 118,
+      "name": "nimbus_effect",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 119,
+      "name": "directional_start",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 120,
+      "name": "directional_end",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 121,
+      "name": "sneak",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 122,
+      "name": "not_focusable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 123,
+      "name": "no_detrimental_spell_aggro",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 124,
+      "name": "show_wear_off_message",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 125,
+      "name": "suspendable",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 126,
+      "name": "viral_range",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 127,
+      "name": "song_cap",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 128,
+      "name": "stacks_with_self",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 129,
+      "name": "not_shown_to_player",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 130,
+      "name": "no_block",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 131,
+      "name": "anim_variation",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 132,
+      "name": "spell_group",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 133,
+      "name": "rank",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 134,
+      "name": "no_resist",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 135,
+      "name": "allow_spellscribe",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 136,
+      "name": "cast_restriction",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 137,
+      "name": "allow_rest",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 138,
+      "name": "can_cast_in_combat",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 139,
+      "name": "can_cast_out_of_combat",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 140,
+      "name": "show_dot_message",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 141,
+      "name": "invalid",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 142,
+      "name": "aoe_max_targets",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 143,
+      "name": "no_heal_damage_item_mod",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 144,
+      "name": "caster_requirement_id",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 145,
+      "name": "spell_class",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 146,
+      "name": "spell_subclass",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 147,
+      "name": "ai_valid_targets",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 148,
+      "name": "persist_death",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 149,
+      "name": "base_effects_focus_slope",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 150,
+      "name": "base_effects_focus_offset",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 151,
+      "name": "min_distance",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 152,
+      "name": "min_distance_mod",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 153,
+      "name": "max_distance",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 154,
+      "name": "max_distance_mod",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 155,
+      "name": "min_range",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 156,
+      "name": "no_remove",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 157,
+      "name": "spell_recourse_type",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 158,
+      "name": "only_during_fast_regen",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 159,
+      "name": "is_beta_only",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 160,
+      "name": "spell_subgroup",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 161,
+      "name": "eql_new_2",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 162,
+      "name": "eql_new_3",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 163,
+      "name": "eql_new_4",
+      "type": "float",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 164,
+      "name": "spell_category",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 165,
+      "name": "eql_new_5",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 166,
+      "name": "eql_new_6",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 167,
+      "name": "eql_new_7",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 168,
+      "name": "eql_new_8",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 169,
+      "name": "eql_new_9",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    }
+  ],
+  "added_export_keys": {
+    "effects": "list of {slot, effect_id, effect_name, base_value, limit_value, formula, max_value} (base_value sign kept: negative=damage, positive=heal)",
+    "class_availability": "decoded list of {class_index, class, level, verified}; a spell is in-game iff any entry has verified=true",
+    "min_level": "lowest non-255 class level",
+    "skill_name / target_type_name / resist_type_name": "label companions",
+    "description_template": "dbstr type 6 verbatim (raw #N/$N/@N/%z placeholders, NOT substituted)",
+    "type_description / effect_description / secondary_category": "dbstr type 5",
+    "category": "dbstr type 27",
+    "messages": "{you_cast, other_casts, cast_on_you, cast_on_other, spell_fades} from spells_us_str.txt"
+  },
+  "undecoded": {
+    "deities": "16-slot raw array; no deity-name table available — emitted as integers.",
+    "eql_new_1..eql_new_9": "EQL-custom fields, meaning undetermined — emitted verbatim.",
+    "classes": "16-slot raw min-level array (255 = N/A); see class_availability for the decoded form."
+  }
+}
