@@ -159,11 +159,14 @@ SCALAR_SCHEMA = [
     (162, "eql_new_3", float, 1),
     (163, "eql_new_4", float, 1),
     (164, "spell_category", int, 1),
-    (165, "eql_new_5", int, 1),
-    (166, "eql_new_6", int, 1),
-    (167, "eql_new_7", int, 1),
-    (168, "eql_new_8", int, 1),
-    (169, "eql_new_9", int, 1),
+    # Cols 165-169: EQL-only tail. Names + semantics per SPELL_FORMAT.md.
+    # 166 is the pet template (177700=Mage, 177701=Necro, 177702=Ench pets),
+    # consumed by the spell detail page; the others are reserved/constant.
+    (165, "eql_reserved_1", int, 1),
+    (166, "eql_pet_template", int, 1),
+    (167, "eql_reserved_2", int, 1),
+    (168, "eql_reserved_3", int, 1),
+    (169, "eql_reserved_4", int, 1),
     # Added by the 2026-05 patch: a binary flag (0 for ~99.9% of spells, 1 for
     # 55). Meaning undetermined. Appended just before the effects blob, which
     # shifted the blob from field 170 → 171.
