@@ -1058,6 +1058,7 @@
     "min_level": "lowest non-255 class level",
     "skill_name / target_type_name / resist_type_name": "label companions",
     "description_template": "dbstr type 6 verbatim (raw #N/$N/@N/%z placeholders, NOT substituted)",
+    "description_rendered": "the in-game tooltip text: template with placeholders filled from effect slots + duration (damage shown as abs()). Derived — see description_template for the verbatim source.",
     "type_description / effect_description / secondary_category": "dbstr type 5",
     "category": "dbstr type 27",
     "messages": "{you_cast, other_casts, cast_on_you, cast_on_other, spell_fades} from spells_us_str.txt"

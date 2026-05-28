@@ -29,6 +29,8 @@ import sqlite3
 from parse_spells import load_spells, spell_to_dict, SCALAR_SCHEMA
 from spa_data import spa_name
 from skills_data import skill_name
+# Reuse the webapp's exact rendering so template→rendered stays in sync.
+from app import substitute, render_duration
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(HERE, "spells.sqlite")
@@ -118,8 +120,14 @@ def build_spell_obj(sp, class_avail, dbstr):
     d["target_type_name"] = TARGET_TYPES.get(d.get("target_type"), f"#{d.get('target_type')}")
     d["resist_type_name"] = RESIST_TYPES.get(d.get("resist_type"), f"#{d.get('resist_type')}")
 
-    # --- resolved string text (verbatim dbstr — no placeholder substitution) -
-    d["description_template"] = dbstr.get((d.get("description_id"), 6))
+    # --- resolved string text -----------------------------------------------
+    # description_template = dbstr type 6 verbatim (raw #N/$N/@N/%z placeholders);
+    # description_rendered = the in-game tooltip, placeholders filled from the
+    # effect slots + duration (damage shown as abs() per the live client).
+    template = dbstr.get((d.get("description_id"), 6))
+    duration = render_duration(d.get("buff_duration_formula"), d.get("buff_duration"))
+    d["description_template"] = template
+    d["description_rendered"] = substitute(template, d["effects"], duration) if template else ""
     d["type_description"] = dbstr.get((d.get("type_description_id"), 5))
     d["effect_description"] = dbstr.get((d.get("effect_description_id"), 5))
     d["secondary_category"] = dbstr.get((d.get("secondary_category_2"), 5))
@@ -168,6 +176,7 @@ def write_field_catalog():
             "min_level": "lowest non-255 class level",
             "skill_name / target_type_name / resist_type_name": "label companions",
             "description_template": "dbstr type 6 verbatim (raw #N/$N/@N/%z placeholders, NOT substituted)",
+            "description_rendered": "the in-game tooltip text: template with placeholders filled from effect slots + duration (damage shown as abs()). Derived — see description_template for the verbatim source.",
             "type_description / effect_description / secondary_category": "dbstr type 5",
             "category": "dbstr type 27",
             "messages": "{you_cast, other_casts, cast_on_you, cast_on_other, spell_fades} from spells_us_str.txt",
