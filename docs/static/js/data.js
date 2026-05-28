@@ -33,6 +33,15 @@ export function targetName(t) { return TARGET_TYPES[t] || `#${t}`; }
 export function resistName(r) { return RESIST_TYPES[r] || `#${r}`; }
 export function className(i) { return CLASS_NAMES[i] || `Class ${i}`; }
 
+// Direct-HP effects (the "CurrentHP" family): 0 CurrentHP, 69 CurrentHPOnce,
+// 79 CurrentHPPlus. For these a negative base is HP loss (damage/DoT), and the
+// live client shows the magnitude — so display abs(). Other effects keep their
+// sign, where negative means a real decrease (snare, stat debuff, AC down).
+const HP_DAMAGE_EFFECTS = new Set([0, 69, 79]);
+export function effectValue(effectId, v) {
+  return HP_DAMAGE_EFFECTS.has(effectId) ? Math.abs(v) : v;
+}
+
 // URL slug ↔ class index. Lowercased, spaces → hyphens ("Shadow Knight" →
 // "shadow-knight") for readable class URLs like #/class/druid.
 export function classSlug(i) {

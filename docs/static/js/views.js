@@ -4,7 +4,7 @@
 import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
-  targetName, resistName, className, spaName, skillName, classSlug,
+  targetName, resistName, className, spaName, skillName, classSlug, effectValue,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -213,8 +213,8 @@ export async function renderSpell(spellId) {
         <td>${e.slot + 1}</td>
         <td><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
             <span class="muted">#${e.effect_id}</span></td>
-        <td>${e.base_value}</td><td>${e.limit_value}</td>
-        <td>${e.formula}</td><td>${e.max_value}</td>
+        <td>${effectValue(e.effect_id, e.base_value)}</td><td>${e.limit_value}</td>
+        <td>${e.formula}</td><td>${effectValue(e.effect_id, e.max_value)}</td>
       </tr>`).join("")}</tbody>
     </table>` : `<p class="muted">No effects recorded.</p>`;
 

@@ -51,10 +51,11 @@
           <td>{{ e.slot + 1 }}</td>
           <td><a href="{{ url_for('effect_page', effect_id=e.effect_id) }}">{{ e.effect_id | spa_name }}</a>
               <span class="muted">#{{ e.effect_id }}</span></td>
-          <td>{{ e.base_value }}</td>
+          {% set hp_dmg = e.effect_id in (0, 69, 79) %}
+          <td>{{ e.base_value | abs if hp_dmg else e.base_value }}</td>
           <td>{{ e.limit_value }}</td>
           <td>{{ e.formula }}</td>
-          <td>{{ e.max_value }}</td>
+          <td>{{ e.max_value | abs if hp_dmg else e.max_value }}</td>
         </tr>
         {% endfor %}
       </tbody>

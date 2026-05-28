@@ -4,7 +4,7 @@
 
 import { query, queryOne, dbstr } from "./db.js";
 import {
-  targetName, resistName, MAX_LEVEL, spaName,
+  targetName, resistName, MAX_LEVEL, spaName, effectValue,
 } from "./data.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, escapeHtml,
@@ -77,8 +77,8 @@ function renderTooltip(data) {
          <tbody>${effects.map(e => `<tr>
            <td>${e.slot + 1}</td>
            <td>${escapeHtml(spaName(e.effect_id))} <span class="muted">#${e.effect_id}</span></td>
-           <td>${e.base_value}</td><td>${e.limit_value}</td>
-           <td>${e.formula}</td><td>${e.max_value}</td></tr>`).join("")}
+           <td>${effectValue(e.effect_id, e.base_value)}</td><td>${e.limit_value}</td>
+           <td>${e.formula}</td><td>${effectValue(e.effect_id, e.max_value)}</td></tr>`).join("")}
          </tbody></table>`
     : '<p class="muted">No effects.</p>';
   const classesHtml = classes.length
