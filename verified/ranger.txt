@@ -20,6 +20,7 @@ L14  Burst of Fire
 L14  Camouflage
 L15  Grasping Roots
 L15  Invoke Lightning
+L15  Searing Arrow
 L16  Light Healing
 L16  Panic Animal
 L16  Ward Summoned
@@ -33,11 +34,11 @@ L22  Cure Disease
 L22  Harmony
 L24  Shield of Thistles
 L25  Stinging Swarm
+L26  Flaming Arrow
 L26  Strength of Earth
 L27  Eyes of the Cat
 L28  Healing
 L28  Spirit of Wolf
-L29  Flaming Arrow
 L29  Riftwind's Protection
 L30  Barbcoat
 L30  Cancel Magic
@@ -46,12 +47,12 @@ L32  See Invisible
 L33  Dismiss Summoned
 L34  Bramblecoat
 L35  Levitate
+L36  Burning Arrow
 L36  Call of Sky
 L37  Careless Lightning
 L37  Nature's Precision
 L38  Greater Healing
 L38  Skin like Steel
-L39  Burning Arrow
 L39  Harmony of Nature
 L40  Swarm of Pain
 L41  Spirit of the Shrew
@@ -60,6 +61,7 @@ L43  Shield of Brambles
 L44  Immolate
 L45  Ensnaring Roots
 L46  Resist Fire
+L46  Scorching Arrow
 L47  Superior Camouflage
 L48  Force of Nature
 L48  Wolf Form

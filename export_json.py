@@ -165,10 +165,11 @@ def write_field_catalog():
         })
     catalog = {
         "generated": TODAY,
-        "note": "All 171 spells_us.txt fields are parsed and exported verbatim. "
-                "Field 170 is the effects blob (exported as the 'effects' array "
-                "with effect_name labels). Messages come from spells_us_str.txt.",
-        "raw_field_count": 171,
+        "note": "All spells_us.txt fields are parsed and exported verbatim. The "
+                "trailing pipe-delimited field is the effects blob (exported as "
+                "the 'effects' array with effect_name labels). Messages come from "
+                "spells_us_str.txt.",
+        "raw_field_count": max(s + c for s, _, _, c in SCALAR_SCHEMA) + 1,  # scalars + effects blob
         "fields": fields,
         "added_export_keys": {
             "effects": "list of {slot, effect_id, effect_name, base_value, limit_value, formula, max_value} (base_value sign kept: negative=damage, positive=heal)",

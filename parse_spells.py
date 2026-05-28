@@ -27,8 +27,10 @@ DATA_DIR = os.environ.get("EQL_DATA_DIR", os.path.dirname(HERE))
 SPELLS_US = os.path.join(DATA_DIR, "spells_us.txt")
 SPELLS_STR = os.path.join(DATA_DIR, "spells_us_str.txt")
 
-# Ordered (eql_col, name, type) tuples for columns 0..169. Column 170 is the
-# effects blob, parsed separately. Class & deity arrays are handled inline.
+# Ordered (eql_col, name, type) tuples for columns 0..170. The trailing
+# pipe-delimited effects blob is parsed separately (it's the last field; the
+# 2026-05 patch shifted it from index 170 to 171). Class & deity arrays are
+# handled inline.
 SCALAR_SCHEMA = [
     # (start_col, name, parse_fn, count) — count>1 means an array starting here
     (0, "id", int, 1),
@@ -162,6 +164,10 @@ SCALAR_SCHEMA = [
     (167, "eql_new_7", int, 1),
     (168, "eql_new_8", int, 1),
     (169, "eql_new_9", int, 1),
+    # Added by the 2026-05 patch: a binary flag (0 for ~99.9% of spells, 1 for
+    # 55). Meaning undetermined. Appended just before the effects blob, which
+    # shifted the blob from field 170 → 171.
+    (170, "eql_new_10", int, 1),
 ]
 
 
@@ -253,9 +259,9 @@ def parse_effects_blob(blob: str) -> List[Effect]:
 
 
 def parse_spell_line(cols: List[str]) -> Spell:
-    if len(cols) < 171:
+    if len(cols) < 172:
         # Pad to expected width so indexing doesn't fail.
-        cols = cols + [""] * (171 - len(cols))
+        cols = cols + [""] * (172 - len(cols))
     sp = Spell()
     for start, name, fn, count in SCALAR_SCHEMA:
         if count == 1:
@@ -270,7 +276,15 @@ def parse_spell_line(cols: List[str]) -> Spell:
                 setattr(sp, name, arr)
             else:
                 sp._extras[name] = arr
-    sp.effects = parse_effects_blob(cols[170])
+    # Effects blob is the trailing pipe-delimited field. Locate it by content
+    # (it's the only field starting with "1|") rather than hard-coding an index,
+    # so future column additions before it don't silently break effect parsing.
+    blob = ""
+    for cell in reversed(cols):
+        if cell.startswith("1|"):
+            blob = cell
+            break
+    sp.effects = parse_effects_blob(blob)
     return sp
 
 

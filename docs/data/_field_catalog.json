@@ -1,7 +1,7 @@
 {
   "generated": "2026-05-28",
-  "note": "All 171 spells_us.txt fields are parsed and exported verbatim. Field 170 is the effects blob (exported as the 'effects' array with effect_name labels). Messages come from spells_us_str.txt.",
-  "raw_field_count": 171,
+  "note": "All spells_us.txt fields are parsed and exported verbatim. The trailing pipe-delimited field is the effects blob (exported as the 'effects' array with effect_name labels). Messages come from spells_us_str.txt.",
+  "raw_field_count": 172,
   "fields": [
     {
       "raw_index": 0,
@@ -1046,6 +1046,14 @@
     {
       "raw_index": 169,
       "name": "eql_new_9",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 170,
+      "name": "eql_new_10",
       "type": "int",
       "array_len": 1,
       "decoded": false,
