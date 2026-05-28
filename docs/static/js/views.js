@@ -91,7 +91,8 @@ export async function renderClass(classIndex, params) {
 
   const rows = await query(
     `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time,
-            s.buff_duration, s.target_type, s.good_effect, s.is_discipline,
+            s.buff_duration, s.buff_duration_formula, s.target_type,
+            s.good_effect, s.is_discipline, s.teleport_zone,
             sc.min_level
        FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
       WHERE ${where.join(" AND ")}
@@ -136,11 +137,14 @@ export async function renderClass(classIndex, params) {
   let body = "";
   for (const lvl of [...byLevel.keys()].sort((a, b) => a - b)) {
     const items = byLevel.get(lvl).map(sp => {
-      let tag = "";
-      if (sp.is_discipline) tag = '<span class="tag tag-disc">disc</span>';
-      else if (sp.good_effect === 1) tag = '<span class="tag tag-buff">buff</span>';
-      else if (sp.good_effect === 2) tag = '<span class="tag tag-grp">group buff</span>';
-      else tag = '<span class="tag tag-deb">det</span>';
+      const hasDuration = sp.buff_duration > 0 || sp.buff_duration_formula > 0;
+      const tags = [];
+      if (sp.is_discipline) tags.push('<span class="tag tag-disc">disc</span>');
+      if (sp.teleport_zone) tags.push('<span class="tag tag-port">port</span>');
+      if ((sp.good_effect === 1 || sp.good_effect === 2) && hasDuration) tags.push('<span class="tag tag-buff">buff</span>');
+      if ([3, 36, 39, 52].includes(sp.target_type)) tags.push('<span class="tag tag-grp">group</span>');
+      if (sp.good_effect === 0) tags.push('<span class="tag tag-deb">det</span>');
+      const tag = tags.join(" ");
       return `<tr>
         <td>${iconImg(sp.new_icon)}</td>
         <td><a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a> ${tag}</td>

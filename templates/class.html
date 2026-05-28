@@ -50,10 +50,12 @@
         <td>{% set icp = sp.new_icon | icon_path %}
           {% if icp %}<img src="{{ icp }}" alt="" class="icon">{% endif %}</td>
         <td><a href="{{ url_for('spell_page', spell_id=sp.id) }}">{{ sp.name }}</a>
+            {% set has_duration = (sp.buff_duration and sp.buff_duration > 0) or (sp.buff_duration_formula and sp.buff_duration_formula > 0) %}
             {% if sp.is_discipline %}<span class="tag tag-disc">disc</span>{% endif %}
-            {% if sp.good_effect == 1 %}<span class="tag tag-buff">buff</span>
-            {% elif sp.good_effect == 2 %}<span class="tag tag-grp">group buff</span>
-            {% else %}<span class="tag tag-deb">det</span>{% endif %}
+            {% if sp.teleport_zone %}<span class="tag tag-port">port</span>{% endif %}
+            {% if sp.good_effect in (1, 2) and has_duration %}<span class="tag tag-buff">buff</span>{% endif %}
+            {% if sp.target_type in (3, 36, 39, 52) %}<span class="tag tag-grp">group</span>{% endif %}
+            {% if sp.good_effect == 0 %}<span class="tag tag-deb">det</span>{% endif %}
         </td>
         <td>{{ sp.mana }}</td>
         <td>{{ sp.cast_time | ms_to_seconds }}s</td>

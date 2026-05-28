@@ -202,7 +202,7 @@ def class_page(class_index: int):
     rows = db.execute(
         "SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, "
         "       s.buff_duration, s.buff_duration_formula, s.target_type, "
-        "       s.good_effect, s.is_discipline, sc.min_level "
+        "       s.good_effect, s.is_discipline, s.teleport_zone, sc.min_level "
         "  FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id "
         " WHERE " + " AND ".join(where) +
         " ORDER BY sc.min_level, s.name",
