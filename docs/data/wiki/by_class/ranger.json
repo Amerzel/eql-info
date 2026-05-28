@@ -1,0 +1,3707 @@
+{
+  "generated": "2026-05-28",
+  "class": "Ranger",
+  "spell_count": 66,
+  "spells": [
+    {
+      "id": 200,
+      "name": "Minor Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends minor wounds, healing 10 hit points.",
+      "description_template": "Mends minor wounds, healing #1 hit points.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 1
+        },
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 10,
+          "limit": 0,
+          "formula": 2,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a little better.",
+        "cast_on_other": " feels a little better.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 51,
+      "name": "Glimpse",
+      "icon": 106,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Grants your eyes magical acuteness, allowing you to see clearly over long distances for 12s.",
+      "description_template": "Grants your eyes magical acuteness, allowing you to see clearly over long distances for %z.",
+      "mana": 5,
+      "range": 0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 12.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 2
+        },
+        {
+          "class": "Wizard",
+          "level": 2
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 87,
+          "effect": "ChangeAggro",
+          "base": 55,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your eyes feel stronger.",
+        "cast_on_other": "'s eyes gleam.",
+        "wears_off": "Your vision fades."
+      },
+      "level": 2
+    },
+    {
+      "id": 239,
+      "name": "Flame Lick",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Surrounds your target in flickering flames, lowering their armor class, and doing between 1 and 17 damage every 6 seconds for 36s. Requires, but does not consume, a fire beetle eye when cast.",
+      "description_template": "Surrounds your target in flickering flames, lowering their armor class, and doing between #2 and @2 damage every 6 seconds for %z. Requires, but does not consume, a fire beetle eye when cast.",
+      "mana": 12,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36s",
+      "duration_ticks": 6,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 3
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 17
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -12,
+          "limit": 0,
+          "formula": 100,
+          "max": 12
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are surrounded by flickering flames.",
+        "cast_on_other": " is surrounded by flickering flames.",
+        "wears_off": "The flames are extinguished."
+      },
+      "level": 3
+    },
+    {
+      "id": 240,
+      "name": "Lull Animal",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Lulls the ferocity of many animals, making them less likely to attack.  This spell works on creatures up to level 30.",
+      "description_template": "Lulls the ferocity of many animals, making them less likely to attack.  This spell works on creatures up to level @1.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "2 min",
+      "duration_ticks": 20,
+      "target": "Animal",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 4
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 25,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 4
+    },
+    {
+      "id": 2591,
+      "name": "Tangling Weeds",
+      "icon": 5,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Entangles your target's feet with magical roots, slowing their movement speed for up to 18s.",
+      "description_template": "Entangles your target's feet with magical roots, slowing their movement speed for up to %z.",
+      "mana": 15,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 5
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -20,
+          "limit": 0,
+          "formula": 102,
+          "max": 35
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You slow down as your feet are covered in tangling weeds.",
+        "cast_on_other": "'s movements slow as their feet are covered in tangling weeds.",
+        "wears_off": "The tangling weeds wither away."
+      },
+      "level": 5
+    },
+    {
+      "id": 242,
+      "name": "Snare",
+      "icon": 5,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Entangles your target's feet with magical roots, slowing their movement speed for up to 3 min 54s.",
+      "description_template": "Entangles your target's feet with magical roots, slowing their movement speed for up to %z.",
+      "mana": 15,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "3 min 54s",
+      "duration_ticks": 39,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 6
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -40,
+          "limit": 3,
+          "formula": 102,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are ensnared.",
+        "cast_on_other": " has been ensnared.",
+        "wears_off": "You are no longer ensnared."
+      },
+      "level": 6
+    },
+    {
+      "id": 26,
+      "name": "Skin like Wood",
+      "icon": 131,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Hardens the skin of your target, increasing their hit points and armor class for 27 min.",
+      "description_template": "Hardens the skin of your target, increasing their hit points and armor class for %z.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 10,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your skin turns hard as wood.",
+        "cast_on_other": "'s skin turns hard as wood.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 7
+    },
+    {
+      "id": 224,
+      "name": "Endure Fire",
+      "icon": 52,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away fire for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away fire for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 5
+        },
+        {
+          "class": "Cleric",
+          "level": 8
+        },
+        {
+          "class": "Ranger",
+          "level": 9
+        },
+        {
+          "class": "Beastlord",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 46,
+          "effect": "ResistFire",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from fire.",
+        "cast_on_other": " is protected from fire.",
+        "wears_off": "Your endurance to fire fades."
+      },
+      "level": 9
+    },
+    {
+      "id": 237,
+      "name": "Dance of the Fireflies",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Summons a swarm of mystic fireflies to your hands, providing light in dark areas.",
+      "description_template": "Summons a swarm of mystic fireflies to your hands, providing light in dark areas.",
+      "mana": 10,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 10
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 10295,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A swarm of fireflies shimmers around your hand.",
+        "cast_on_other": "'s hands flicker.",
+        "wears_off": ""
+      },
+      "level": 10
+    },
+    {
+      "id": 2592,
+      "name": "Hawk Eye",
+      "icon": 127,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Focuses your vision, considerably improving your aim with a bow.",
+      "description_template": "Focuses your vision, considerably improving your aim with a bow.",
+      "mana": 125,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 11
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 184,
+          "effect": "HoT",
+          "base": 10,
+          "limit": 7,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your eyes sharpen, with an aura of avian presence.",
+        "cast_on_other": "'s eyes sharpen with an aura of avian presence.",
+        "wears_off": "The avian presence departs."
+      },
+      "level": 11
+    },
+    {
+      "id": 269,
+      "name": "Feet like Cat",
+      "icon": 9,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your target with a feline spirit, increasing their agility for 36 min.",
+      "description_template": "Infuses your target with a feline spirit, increasing their agility for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 3
+        },
+        {
+          "class": "Ranger",
+          "level": 12
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": 9,
+          "limit": 0,
+          "formula": 102,
+          "max": 18
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel more agile.",
+        "cast_on_other": " looks more agile.",
+        "wears_off": "Your agility fades."
+      },
+      "level": 12
+    },
+    {
+      "id": 203,
+      "name": "Cure Poison",
+      "icon": 42,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Removes toxin from your target's system, curing them of minor poisons.",
+      "description_template": "Removes toxin from your target's system, curing them of minor poisons.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 5
+        },
+        {
+          "class": "Druid",
+          "level": 5
+        },
+        {
+          "class": "Ranger",
+          "level": 13
+        },
+        {
+          "class": "Beastlord",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 13
+    },
+    {
+      "id": 515,
+      "name": "Thistlecoat",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your body in a coat of thistles that increases your armor class, as well as harming those that strike you.",
+      "description_template": "Surrounds your body in a coat of thistles that increases your armor class, as well as harming those that strike you.",
+      "mana": 25,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 7
+        },
+        {
+          "class": "Ranger",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 7,
+          "limit": 0,
+          "formula": 102,
+          "max": 21
+        },
+        {
+          "slot": 3,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Thistles spring from your skin.",
+        "cast_on_other": "'s skin sprouts thistles.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 13
+    },
+    {
+      "id": 92,
+      "name": "Burst of Fire",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Creates a ball of fire that burns your target, doing between 10 and 14 damage.",
+      "description_template": "Creates a ball of fire that burns your target, doing between #1 and @1 damage.",
+      "mana": 7,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 3
+        },
+        {
+          "class": "Ranger",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 14
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin singe as the Burst of Fire hits you.",
+        "cast_on_other": " singes as the Burst of Fire hits them.",
+        "wears_off": ""
+      },
+      "level": 14
+    },
+    {
+      "id": 247,
+      "name": "Camouflage",
+      "icon": 18,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Covers your body in a mystic shield, allowing you to blend in with your outdoor surroundings.",
+      "description_template": "Covers your body in a mystic shield, allowing you to blend in with your outdoor surroundings.",
+      "mana": 15,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "20 min",
+      "duration_ticks": 200,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Ranger",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "effect": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your body fades away.",
+        "cast_on_other": " fades away.",
+        "wears_off": "You return to view."
+      },
+      "level": 14
+    },
+    {
+      "id": 249,
+      "name": "Grasping Roots",
+      "icon": 117,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Commands roots to take hold of your target, doing 10 damage and preventing their movement for 48s.",
+      "description_template": "Commands roots to take hold of your target, doing #1 damage and preventing their movement for %z.",
+      "mana": 35,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "48s",
+      "duration_ticks": 8,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 2
+        },
+        {
+          "class": "Ranger",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 99,
+          "effect": "Root",
+          "base": -10000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet become entwined.",
+        "cast_on_other": " is entwined by roots.",
+        "wears_off": "The roots fall from your feet."
+      },
+      "level": 15
+    },
+    {
+      "id": 252,
+      "name": "Invoke Lightning",
+      "icon": 162,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls down lightning from the sky over your target, causing between 16 and 25 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
+      "description_template": "Calls down lightning from the sky over your target, causing between #1 and @1 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
+      "mana": 32,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Targeted AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Ranger",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -16,
+          "limit": 0,
+          "formula": 102,
+          "max": 25
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Lightning surges through your body.",
+        "cast_on_other": " has been struck by lightning.",
+        "wears_off": ""
+      },
+      "level": 15
+    },
+    {
+      "id": 74041,
+      "name": "Searing Arrow",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a magically burning arrow at your target, causing 58 damage initially and 29 damage every six seconds for 6s.",
+      "description_template": "Hurls a magically burning arrow at your target, causing #1 damage initially and #2 damage every six seconds for %z.",
+      "mana": 35,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "6s",
+      "duration_ticks": 1,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -58,
+          "limit": 0,
+          "formula": 100,
+          "max": 58
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -29,
+          "limit": 0,
+          "formula": 100,
+          "max": 29
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": "Your skin cools."
+      },
+      "level": 15
+    },
+    {
+      "id": 17,
+      "name": "Light Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends light wounds, healing between 35 and 65 hit points.",
+      "description_template": "Mends light wounds, healing between #1 and @1 hit points.",
+      "mana": 28,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Paladin",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 14
+        },
+        {
+          "class": "Ranger",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 35,
+          "limit": 0,
+          "formula": 3,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel better.",
+        "cast_on_other": " feels better.",
+        "wears_off": ""
+      },
+      "level": 16
+    },
+    {
+      "id": 241,
+      "name": "Panic Animal",
+      "icon": 165,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Incites fear in most animals, causing them to flee.",
+      "description_template": "Incites fear in most animals, causing them to flee.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Animal",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " flees in a state of total panic!",
+        "wears_off": ""
+      },
+      "level": 16
+    },
+    {
+      "id": 248,
+      "name": "Ward Summoned",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 5 and 14 damage to a summoned target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to a summoned target.",
+      "mana": 6,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Summoned",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 2
+        },
+        {
+          "class": "Magician",
+          "level": 9
+        },
+        {
+          "class": "Ranger",
+          "level": 16
+        },
+        {
+          "class": "Cleric",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -5,
+          "limit": 0,
+          "formula": 101,
+          "max": 14
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 16
+    },
+    {
+      "id": 500,
+      "name": "Bind Sight",
+      "icon": 44,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Covers your face in magical strands,  allowing you to see through your target's eyes.",
+      "description_template": "Covers your face in magical strands,  allowing you to see through your target's eyes.",
+      "mana": 15,
+      "range": 10000.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "14 min",
+      "duration_ticks": 140,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 8
+        },
+        {
+          "class": "Wizard",
+          "level": 16
+        },
+        {
+          "class": "Ranger",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 73,
+          "effect": "ModelSize",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your sight is bound.",
+        "cast_on_other": "'s eyes gleam and then go dark.",
+        "wears_off": "Your binding ends."
+      },
+      "level": 17
+    },
+    {
+      "id": 254,
+      "name": "Firefist",
+      "icon": 2,
+      "spell_type": "Beneficial",
+      "skill": "Evocation",
+      "description": "Fills your hands with the force of flame, increasing your attack rating.",
+      "description_template": "Fills your hands with the force of flame, increasing your attack rating.",
+      "mana": 30,
+      "range": 0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 6
+        },
+        {
+          "class": "Ranger",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 1,
+          "limit": 0,
+          "formula": 101,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your fist bursts into flame.",
+        "cast_on_other": "'s fist bursts into flame.",
+        "wears_off": "Your hand is extinguished."
+      },
+      "level": 17
+    },
+    {
+      "id": 225,
+      "name": "Endure Cold",
+      "icon": 57,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away cold for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away cold for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Necromancer",
+          "level": 3
+        },
+        {
+          "class": "Beastlord",
+          "level": 3
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 10
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Ranger",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from cold.",
+        "cast_on_other": " is protected from cold.",
+        "wears_off": "Your endurance to cold fades."
+      },
+      "level": 18
+    },
+    {
+      "id": 91,
+      "name": "Ignite",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Ignites your target's skin, doing between 30 and 46 damage.",
+      "description_template": "Ignites your target's skin, doing between #1 and @1 damage.",
+      "mana": 21,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 8
+        },
+        {
+          "class": "Ranger",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -30,
+          "limit": 0,
+          "formula": 102,
+          "max": 46
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": ""
+      },
+      "level": 19
+    },
+    {
+      "id": 86,
+      "name": "Enduring Breath",
+      "icon": 20,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Magically fills your lungs with air, removing your need to breathe for 27 min.  Consumes a handful of fish scales to cast.",
+      "description_template": "Magically fills your lungs with air, removing your need to breathe for %z.  Consumes a handful of fish scales to cast.",
+      "mana": 35,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 6
+        },
+        {
+          "class": "Shaman",
+          "level": 12
+        },
+        {
+          "class": "Enchanter",
+          "level": 12
+        },
+        {
+          "class": "Ranger",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 14,
+          "effect": "WaterBreathing",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel no need to breathe.",
+        "cast_on_other": " doesn't seem to be breathing anymore.",
+        "wears_off": "You resume breathing."
+      },
+      "level": 20
+    },
+    {
+      "id": 263,
+      "name": "Skin like Rock",
+      "icon": 131,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Hardens the skin of your target, increasing their hit points and armor class for 27 min.",
+      "description_template": "Hardens the skin of your target, increasing their hit points and armor class for %z.",
+      "mana": 60,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 8.0,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 14
+        },
+        {
+          "class": "Ranger",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 16,
+          "limit": 0,
+          "formula": 101,
+          "max": 25
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 40,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 40,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your skin turns hard as stone.",
+        "cast_on_other": "'s skin turns hard as stone.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 21
+    },
+    {
+      "id": 213,
+      "name": "Cure Disease",
+      "icon": 41,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's immune system, curing minor diseases.",
+      "description_template": "Cleanses your target's immune system, curing minor diseases.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 4
+        },
+        {
+          "class": "Paladin",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 13
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 22
+    },
+    {
+      "id": 250,
+      "name": "Harmony",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Calms the savage spirit of almost any creature in an area around your target, making them less likely to attack.  This spell works on creatures up to level 40, and only works outdoors.",
+      "description_template": "Calms the savage spirit of almost any creature in an area around your target, making them less likely to attack.  This spell works on creatures up to level @1, and only works outdoors.",
+      "mana": 25,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 12.0,
+      "duration": "2 min",
+      "duration_ticks": 20,
+      "target": "Targeted AE",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 5
+        },
+        {
+          "class": "Ranger",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 22
+    },
+    {
+      "id": 256,
+      "name": "Shield of Thistles",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target in a shield of thistles that cause damage to anything that strikes them for up to 15 min.",
+      "description_template": "Surrounds your target in a shield of thistles that cause damage to anything that strikes them for up to %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "15 min",
+      "duration_ticks": 150,
+      "target": "Single Friendly (or Self)",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 7
+        },
+        {
+          "class": "Ranger",
+          "level": 24
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 109,
+          "max": 6
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are surrounded by a thorny barrier.",
+        "cast_on_other": " is surrounded by a thorny barrier.",
+        "wears_off": "The brambles fall away."
+      },
+      "level": 24
+    },
+    {
+      "id": 264,
+      "name": "Stinging Swarm",
+      "icon": 159,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Commands a swarm of insects to attack your target relentlessly, causing between 17 and 42 damage every six seconds for 54s.",
+      "description_template": "Commands a swarm of insects to attack your target relentlessly, causing between #1 and @1 damage every six seconds for %z.",
+      "mana": 71,
+      "range": 250.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "54s",
+      "duration_ticks": 9,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 10
+        },
+        {
+          "class": "Ranger",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -17,
+          "limit": 0,
+          "formula": 102,
+          "max": 42
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the pain of a thousand stings.",
+        "cast_on_other": " is engulfed by a swarm.",
+        "wears_off": "The swarm departs."
+      },
+      "level": 25
+    },
+    {
+      "id": 3565,
+      "name": "Flaming Arrow",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a magically burning arrow at your target, causing 102 damage initially and 51 damage every six seconds for 6s.",
+      "description_template": "Hurls a magically burning arrow at your target, causing #1 damage initially and #2 damage every six seconds for %z.",
+      "mana": 55,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "6s",
+      "duration_ticks": 1,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 26
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -102,
+          "limit": 0,
+          "formula": 100,
+          "max": 102
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -51,
+          "limit": 0,
+          "formula": 100,
+          "max": 51
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": "Your skin cools."
+      },
+      "level": 26
+    },
+    {
+      "id": 268,
+      "name": "Strength of Earth",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target with the power of the earth, increasing their strength for 27 min.",
+      "description_template": "Fills your target with the power of the earth, increasing their strength for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 7
+        },
+        {
+          "class": "Ranger",
+          "level": 26
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel stronger.",
+        "cast_on_other": " looks stronger.",
+        "wears_off": "Your strength fades."
+      },
+      "level": 26
+    },
+    {
+      "id": 655,
+      "name": "Eyes of the Cat",
+      "icon": 86,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Infuses your eyes with the vision of a cat, allowing you to see more clearly in the dark.",
+      "description_template": "Infuses your eyes with the vision of a cat, allowing you to see more clearly in the dark.",
+      "mana": 35,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 27
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 65,
+          "effect": "VoiceGraft",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your vision shifts.",
+        "cast_on_other": "'s eyes glow green.",
+        "wears_off": "Your vision returns to normal."
+      },
+      "level": 27
+    },
+    {
+      "id": 12,
+      "name": "Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends moderate wounds, healing between 95 and 175 hit points.",
+      "description_template": "Mends moderate wounds, healing between #1 and @1 hit points.",
+      "mana": 65,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 10
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 95,
+          "limit": 0,
+          "formula": 4,
+          "max": 175
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 28
+    },
+    {
+      "id": 278,
+      "name": "Spirit of Wolf",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your target with the spirit of the wolf, increasing their movement speed for 36 min.",
+      "description_template": "Infuses your target with the spirit of the wolf, increasing their movement speed for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Druid",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 101,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of wolf enter you.",
+        "cast_on_other": " is surrounded by a brief lupine aura.",
+        "wears_off": "The spirit of wolf leaves you."
+      },
+      "level": 28
+    },
+    {
+      "id": 2593,
+      "name": "Riftwind's Protection",
+      "icon": 158,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your skin in a coat of hardened thorns, increasing your armor class, as well as causing damage to anyone who strikes you for 60 min.",
+      "description_template": "Covers your skin in a coat of hardened thorns, increasing your armor class, as well as causing damage to anyone who strikes you for %z.",
+      "mana": 40,
+      "range": 150.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "60 min",
+      "duration_ticks": 600,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 29
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 30,
+          "limit": 0,
+          "formula": 121,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your skin glows with a pale greenish tint.",
+        "cast_on_other": "'s skin glows with a pale greenish tint.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 29
+    },
+    {
+      "id": 516,
+      "name": "Barbcoat",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your body in a coat of barbs that increases your armor class, as well as harming those that strike you.",
+      "description_template": "Surrounds your body in a coat of barbs that increases your armor class, as well as harming those that strike you.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 17
+        },
+        {
+          "class": "Ranger",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 18,
+          "limit": 0,
+          "formula": 102,
+          "max": 42
+        },
+        {
+          "slot": 3,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Barbs spring from your skin.",
+        "cast_on_other": "'s skin sprouts barbs.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 30
+    },
+    {
+      "id": 48,
+      "name": "Cancel Magic",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Cancels magical enchantments affecting your target.",
+      "description_template": "Cancels magical enchantments affecting your target.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 7
+        },
+        {
+          "class": "Magician",
+          "level": 10
+        },
+        {
+          "class": "Wizard",
+          "level": 11
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 15
+        },
+        {
+          "class": "Druid",
+          "level": 18
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 30
+        },
+        {
+          "class": "Paladin",
+          "level": 32
+        },
+        {
+          "class": "Beastlord",
+          "level": 35
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a bit dispelled.",
+        "cast_on_other": " feels a bit dispelled.",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 513,
+      "name": "Calm Animal",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Calms the ferocity of many animals, making them less likely to attack.  This spell works on creatures up to level 50.",
+      "description_template": "Calms the ferocity of many animals, making them less likely to attack.  This spell works on creatures up to level @1.",
+      "mana": 45,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Animal",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 15
+        },
+        {
+          "class": "Ranger",
+          "level": 31
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 50
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 50
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your aggression subside.",
+        "cast_on_other": " looks less aggressive.",
+        "wears_off": ""
+      },
+      "level": 31
+    },
+    {
+      "id": 80,
+      "name": "See Invisible",
+      "icon": 19,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Places a magical enchantment upon your target's eyes, allowing them to see otherwise invisible creatures for 27 min.",
+      "description_template": "Places a magical enchantment upon your target's eyes, allowing them to see otherwise invisible creatures for %z.",
+      "mana": 25,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Wizard",
+          "level": 4
+        },
+        {
+          "class": "Enchanter",
+          "level": 6
+        },
+        {
+          "class": "Druid",
+          "level": 13
+        },
+        {
+          "class": "Magician",
+          "level": 16
+        },
+        {
+          "class": "Ranger",
+          "level": 32
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your eyes tingle.",
+        "cast_on_other": "",
+        "wears_off": "Your eyes stop tingling."
+      },
+      "level": 32
+    },
+    {
+      "id": 115,
+      "name": "Dismiss Summoned",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 180 and 244 damage to a summoned target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to a summoned target.",
+      "mana": 73,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Summoned",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 23
+        },
+        {
+          "class": "Magician",
+          "level": 25
+        },
+        {
+          "class": "Ranger",
+          "level": 33
+        },
+        {
+          "class": "Cleric",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -180,
+          "limit": 0,
+          "formula": 103,
+          "max": 244
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 33
+    },
+    {
+      "id": 517,
+      "name": "Bramblecoat",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your body in a coat of brambles that increases your armor class, as well as harming those that strike you.",
+      "description_template": "Surrounds your body in a coat of brambles that increases your armor class, as well as harming those that strike you.",
+      "mana": 75,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 27
+        },
+        {
+          "class": "Ranger",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 29,
+          "limit": 0,
+          "formula": 102,
+          "max": 63
+        },
+        {
+          "slot": 3,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Brambles spring from your skin.",
+        "cast_on_other": "'s skin sprouts brambles.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 34
+    },
+    {
+      "id": 261,
+      "name": "Levitate",
+      "icon": 80,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Forms a cloud of dense air around your feet, allowing you to float slightly off the ground for up to 20 min 30s. Consumes a bat wing when cast.",
+      "description_template": "Forms a cloud of dense air around your feet, allowing you to float slightly off the ground for up to %z. Consumes a bat wing when cast.",
+      "mana": 30,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "20 min 30s",
+      "duration_ticks": 205,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 10
+        },
+        {
+          "class": "Druid",
+          "level": 14
+        },
+        {
+          "class": "Enchanter",
+          "level": 15
+        },
+        {
+          "class": "Wizard",
+          "level": 22
+        },
+        {
+          "class": "Beastlord",
+          "level": 32
+        },
+        {
+          "class": "Ranger",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 57,
+          "effect": "EyeOfZomm",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet leave the ground.",
+        "cast_on_other": " floats into the air.",
+        "wears_off": "You can no longer levitate."
+      },
+      "level": 35
+    },
+    {
+      "id": 3564,
+      "name": "Burning Arrow",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a magically burning arrow at your target, causing 155 damage initially and 78 damage every six seconds for 6s.",
+      "description_template": "Hurls a magically burning arrow at your target, causing #1 damage initially and #2 damage every six seconds for %z.",
+      "mana": 85,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "6s",
+      "duration_ticks": 1,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -155,
+          "limit": 0,
+          "formula": 100,
+          "max": 155
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -78,
+          "limit": 0,
+          "formula": 100,
+          "max": 78
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": "Your skin cools."
+      },
+      "level": 36
+    },
+    {
+      "id": 1461,
+      "name": "Call of Sky",
+      "icon": 104,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Imparts your weapons with the power of sky, allowing them a chance to strike with the fury of the storm.",
+      "description_template": "Imparts your weapons with the power of sky, allowing them a chance to strike with the fury of the storm.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 3129,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The Call of Sky fills your weapons with power.",
+        "cast_on_other": "'s weapons gleam.",
+        "wears_off": "The Call of Sky leaves."
+      },
+      "level": 36
+    },
+    {
+      "id": 419,
+      "name": "Careless Lightning",
+      "icon": 162,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls down lightning from the sky, causing between 80 and 105 damage to your target.",
+      "description_template": "Calls down lightning from the sky, causing between #1 and @1 damage to your target.",
+      "mana": 37,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 16
+        },
+        {
+          "class": "Ranger",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -80,
+          "limit": 0,
+          "formula": 102,
+          "max": 105
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Lightning surges through your body.",
+        "cast_on_other": " has been struck by lightning.",
+        "wears_off": ""
+      },
+      "level": 37
+    },
+    {
+      "id": 2594,
+      "name": "Nature's Precision",
+      "icon": 123,
+      "spell_type": "Beneficial",
+      "skill": "Evocation",
+      "description": "Focuses your attacks with the precision of nature, increasing your attack rating.",
+      "description_template": "Focuses your attacks with the precision of nature, increasing your attack rating.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 15
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You become one with your weapons.",
+        "cast_on_other": " becomes one with their weapons.",
+        "wears_off": "The precision fades."
+      },
+      "level": 37
+    },
+    {
+      "id": 15,
+      "name": "Greater Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends major wounds, healing between 140 and 350 hit points.",
+      "description_template": "Mends major wounds, healing between #1 and @1 hit points.",
+      "mana": 115,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 20
+        },
+        {
+          "class": "Druid",
+          "level": 29
+        },
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        },
+        {
+          "class": "Beastlord",
+          "level": 34
+        },
+        {
+          "class": "Ranger",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 140,
+          "limit": 0,
+          "formula": 7,
+          "max": 350
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 38
+    },
+    {
+      "id": 421,
+      "name": "Skin like Steel",
+      "icon": 131,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Hardens the skin of your target, increasing their hit points and armor class for 36 min.",
+      "description_template": "Hardens the skin of your target, increasing their hit points and armor class for %z.",
+      "mana": 100,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 9.0,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 101,
+          "max": 35
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 50,
+          "limit": 0,
+          "formula": 102,
+          "max": 100
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 50,
+          "limit": 0,
+          "formula": 102,
+          "max": 100
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your skin turns hard as steel.",
+        "cast_on_other": "'s skin turns hard as steel.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 38
+    },
+    {
+      "id": 3601,
+      "name": "Harmony of Nature",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level 65, and only works outdoors.",
+      "description_template": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level @1, and only works outdoors.",
+      "mana": 100,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 29
+        },
+        {
+          "class": "Ranger",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 65
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 39
+    },
+    {
+      "id": 3687,
+      "name": "Swarm of Pain",
+      "icon": 159,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Commands a swarm of insects to attack your target relentlessly, causing between 10 and 56 every 6 seconds for 1 min.",
+      "description_template": "Commands a swarm of insects to attack your target relentlessly, causing between #1 and @1 every 6 seconds for %z.",
+      "mana": 167,
+      "range": 250.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min",
+      "duration_ticks": 10,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 56
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A swarm of nifiliks crawl through your armor.",
+        "cast_on_other": " is covered in a swarm of nifiliks.",
+        "wears_off": "The nifiliks stop biting you."
+      },
+      "level": 40
+    },
+    {
+      "id": 4054,
+      "name": "Spirit of the Shrew",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your target with the spirit of the shrew, granting greatly improved night vision and increased movement speed for 36 min.  This spell also functions indoors.",
+      "description_template": "Infuses your target with the spirit of the shrew, granting greatly improved night vision and increased movement speed for %z.  This spell also functions indoors.",
+      "mana": 80,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Druid",
+          "level": 30
+        },
+        {
+          "class": "Beastlord",
+          "level": 39
+        },
+        {
+          "class": "Ranger",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of shrew enter you.",
+        "cast_on_other": " begins to move more gracefully.",
+        "wears_off": "The spirit of the shrew leaves you."
+      },
+      "level": 41
+    },
+    {
+      "id": 518,
+      "name": "Spikecoat",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your body in a coat of spikes that increases your armor class, as well as harming those that strike you.",
+      "description_template": "Surrounds your body in a coat of spikes that increases your armor class, as well as harming those that strike you.",
+      "mana": 110,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 37
+        },
+        {
+          "class": "Ranger",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 40,
+          "limit": 0,
+          "formula": 102,
+          "max": 84
+        },
+        {
+          "slot": 3,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Spikes spring from your skin.",
+        "cast_on_other": "'s skin sprouts spikes.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 42
+    },
+    {
+      "id": 129,
+      "name": "Shield of Brambles",
+      "icon": 155,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target in a shield of brambles that cause damage to anything that strikes them for 15 min.",
+      "description_template": "Surrounds your target in a shield of brambles that cause damage to anything that strikes them for %z.",
+      "mana": 80,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "15 min",
+      "duration_ticks": 150,
+      "target": "Single Friendly (or Self)",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 27
+        },
+        {
+          "class": "Ranger",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -4,
+          "limit": 0,
+          "formula": 109,
+          "max": 12
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are surrounded by a thorny barrier.",
+        "cast_on_other": " is surrounded by a thorny barrier.",
+        "wears_off": "The brambles fall away."
+      },
+      "level": 43
+    },
+    {
+      "id": 78,
+      "name": "Immolate",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Inflicts burns on your target, causing between 17 and 72 damage every 6 seconds for 48s. Requires a fire beetle eye to cast.",
+      "description_template": "Inflicts burns on your target, causing between #2 and @2 damage every 6 seconds for %z. Requires a fire beetle eye to cast.",
+      "mana": 72,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "48s",
+      "duration_ticks": 8,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 25
+        },
+        {
+          "class": "Ranger",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -17,
+          "limit": 0,
+          "formula": 102,
+          "max": 72
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 45
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are surrounded by blazing flames.",
+        "cast_on_other": " is surrounded by blazing flames.",
+        "wears_off": "The flames are extinguished."
+      },
+      "level": 44
+    },
+    {
+      "id": 76,
+      "name": "Ensnaring Roots",
+      "icon": 117,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Commands roots to take hold of your target, doing between 10 and 60 damage, and preventing their movement for 1 min 36s.",
+      "description_template": "Commands roots to take hold of your target, doing between #1 and @1 damage, and preventing their movement for %z.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min 36s",
+      "duration_ticks": 16,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 21
+        },
+        {
+          "class": "Ranger",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 60
+        },
+        {
+          "slot": 2,
+          "effect_id": 99,
+          "effect": "Root",
+          "base": -10000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet become entwined.",
+        "cast_on_other": " is entwined by roots.",
+        "wears_off": "The roots fall from your feet."
+      },
+      "level": 45
+    },
+    {
+      "id": 60,
+      "name": "Resist Fire",
+      "icon": 52,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away fire for 36 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away fire for %z.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 20
+        },
+        {
+          "class": "Shaman",
+          "level": 27
+        },
+        {
+          "class": "Cleric",
+          "level": 33
+        },
+        {
+          "class": "Ranger",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 46,
+          "effect": "ResistFire",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel resistant to fire.",
+        "cast_on_other": " is resistant to fire.",
+        "wears_off": "Your fire resistance fades."
+      },
+      "level": 46
+    },
+    {
+      "id": 74042,
+      "name": "Scorching Arrow",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a magically burning arrow at your target, causing 210 damage initially and 105 damage every six seconds for 6s.",
+      "description_template": "Hurls a magically burning arrow at your target, causing #1 damage initially and #2 damage every six seconds for %z.",
+      "mana": 100,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "6s",
+      "duration_ticks": 1,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -210,
+          "limit": 0,
+          "formula": 100,
+          "max": 210
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -105,
+          "limit": 0,
+          "formula": 100,
+          "max": 105
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": "Your skin cools."
+      },
+      "level": 46
+    },
+    {
+      "id": 34,
+      "name": "Superior Camouflage",
+      "icon": 34,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Covers your target's body in a mystic cloak, allowing them to blend in with their surroundings.",
+      "description_template": "Covers your target's body in a mystic cloak, allowing them to blend in with their surroundings.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "24 min",
+      "duration_ticks": 240,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 18
+        },
+        {
+          "class": "Ranger",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "effect": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You vanish.",
+        "cast_on_other": " fades away.",
+        "wears_off": "You appear."
+      },
+      "level": 47
+    },
+    {
+      "id": 2595,
+      "name": "Force of Nature",
+      "icon": 158,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Focuses your target with the force of nature, increasing their attack rating, and causing damage to anything that strikes them for 20 min 30s.",
+      "description_template": "Focuses your target with the force of nature, increasing their attack rating, and causing damage to anything that strikes them for %z.",
+      "mana": 100,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "20 min 30s",
+      "duration_ticks": 205,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You become a force of nature.",
+        "cast_on_other": " becomes a force of nature.",
+        "wears_off": "You return to normal."
+      },
+      "level": 48
+    },
+    {
+      "id": 425,
+      "name": "Wolf Form",
+      "icon": 81,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills you with the spirit of the wild, allowing you to take the form of a wolf, increasing your movement speed, and attack rating.",
+      "description_template": "Fills you with the spirit of the wild, allowing you to take the form of a wolf, increasing your movement speed, and attack rating.",
+      "mana": 60,
+      "range": 0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 8.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 20
+        },
+        {
+          "class": "Ranger",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 58,
+          "effect": "ReclaimPets",
+          "base": 796,
+          "limit": 0,
+          "formula": 100,
+          "max": 3
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 101,
+          "max": 55
+        },
+        {
+          "slot": 3,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 1,
+          "limit": 0,
+          "formula": 102,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are now a wolf.",
+        "cast_on_other": " turns into a wolf.",
+        "wears_off": "You are no longer a wolf."
+      },
+      "level": 48
+    },
+    {
+      "id": 691,
+      "name": "Call of Flame",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a magically burning arrow at your target, causing 300 damage.",
+      "description_template": "Hurls a magically burning arrow at your target, causing #1 damage.",
+      "mana": 106,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -300,
+          "limit": 0,
+          "formula": 100,
+          "max": 300
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin ignite.",
+        "cast_on_other": "'s skin ignites.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 4055,
+      "name": "Pack Shrew",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your group with the spirit of the shrew, granting greatly improved night vision and increased movement speed for 36 min.  This spell also functions indoors.",
+      "description_template": "Infuses your group with the spirit of the shrew, granting greatly improved night vision and increased movement speed for %z.  This spell also functions indoors.",
+      "mana": 320,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Group v1",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 34
+        },
+        {
+          "class": "Druid",
+          "level": 35
+        },
+        {
+          "class": "Beastlord",
+          "level": 44
+        },
+        {
+          "class": "Ranger",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of shrew enter you.",
+        "cast_on_other": " begins to move more gracefully.",
+        "wears_off": "The spirit of the shrew leaves you."
+      },
+      "level": 49
+    },
+    {
+      "id": 1462,
+      "name": "Call of Earth",
+      "icon": 158,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for 60 min.",
+      "description_template": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for %z.",
+      "mana": 50,
+      "range": 150.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "60 min",
+      "duration_ticks": 600,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 30,
+          "limit": 0,
+          "formula": 102,
+          "max": 85
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The Call of Earth surrounds your body protectively.",
+        "cast_on_other": "'s body is surrounded by the Call of Earth.",
+        "wears_off": "The Call of Earth leaves."
+      },
+      "level": 50
+    },
+    {
+      "id": 1741,
+      "name": "Jolt",
+      "icon": 40,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Strikes your target's head, sometimes causing partial memory loss.",
+      "description_template": "Strikes your target's head, sometimes causing partial memory loss.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Ranger",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 92,
+          "effect": "IllusionPet",
+          "base": -500,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your head snaps back.",
+        "cast_on_other": "'s head snaps back.",
+        "wears_off": ""
+      },
+      "level": 50
+    }
+  ]
+}

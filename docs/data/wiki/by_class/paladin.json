@@ -1,0 +1,4058 @@
+{
+  "generated": "2026-05-28",
+  "class": "Paladin",
+  "spell_count": 71,
+  "spells": [
+    {
+      "id": 200,
+      "name": "Minor Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends minor wounds, healing 10 hit points.",
+      "description_template": "Mends minor wounds, healing #1 hit points.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 1
+        },
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 10,
+          "limit": 0,
+          "formula": 2,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a little better.",
+        "cast_on_other": " feels a little better.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 14,
+      "name": "Strike",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls upon the power of the gods to strike your target, causing between 8 and 10 damage.",
+      "description_template": "Calls upon the power of the gods to strike your target, causing between #1 and @1 damage.",
+      "mana": 7,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -8,
+          "limit": 0,
+          "formula": 101,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been struck.",
+        "cast_on_other": " is struck.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 218,
+      "name": "Ward Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 7 and 12 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 5,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Necromancer",
+          "level": 6
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -7,
+          "limit": 0,
+          "formula": 101,
+          "max": 12
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 201,
+      "name": "Flash of Light",
+      "icon": 23,
+      "spell_type": "Detrimental",
+      "skill": "Divination",
+      "description": "Creates a bright flash of light, temporarily blinding your target.",
+      "description_template": "Creates a bright flash of light, temporarily blinding your target.",
+      "mana": 12,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 2
+        },
+        {
+          "class": "Beastlord",
+          "level": 5
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 20,
+          "effect": "Blind",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are blinded by a flash of light.",
+        "cast_on_other": " is blinded by a flash of light.",
+        "wears_off": "Your sight returns."
+      },
+      "level": 2
+    },
+    {
+      "id": 205,
+      "name": "True North",
+      "icon": 79,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Provides a magical sense of direction, changing your heading to point directly North.",
+      "description_template": "Provides a magical sense of direction, changing your heading to point directly North.",
+      "mana": 5,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Wizard",
+          "level": 1
+        },
+        {
+          "class": "Magician",
+          "level": 1
+        },
+        {
+          "class": "Enchanter",
+          "level": 1
+        },
+        {
+          "class": "Necromancer",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 3
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 56,
+          "effect": "UltraVision",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You spin to face north.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 3
+    },
+    {
+      "id": 221,
+      "name": "Sense the Dead",
+      "icon": 74,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Provides you with a mystical undead awareness, pointing you towards the nearest undead creature.",
+      "description_template": "Provides you with a mystical undead awareness, pointing you towards the nearest undead creature.",
+      "mana": 5,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 4
+        },
+        {
+          "class": "Cleric",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 52,
+          "effect": "SeeInvisible",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 4
+    },
+    {
+      "id": 203,
+      "name": "Cure Poison",
+      "icon": 42,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Removes toxin from your target's system, curing them of minor poisons.",
+      "description_template": "Removes toxin from your target's system, curing them of minor poisons.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 5
+        },
+        {
+          "class": "Druid",
+          "level": 5
+        },
+        {
+          "class": "Ranger",
+          "level": 13
+        },
+        {
+          "class": "Beastlord",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 5
+    },
+    {
+      "id": 2581,
+      "name": "Cease",
+      "icon": 25,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Invokes the will of the gods, stunning your opponent.  This spell works on creatures up to level 55.",
+      "description_template": "Invokes the will of the gods, stunning your opponent.  This spell works on creatures up to level @1.",
+      "mana": 15,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 9.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 1000,
+          "limit": 1000,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are struck by a sudden force.",
+        "cast_on_other": " is struck by a sudden force.",
+        "wears_off": "You are no longer stunned."
+      },
+      "level": 7
+    },
+    {
+      "id": 202,
+      "name": "Courage",
+      "icon": 132,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Provides your target with a sense of courage, increasing their hit points and armor class for 27 min.",
+      "description_template": "Provides your target with a sense of courage, increasing their hit points and armor class for %z.",
+      "mana": 12,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 8
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 10,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a rush of courage.",
+        "cast_on_other": " looks courageous.",
+        "wears_off": "You feel less courageous."
+      },
+      "level": 8
+    },
+    {
+      "id": 560,
+      "name": "Furor",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls upon the furor of the gods to strike your target, causing between 20 and 33 damage.",
+      "description_template": "Calls upon the furor of the gods to strike your target, causing between #1 and @1 damage.",
+      "mana": 19,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 5
+        },
+        {
+          "class": "Paladin",
+          "level": 8
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -20,
+          "limit": 0,
+          "formula": 102,
+          "max": 33
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are struck by a sudden burst of force.",
+        "cast_on_other": " is struck by a sudden burst of force.",
+        "wears_off": ""
+      },
+      "level": 8
+    },
+    {
+      "id": 209,
+      "name": "Spook the Dead",
+      "icon": 164,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Inspires fear in an undead opponent, causing them to flee.",
+      "description_template": "Inspires fear in an undead opponent, causing them to flee.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 9
+        },
+        {
+          "class": "Necromancer",
+          "level": 10
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your bones tingle.",
+        "cast_on_other": " has the fear of life put into them.",
+        "wears_off": ""
+      },
+      "level": 9
+    },
+    {
+      "id": 210,
+      "name": "Yaulp",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Focuses your spiritual energy into a great battle cry, increasing your strength and armor class.",
+      "description_template": "Focuses your spiritual energy into a great battle cry, increasing your strength and armor class.",
+      "mana": 1,
+      "range": 0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a surge of strength as you let forth a mighty yaulp.",
+        "cast_on_other": " lets loose a mighty yaulp.",
+        "wears_off": "Your surge of strength fades."
+      },
+      "level": 9
+    },
+    {
+      "id": 17,
+      "name": "Light Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends light wounds, healing between 35 and 65 hit points.",
+      "description_template": "Mends light wounds, healing between #1 and @1 hit points.",
+      "mana": 28,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Paladin",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 14
+        },
+        {
+          "class": "Ranger",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 35,
+          "limit": 0,
+          "formula": 3,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel better.",
+        "cast_on_other": " feels better.",
+        "wears_off": ""
+      },
+      "level": 10
+    },
+    {
+      "id": 208,
+      "name": "Lull",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Lulls the mind of your target, lowering its aggressiveness for 2 min. Affects creatures up to level 30.",
+      "description_template": "Lulls the mind of your target, lowering its aggressiveness for %z. Affects creatures up to level @1.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "2 min",
+      "duration_ticks": 20,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Enchanter",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 10
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel less aggressive.",
+        "cast_on_other": " looks less aggressive.",
+        "wears_off": ""
+      },
+      "level": 10
+    },
+    {
+      "id": 213,
+      "name": "Cure Disease",
+      "icon": 41,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's immune system, curing minor diseases.",
+      "description_template": "Cleanses your target's immune system, curing minor diseases.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 4
+        },
+        {
+          "class": "Paladin",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 13
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 11
+    },
+    {
+      "id": 2582,
+      "name": "Desist",
+      "icon": 25,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Invokes the will of the gods, briefly stunning your opponent.  This spell works on creatures up to level 55.",
+      "description_template": "Invokes the will of the gods, briefly stunning your opponent.  This spell works on creatures up to level @1.",
+      "mana": 25,
+      "range": 200.0,
+      "cast_seconds": 1.75,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 2500,
+          "limit": 2500,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are struck by a sudden force.",
+        "cast_on_other": " is struck by a sudden force.",
+        "wears_off": "You are no longer stunned."
+      },
+      "level": 13
+    },
+    {
+      "id": 223,
+      "name": "Hammer of Wrath",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Summons a magical hammer that is particularly adept at smiting undead.",
+      "description_template": "Summons a magical hammer that is particularly adept at smiting undead.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 12.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 7
+        },
+        {
+          "class": "Paladin",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 6307,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A magical hammer appears in your hand.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 14
+    },
+    {
+      "id": 11,
+      "name": "Holy Armor",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in holy armor, increasing their armor class for 27 min.",
+      "description_template": "Covers your target in holy armor, increasing their armor class for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 15,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the favor of the gods upon you.",
+        "cast_on_other": " feels the favor of the gods upon them.",
+        "wears_off": "You no longer feel blessed."
+      },
+      "level": 15
+    },
+    {
+      "id": 2583,
+      "name": "Instrument of Nife",
+      "icon": 104,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Imbues your weapon with the power of Rodcet Nife, granting it a chance to cause great pain to undead creatures.",
+      "description_template": "Imbues your weapon with the power of Rodcet Nife, granting it a chance to cause great pain to undead creatures.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2729,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A brilliant blue aura surrounds your weapon.",
+        "cast_on_other": "'s weapon becomes an instrument of Rodcet Nife.",
+        "wears_off": "The brilliant blue aura fades."
+      },
+      "level": 15
+    },
+    {
+      "id": 234,
+      "name": "Halo of Light",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Focuses magical energy into a halo that provides an aura of light when worn.",
+      "description_template": "Focuses magical energy into a halo that provides an aura of light when worn.",
+      "mana": 40,
+      "range": 0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Wizard",
+          "level": 9
+        },
+        {
+          "class": "Druid",
+          "level": 11
+        },
+        {
+          "class": "Cleric",
+          "level": 12
+        },
+        {
+          "class": "Paladin",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 10290,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A Halo of Light solidifies in your hand.",
+        "cast_on_other": "'s hands are bathed in light.",
+        "wears_off": ""
+      },
+      "level": 16
+    },
+    {
+      "id": 235,
+      "name": "Invisibility Versus Undead",
+      "icon": 33,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Cloaks your target in a light aura, rendering them invisible to most undead creatures for up to 27 min.",
+      "description_template": "Cloaks your target in a light aura, rendering them invisible to most undead creatures for up to %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 4
+        },
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Enchanter",
+          "level": 14
+        },
+        {
+          "class": "Paladin",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 28,
+          "effect": "InvisVsUndead",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin tingle.",
+        "cast_on_other": " fades a little.",
+        "wears_off": "Your skin stops tingling."
+      },
+      "level": 17
+    },
+    {
+      "id": 215,
+      "name": "Reckless Strength",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Focuses your target's strength into an intense burst, increasing it for a short time, but then gradually decaying over the next 3 min.",
+      "description_template": "Focuses your target's strength into an intense burst, increasing it for a short time, but then gradually decaying over the next %z.",
+      "mana": 30,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "3 min",
+      "duration_ticks": 30,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 20,
+          "limit": 0,
+          "formula": 1001,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your muscles erupt with reckless strength.",
+        "cast_on_other": "'s muscles bulge with reckless strength.",
+        "wears_off": "You feel your strength return."
+      },
+      "level": 18
+    },
+    {
+      "id": 4056,
+      "name": "Remove Minor Curse",
+      "icon": 139,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's soul, removing minor curses.",
+      "description_template": "Cleanses your target's soul, removing minor curses.",
+      "mana": 25,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 8
+        },
+        {
+          "class": "Druid",
+          "level": 8
+        },
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Paladin",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel divine energy cleansing your soul.",
+        "cast_on_other": "'s aura glows slightly.",
+        "wears_off": ""
+      },
+      "level": 19
+    },
+    {
+      "id": 230,
+      "name": "Root",
+      "icon": 117,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Causes the earth to adhere to your target's feet, preventing them from moving.",
+      "description_template": "Causes the earth to adhere to your target's feet, preventing them from moving.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "48s",
+      "duration_ticks": 8,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Wizard",
+          "level": 3
+        },
+        {
+          "class": "Enchanter",
+          "level": 6
+        },
+        {
+          "class": "Cleric",
+          "level": 7
+        },
+        {
+          "class": "Shaman",
+          "level": 12
+        },
+        {
+          "class": "Paladin",
+          "level": 19
+        },
+        {
+          "class": "Necromancer",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 99,
+          "effect": "Root",
+          "base": -10000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet adhere to the ground.",
+        "cast_on_other": " adheres to the ground.",
+        "wears_off": "Your feet come free."
+      },
+      "level": 19
+    },
+    {
+      "id": 16,
+      "name": "Smite",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls upon the power of the gods to smite your target, causing between 60 and 88 damage.",
+      "description_template": "Calls upon the power of the gods to smite your target, causing between #1 and @1 damage.",
+      "mana": 43,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 14
+        },
+        {
+          "class": "Paladin",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -60,
+          "limit": 0,
+          "formula": 102,
+          "max": 88
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been smitten.",
+        "cast_on_other": " has been smitten.",
+        "wears_off": ""
+      },
+      "level": 19
+    },
+    {
+      "id": 219,
+      "name": "Center",
+      "icon": 132,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Provides your target with a focused sense of self, increasing their hit points and armor class for 27 min.",
+      "description_template": "Provides your target with a focused sense of self, increasing their hit points and armor class for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 2.25,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 7
+        },
+        {
+          "class": "Paladin",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 13,
+          "limit": 0,
+          "formula": 101,
+          "max": 20
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 35,
+          "limit": 0,
+          "formula": 102,
+          "max": 105
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 35,
+          "limit": 0,
+          "formula": 102,
+          "max": 105
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel magnanimous of spirit.",
+        "cast_on_other": " is surrounded by a divine aura.",
+        "wears_off": "Your sense of center fades."
+      },
+      "level": 20
+    },
+    {
+      "id": 12,
+      "name": "Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends moderate wounds, healing between 95 and 175 hit points.",
+      "description_template": "Mends moderate wounds, healing between #1 and @1 hit points.",
+      "mana": 65,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 10
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 95,
+          "limit": 0,
+          "formula": 4,
+          "max": 175
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 20
+    },
+    {
+      "id": 227,
+      "name": "Endure Poison",
+      "icon": 61,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away poison for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away poison for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 6
+        },
+        {
+          "class": "Shaman",
+          "level": 11
+        },
+        {
+          "class": "Beastlord",
+          "level": 18
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "effect": "ResistPoison",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from poison.",
+        "cast_on_other": " is protected from poison.",
+        "wears_off": "Your endurance to poison fades."
+      },
+      "level": 21
+    },
+    {
+      "id": 2168,
+      "name": "Reanimation",
+      "icon": 101,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Revives a slain ally. It takes some time for the recently revived to fully recover.",
+      "description_template": "Revives a slain ally. It takes some time for the recently revived to fully recover.",
+      "mana": 150,
+      "range": 200.0,
+      "cast_seconds": 7.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 20.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Corpse",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 12
+        },
+        {
+          "class": "Paladin",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 81,
+          "effect": "Translocate",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 22
+    },
+    {
+      "id": 37,
+      "name": "Hammer of Striking",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Summons a magical hammer that is particularly adept at smiting undead.",
+      "description_template": "Summons a magical hammer that is particularly adept at smiting undead.",
+      "mana": 100,
+      "range": 0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 12.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 20
+        },
+        {
+          "class": "Paladin",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 6309,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A magical hammer appears in your hand.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 23
+    },
+    {
+      "id": 485,
+      "name": "Symbol of Transal",
+      "icon": 150,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in a shimmer of holy runes, increasing their hit points for 27 min.",
+      "description_template": "Covers your target in a shimmer of holy runes, increasing their hit points for %z.",
+      "mana": 55,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Paladin",
+          "level": 24
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 34,
+          "limit": 0,
+          "formula": 115,
+          "max": 73
+        },
+        {
+          "slot": 4,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 34,
+          "limit": 0,
+          "formula": 115,
+          "max": 73
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The symbol of Transal flashes before your eyes.",
+        "cast_on_other": " is cloaked in a shimmer of glowing symbols.",
+        "wears_off": "The mystic symbol fades."
+      },
+      "level": 24
+    },
+    {
+      "id": 501,
+      "name": "Soothe",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Soothes the mind of your target, lowering its aggressiveness for 2 min 30s. Affects creatures up to level 40.",
+      "description_template": "Soothes the mind of your target, lowering its aggressiveness for %z. Affects creatures up to level @1.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "2 min 30s",
+      "duration_ticks": 25,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 5
+        },
+        {
+          "class": "Enchanter",
+          "level": 6
+        },
+        {
+          "class": "Paladin",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 40
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your aggression subside.",
+        "cast_on_other": " looks less aggressive.",
+        "wears_off": ""
+      },
+      "level": 25
+    },
+    {
+      "id": 216,
+      "name": "Stun",
+      "icon": 25,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Strikes an enemy with holy power, briefly stunning them. This spell works on creatures up to level 55.",
+      "description_template": "Strikes an enemy with holy power, briefly stunning them. This spell works on creatures up to level @1.",
+      "mana": 35,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 12.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 4000,
+          "limit": 4000,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are struck by a sudden force.",
+        "cast_on_other": " is struck by a sudden force.",
+        "wears_off": "You are no longer stunned."
+      },
+      "level": 28
+    },
+    {
+      "id": 228,
+      "name": "Endure Magic",
+      "icon": 69,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away magic for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away magic for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 16
+        },
+        {
+          "class": "Enchanter",
+          "level": 17
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 29
+        },
+        {
+          "class": "Druid",
+          "level": 34
+        },
+        {
+          "class": "Beastlord",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from magic.",
+        "cast_on_other": " is protected from magic.",
+        "wears_off": "Your endurance to magic fades."
+      },
+      "level": 29
+    },
+    {
+      "id": 233,
+      "name": "Expulse Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 86 and 106 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 36,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -86,
+          "limit": 0,
+          "formula": 102,
+          "max": 106
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 15,
+      "name": "Greater Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends major wounds, healing between 140 and 350 hit points.",
+      "description_template": "Mends major wounds, healing between #1 and @1 hit points.",
+      "mana": 115,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 20
+        },
+        {
+          "class": "Druid",
+          "level": 29
+        },
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        },
+        {
+          "class": "Beastlord",
+          "level": 34
+        },
+        {
+          "class": "Ranger",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 140,
+          "limit": 0,
+          "formula": 7,
+          "max": 350
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 2169,
+      "name": "Reconstitution",
+      "icon": 101,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Revives a slain ally, restoring 10% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "description_template": "Revives a slain ally, restoring #1% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "mana": 250,
+      "range": 200.0,
+      "cast_seconds": 6.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 20.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Corpse",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 18
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 81,
+          "effect": "Translocate",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 368,
+      "name": "Spirit Armor",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in spiritual armor, increasing their armor class for 36 min.",
+      "description_template": "Covers your target in spiritual armor, increasing their armor class for %z.",
+      "mana": 75,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 15
+        },
+        {
+          "class": "Necromancer",
+          "level": 16
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 21,
+          "limit": 0,
+          "formula": 102,
+          "max": 45
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Translucent armor gathers around you.",
+        "cast_on_other": " is coated in translucent armor.",
+        "wears_off": "Your spiritual armor fades."
+      },
+      "level": 30
+    },
+    {
+      "id": 2170,
+      "name": "Reparation",
+      "icon": 101,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Revives a slain ally, restoring 20% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "description_template": "Revives a slain ally, restoring #1% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "mana": 350,
+      "range": 200.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 20.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Corpse",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 22
+        },
+        {
+          "class": "Paladin",
+          "level": 31
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 81,
+          "effect": "Translocate",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 31
+    },
+    {
+      "id": 48,
+      "name": "Cancel Magic",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Cancels magical enchantments affecting your target.",
+      "description_template": "Cancels magical enchantments affecting your target.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 7
+        },
+        {
+          "class": "Magician",
+          "level": 10
+        },
+        {
+          "class": "Wizard",
+          "level": 11
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 15
+        },
+        {
+          "class": "Druid",
+          "level": 18
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 30
+        },
+        {
+          "class": "Paladin",
+          "level": 32
+        },
+        {
+          "class": "Beastlord",
+          "level": 35
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a bit dispelled.",
+        "cast_on_other": " feels a bit dispelled.",
+        "wears_off": ""
+      },
+      "level": 32
+    },
+    {
+      "id": 486,
+      "name": "Symbol of Ryltan",
+      "icon": 150,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in a shimmer of holy runes, increasing their hit points for 36 min.",
+      "description_template": "Covers your target in a shimmer of holy runes, increasing their hit points for %z.",
+      "mana": 111,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 21
+        },
+        {
+          "class": "Paladin",
+          "level": 33
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 94,
+          "limit": 0,
+          "formula": 116,
+          "max": 158
+        },
+        {
+          "slot": 4,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 94,
+          "limit": 0,
+          "formula": 116,
+          "max": 158
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The symbol of Ryltan flashes before your eyes.",
+        "cast_on_other": " is cloaked in a shimmer of glowing symbols.",
+        "wears_off": "The mystic symbol fades."
+      },
+      "level": 33
+    },
+    {
+      "id": 95,
+      "name": "Counteract Poison",
+      "icon": 42,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Removes toxin from your target's system, curing them of moderate poisons.",
+      "description_template": "Removes toxin from your target's system, curing them of moderate poisons.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 22
+        },
+        {
+          "class": "Shaman",
+          "level": 26
+        },
+        {
+          "class": "Druid",
+          "level": 28
+        },
+        {
+          "class": "Paladin",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 34
+    },
+    {
+      "id": 4057,
+      "name": "Remove Lesser Curse",
+      "icon": 139,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's soul, removing lesser curses.",
+      "description_template": "Cleanses your target's soul, removing lesser curses.",
+      "mana": 75,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 23
+        },
+        {
+          "class": "Druid",
+          "level": 23
+        },
+        {
+          "class": "Shaman",
+          "level": 24
+        },
+        {
+          "class": "Paladin",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel divine energy cleansing your soul.",
+        "cast_on_other": "'s aura glows slightly.",
+        "wears_off": ""
+      },
+      "level": 34
+    },
+    {
+      "id": 329,
+      "name": "Wrath",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls upon the wrath of the gods to strike your target, inflicting between 90 and 176 damage.",
+      "description_template": "Calls upon the wrath of the gods to strike your target, inflicting between #1 and @1 damage.",
+      "mana": 77,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 29
+        },
+        {
+          "class": "Paladin",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -90,
+          "limit": 0,
+          "formula": 103,
+          "max": 176
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been struck down by wrath.",
+        "cast_on_other": " has been struck down by wrath.",
+        "wears_off": ""
+      },
+      "level": 34
+    },
+    {
+      "id": 2584,
+      "name": "Divine Vigor",
+      "icon": 90,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target with divine vigor, increasing their hit points for 50 min.",
+      "description_template": "Fills your target with divine vigor, increasing their hit points for %z.",
+      "mana": 35,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "50 min",
+      "duration_ticks": 500,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 100
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to radiate with divine favor.",
+        "cast_on_other": " begins to radiate with divine favor.",
+        "wears_off": "Your divine favor fades."
+      },
+      "level": 35
+    },
+    {
+      "id": 89,
+      "name": "Daring",
+      "icon": 132,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Provides your target with a sense of daring, increasing their hit points and armor class for 36 min.",
+      "description_template": "Provides your target with a sense of daring, increasing their hit points and armor class for %z.",
+      "mana": 60,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 17
+        },
+        {
+          "class": "Paladin",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 17,
+          "limit": 0,
+          "formula": 101,
+          "max": 30
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 65,
+          "limit": 0,
+          "formula": 102,
+          "max": 135
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 65,
+          "limit": 0,
+          "formula": 102,
+          "max": 135
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel daring.",
+        "cast_on_other": " looks daring.",
+        "wears_off": "You no longer feel daring."
+      },
+      "level": 37
+    },
+    {
+      "id": 1453,
+      "name": "Divine Purpose",
+      "icon": 0,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Surrounds you with divine purpose, regenerating your hit points while slowly draining your mana.",
+      "description_template": "Surrounds you with divine purpose, regenerating your hit points while slowly draining your mana.",
+      "mana": 1,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": -3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 8,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A flame of divine purpose compels you.",
+        "cast_on_other": "'s eyes are filled by the flame of a divine purpose.",
+        "wears_off": "The divine flame leaves."
+      },
+      "level": 37
+    },
+    {
+      "id": 226,
+      "name": "Endure Disease",
+      "icon": 65,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away disease for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away disease for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 8
+        },
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 11
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Beastlord",
+          "level": 22
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 26
+        },
+        {
+          "class": "Paladin",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from disease.",
+        "cast_on_other": " is protected from disease.",
+        "wears_off": "Your endurance to disease fades."
+      },
+      "level": 38
+    },
+    {
+      "id": 43,
+      "name": "Yaulp II",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Focuses your spiritual energy into a great battle cry, increasing your strength and armor class.",
+      "description_template": "Focuses your spiritual energy into a great battle cry, increasing your strength and armor class.",
+      "mana": 1,
+      "range": 0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 16
+        },
+        {
+          "class": "Paladin",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a surge of strength as you let forth a mighty yaulp.",
+        "cast_on_other": " lets loose a mighty yaulp.",
+        "wears_off": "Your surge of strength fades."
+      },
+      "level": 38
+    },
+    {
+      "id": 18,
+      "name": "Guard",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in a holy guard, increasing their armor class for 45 min.",
+      "description_template": "Covers your target in a holy guard, increasing their armor class for %z.",
+      "mana": 80,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "45 min",
+      "duration_ticks": 450,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 25
+        },
+        {
+          "class": "Paladin",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 31,
+          "limit": 0,
+          "formula": 102,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the favor of the gods upon you.",
+        "cast_on_other": " feels the favor of the gods upon them.",
+        "wears_off": "You no longer feel blessed."
+      },
+      "level": 39
+    },
+    {
+      "id": 391,
+      "name": "Revive",
+      "icon": 101,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Revives a slain ally, restoring 35% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "description_template": "Revives a slain ally, restoring #1% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "mana": 450,
+      "range": 200.0,
+      "cast_seconds": 5.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 20.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Corpse",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 27
+        },
+        {
+          "class": "Paladin",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 81,
+          "effect": "Translocate",
+          "base": 35,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 39
+    },
+    {
+      "id": 3577,
+      "name": "Wave of Life",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Emanates a wave of life from the caster, healing 219 hit points for everyone in your group.",
+      "description_template": "Emanates a wave of life from the caster, healing @1 hit points for everyone in your group.",
+      "mana": 274,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 30.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Group v1",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 84,
+          "limit": 0,
+          "formula": 3,
+          "max": 219
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A wave of healing washes over you.",
+        "cast_on_other": " is surrounded by a wave of healing.",
+        "wears_off": ""
+      },
+      "level": 39
+    },
+    {
+      "id": 123,
+      "name": "Holy Might",
+      "icon": 25,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Strikes an enemy with holy might, briefly stunning them and causing between 10 and 60 damage. This spell works on creatures up to level 55.",
+      "description_template": "Strikes an enemy with holy might, briefly stunning them and causing between #2 and @2 damage. This spell works on creatures up to level @1.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 16
+        },
+        {
+          "class": "Paladin",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 6000,
+          "limit": 5250,
+          "formula": 100,
+          "max": 55
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 60
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are struck by a sudden force.",
+        "cast_on_other": " is struck by a sudden force.",
+        "wears_off": "You are no longer stunned."
+      },
+      "level": 42
+    },
+    {
+      "id": 47,
+      "name": "Calm",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Calms the mind of your target, lowering its aggressiveness for 42s. Affects creatures up to level 50.",
+      "description_template": "Calms the mind of your target, lowering its aggressiveness for %z. Affects creatures up to level @1.",
+      "mana": 50,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 15
+        },
+        {
+          "class": "Enchanter",
+          "level": 18
+        },
+        {
+          "class": "Paladin",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 50
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 50
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your aggression subside.",
+        "cast_on_other": " looks less aggressive.",
+        "wears_off": ""
+      },
+      "level": 43
+    },
+    {
+      "id": 3683,
+      "name": "Ethereal Cleansing",
+      "icon": 118,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target's body with cleansing light, healing 10 hit points every six seconds for 24s.",
+      "description_template": "Fills your target's body with cleansing light, healing #1 hit points every six seconds for %z.",
+      "mana": 150,
+      "range": 100.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 5.0,
+      "recast_seconds": 30.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "HealOverTime",
+          "base": 10,
+          "limit": 0,
+          "formula": 103,
+          "max": 100
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Ethereal light pumps through your body.",
+        "cast_on_other": "'s body is covered in ethereal light.",
+        "wears_off": "The ethereal light fades."
+      },
+      "level": 44
+    },
+    {
+      "id": 2585,
+      "name": "Valor of Marr",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your muscles with the valor of Marr, increasing your attack speed.",
+      "description_template": "Fills your muscles with the valor of Marr, increasing your attack speed.",
+      "mana": 300,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 125,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the blessing of Mithaniel Marr.",
+        "cast_on_other": " feels the blessing of Mithaniel Marr.",
+        "wears_off": "The blessing ends."
+      },
+      "level": 44
+    },
+    {
+      "id": 693,
+      "name": "Divine Might",
+      "icon": 104,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Bestows divine might upon you, providing a chance to channel the will of the gods through your weapon when attacking.",
+      "description_template": "Bestows divine might upon you, providing a chance to channel the will of the gods through your weapon when attacking.",
+      "mana": 100,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 823,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your hand begins to glow with divine might.",
+        "cast_on_other": "'s hands begin to glow with divine might.",
+        "wears_off": "Your hands stop glowing."
+      },
+      "level": 45
+    },
+    {
+      "id": 2946,
+      "name": "Remove Curse",
+      "icon": 139,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's soul, removing minor curses.",
+      "description_template": "Cleanses your target's soul, removing minor curses.",
+      "mana": 75,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 38
+        },
+        {
+          "class": "Druid",
+          "level": 38
+        },
+        {
+          "class": "Shaman",
+          "level": 38
+        },
+        {
+          "class": "Paladin",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel divine energy cleansing your soul.",
+        "cast_on_other": "'s aura glows slightly.",
+        "wears_off": ""
+      },
+      "level": 45
+    },
+    {
+      "id": 117,
+      "name": "Dismiss Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 150 and 211 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 63,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 23
+        },
+        {
+          "class": "Necromancer",
+          "level": 28
+        },
+        {
+          "class": "Paladin",
+          "level": 46
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -150,
+          "limit": 0,
+          "formula": 103,
+          "max": 211
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 46
+    },
+    {
+      "id": 9,
+      "name": "Superior Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends severe wounds, healing between 200 and 600 hit points.",
+      "description_template": "Mends severe wounds, healing between #1 and @1 hit points.",
+      "mana": 185,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 30
+        },
+        {
+          "class": "Druid",
+          "level": 44
+        },
+        {
+          "class": "Shaman",
+          "level": 45
+        },
+        {
+          "class": "Paladin",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 200,
+          "limit": 0,
+          "formula": 10,
+          "max": 600
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 46
+    },
+    {
+      "id": 487,
+      "name": "Symbol of Pinzarn",
+      "icon": 150,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in a shimmer of holy runes, increasing their hit points for 45 min.",
+      "description_template": "Covers your target in a shimmer of holy runes, increasing their hit points for %z.",
+      "mana": 200,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "45 min",
+      "duration_ticks": 450,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 31
+        },
+        {
+          "class": "Paladin",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 224,
+          "limit": 0,
+          "formula": 117,
+          "max": 307
+        },
+        {
+          "slot": 4,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 224,
+          "limit": 0,
+          "formula": 117,
+          "max": 307
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The symbol of Pinzarn flashes before your eyes.",
+        "cast_on_other": " is cloaked in a shimmer of glowing symbols.",
+        "wears_off": "The mystic symbol fades."
+      },
+      "level": 46
+    },
+    {
+      "id": 2586,
+      "name": "Thunder of Karana",
+      "icon": 21,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Summons the booming thunder of Karana, causing severe trauma to your target's mind and draining 100 mana.",
+      "description_template": "Summons the booming thunder of Karana, causing severe trauma to your target's mind and draining #3 mana.",
+      "mana": 75,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": -100,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your ears filled with the deafening roar of Karana's Thunder.",
+        "cast_on_other": "'s ears fill with the deafening roar of Karana's Thunder.",
+        "wears_off": ""
+      },
+      "level": 47
+    },
+    {
+      "id": 312,
+      "name": "Valor",
+      "icon": 132,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Provides your target with a sense of valor, increasing their hit points and armor class for 54 min.",
+      "description_template": "Provides your target with a sense of valor, increasing their hit points and armor class for %z.",
+      "mana": 90,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "54 min",
+      "duration_ticks": 540,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 32
+        },
+        {
+          "class": "Paladin",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 25,
+          "limit": 0,
+          "formula": 101,
+          "max": 45
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 100,
+          "limit": 0,
+          "formula": 103,
+          "max": 200
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 100,
+          "limit": 0,
+          "formula": 103,
+          "max": 200
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel valorous.",
+        "cast_on_other": " looks valorous.",
+        "wears_off": "Your valor fades."
+      },
+      "level": 47
+    },
+    {
+      "id": 19,
+      "name": "Armor of Faith",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Covers your target in the armor of faith, increasing their armor class for 63 min.",
+      "description_template": "Covers your target in the armor of faith, increasing their armor class for %z.",
+      "mana": 150,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "63 min",
+      "duration_ticks": 630,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 35
+        },
+        {
+          "class": "Paladin",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 41,
+          "limit": 0,
+          "formula": 102,
+          "max": 85
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the favor of the gods upon you.",
+        "cast_on_other": " feels the favor of the gods upon them.",
+        "wears_off": "You no longer feel blessed."
+      },
+      "level": 48
+    },
+    {
+      "id": 207,
+      "name": "Divine Aura",
+      "icon": 46,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Encases the caster in a divine aura, rendering them invulnerable to all attacks for 18s.",
+      "description_template": "Encases the caster in a divine aura, rendering them invulnerable to all attacks for %z.",
+      "mana": 10,
+      "range": 0,
+      "cast_seconds": 1.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 900.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 40,
+          "effect": "Invulnerability",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The gods have rendered you invulnerable.",
+        "cast_on_other": "",
+        "wears_off": "Your invulnerability fades."
+      },
+      "level": 48
+    },
+    {
+      "id": 3578,
+      "name": "Brell's Steadfast Aegis",
+      "icon": 90,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Surrounds your group with the aegis of the Underfoot, increasing their hit points for 150 min.",
+      "description_template": "Surrounds your group with the aegis of the Underfoot, increasing their hit points for %z.",
+      "mana": 175,
+      "range": 100.0,
+      "cast_seconds": 8.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "150 min",
+      "duration_ticks": 1500,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 145,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to radiate with divine strength.",
+        "cast_on_other": " begins to radiate with divine strength.",
+        "wears_off": "Your divine strength fades."
+      },
+      "level": 49
+    },
+    {
+      "id": 45,
+      "name": "Pacify",
+      "icon": 39,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Pacifies your target, lowering its aggressiveness for 42s. Affects creatures up to level 55.",
+      "description_template": "Pacifies your target, lowering its aggressiveness for %z. Affects creatures up to level @1.",
+      "mana": 100,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 35
+        },
+        {
+          "class": "Cleric",
+          "level": 36
+        },
+        {
+          "class": "Paladin",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your aggression subside.",
+        "cast_on_other": " looks less aggressive.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 2171,
+      "name": "Renewal",
+      "icon": 101,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Revives a slain ally, restoring 50% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "description_template": "Revives a slain ally, restoring #1% of their lost experience.  It takes some time for the recently revived to fully recover.",
+      "mana": 550,
+      "range": 200.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 20.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Corpse",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 32
+        },
+        {
+          "class": "Paladin",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 81,
+          "effect": "Translocate",
+          "base": 50,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 672,
+      "name": "Retribution",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Calls upon the retribution of the gods to strike your target, causing between 240 and 390 damage.",
+      "description_template": "Calls upon the retribution of the gods to strike your target, causing between #1 and @1 damage.",
+      "mana": 144,
+      "range": 200.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 44
+        },
+        {
+          "class": "Paladin",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -240,
+          "limit": 0,
+          "formula": 104,
+          "max": 390
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been struck by the wrath of the gods.",
+        "cast_on_other": " has been struck by the wrath of the gods.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 1454,
+      "name": "Flame of Light",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Strikes your target with a burning flame of light, causing 125 damage.",
+      "description_template": "Strikes your target with a burning flame of light, causing #1 damage.",
+      "mana": 85,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -125,
+          "limit": 0,
+          "formula": 100,
+          "max": 125
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A flame of divine light erupts around you.",
+        "cast_on_other": "'s body erupts in a flame of divine light.",
+        "wears_off": ""
+      },
+      "level": 50
+    },
+    {
+      "id": 63,
+      "name": "Resist Disease",
+      "icon": 65,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away disease for 36 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away disease for %z.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 30
+        },
+        {
+          "class": "Necromancer",
+          "level": 31
+        },
+        {
+          "class": "Cleric",
+          "level": 36
+        },
+        {
+          "class": "Druid",
+          "level": 44
+        },
+        {
+          "class": "Paladin",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel resistant to disease.",
+        "cast_on_other": " is resistant to disease.",
+        "wears_off": "Your disease resistance fades."
+      },
+      "level": 50
+    }
+  ]
+}

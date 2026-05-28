@@ -1,0 +1,3435 @@
+{
+  "generated": "2026-05-28",
+  "class": "Bard",
+  "spell_count": 61,
+  "spells": [
+    {
+      "id": 700,
+      "name": "Chant of Battle",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "A simple tune that increases the strength, dexterity, and armor class of group members.",
+      "description_template": "A simple tune that increases the strength, dexterity, and armor class of group members.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your pulse quicken.",
+        "cast_on_other": "",
+        "wears_off": "Your battle fury fades."
+      },
+      "level": 1
+    },
+    {
+      "id": 703,
+      "name": "Chords of Dissonance",
+      "icon": 143,
+      "spell_type": "Detrimental",
+      "skill": "Stringed Instruments",
+      "description": "Clashing notes that cause 2 damage to up to %T nearby creatures that are not moving.",
+      "description_template": "Clashing notes that cause #1 damage to up to %T nearby creatures that are not moving.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 2
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 334,
+          "effect": "NoChanceToBlock",
+          "base": -2,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Jagged notes tear through your body.",
+        "cast_on_other": " winces.",
+        "wears_off": ""
+      },
+      "level": 2
+    },
+    {
+      "id": 722,
+      "name": "Jaxan's Jig o` Vigor",
+      "icon": 9,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "Fills your group with an invigorating rhythm that increases endurance regeneration.",
+      "description_template": "Fills your group with an invigorating rhythm that increases endurance regeneration.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 3
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 189,
+          "effect": "Charisma2",
+          "base": 1,
+          "limit": 0,
+          "formula": 119,
+          "max": 7
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The jig sends energy zinging through your body.",
+        "cast_on_other": "",
+        "wears_off": "You are no longer invigorated."
+      },
+      "level": 3
+    },
+    {
+      "id": 717,
+      "name": "Selo's Accelerando",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "The quick pace of this song fills your feet with speed, increasing the movement rate of your group.",
+      "description_template": "The quick pace of this song fills your feet with speed, increasing the movement rate of your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 5
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 15,
+          "limit": 0,
+          "formula": 102,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet move faster.",
+        "cast_on_other": "",
+        "wears_off": "You slow down."
+      },
+      "level": 5
+    },
+    {
+      "id": 7,
+      "name": "Hymn of Restoration",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "A gentle melody that encourages your group's wounds to heal faster.",
+      "description_template": "A gentle melody that encourages your group's wounds to heal faster.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 6
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your wounds begin to heal.",
+        "cast_on_other": "",
+        "wears_off": "Your wounds stop healing."
+      },
+      "level": 6
+    },
+    {
+      "id": 734,
+      "name": "Jonthan's Whistling Warsong",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "An ancient war song that speeds your attacks and raises your armor class and strength.",
+      "description_template": "An ancient war song that speeds your attacks and raises your armor class and strength.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 115,
+          "limit": 0,
+          "formula": 109,
+          "max": 125
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You whistle an ancient warsong.",
+        "cast_on_other": "",
+        "wears_off": "You stop whistling."
+      },
+      "level": 7
+    },
+    {
+      "id": 728,
+      "name": "Kelin's Lugubrious Lament",
+      "icon": 40,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "A sad song that calms the aggressive nature of many creatures. Affects creatures up to level 60.",
+      "description_template": "A sad song that calms the aggressive nature of many creatures. Affects creatures up to level @1.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "30s",
+      "duration_ticks": 5,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 8
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 60
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 60
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a strong sense of loss.",
+        "cast_on_other": " looks sad.",
+        "wears_off": "You no longer feel sad."
+      },
+      "level": 8
+    },
+    {
+      "id": 710,
+      "name": "Elemental Rhythms",
+      "icon": 148,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "A mystic tune that offers your group protection from fire, ice, and magic.",
+      "description_template": "A mystic tune that offers your group protection from fire, ice, and magic.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50
+        },
+        {
+          "slot": 2,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50
+        },
+        {
+          "slot": 3,
+          "effect_id": 46,
+          "effect": "ResistFire",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel an aura of elemental protection surrounding you.",
+        "cast_on_other": "",
+        "wears_off": "The aura of protection fades."
+      },
+      "level": 9
+    },
+    {
+      "id": 2601,
+      "name": "Magical Monologue",
+      "icon": 104,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A simple tune that adds a magical quality to your group's weapons, allowing them to harm creatures that would otherwise be invulnerable.",
+      "description_template": "A simple tune that adds a magical quality to your group's weapons, allowing them to harm creatures that would otherwise be invulnerable.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 117,
+          "effect": "InterruptCasting",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your weapons glow.",
+        "cast_on_other": "'s weapons glow.",
+        "wears_off": "The glow fades from your weapons."
+      },
+      "level": 9
+    },
+    {
+      "id": 701,
+      "name": "Anthem de Arms",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "An ancient anthem that increases the strength and attack rate of your group.",
+      "description_template": "An ancient anthem that increases the strength and attack rate of your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 10
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 110,
+          "limit": 0,
+          "formula": 100,
+          "max": 110
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A burst of strength surges through your body.",
+        "cast_on_other": "",
+        "wears_off": "Your surge of strength fades."
+      },
+      "level": 10
+    },
+    {
+      "id": 708,
+      "name": "Cinda's Charismatic Carillon",
+      "icon": 30,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "A quiet tune that improves your faction standing with all creatures associated with your target.",
+      "description_template": "A quiet tune that improves your faction standing with all creatures associated with your target.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 11
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 19,
+          "effect": "AddFaction",
+          "base": 10,
+          "limit": 0,
+          "formula": 10,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You suddenly feel very friendly.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 11
+    },
+    {
+      "id": 704,
+      "name": "Brusco's Boastful Bellow",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Singing",
+      "description": "A great bellow that causes 1 damage to your opponent.",
+      "description_template": "A great bellow that causes #1 damage to your opponent.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 30.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 12
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You reel in pain as every bone in your body vibrates.",
+        "cast_on_other": " reels in pain.",
+        "wears_off": ""
+      },
+      "level": 12
+    },
+    {
+      "id": 711,
+      "name": "Purifying Rhythms",
+      "icon": 149,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "A mystic tune that offers your group protection from poison, disease, and magic.",
+      "description_template": "A mystic tune that offers your group protection from poison, disease, and magic.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 60
+        },
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "effect": "ResistPoison",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 60
+        },
+        {
+          "slot": 3,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 60
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel an aura of vigorous protection surrounding you.",
+        "cast_on_other": "",
+        "wears_off": "The aura of protection fades."
+      },
+      "level": 13
+    },
+    {
+      "id": 724,
+      "name": "Kelin's Lucid Lullaby",
+      "icon": 35,
+      "spell_type": "Detrimental",
+      "skill": "Stringed Instruments",
+      "description": "A quiet lullaby that causes your target to fall into an enchanted sleep.  Affects creatures up to level 30.",
+      "description_template": "A quiet lullaby that causes your target to fall into an enchanted sleep.  Affects creatures up to level @1.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 31,
+          "effect": "Mez",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel quite drowsy.",
+        "cast_on_other": "'s head nods.",
+        "wears_off": "You no longer feel sleepy."
+      },
+      "level": 15
+    },
+    {
+      "id": 2602,
+      "name": "Song of Sustenance",
+      "icon": 9,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "An energetic song that fills your group with energy, eliminating their need for food and water.",
+      "description_template": "An energetic song that fills your group with energy, eliminating their need for food and water.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "1 min 30s",
+      "duration_ticks": 15,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 115,
+          "effect": "IllusionThorny",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are sustained.",
+        "cast_on_other": "",
+        "wears_off": "Your hunger returns."
+      },
+      "level": 15
+    },
+    {
+      "id": 729,
+      "name": "Tarew's Aquatic Ayre",
+      "icon": 20,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "A song that surrounds your head with a cloud of air bubbles, allowing you to breathe underwater indefinitely.",
+      "description_template": "A song that surrounds your head with a cloud of air bubbles, allowing you to breathe underwater indefinitely.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 14,
+          "effect": "WaterBreathing",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Tiny bubbles of music surround your head.",
+        "cast_on_other": "",
+        "wears_off": "The bubbles disappear."
+      },
+      "level": 16
+    },
+    {
+      "id": 709,
+      "name": "Guardian Rhythms",
+      "icon": 69,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "A mystic tune that offers your group protection from magic  and increases their armor class.",
+      "description_template": "A mystic tune that offers your group protection from magic  and increases their armor class.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 60
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel an aura of mystic protection surrounding you.",
+        "cast_on_other": "",
+        "wears_off": "The aura of protection fades."
+      },
+      "level": 17
+    },
+    {
+      "id": 730,
+      "name": "Denon's Disruptive Discord",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Brass Instruments",
+      "description": "A screeching dissonance that causes 4 damage  to up to %T nearby creatures and lowers their armor class by 1.",
+      "description_template": "A screeching dissonance that causes #1 damage  to up to %T nearby creatures and lowers their armor class by #2.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 334,
+          "effect": "NoChanceToBlock",
+          "base": -4,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -1,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Jagged notes tear through your body.",
+        "cast_on_other": " winces.",
+        "wears_off": ""
+      },
+      "level": 18
+    },
+    {
+      "id": 719,
+      "name": "Shauri's Sonorous Clouding",
+      "icon": 18,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "This sonnet surrounds your body with a light fog, allowing you to slip by many creatures undetected.  This song also allows you to see invisible creatures.",
+      "description_template": "This sonnet surrounds your body with a light fog, allowing you to slip by many creatures undetected.  This song also allows you to see invisible creatures.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "effect": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A soft mist surrounds you.",
+        "cast_on_other": "",
+        "wears_off": "You become visible."
+      },
+      "level": 19
+    },
+    {
+      "id": 1287,
+      "name": "Cassindra's Chant of Clarity",
+      "icon": 24,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A light melody that restores the mana of your group.",
+      "description_template": "A light melody that restores the mana of your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": 2,
+          "limit": 0,
+          "formula": 100,
+          "max": 2
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind clears.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 20
+    },
+    {
+      "id": 705,
+      "name": "Largo's Melodic Binding",
+      "icon": 17,
+      "spell_type": "Detrimental",
+      "skill": "Singing",
+      "description": "This melody encompasses up to %T nearby creatures in magical bonds, slowing their attack speed.",
+      "description_template": "This melody encompasses up to %T nearby creatures in magical bonds, slowing their attack speed.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 95,
+          "limit": 0,
+          "formula": 101,
+          "max": 65
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Strands of solid music bind your body.",
+        "cast_on_other": " is bound by strands of solid music.",
+        "wears_off": "The strands fade away."
+      },
+      "level": 20
+    },
+    {
+      "id": 739,
+      "name": "Melanie's Mellifluous Motion",
+      "icon": 48,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "A chaotic chorus that causes your group to randomly teleport short distances.",
+      "description_template": "A chaotic chorus that causes your group to randomly teleport short distances.",
+      "mana": 0,
+      "range": 600.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 42,
+          "effect": "ShadowStep",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A mellifluous melody sweeps you away.",
+        "cast_on_other": " is swept away by a mellifluous melody.",
+        "wears_off": "The mellifluous melody fades."
+      },
+      "level": 21
+    },
+    {
+      "id": 727,
+      "name": "Alenia's Disenchanting Melody",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "A melody that strips the magical effects from everyone in your group.",
+      "description_template": "A melody that strips the magical effects from everyone in your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a pulse of static energy wash over you.",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 22
+    },
+    {
+      "id": 738,
+      "name": "Selo's Consonant Chain",
+      "icon": 5,
+      "spell_type": "Detrimental",
+      "skill": "Singing",
+      "description": "This song engulfs your target in magical bonds, slowing their movement and attack speed.",
+      "description_template": "This song engulfs your target in magical bonds, slowing their movement and attack speed.",
+      "mana": 0,
+      "range": 150.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -30,
+          "limit": 3,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 95,
+          "limit": 0,
+          "formula": 101,
+          "max": 60
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your voice forges chains from chords.",
+        "cast_on_other": " is surrounded by chains of music.",
+        "wears_off": "The musical chains fade."
+      },
+      "level": 23
+    },
+    {
+      "id": 735,
+      "name": "Lyssa's Veracious Concord",
+      "icon": 93,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "This song grants your group the ability to see invisible beings, as well as greatly enhancing night vision.",
+      "description_template": "This song grants your group the ability to see invisible beings, as well as greatly enhancing night vision.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 24
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Music floods your mind and sharpens your sight.",
+        "cast_on_other": "",
+        "wears_off": "Your sight dulls."
+      },
+      "level": 24
+    },
+    {
+      "id": 712,
+      "name": "Psalm of Warmth",
+      "icon": 157,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "This psalm surrounds your group in an aura of fire, granting them protection from cold, as well as harming anything that attacks them.",
+      "description_template": "This psalm surrounds your group in an aura of fire, granting them protection from cold, as well as harming anything that attacks them.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 65,
+          "effect": "VoiceGraft",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from cold.",
+        "cast_on_other": "",
+        "wears_off": "Your aura fades."
+      },
+      "level": 25
+    },
+    {
+      "id": 706,
+      "name": "Angstlich's Appalling Screech",
+      "icon": 154,
+      "spell_type": "Detrimental",
+      "skill": "Brass Instruments",
+      "description": "A terrifying screech that causes up to %T nearby enemies to run in terror.",
+      "description_template": "A terrifying screech that causes up to %T nearby enemies to run in terror.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 26
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind snaps in terror.",
+        "cast_on_other": " flees in terror.",
+        "wears_off": "You are no longer terrified."
+      },
+      "level": 26
+    },
+    {
+      "id": 725,
+      "name": "Solon's Song of the Sirens",
+      "icon": 27,
+      "spell_type": "Detrimental",
+      "skill": "Wind Instruments",
+      "description": "An enticing melody that charms the target, allowing you to command it.",
+      "description_template": "An enticing melody that charms the target, allowing you to command it.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 27
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 22,
+          "effect": "Charm",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 37
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": -1,
+          "limit": 0,
+          "formula": 119,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are captivated by the haunting tune.",
+        "cast_on_other": "'s eyes glaze over.",
+        "wears_off": "You are no longer captivated."
+      },
+      "level": 27
+    },
+    {
+      "id": 741,
+      "name": "Crission's Pixie Strike",
+      "icon": 35,
+      "spell_type": "Detrimental",
+      "skill": "Wind Instruments",
+      "description": "A quiet lullaby that causes your target to fall into a magical sleep.  Affects creatures up to level 45.",
+      "description_template": "A quiet lullaby that causes your target to fall into a magical sleep.  Affects creatures up to level @1.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 31,
+          "effect": "Mez",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 45
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You send forth music.",
+        "cast_on_other": "'s eyes glaze over.",
+        "wears_off": ""
+      },
+      "level": 28
+    },
+    {
+      "id": 715,
+      "name": "Psalm of Vitality",
+      "icon": 65,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "This psalm surrounds your group in an aura of vitality, affording them protection from disease, as well as harming anything that attacks them.",
+      "description_template": "This psalm surrounds your group in an aura of vitality, affording them protection from disease, as well as harming anything that attacks them.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 29
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from disease.",
+        "cast_on_other": "",
+        "wears_off": "Your aura fades."
+      },
+      "level": 29
+    },
+    {
+      "id": 2603,
+      "name": "Amplification",
+      "icon": 95,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "Focuses the power of your voice, causing all songs that use the singing skill to increase in power by 2%.",
+      "description_template": "Focuses the power of your voice, causing all songs that use the singing skill to increase in power by #1%.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "30s",
+      "duration_ticks": 5,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 118,
+          "effect": "LowResist",
+          "base": 2,
+          "limit": 0,
+          "formula": 119,
+          "max": 28
+        },
+        {
+          "slot": 2,
+          "effect_id": 382,
+          "effect": "SkillReuseChange",
+          "base": 4,
+          "limit": 118,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your voice booms.",
+        "cast_on_other": "'s voice booms.",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 707,
+      "name": "Fufil's Curtailing Chant",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Percussion Instruments",
+      "description": "A magical chant that causes damage to an enemy and makes them more vulnerable to magic.",
+      "description_template": "A magical chant that causes damage to an enemy and makes them more vulnerable to magic.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 121,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 340,
+          "effect": "IncreaseHateMod",
+          "base": 100,
+          "limit": 22486,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a pulse of static energy engulf you.",
+        "cast_on_other": "'s hair stands on end.",
+        "wears_off": "The pulse fades."
+      },
+      "level": 30
+    },
+    {
+      "id": 718,
+      "name": "Agilmente's Aria of Eagles",
+      "icon": 80,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "An aria that allows your group to levitate for a short time.",
+      "description_template": "An aria that allows your group to levitate for a short time.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 31
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 57,
+          "effect": "EyeOfZomm",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The aria lifts you into the air.",
+        "cast_on_other": "",
+        "wears_off": "You stop floating."
+      },
+      "level": 31
+    },
+    {
+      "id": 723,
+      "name": "Cassindra's Chorus of Clarity",
+      "icon": 24,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A quiet chorus that clears the minds of your group, allowing them to regenerate their mana faster.",
+      "description_template": "A quiet chorus that clears the minds of your group, allowing them to regenerate their mana faster.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 32
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": 1,
+          "limit": 0,
+          "formula": 119,
+          "max": 7
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind begins to clear.",
+        "cast_on_other": "",
+        "wears_off": "Your clarity of mind fades."
+      },
+      "level": 32
+    },
+    {
+      "id": 713,
+      "name": "Psalm of Cooling",
+      "icon": 156,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "This psalm surrounds your group in an aura of cold, affording them protection from fire, as well as harming anything that attacks them.",
+      "description_template": "This psalm surrounds your group in an aura of cold, affording them protection from fire, as well as harming anything that attacks them.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 33
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 46,
+          "effect": "ResistFire",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from fire.",
+        "cast_on_other": "",
+        "wears_off": "Your aura fades."
+      },
+      "level": 33
+    },
+    {
+      "id": 1448,
+      "name": "Cantata of Soothing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "A light cantata that regenerates the health, mana, and endurance of your entire group.",
+      "description_template": "A light cantata that regenerates the health, mana, and endurance of your entire group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 4,
+          "limit": 0,
+          "formula": 100,
+          "max": 6
+        },
+        {
+          "slot": 2,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 7
+        },
+        {
+          "slot": 3,
+          "effect_id": 189,
+          "effect": "Charisma2",
+          "base": 2,
+          "limit": 0,
+          "formula": 100,
+          "max": 2
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel replenished.",
+        "cast_on_other": "",
+        "wears_off": "The cantata of soothing fades."
+      },
+      "level": 34
+    },
+    {
+      "id": 721,
+      "name": "Lyssa's Solidarity of Vision",
+      "icon": 93,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "This song weaves a magical mesh around your eyes, allowing you to see what your target sees.",
+      "description_template": "This song weaves a magical mesh around your eyes, allowing you to see what your target sees.",
+      "mana": 0,
+      "range": 10000.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 73,
+          "effect": "ModelSize",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Strands of music form a web over your eyes.",
+        "cast_on_other": "'s eyes are covered by notes of solid music.",
+        "wears_off": "The strands fade away."
+      },
+      "level": 34
+    },
+    {
+      "id": 736,
+      "name": "Denon's Dissension",
+      "icon": 24,
+      "spell_type": "Detrimental",
+      "skill": "Brass Instruments",
+      "description": "A harsh dissonance that assails the minds of up to %T nearby creatures, draining their mana.",
+      "description_template": "A harsh dissonance that assails the minds of up to %T nearby creatures, draining their mana.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": -5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Jagged notes tear through your mind.",
+        "cast_on_other": " winces.",
+        "wears_off": ""
+      },
+      "level": 35
+    },
+    {
+      "id": 740,
+      "name": "Vilia's Verses of Celerity",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "An energetic verse which hastens the attack speed of your group.",
+      "description_template": "An energetic verse which hastens the attack speed of your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 120,
+          "limit": 0,
+          "formula": 100,
+          "max": 120
+        },
+        {
+          "slot": 2,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 1,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A burst of speed surges through your body.",
+        "cast_on_other": "",
+        "wears_off": "Your surge of speed fades."
+      },
+      "level": 36
+    },
+    {
+      "id": 716,
+      "name": "Psalm of Purity",
+      "icon": 61,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "This psalm surrounds your group in an aura of purity, affording them protection from poison, as well as harming anything that attacks them.",
+      "description_template": "This psalm surrounds your group in an aura of purity, affording them protection from poison, as well as harming anything that attacks them.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "effect": "TotalHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "effect": "ResistPoison",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from poison.",
+        "cast_on_other": "",
+        "wears_off": "Your aura fades."
+      },
+      "level": 37
+    },
+    {
+      "id": 743,
+      "name": "Tuyen's Chant of Flame",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Percussion Instruments",
+      "description": "A fiery chant that causes between 1 and 40 damage to your target every 6 seconds and makes them more vulnerable to fire.",
+      "description_template": "A fiery chant that causes between #1 and @1 damage to your target every 6 seconds and makes them more vulnerable to fire.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 340,
+          "effect": "IncreaseHateMod",
+          "base": 100,
+          "limit": 22487,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to chant.",
+        "cast_on_other": " begins to chant.",
+        "wears_off": "Your chant ends."
+      },
+      "level": 38
+    },
+    {
+      "id": 2604,
+      "name": "Katta's Song of Sword Dancing",
+      "icon": 104,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "Katta's song increases the dexterity of your group, and gives your group members a chance to lower the dexterity of their opponent.",
+      "description_template": "Katta's song increases the dexterity of your group, and gives your group members a chance to lower the dexterity of their opponent.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2834,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 35,
+          "limit": 0,
+          "formula": 111,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your weapons whir with a magical rhythm.",
+        "cast_on_other": "",
+        "wears_off": "The magical rhythm fades."
+      },
+      "level": 39
+    },
+    {
+      "id": 750,
+      "name": "Solon's Bewitching Bravura",
+      "icon": 27,
+      "spell_type": "Detrimental",
+      "skill": "Wind Instruments",
+      "description": "A bewitching melody that charms the target, allowing you to command it.",
+      "description_template": "A bewitching melody that charms the target, allowing you to command it.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "1 min",
+      "duration_ticks": 10,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 22,
+          "effect": "Charm",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 51
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": -1,
+          "limit": 0,
+          "formula": 119,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are captivated by the bewitching tune.",
+        "cast_on_other": "'s eyes glaze over.",
+        "wears_off": "You are no longer captivated."
+      },
+      "level": 39
+    },
+    {
+      "id": 868,
+      "name": "Sionachie's Dreams",
+      "icon": 35,
+      "spell_type": "Detrimental",
+      "skill": "Wind Instruments",
+      "description": "A quiet lullaby that causes your target to fall into an enchanted sleep.  Affects creatures up to level 53.",
+      "description_template": "A quiet lullaby that causes your target to fall into an enchanted sleep.  Affects creatures up to level @1.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 31,
+          "effect": "Mez",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 53
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": -1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Sionachie's dreams invade your mind.",
+        "cast_on_other": "'s eyes glaze over.",
+        "wears_off": ""
+      },
+      "level": 40
+    },
+    {
+      "id": 726,
+      "name": "Syvelian's Anti-Magic Aria",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "An aria that can strip away magical effects from your target.",
+      "description_template": "An aria that can strip away magical effects from your target.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a pulse of static energy wash over you.",
+        "cast_on_other": " is encased in a pulse of static energy.",
+        "wears_off": ""
+      },
+      "level": 40
+    },
+    {
+      "id": 714,
+      "name": "Psalm of Mystic Shielding",
+      "icon": 82,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A mystic psalm enfolds your group, protecting them from magic as well as regenerating their health.",
+      "description_template": "A mystic psalm enfolds your group, protecting them from magic as well as regenerating their health.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 78,
+          "effect": "SummonHelpers",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from magic.",
+        "cast_on_other": "",
+        "wears_off": "Your aura fades."
+      },
+      "level": 41
+    },
+    {
+      "id": 702,
+      "name": "McVaxius' Berserker Crescendo",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Brass Instruments",
+      "description": "A crescendo that increases your group's attack speed, as well as increasing their strength and armor class.",
+      "description_template": "A crescendo that increases your group's attack speed, as well as increasing their strength and armor class.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 108,
+          "limit": 0,
+          "formula": 109,
+          "max": 133
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 1,
+          "limit": 0,
+          "formula": 121,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 1,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You go berserk.",
+        "cast_on_other": "",
+        "wears_off": "You are no longer berserk."
+      },
+      "level": 42
+    },
+    {
+      "id": 3567,
+      "name": "Tuyen's Chant of Disease",
+      "icon": 41,
+      "spell_type": "Detrimental",
+      "skill": "Percussion Instruments",
+      "description": "A diseased chant that causes between 1 and 40 damage every six seconds to an enemy and makes them more vulnerable to disease.",
+      "description_template": "A diseased chant that causes between #1 and @1 damage every six seconds to an enemy and makes them more vulnerable to disease.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 340,
+          "effect": "IncreaseHateMod",
+          "base": 100,
+          "limit": 22490,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to chant.",
+        "cast_on_other": " begins to chant.",
+        "wears_off": "Your chant ends."
+      },
+      "level": 42
+    },
+    {
+      "id": 742,
+      "name": "Denon's Desperate Dirge",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Singing",
+      "description": "A dark dirge that causes between 315 and 635 damage to %T enemies in an area around your target.",
+      "description_template": "A dark dirge that causes between #1 and @1 damage to %T enemies in an area around your target.",
+      "mana": 800,
+      "range": 150.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Targeted AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -315,
+          "limit": 0,
+          "formula": 144,
+          "max": 635
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You stagger in pain as every bone in your body pulses.",
+        "cast_on_other": " staggers back a step.",
+        "wears_off": ""
+      },
+      "level": 43
+    },
+    {
+      "id": 745,
+      "name": "Cassindra's Elegy",
+      "icon": 11,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A quiet elegy that bolsters the intelligence and wisdom of your group.",
+      "description_template": "A quiet elegy that bolsters the intelligence and wisdom of your group.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 8,
+          "effect": "INT",
+          "base": 1,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 9,
+          "effect": "WIS",
+          "base": 1,
+          "limit": 0,
+          "formula": 109,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind sharpens.",
+        "cast_on_other": "",
+        "wears_off": "Your insight fades."
+      },
+      "level": 44
+    },
+    {
+      "id": 3682,
+      "name": "Aria of Asceticism",
+      "icon": 149,
+      "spell_type": "Beneficial",
+      "skill": "Wind Instruments",
+      "description": "A long forgotten aria that cleanses the target's body of poison and disease.",
+      "description_template": "A long forgotten aria that cleanses the target's body of poison and disease.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -2,
+          "limit": 0,
+          "formula": 119,
+          "max": 10
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -2,
+          "limit": 0,
+          "formula": 119,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Notes of purity cleanse your body.",
+        "cast_on_other": " is cleansed by notes of purity.",
+        "wears_off": ""
+      },
+      "level": 45
+    },
+    {
+      "id": 749,
+      "name": "Jonthan's Provocation",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "An ancient war song that increases your attack speed, strength, and attack rating.",
+      "description_template": "An ancient war song that increases your attack speed, strength, and attack rating.",
+      "mana": 0,
+      "range": 150.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 103,
+          "limit": 0,
+          "formula": 102,
+          "max": 150
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 2,
+          "limit": 0,
+          "formula": 109,
+          "max": 20
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 2,
+          "limit": 0,
+          "formula": 109,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel provoked.",
+        "cast_on_other": " rages.",
+        "wears_off": "Your provocation fades."
+      },
+      "level": 45
+    },
+    {
+      "id": 4083,
+      "name": "Rizlona's Embers",
+      "icon": 143,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "Increases the damage of your companions' direct damage spells by up to 1%.  This bonus will decay on spells over level 52.",
+      "description_template": "Increases the damage of your companions' direct damage spells by up to $1%.  This bonus will decay on spells over level #11.",
+      "mana": 0,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Group v1",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 124,
+          "effect": "SpellDmg",
+          "base": 1,
+          "limit": 15,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 137,
+          "effect": "EraseDmgShield",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 141,
+          "effect": "BashChance",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 138,
+          "effect": "SpellSlot",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 136,
+          "effect": "SpellTrigger",
+          "base": -2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 136,
+          "effect": "SpellTrigger",
+          "base": -4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 136,
+          "effect": "SpellTrigger",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 136,
+          "effect": "SpellTrigger",
+          "base": -17,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 136,
+          "effect": "SpellTrigger",
+          "base": -18,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 134,
+          "effect": "SpellTimerReset",
+          "base": 52,
+          "limit": 5,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 12,
+          "effect_id": 311,
+          "effect": "LimitMaxDmg",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Rizlona's embers pulse through your body.",
+        "cast_on_other": "",
+        "wears_off": "The embers fade away."
+      },
+      "level": 45
+    },
+    {
+      "id": 744,
+      "name": "Tuyen's Chant of Frost",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Percussion Instruments",
+      "description": "A frozen chant that causes between 1 and 40 damage to an enemy and makes them more vulnerable to cold.",
+      "description_template": "A frozen chant that causes between #1 and @1 damage to an enemy and makes them more vulnerable to cold.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 340,
+          "effect": "IncreaseHateMod",
+          "base": 100,
+          "limit": 22488,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to chant.",
+        "cast_on_other": " begins to chant.",
+        "wears_off": "Your chant ends."
+      },
+      "level": 46
+    },
+    {
+      "id": 748,
+      "name": "Niv's Melody of Preservation",
+      "icon": 78,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "A melody that offers your group protection from spell damage  as well as increasing their strength and health regeneration.",
+      "description_template": "A melody that offers your group protection from spell damage  as well as increasing their strength and health regeneration.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 78,
+          "effect": "SummonHelpers",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 1,
+          "limit": 0,
+          "formula": 119,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel an aura of protection engulf you.",
+        "cast_on_other": "",
+        "wears_off": "Your protection fades."
+      },
+      "level": 47
+    },
+    {
+      "id": 746,
+      "name": "Selo's Chords of Cessation",
+      "icon": 143,
+      "spell_type": "Detrimental",
+      "skill": "Stringed Instruments",
+      "description": "A collection of chords that binds up to %T nearby enemies in magical cords, slowing their attacks and causing them damage.",
+      "description_template": "A collection of chords that binds up to %T nearby enemies in magical cords, slowing their attacks and causing them damage.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 334,
+          "effect": "NoChanceToBlock",
+          "base": -2,
+          "limit": 0,
+          "formula": 101,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 95,
+          "limit": 0,
+          "formula": 109,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Chords of music bind your hands.",
+        "cast_on_other": " is bound by chords of music.",
+        "wears_off": "The chains disappear."
+      },
+      "level": 48
+    },
+    {
+      "id": 2605,
+      "name": "Selo's Accelerating Chorus",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Percussion Instruments",
+      "description": "The rapid pace of this song fills your feet with speed, increasing the movement rate of your group for 2 min 30s.",
+      "description_template": "The rapid pace of this song fills your feet with speed, increasing the movement rate of your group for %z.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "2 min 30s",
+      "duration_ticks": 25,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 15,
+          "limit": 0,
+          "formula": 102,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet move faster.",
+        "cast_on_other": "",
+        "wears_off": "You slow down."
+      },
+      "level": 49
+    },
+    {
+      "id": 1450,
+      "name": "Shield of Songs",
+      "icon": 78,
+      "spell_type": "Beneficial",
+      "skill": "Stringed Instruments",
+      "description": "This song wraps an aura of protection around your group that absorbs damage .",
+      "description_template": "This song wraps an aura of protection around your group that absorbs damage .",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 55,
+          "effect": "InfraVision",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 45
+        },
+        {
+          "slot": 2,
+          "effect_id": 78,
+          "effect": "SummonHelpers",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 45
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are surrounded by a shield of songs.",
+        "cast_on_other": "",
+        "wears_off": "The shield of songs fades."
+      },
+      "level": 49
+    },
+    {
+      "id": 1449,
+      "name": "Melody of Ervaj",
+      "icon": 43,
+      "spell_type": "Beneficial",
+      "skill": "Brass Instruments",
+      "description": "An archaic song that increases the attack speed of your group.  This increase is cumulative with most other effects that increase attack speed.",
+      "description_template": "An archaic song that increases the attack speed of your group.  This increase is cumulative with most other effects that increase attack speed.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 98,
+          "effect": "AttackSpeed2",
+          "base": 105,
+          "limit": 0,
+          "formula": 100,
+          "max": 105
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A song of inspiration fills your weapon arm with strength.",
+        "cast_on_other": "",
+        "wears_off": "The inspiration fades."
+      },
+      "level": 50
+    },
+    {
+      "id": 3566,
+      "name": "Tuyen's Chant of Poison",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Percussion Instruments",
+      "description": "A poisoned chant that causes between 1 and 40 damage every six seconds to an enemy and makes them more vulnerable to poison.",
+      "description_template": "A poisoned chant that causes between #1 and @1 damage every six seconds to an enemy and makes them more vulnerable to poison.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 40
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 340,
+          "effect": "IncreaseHateMod",
+          "base": 100,
+          "limit": 22489,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You begin to chant.",
+        "cast_on_other": " begins to chant.",
+        "wears_off": "Your chant ends."
+      },
+      "level": 50
+    },
+    {
+      "id": 747,
+      "name": "Verses of Victory",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Singing",
+      "description": "A victorious verse that fills the arms of your group with energy, increasing their attack rate, strength, and agility.",
+      "description_template": "A victorious verse that fills the arms of your group with energy, increasing their attack rate, strength, and agility.",
+      "mana": 0,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 0.0,
+      "recast_seconds": 0.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Bard",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 130,
+          "limit": 0,
+          "formula": 100,
+          "max": 130
+        },
+        {
+          "slot": 2,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 50,
+          "limit": 0,
+          "formula": 100,
+          "max": 50
+        },
+        {
+          "slot": 4,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your pulse quicken.",
+        "cast_on_other": "",
+        "wears_off": "Your battle fury fades."
+      },
+      "level": 50
+    }
+  ]
+}

@@ -1,0 +1,3819 @@
+{
+  "generated": "2026-05-28",
+  "class": "Shadow Knight",
+  "spell_count": 68,
+  "spells": [
+    {
+      "id": 341,
+      "name": "Lifetap",
+      "icon": 47,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 4 and 6 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 8,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 1
+        },
+        {
+          "class": "Necromancer",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -4,
+          "limit": 0,
+          "formula": 101,
+          "max": 6
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 5012,
+      "name": "Spike of Disease",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Hurls a spear of disease at your target, doing 15 damage.",
+      "description_template": "Hurls a spear of disease at your target, doing #1 damage.",
+      "mana": 9,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 45.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -15,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your wounds fester.",
+        "cast_on_other": "'s wounds fester.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 221,
+      "name": "Sense the Dead",
+      "icon": 74,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Provides you with a mystical undead awareness, pointing you towards the nearest undead creature.",
+      "description_template": "Provides you with a mystical undead awareness, pointing you towards the nearest undead creature.",
+      "mana": 5,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 4
+        },
+        {
+          "class": "Cleric",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 52,
+          "effect": "SeeInvisible",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 2
+    },
+    {
+      "id": 235,
+      "name": "Invisibility Versus Undead",
+      "icon": 33,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Cloaks your target in a light aura, rendering them invisible to most undead creatures for up to 27 min.",
+      "description_template": "Cloaks your target in a light aura, rendering them invisible to most undead creatures for up to %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 4
+        },
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Enchanter",
+          "level": 14
+        },
+        {
+          "class": "Paladin",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 28,
+          "effect": "InvisVsUndead",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your skin tingle.",
+        "cast_on_other": " fades a little.",
+        "wears_off": "Your skin stops tingling."
+      },
+      "level": 4
+    },
+    {
+      "id": 340,
+      "name": "Disease Cloud",
+      "icon": 41,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Conjures a cloud of disease, causing 5 damage initially and 1 damage every 6 seconds for 6 min.",
+      "description_template": "Conjures a cloud of disease, causing #2 damage initially and #3 damage every 6 seconds for %z.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "6 min",
+      "duration_ticks": 60,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 5
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 1
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your stomach begins to cramp.",
+        "cast_on_other": " doubles over in pain.",
+        "wears_off": "Your stomach feels better."
+      },
+      "level": 5
+    },
+    {
+      "id": 343,
+      "name": "Siphon Strength",
+      "icon": 7,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Tears strength from your target and infuses your muscles for 6 min.",
+      "description_template": "Tears strength from your target and infuses your muscles for %z.",
+      "mana": 5,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "6 min",
+      "duration_ticks": 60,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 1
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 6
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": -5,
+          "limit": 0,
+          "formula": 101,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your strength dwindle.",
+        "cast_on_other": " weakens.",
+        "wears_off": "Your strength returns."
+      },
+      "level": 6
+    },
+    {
+      "id": 491,
+      "name": "Leering Corpse",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 40,
+      "range": 0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 9.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 4
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 7
+    },
+    {
+      "id": 502,
+      "name": "Lifespike",
+      "icon": 47,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 7 and 12 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 13,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 3
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 8
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -7,
+          "limit": 0,
+          "formula": 101,
+          "max": 12
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 8
+    },
+    {
+      "id": 2571,
+      "name": "Despair",
+      "icon": 3,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Steals hope from your target, decreasing their attack rating for 7 min 30s.",
+      "description_template": "Steals hope from your target, decreasing their attack rating for %z.",
+      "mana": 12,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "7 min 30s",
+      "duration_ticks": 75,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are lost in a fit of despair.",
+        "cast_on_other": " is lost in a fit of despair.",
+        "wears_off": "The feeling of despair leaves."
+      },
+      "level": 9
+    },
+    {
+      "id": 347,
+      "name": "Numb the Dead",
+      "icon": 40,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Numbs the awareness of the undead, making them less likely to attack.  This spell works on creatures up to level 30.",
+      "description_template": "Numbs the awareness of the undead, making them less likely to attack.  This spell works on creatures up to level @1.",
+      "mana": 20,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "2 min",
+      "duration_ticks": 20,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 2
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "effect": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "effect": "EvilDeity",
+          "base": 25,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "effect": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " looks ambivalent.",
+        "wears_off": ""
+      },
+      "level": 9
+    },
+    {
+      "id": 225,
+      "name": "Endure Cold",
+      "icon": 57,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away cold for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away cold for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Necromancer",
+          "level": 3
+        },
+        {
+          "class": "Beastlord",
+          "level": 3
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 10
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Ranger",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from cold.",
+        "cast_on_other": " is protected from cold.",
+        "wears_off": "Your endurance to cold fades."
+      },
+      "level": 10
+    },
+    {
+      "id": 344,
+      "name": "Clinging Darkness",
+      "icon": 160,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Summons a clinging darkness that binds your target's feet, decreasing their movement rate, and does 8 damage every 6 seconds for 48s.",
+      "description_template": "Summons a clinging darkness that binds your target's feet, decreasing their movement rate, and does #1 damage every 6 seconds for %z.",
+      "mana": 20,
+      "range": 200.0,
+      "cast_seconds": 1.75,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "48s",
+      "duration_ticks": 8,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 4
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 11
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 8
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -20,
+          "limit": 3,
+          "formula": 102,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are in the grip of darkness.",
+        "cast_on_other": " is surrounded by darkness.",
+        "wears_off": "The darkness fades."
+      },
+      "level": 11
+    },
+    {
+      "id": 229,
+      "name": "Fear",
+      "icon": 154,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "A booming voice fills your target's ears, causing them to flee in terror.",
+      "description_template": "A booming voice fills your target's ears, causing them to flee in terror.",
+      "mana": 40,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 2
+        },
+        {
+          "class": "Enchanter",
+          "level": 3
+        },
+        {
+          "class": "Cleric",
+          "level": 6
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 12
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind fills with fear.",
+        "cast_on_other": " looks very afraid.",
+        "wears_off": "You are no longer afraid."
+      },
+      "level": 12
+    },
+    {
+      "id": 354,
+      "name": "Shadow Step",
+      "icon": 48,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Causes you to momentarily step into the realm of shadow, reentering reality a short distance away.",
+      "description_template": "Causes you to momentarily step into the realm of shadow, reentering reality a short distance away.",
+      "mana": 10,
+      "range": 900.0,
+      "cast_seconds": 1.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 5
+        },
+        {
+          "class": "Wizard",
+          "level": 7
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 42,
+          "effect": "ShadowStep",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " fades away.",
+        "wears_off": ""
+      },
+      "level": 13
+    },
+    {
+      "id": 351,
+      "name": "Bone Walk",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 80,
+      "range": 0,
+      "cast_seconds": 7.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 9.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 8
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 14
+    },
+    {
+      "id": 445,
+      "name": "Lifedraw",
+      "icon": 47,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 90 and 105 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 86,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 12
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -90,
+          "limit": 0,
+          "formula": 102,
+          "max": 105
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 15
+    },
+    {
+      "id": 2572,
+      "name": "Scream of Hate",
+      "icon": 3,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Consumes your target in a wave of hatred, lowering their attack rating and increasing yours.",
+      "description_template": "Consumes your target in a wave of hatred, lowering their attack rating and increasing yours.",
+      "mana": 85,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a gut-wrenching hatred.",
+        "cast_on_other": " is washed over by a wave of shadows.",
+        "wears_off": "The hatred departs."
+      },
+      "level": 15
+    },
+    {
+      "id": 359,
+      "name": "Vampiric Embrace",
+      "icon": 140,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Gives your attacks a vampiric property, allowing a chance to steal life from your target.",
+      "description_template": "Gives your attacks a vampiric property, allowing a chance to steal life from your target.",
+      "mana": 30,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 7
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 821,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your hand begins to glow.",
+        "cast_on_other": "'s hands begin to glow.",
+        "wears_off": ""
+      },
+      "level": 15
+    },
+    {
+      "id": 346,
+      "name": "Grim Aura",
+      "icon": 3,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Surrounds you in a dark aura, increasing your attack rating.",
+      "description_template": "Surrounds you in a dark aura, increasing your attack rating.",
+      "mana": 25,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 3
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A dull aura covers your hand.",
+        "cast_on_other": "'s hand is covered with a dull aura.",
+        "wears_off": "The grim aura fades."
+      },
+      "level": 16
+    },
+    {
+      "id": 352,
+      "name": "Deadeye",
+      "icon": 86,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Allows your eyes the vision of the dead, providing night vision and the ability to see invisible creatures.",
+      "description_template": "Allows your eyes the vision of the dead, providing night vision and the ability to see invisible creatures.",
+      "mana": 35,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 5
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 65,
+          "effect": "VoiceGraft",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your vision shifts.",
+        "cast_on_other": "'s eyes glow red.",
+        "wears_off": "Your vision returns to normal."
+      },
+      "level": 17
+    },
+    {
+      "id": 74011,
+      "name": "Cancelling of Life",
+      "icon": 877,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Covers your target in a shroud of anti-life, decreasing their ability to be healed by 20%, and does 11 damage every 6 seconds for 1 min.",
+      "description_template": "Covers your target in a shroud of anti-life, decreasing their ability to be healed by #2%, and does #1 damage every 6 seconds for %z.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min",
+      "duration_ticks": 10,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 8
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -11,
+          "limit": 0,
+          "formula": 100,
+          "max": 11
+        },
+        {
+          "slot": 2,
+          "effect_id": 120,
+          "effect": "IncreaseSpellDmg",
+          "base": -20,
+          "limit": 3,
+          "formula": 100,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are shrouded by anti-life magic.",
+        "cast_on_other": " is shrouded by anti-life magic.",
+        "wears_off": "The shroud fades."
+      },
+      "level": 18
+    },
+    {
+      "id": 218,
+      "name": "Ward Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 7 and 12 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 5,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Paladin",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Necromancer",
+          "level": 6
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -7,
+          "limit": 0,
+          "formula": 101,
+          "max": 12
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 18
+    },
+    {
+      "id": 213,
+      "name": "Cure Disease",
+      "icon": 41,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's immune system, curing minor diseases.",
+      "description_template": "Cleanses your target's immune system, curing minor diseases.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 4
+        },
+        {
+          "class": "Paladin",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 13
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 19
+    },
+    {
+      "id": 3583,
+      "name": "Tiny Companion",
+      "icon": 108,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Shrinks your pet, allowing it better mobility in tight quarters.",
+      "description_template": "Shrinks your pet, allowing it better mobility in tight quarters.",
+      "mana": 50,
+      "range": 200.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 16
+        },
+        {
+          "class": "Druid",
+          "level": 17
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Necromancer",
+          "level": 19
+        },
+        {
+          "class": "Magician",
+          "level": 19
+        },
+        {
+          "class": "Enchanter",
+          "level": 19
+        },
+        {
+          "class": "Beastlord",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 298,
+          "effect": "GiantClick",
+          "base": 50,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel smaller.",
+        "cast_on_other": " shrinks.",
+        "wears_off": "You return to normal height."
+      },
+      "level": 19
+    },
+    {
+      "id": 355,
+      "name": "Engulfing Darkness",
+      "icon": 160,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Summons an engulfing darkness that binds your target's feet decreasing their movement rate, and doing 11 damage every 6 seconds for 1 min.",
+      "description_template": "Summons an engulfing darkness that binds your target's feet decreasing their movement rate, and doing #1 damage every 6 seconds for %z.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min",
+      "duration_ticks": 10,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 11
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -11,
+          "limit": 0,
+          "formula": 100,
+          "max": 11
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -30,
+          "limit": 3,
+          "formula": 102,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are engulfed by darkness.",
+        "cast_on_other": " is engulfed by darkness.",
+        "wears_off": "The darkness fades."
+      },
+      "level": 20
+    },
+    {
+      "id": 209,
+      "name": "Spook the Dead",
+      "icon": 164,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Inspires fear in an undead opponent, causing them to flee.",
+      "description_template": "Inspires fear in an undead opponent, causing them to flee.",
+      "mana": 10,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 9
+        },
+        {
+          "class": "Necromancer",
+          "level": 10
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your bones tingle.",
+        "cast_on_other": " has the fear of life put into them.",
+        "wears_off": ""
+      },
+      "level": 20
+    },
+    {
+      "id": 357,
+      "name": "Dark Empathy",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Creates a dark pact that transfers 30 of your hit points to your target.",
+      "description_template": "Creates a dark pact that transfers #1 of your hit points to your target.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 6
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your wounds disappear.",
+        "cast_on_other": "'s wounds disappear.",
+        "wears_off": ""
+      },
+      "level": 21
+    },
+    {
+      "id": 362,
+      "name": "Convoke Shadow",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 120,
+      "range": 0,
+      "cast_seconds": 8.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 11.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 12
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 22
+    },
+    {
+      "id": 2573,
+      "name": "Scream of Pain",
+      "icon": 1,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Covers your target in a mass of darkness that steals their armor class and gives it to you for 10 min.",
+      "description_template": "Covers your target in a mass of darkness that steals their armor class and gives it to you for %z.",
+      "mana": 100,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A seething mass of darkness engulfs you.",
+        "cast_on_other": " is engulfed in a seething mass of darkness.",
+        "wears_off": "The pain subsides."
+      },
+      "level": 23
+    },
+    {
+      "id": 366,
+      "name": "Feign Death",
+      "icon": 94,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Causes you to stop breathing and appear dead to most creatures.",
+      "description_template": "Causes you to stop breathing and appear dead to most creatures.",
+      "mana": 60,
+      "range": 0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 15.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 16
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 24
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 74,
+          "effect": "Cloak",
+          "base": 87,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " dies.",
+        "wears_off": "You no longer appear dead."
+      },
+      "level": 24
+    },
+    {
+      "id": 226,
+      "name": "Endure Disease",
+      "icon": 65,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away disease for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away disease for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 8
+        },
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 11
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Beastlord",
+          "level": 22
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 26
+        },
+        {
+          "class": "Paladin",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from disease.",
+        "cast_on_other": " is protected from disease.",
+        "wears_off": "Your endurance to disease fades."
+      },
+      "level": 26
+    },
+    {
+      "id": 363,
+      "name": "Wave of Enfeeblement",
+      "icon": 7,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Creates an unholy aura that drains strength from up to %T of those nearby.",
+      "description_template": "Creates an unholy aura that drains strength from up to %T of those nearby.",
+      "mana": 40,
+      "range": 0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.5,
+      "duration": "4 min",
+      "duration_ticks": 40,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 9
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 27
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": -5,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your strength dwindle.",
+        "cast_on_other": " weakens.",
+        "wears_off": "You feel your strength return."
+      },
+      "level": 27
+    },
+    {
+      "id": 360,
+      "name": "Heat Blood",
+      "icon": 51,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Heats the blood of your target, causing between 18 and 43 damage every six seconds for 36s.",
+      "description_template": "Heats the blood of your target, causing between #1 and @1 damage every six seconds for %z.",
+      "mana": 88,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "36s",
+      "duration_ticks": 6,
+      "target": "Single Target",
+      "resist": "Fire",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 10
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -18,
+          "limit": 0,
+          "formula": 102,
+          "max": 43
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your blood simmers.",
+        "cast_on_other": "'s blood simmers.",
+        "wears_off": "Your blood cools."
+      },
+      "level": 28
+    },
+    {
+      "id": 1289,
+      "name": "Strengthen Death",
+      "icon": 74,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your pet with rage, giving it increased attack speed, armor class, and strength for 60 min.",
+      "description_template": "Fills your pet with rage, giving it increased attack speed, armor class, and strength for %z.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 6.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "60 min",
+      "duration_ticks": 600,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 29
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 110,
+          "limit": 0,
+          "formula": 101,
+          "max": 120
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "'s eyes gleam with madness.",
+        "wears_off": ""
+      },
+      "level": 29
+    },
+    {
+      "id": 522,
+      "name": "Gather Shadows",
+      "icon": 18,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Calls shadows to conceal your body, allowing you to move undetected by many creatures for up to 20 min.",
+      "description_template": "Calls shadows to conceal your body, allowing you to move undetected by many creatures for up to %z.",
+      "mana": 35,
+      "range": 0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "20 min",
+      "duration_ticks": 200,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 7
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "effect": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You gather shadows about you.",
+        "cast_on_other": " steps into the shadows and disappears.",
+        "wears_off": "Your shadows fade."
+      },
+      "level": 30
+    },
+    {
+      "id": 492,
+      "name": "Restless Bones",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 160,
+      "range": 0,
+      "cast_seconds": 9.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 16
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 446,
+      "name": "Siphon Life",
+      "icon": 47,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 100 and 150 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 115,
+      "range": 200.0,
+      "cast_seconds": 2.75,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 20
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -100,
+          "limit": 0,
+          "formula": 103,
+          "max": 150
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 74012,
+      "name": "Negation of Life",
+      "icon": 877,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Covers your target in a shroud of anti-life, decreasing their ability to be healed by 30%, and does 20 damage every 6 seconds for 1 min 30s.",
+      "description_template": "Covers your target in a shroud of anti-life, decreasing their ability to be healed by #2%, and does #1 damage every 6 seconds for %z.",
+      "mana": 120,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min 30s",
+      "duration_ticks": 15,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 18
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 31
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -20,
+          "limit": 0,
+          "formula": 100,
+          "max": 20
+        },
+        {
+          "slot": 2,
+          "effect_id": 120,
+          "effect": "IncreaseSpellDmg",
+          "base": -30,
+          "limit": 3,
+          "formula": 100,
+          "max": 30
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are shrouded by anti-life magic.",
+        "cast_on_other": " is shrouded by anti-life magic.",
+        "wears_off": "The shroud fades."
+      },
+      "level": 31
+    },
+    {
+      "id": 236,
+      "name": "Shieldskin",
+      "icon": 77,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your skin in a protective aura that absorbs between 27 and 55 damage. Consumes a cat's eye agate when cast.",
+      "description_template": "Surrounds your skin in a protective aura that absorbs between #1 and @1 damage. Consumes a cat's eye agate when cast.",
+      "mana": 41,
+      "range": 0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Wizard",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 14
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 31
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 55,
+          "effect": "InfraVision",
+          "base": 27,
+          "limit": 0,
+          "formula": 111,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A mystic force shields your skin.",
+        "cast_on_other": "'s skin is covered in a mystic glow.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 31
+    },
+    {
+      "id": 4062,
+      "name": "Dark Temptation",
+      "icon": 164,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Grips your body in an unholy darkness, slowly draining your health while increasing your attack rating.",
+      "description_template": "Grips your body in an unholy darkness, slowly draining your health while increasing your attack rating.",
+      "mana": 100,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "60 min",
+      "duration_ticks": 600,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 32
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 25,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A dark voice beckons to you.",
+        "cast_on_other": "'s aura grows cold.",
+        "wears_off": "The dark voice fades."
+      },
+      "level": 32
+    },
+    {
+      "id": 1221,
+      "name": "Terror of Darkness",
+      "icon": 28,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Fills your target's mind with dark terror, inciting hatred.",
+      "description_template": "Fills your target's mind with dark terror, inciting hatred.",
+      "mana": 20,
+      "range": 200.0,
+      "cast_seconds": 0.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 33
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 192,
+          "effect": "PoisonCleric",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Dark terror fills your mind.",
+        "cast_on_other": " is consumed in dark terror.",
+        "wears_off": ""
+      },
+      "level": 33
+    },
+    {
+      "id": 3561,
+      "name": "Spear of Disease",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Hurls a spear of disease at your target, doing 251 damage.",
+      "description_template": "Hurls a spear of disease at your target, doing #1 damage.",
+      "mana": 118,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 45.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -251,
+          "limit": 0,
+          "formula": 100,
+          "max": 251
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A spear of disease sears your flesh.",
+        "cast_on_other": " screams in pain.",
+        "wears_off": ""
+      },
+      "level": 34
+    },
+    {
+      "id": 61,
+      "name": "Resist Cold",
+      "icon": 57,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away cold for 36 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away cold for %z.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 24
+        },
+        {
+          "class": "Necromancer",
+          "level": 24
+        },
+        {
+          "class": "Druid",
+          "level": 30
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 35
+        },
+        {
+          "class": "Cleric",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 15,
+          "limit": 0,
+          "formula": 102,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel resistant to cold.",
+        "cast_on_other": " is resistant to cold.",
+        "wears_off": "Your cold resistance fades."
+      },
+      "level": 35
+    },
+    {
+      "id": 1457,
+      "name": "Shroud of Hate",
+      "icon": 3,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Consumes your target in a wave of hatred, lowering their attack rating and increasing yours.",
+      "description_template": "Consumes your target in a wave of hatred, lowering their attack rating and increasing yours.",
+      "mana": 60,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": -20,
+          "limit": 0,
+          "formula": 100,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a gut-wrenching hatred.",
+        "cast_on_other": " is washed over by a wave of shadows.",
+        "wears_off": "The hatred departs."
+      },
+      "level": 35
+    },
+    {
+      "id": 48,
+      "name": "Cancel Magic",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Cancels magical enchantments affecting your target.",
+      "description_template": "Cancels magical enchantments affecting your target.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 7
+        },
+        {
+          "class": "Magician",
+          "level": 10
+        },
+        {
+          "class": "Wizard",
+          "level": 11
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 15
+        },
+        {
+          "class": "Druid",
+          "level": 18
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 30
+        },
+        {
+          "class": "Paladin",
+          "level": 32
+        },
+        {
+          "class": "Beastlord",
+          "level": 35
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a bit dispelled.",
+        "cast_on_other": " feels a bit dispelled.",
+        "wears_off": ""
+      },
+      "level": 36
+    },
+    {
+      "id": 367,
+      "name": "Heart Flutter",
+      "icon": 41,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Causes your target's heart beat to become irregular, lowering their strength by 20, armor class by 30, and doing 24 disease damage every 6 seconds for 36s.",
+      "description_template": "Causes your target's heart beat to become irregular, lowering their strength by #2, armor class by #3, and doing @4 disease damage every 6 seconds for %z.",
+      "mana": 41,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.0,
+      "duration": "36s",
+      "duration_ticks": 6,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 13
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": -20,
+          "limit": 0,
+          "formula": 100,
+          "max": 20
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -30,
+          "limit": 0,
+          "formula": 100,
+          "max": 30
+        },
+        {
+          "slot": 4,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -24,
+          "limit": 0,
+          "formula": 100,
+          "max": 24
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your heartbeat becomes irregular.",
+        "cast_on_other": " clutches their chest.",
+        "wears_off": "Your heartbeat steadies."
+      },
+      "level": 36
+    },
+    {
+      "id": 524,
+      "name": "Spirit Tap",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 150 and 210 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 152,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 26
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -150,
+          "limit": 0,
+          "formula": 103,
+          "max": 210
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 36
+    },
+    {
+      "id": 2574,
+      "name": "Scream of Death",
+      "icon": 140,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Gives your attacks a vampiric property, allowing a chance to steal life from your target.",
+      "description_template": "Gives your attacks a vampiric property, allowing a chance to steal life from your target.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2718,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A nimbus of deathly darkness covers your hands.",
+        "cast_on_other": "'s hands are covered by a nimbus of deathly darkness.",
+        "wears_off": ""
+      },
+      "level": 37
+    },
+    {
+      "id": 370,
+      "name": "Shadow Vortex",
+      "icon": 1,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Covers your target in a mass of darkness that steals their armor class and gives it to you for 7 min 30s.",
+      "description_template": "Covers your target in a mass of darkness that steals their armor class and gives it to you for %z.",
+      "mana": 40,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "7 min 30s",
+      "duration_ticks": 75,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 19
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a shadow pass over you.",
+        "cast_on_other": " is surrounded by a vortex of shadows.",
+        "wears_off": "The vortex of shadows fades."
+      },
+      "level": 37
+    },
+    {
+      "id": 440,
+      "name": "Animate Dead",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 200,
+      "range": 0,
+      "cast_seconds": 10.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 20
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 38
+    },
+    {
+      "id": 233,
+      "name": "Expulse Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 86 and 106 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 36,
+      "range": 200.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -86,
+          "limit": 0,
+          "formula": 102,
+          "max": 106
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 39
+    },
+    {
+      "id": 1225,
+      "name": "Voice of Darkness",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Imbues your target's voice with the power of darkness, causing creatures to take more notice of their attacks  for 10 min.",
+      "description_template": "Imbues your target's voice with the power of darkness, causing creatures to take more notice of their attacks  for %z.",
+      "mana": 50,
+      "range": 150.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 4.0,
+      "recast_seconds": 540.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 114,
+          "effect": "NPCHate2",
+          "base": 2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your voice is filled with sounds of darkness.",
+        "cast_on_other": " speaks with the voice of darkness.",
+        "wears_off": "The dark voice fades."
+      },
+      "level": 39
+    },
+    {
+      "id": 90,
+      "name": "Shadow Sight",
+      "icon": 87,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Allows your eyes the vision of shadows, providing night vision and the ability to see invisible creatures.",
+      "description_template": "Allows your eyes the vision of shadows, providing night vision and the ability to see invisible creatures.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 22
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The shadows fade.",
+        "cast_on_other": "'s eyes glow violet.",
+        "wears_off": "Your shadow sight fades."
+      },
+      "level": 40
+    },
+    {
+      "id": 3686,
+      "name": "Blood of Pain",
+      "icon": 63,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Fills your target's veins with pain, causing 68 damage every 6 seconds for 36s.",
+      "description_template": "Fills your target's veins with pain, causing @1 damage every 6 seconds for %z.",
+      "mana": 172,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36s",
+      "duration_ticks": 6,
+      "target": "Single Target",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -15,
+          "limit": 0,
+          "formula": 102,
+          "max": 68
+        }
+      ],
+      "messages": {
+        "cast_on_you": "The blood of pain burns in your veins.",
+        "cast_on_other": " is tormented by the blood of pain.",
+        "wears_off": "Your blood stops screaming."
+      },
+      "level": 41
+    },
+    {
+      "id": 1222,
+      "name": "Terror of Shadows",
+      "icon": 28,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Fills your target's mind with shadowed terror, inciting hatred.",
+      "description_template": "Fills your target's mind with shadowed terror, inciting hatred.",
+      "mana": 40,
+      "range": 200.0,
+      "cast_seconds": 0.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 192,
+          "effect": "PoisonCleric",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Shadowed terror fills your mind.",
+        "cast_on_other": " is consumed with shadowed terror.",
+        "wears_off": ""
+      },
+      "level": 42
+    },
+    {
+      "id": 127,
+      "name": "Invoke Fear",
+      "icon": 154,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "A booming voice fills your target's ears, causing them to flee in terror.",
+      "description_template": "A booming voice fills your target's ears, causing them to flee in terror.",
+      "mana": 100,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.0,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 30
+        },
+        {
+          "class": "Enchanter",
+          "level": 35
+        },
+        {
+          "class": "Cleric",
+          "level": 36
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "effect": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your mind fills with fear.",
+        "cast_on_other": " looks very afraid.",
+        "wears_off": "You are no longer afraid."
+      },
+      "level": 43
+    },
+    {
+      "id": 452,
+      "name": "Dooming Darkness",
+      "icon": 160,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Summons a dooming darkness that binds your target's feet, decreasing their movement rate, and doing 20 damage every 6 seconds for 1 min 30s.",
+      "description_template": "Summons a dooming darkness that binds your target's feet, decreasing their movement rate, and doing #1 damage every 6 seconds for %z.",
+      "mana": 120,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min 30s",
+      "duration_ticks": 15,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 27
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -20,
+          "limit": 0,
+          "formula": 100,
+          "max": 20
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": -35,
+          "limit": 3,
+          "formula": 101,
+          "max": 59
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are engulfed by darkness.",
+        "cast_on_other": " is engulfed by darkness.",
+        "wears_off": "The darkness fades."
+      },
+      "level": 44
+    },
+    {
+      "id": 478,
+      "name": "Breath of the Dead",
+      "icon": 20,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Allows your metabolism to function without oxygen, allowing you to survive without air.  Consumes a handful of fish scales to cast.",
+      "description_template": "Allows your metabolism to function without oxygen, allowing you to survive without air.  Consumes a handful of fish scales to cast.",
+      "mana": 45,
+      "range": 0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 21
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 14,
+          "effect": "WaterBreathing",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your heart stop beating.",
+        "cast_on_other": " stops breathing.",
+        "wears_off": "You resume breathing."
+      },
+      "level": 45
+    },
+    {
+      "id": 414,
+      "name": "Word of Spirit",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A forbidden word that causes between 39 and 104 damage to up to %T nearby enemies.",
+      "description_template": "A forbidden word that causes between #1 and @1 damage to up to %T nearby enemies.",
+      "mana": 133,
+      "range": 0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 9.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "PB AE",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 26
+        },
+        {
+          "class": "Necromancer",
+          "level": 27
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -39,
+          "limit": 0,
+          "formula": 103,
+          "max": 104
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are wracked with pain.",
+        "cast_on_other": " writhes in pain.",
+        "wears_off": ""
+      },
+      "level": 45
+    },
+    {
+      "id": 441,
+      "name": "Summon Dead",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "description_template": "Animates an undead servant from the remnants of the fallen.  Consumes bone chips when cast.",
+      "mana": 290,
+      "range": 0,
+      "cast_seconds": 12.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 29
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "effect": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " animates an undead servant.",
+        "wears_off": ""
+      },
+      "level": 46
+    },
+    {
+      "id": 1226,
+      "name": "Voice of Shadows",
+      "icon": 91,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Imbues your target's voice with the power of shadows, causing creatures to take more notice of their attacks for 10 min.",
+      "description_template": "Imbues your target's voice with the power of shadows, causing creatures to take more notice of their attacks for %z.",
+      "mana": 100,
+      "range": 150.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 4.0,
+      "recast_seconds": 6.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 114,
+          "effect": "NPCHate2",
+          "base": 4,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You voice is filled with the sound of shadows.",
+        "cast_on_other": " speaks with the voice of shadows.",
+        "wears_off": "The shadowed voice fades."
+      },
+      "level": 46
+    },
+    {
+      "id": 692,
+      "name": "Life Leech",
+      "icon": 47,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning 250 hit points.",
+      "description_template": "Drains your target of life energy, siphoning #1 hit points.",
+      "mana": 181,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -250,
+          "limit": 0,
+          "formula": 100,
+          "max": 250
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " looks pale.",
+        "wears_off": ""
+      },
+      "level": 47
+    },
+    {
+      "id": 4102,
+      "name": "Scythe of Darkness",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Disrupts the dark energy of the undead, causing between 346 and 346 damage.",
+      "description_template": "Disrupts the dark energy of the undead, causing between #1 and @1 damage.",
+      "mana": 112,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 18.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -346,
+          "limit": 0,
+          "formula": 100,
+          "max": 346
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A scythe of darkness tears through you.",
+        "cast_on_other": " screams in pain.",
+        "wears_off": ""
+      },
+      "level": 47
+    },
+    {
+      "id": 3560,
+      "name": "Spear of Pain",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Hurls a spear of pain at your target, doing 325 damage.",
+      "description_template": "Hurls a spear of pain at your target, doing #1 damage.",
+      "mana": 138,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 45.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -325,
+          "limit": 0,
+          "formula": 100,
+          "max": 325
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A spear of pain sears your flesh.",
+        "cast_on_other": " screams in pain.",
+        "wears_off": ""
+      },
+      "level": 48
+    },
+    {
+      "id": 117,
+      "name": "Dismiss Undead",
+      "icon": 153,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "A burst of holy power that inflicts between 150 and 211 damage to an undead target.",
+      "description_template": "A burst of holy power that inflicts between #1 and @1 damage to an undead target.",
+      "mana": 63,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Undead",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 23
+        },
+        {
+          "class": "Necromancer",
+          "level": 28
+        },
+        {
+          "class": "Paladin",
+          "level": 46
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -150,
+          "limit": 0,
+          "formula": 103,
+          "max": 211
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 525,
+      "name": "Drain Spirit",
+      "icon": 161,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Drains your target of life energy, siphoning between 200 and 314 hit points.",
+      "description_template": "Drains your target of life energy, siphoning between #1 and @1 hit points.",
+      "mana": 213,
+      "range": 200.0,
+      "cast_seconds": 3.2,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Lifetap",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 39
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -200,
+          "limit": 0,
+          "formula": 104,
+          "max": 314
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your life force drain away.",
+        "cast_on_other": " staggers.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 199,
+      "name": "Harmshield",
+      "icon": 46,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Completely removes your reaction to pain for 18s, rendering you invulnerable to damage.",
+      "description_template": "Completely removes your reaction to pain for %z, rendering you invulnerable to damage.",
+      "mana": 85,
+      "range": 0,
+      "cast_seconds": 1.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 600.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Necromancer",
+          "level": 20
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 40,
+          "effect": "Invulnerability",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You no longer feel pain.",
+        "cast_on_other": "",
+        "wears_off": "Your invulnerability fades."
+      },
+      "level": 50
+    },
+    {
+      "id": 1458,
+      "name": "Shroud of Pain",
+      "icon": 1,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Covers your target in a mass of darkness that steals their armor class and gives it to you for 10 min.",
+      "description_template": "Covers your target in a mass of darkness that steals their armor class and gives it to you for %z.",
+      "mana": 75,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "10 min",
+      "duration_ticks": 100,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shadow Knight",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -1,
+          "limit": 0,
+          "formula": 102,
+          "max": 60
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A seething mass of darkness engulfs you.",
+        "cast_on_other": " is engulfed in a seething mass of darkness.",
+        "wears_off": "The pain subsides."
+      },
+      "level": 50
+    }
+  ]
+}

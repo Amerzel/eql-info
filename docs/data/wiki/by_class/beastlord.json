@@ -1,0 +1,4378 @@
+{
+  "generated": "2026-05-28",
+  "class": "Beastlord",
+  "spell_count": 75,
+  "spells": [
+    {
+      "id": 200,
+      "name": "Minor Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends minor wounds, healing 10 hit points.",
+      "description_template": "Mends minor wounds, healing #1 hit points.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 1
+        },
+        {
+          "class": "Ranger",
+          "level": 1
+        },
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 10,
+          "limit": 0,
+          "formula": 2,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a little better.",
+        "cast_on_other": " feels a little better.",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 74006,
+      "name": "Wild Spirit",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 12,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 238,
+      "name": "Sense Animals",
+      "icon": 76,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Provides you with a mystical sense, pointing you towards the nearest animal.",
+      "description_template": "Provides you with a mystical sense, pointing you towards the nearest animal.",
+      "mana": 5,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 2
+        },
+        {
+          "class": "Shaman",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 54,
+          "effect": "SpinTarget",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 2
+    },
+    {
+      "id": 225,
+      "name": "Endure Cold",
+      "icon": 57,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away cold for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away cold for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Necromancer",
+          "level": 3
+        },
+        {
+          "class": "Beastlord",
+          "level": 3
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 10
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Ranger",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 47,
+          "effect": "ResistCold",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from cold.",
+        "cast_on_other": " is protected from cold.",
+        "wears_off": "Your endurance to cold fades."
+      },
+      "level": 3
+    },
+    {
+      "id": 213,
+      "name": "Cure Disease",
+      "icon": 41,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's immune system, curing minor diseases.",
+      "description_template": "Cleanses your target's immune system, curing minor diseases.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 4
+        },
+        {
+          "class": "Paladin",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 13
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 22
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 4
+    },
+    {
+      "id": 74007,
+      "name": "Tame Spirit",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 25,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 4
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 4
+    },
+    {
+      "id": 201,
+      "name": "Flash of Light",
+      "icon": 23,
+      "spell_type": "Detrimental",
+      "skill": "Divination",
+      "description": "Creates a bright flash of light, temporarily blinding your target.",
+      "description_template": "Creates a bright flash of light, temporarily blinding your target.",
+      "mana": 12,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.0,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Paladin",
+          "level": 2
+        },
+        {
+          "class": "Beastlord",
+          "level": 5
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 20,
+          "effect": "Blind",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You are blinded by a flash of light.",
+        "cast_on_other": " is blinded by a flash of light.",
+        "wears_off": "Your sight returns."
+      },
+      "level": 5
+    },
+    {
+      "id": 267,
+      "name": "Inner Fire",
+      "icon": 130,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Increases your target's inner strength, providing increased hit points and armor class for 27 min.",
+      "description_template": "Increases your target's inner strength, providing increased hit points and armor class for %z.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 10
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel your body pulse with energy.",
+        "cast_on_other": "'s body pulses with energy.",
+        "wears_off": "The inner fire fades."
+      },
+      "level": 7
+    },
+    {
+      "id": 2612,
+      "name": "Spirit of Sharik",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 8
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 8
+    },
+    {
+      "id": 224,
+      "name": "Endure Fire",
+      "icon": 52,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away fire for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away fire for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 5
+        },
+        {
+          "class": "Cleric",
+          "level": 8
+        },
+        {
+          "class": "Ranger",
+          "level": 9
+        },
+        {
+          "class": "Beastlord",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 46,
+          "effect": "ResistFire",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from fire.",
+        "cast_on_other": " is protected from fire.",
+        "wears_off": "Your endurance to fire fades."
+      },
+      "level": 9
+    },
+    {
+      "id": 2611,
+      "name": "Sharik's Replenishing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Restores your warder's health, healing between 41 and 55 hit points, as well as curing them of diseases, poisons, and curses.",
+      "description_template": "Restores your warder's health, healing between #1 and @1 hit points, as well as curing them of diseases, poisons, and curses.",
+      "mana": 26,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 9
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 41,
+          "limit": 0,
+          "formula": 1,
+          "max": 55
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " feels better.",
+        "wears_off": ""
+      },
+      "level": 9
+    },
+    {
+      "id": 274,
+      "name": "Scale Skin",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Causes your target to grow hard scales around their body, increasing their armor class for 27 min.  Consumes snake scales when cast.",
+      "description_template": "Causes your target to grow hard scales around their body, increasing their armor class for %z.  Consumes snake scales when cast.",
+      "mana": 25,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 3
+        },
+        {
+          "class": "Beastlord",
+          "level": 10
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 11,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You grow scales.",
+        "cast_on_other": " grows scales.",
+        "wears_off": "You shed your scales."
+      },
+      "level": 10
+    },
+    {
+      "id": 271,
+      "name": "Fleeting Fury",
+      "icon": 16,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Fills your target with a fleeting fury, increasing their strength, dexterity, and armor class for 18s.",
+      "description_template": "Fills your target with a fleeting fury, increasing their strength, dexterity, and armor class for %z.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 4.0,
+      "duration": "18s",
+      "duration_ticks": 3,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 11
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You simmer with fury.",
+        "cast_on_other": " simmers with fury.",
+        "wears_off": "Your fury fades."
+      },
+      "level": 11
+    },
+    {
+      "id": 2068,
+      "name": "Blast of Frost",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Blasts your target with frost, causing between 71 and 71 damage. Targets up to level 55 will be momentarily stunned, interrupting their spellcasting.",
+      "description_template": "Blasts your target with frost, causing between #1 and @1 damage. Targets up to level @2 will be momentarily stunned, interrupting their spellcasting.",
+      "mana": 40,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 12
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -71,
+          "limit": 0,
+          "formula": 100,
+          "max": 71
+        },
+        {
+          "slot": 2,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You stagger as spirits of frost slam against you.",
+        "cast_on_other": " staggers as spirits of frost slam against them.",
+        "wears_off": ""
+      },
+      "level": 12
+    },
+    {
+      "id": 203,
+      "name": "Cure Poison",
+      "icon": 42,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Removes toxin from your target's system, curing them of minor poisons.",
+      "description_template": "Removes toxin from your target's system, curing them of minor poisons.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 2
+        },
+        {
+          "class": "Paladin",
+          "level": 5
+        },
+        {
+          "class": "Druid",
+          "level": 5
+        },
+        {
+          "class": "Ranger",
+          "level": 13
+        },
+        {
+          "class": "Beastlord",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 13
+    },
+    {
+      "id": 2635,
+      "name": "Spirit of Lightning",
+      "icon": 2001,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the power of a great spirit, increasing their dexterity by 75 and giving them a chance to perform *2720%N, a {44}1 attack.",
+      "description_template": "Fills your warder with the power of a great spirit, increasing their dexterity by #2 and giving them a chance to perform *#1%N, a {44}@1 attack.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "40 min",
+      "duration_ticks": 400,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 13
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2720,
+          "limit": 150,
+          "formula": 100,
+          "max": 1
+        },
+        {
+          "slot": 2,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " is imbued with the spirit of lightning.",
+        "wears_off": ""
+      },
+      "level": 13
+    },
+    {
+      "id": 17,
+      "name": "Light Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends light wounds, healing between 35 and 65 hit points.",
+      "description_template": "Mends light wounds, healing between #1 and @1 hit points.",
+      "mana": 28,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 4
+        },
+        {
+          "class": "Druid",
+          "level": 9
+        },
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Paladin",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 14
+        },
+        {
+          "class": "Ranger",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 35,
+          "limit": 0,
+          "formula": 3,
+          "max": 65
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel better.",
+        "cast_on_other": " feels better.",
+        "wears_off": ""
+      },
+      "level": 14
+    },
+    {
+      "id": 75,
+      "name": "Sicken",
+      "icon": 41,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Sickens your target with a fever, causing 8 damage initially and 1 damage every six seconds for 1 min 24s.",
+      "description_template": "Sickens your target with a fever, causing #3 damage initially and #2 damage every six seconds for %z.",
+      "mana": 11,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "1 min 24s",
+      "duration_ticks": 14,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 4
+        },
+        {
+          "class": "Beastlord",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 101,
+          "max": 11
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 8
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel feverish.",
+        "cast_on_other": " sweats and shivers, looking feverish.",
+        "wears_off": "Your fever has broken."
+      },
+      "level": 14
+    },
+    {
+      "id": 40,
+      "name": "Strengthen",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Increases your target's strength for 27 min.",
+      "description_template": "Increases your target's strength for %z.",
+      "mana": 10,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 1
+        },
+        {
+          "class": "Enchanter",
+          "level": 1
+        },
+        {
+          "class": "Beastlord",
+          "level": 14
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 4,
+          "limit": 0,
+          "formula": 102,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel stronger.",
+        "cast_on_other": " looks stronger.",
+        "wears_off": "Your strength fades."
+      },
+      "level": 14
+    },
+    {
+      "id": 2613,
+      "name": "Keshuval's Rejuvenation",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Restores your warder's health, healing between 97 and 149 hit points, as well as curing them of diseases, poisons, and curses.",
+      "description_template": "Restores your warder's health, healing between #1 and @1 hit points, as well as curing them of diseases, poisons, and curses.",
+      "mana": 61,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 97,
+          "limit": 0,
+          "formula": 2,
+          "max": 149
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 15
+    },
+    {
+      "id": 2633,
+      "name": "Spirit of Khaliz",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 75,
+      "range": 0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 15
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 15
+    },
+    {
+      "id": 276,
+      "name": "Serpent Sight",
+      "icon": 86,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Fills your target's eyes with the sight of the serpent, granting them improved night vision.",
+      "description_template": "Fills your target's eyes with the sight of the serpent, granting them improved night vision.",
+      "mana": 30,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 6
+        },
+        {
+          "class": "Enchanter",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 16
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 65,
+          "effect": "VoiceGraft",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your eyes tingle.",
+        "cast_on_other": "'s eyes glow red.",
+        "wears_off": "Your infravision fades."
+      },
+      "level": 16
+    },
+    {
+      "id": 279,
+      "name": "Spirit of Bear",
+      "icon": 10,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Fills your target with the spirit of the bear, increasing their stamina for 36 min.",
+      "description_template": "Fills your target with the spirit of the bear, increasing their stamina for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 6
+        },
+        {
+          "class": "Beastlord",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 7,
+          "effect": "STA",
+          "base": 8,
+          "limit": 0,
+          "formula": 101,
+          "max": 15
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of bear enter you.",
+        "cast_on_other": " is surrounded by a brief ursine aura.",
+        "wears_off": "The spirit of bear leaves you."
+      },
+      "level": 17
+    },
+    {
+      "id": 211,
+      "name": "Summon Drink",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Focuses mana into a globe of pure drinking water.",
+      "description_template": "Focuses mana into a globe of pure drinking water.",
+      "mana": 10,
+      "range": 0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Magician",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 2
+        },
+        {
+          "class": "Cleric",
+          "level": 3
+        },
+        {
+          "class": "Druid",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 17
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 13079,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 17
+    },
+    {
+      "id": 227,
+      "name": "Endure Poison",
+      "icon": 61,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away poison for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away poison for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 6
+        },
+        {
+          "class": "Shaman",
+          "level": 11
+        },
+        {
+          "class": "Beastlord",
+          "level": 18
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "effect": "ResistPoison",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from poison.",
+        "cast_on_other": " is protected from poison.",
+        "wears_off": "Your endurance to poison fades."
+      },
+      "level": 18
+    },
+    {
+      "id": 2636,
+      "name": "Spirit of the Blizzard",
+      "icon": 2001,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the power of a great spirit, increasing their dexterity by 75 and giving them a chance to perform *2721%N, a {44}3 attack.",
+      "description_template": "Fills your warder with the power of a great spirit, increasing their dexterity by #2 and giving them a chance to perform *#1%N, a {44}@1 attack.",
+      "mana": 60,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "42 min",
+      "duration_ticks": 420,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2721,
+          "limit": 150,
+          "formula": 100,
+          "max": 3
+        },
+        {
+          "slot": 2,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " is imbued with the spirit of an ancient blizzard.",
+        "wears_off": ""
+      },
+      "level": 18
+    },
+    {
+      "id": 277,
+      "name": "Tainted Breath",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Fills your target's blood with poison, causing 10 damage initially and between 10 and 22 damage every six seconds for 42s.",
+      "description_template": "Fills your target's blood with poison, causing #2 damage initially and between #3 and @3 damage every six seconds for %z.",
+      "mana": 58,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 8
+        },
+        {
+          "class": "Beastlord",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": 5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 22
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been poisoned.",
+        "cast_on_other": " has been poisoned.",
+        "wears_off": "You are no longer poisoned."
+      },
+      "level": 19
+    },
+    {
+      "id": 3583,
+      "name": "Tiny Companion",
+      "icon": 108,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Shrinks your pet, allowing it better mobility in tight quarters.",
+      "description_template": "Shrinks your pet, allowing it better mobility in tight quarters.",
+      "mana": 50,
+      "range": 200.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 16
+        },
+        {
+          "class": "Druid",
+          "level": 17
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 19
+        },
+        {
+          "class": "Necromancer",
+          "level": 19
+        },
+        {
+          "class": "Magician",
+          "level": 19
+        },
+        {
+          "class": "Enchanter",
+          "level": 19
+        },
+        {
+          "class": "Beastlord",
+          "level": 19
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 298,
+          "effect": "GiantClick",
+          "base": 50,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel smaller.",
+        "cast_on_other": " shrinks.",
+        "wears_off": "You return to normal height."
+      },
+      "level": 19
+    },
+    {
+      "id": 270,
+      "name": "Drowsy",
+      "icon": 17,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Inflicts your target with a drowsy fever, slowing their attack rate for 3 min 30s.",
+      "description_template": "Inflicts your target with a drowsy fever, slowing their attack rate for %z.",
+      "mana": 20,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "3 min 30s",
+      "duration_ticks": 35,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 5
+        },
+        {
+          "class": "Beastlord",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 90,
+          "limit": 0,
+          "formula": 109,
+          "max": 75
+        },
+        {
+          "slot": 3,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel drowsy.",
+        "cast_on_other": " yawns.",
+        "wears_off": "You feel less drowsy."
+      },
+      "level": 20
+    },
+    {
+      "id": 2614,
+      "name": "Spirit of Keshuval",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 100,
+      "range": 0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 21
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 21
+    },
+    {
+      "id": 226,
+      "name": "Endure Disease",
+      "icon": 65,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away disease for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away disease for %z.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 8
+        },
+        {
+          "class": "Cleric",
+          "level": 11
+        },
+        {
+          "class": "Necromancer",
+          "level": 11
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Beastlord",
+          "level": 22
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 26
+        },
+        {
+          "class": "Paladin",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "effect": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from disease.",
+        "cast_on_other": " is protected from disease.",
+        "wears_off": "Your endurance to disease fades."
+      },
+      "level": 22
+    },
+    {
+      "id": 74000,
+      "name": "Frost Dagger",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Hurls a frost dagger at your target, causing between 136 and 136 damage. Targets up to level 55 will be momentarily stunned, interrupting their spellcasting.",
+      "description_template": "Hurls a frost dagger at your target, causing between #1 and @1 damage. Targets up to level @2 will be momentarily stunned, interrupting their spellcasting.",
+      "mana": 68,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -136,
+          "limit": 0,
+          "formula": 100,
+          "max": 136
+        },
+        {
+          "slot": 2,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You stagger as a dagger of frost slams into you.",
+        "cast_on_other": " staggers as a dagger of frost slams into them.",
+        "wears_off": ""
+      },
+      "level": 23
+    },
+    {
+      "id": 345,
+      "name": "Shrink",
+      "icon": 108,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Shrinks your target, allowing them greater mobility in tight quarters.",
+      "description_template": "Shrinks your target, allowing them greater mobility in tight quarters.",
+      "mana": 50,
+      "range": 200.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 15
+        },
+        {
+          "class": "Beastlord",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 89,
+          "effect": "SE #89",
+          "base": 66,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel smaller.",
+        "cast_on_other": " shrinks.",
+        "wears_off": "You return to normal height."
+      },
+      "level": 23
+    },
+    {
+      "id": 12,
+      "name": "Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends moderate wounds, healing between 95 and 175 hit points.",
+      "description_template": "Mends moderate wounds, healing between #1 and @1 hit points.",
+      "mana": 65,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 10
+        },
+        {
+          "class": "Druid",
+          "level": 19
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 95,
+          "limit": 0,
+          "formula": 4,
+          "max": 175
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 24
+    },
+    {
+      "id": 278,
+      "name": "Spirit of Wolf",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your target with the spirit of the wolf, increasing their movement speed for 36 min.",
+      "description_template": "Infuses your target with the spirit of the wolf, increasing their movement speed for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 9
+        },
+        {
+          "class": "Druid",
+          "level": 10
+        },
+        {
+          "class": "Beastlord",
+          "level": 24
+        },
+        {
+          "class": "Ranger",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 101,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of wolf enter you.",
+        "cast_on_other": " is surrounded by a brief lupine aura.",
+        "wears_off": "The spirit of wolf leaves you."
+      },
+      "level": 24
+    },
+    {
+      "id": 86,
+      "name": "Enduring Breath",
+      "icon": 20,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Magically fills your lungs with air, removing your need to breathe for 27 min.  Consumes a handful of fish scales to cast.",
+      "description_template": "Magically fills your lungs with air, removing your need to breathe for %z.  Consumes a handful of fish scales to cast.",
+      "mana": 35,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 6
+        },
+        {
+          "class": "Shaman",
+          "level": 12
+        },
+        {
+          "class": "Enchanter",
+          "level": 12
+        },
+        {
+          "class": "Ranger",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 14,
+          "effect": "WaterBreathing",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel no need to breathe.",
+        "cast_on_other": " doesn't seem to be breathing anymore.",
+        "wears_off": "You resume breathing."
+      },
+      "level": 25
+    },
+    {
+      "id": 282,
+      "name": "Spirit Strike",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Creates a rift of bitter cold, causing between 58 and 78 damage to your target.",
+      "description_template": "Creates a rift of bitter cold, causing between #1 and @1 damage to your target.",
+      "mana": 44,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 14
+        },
+        {
+          "class": "Beastlord",
+          "level": 26
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -58,
+          "limit": 0,
+          "formula": 102,
+          "max": 78
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You stagger as spirits of frost slam against you.",
+        "cast_on_other": " staggers as spirits of frost slam against them.",
+        "wears_off": ""
+      },
+      "level": 26
+    },
+    {
+      "id": 283,
+      "name": "Turtle Skin",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Causes your target's skin to grow as hard as a turtle's shell, increasing their armor class for 36 min.",
+      "description_template": "Causes your target's skin to grow as hard as a turtle's shell, increasing their armor class for %z.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 7.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 11
+        },
+        {
+          "class": "Beastlord",
+          "level": 26
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 17,
+          "limit": 0,
+          "formula": 102,
+          "max": 35
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your skin becomes as hard as turtle shell.",
+        "cast_on_other": "'s skin looks greener.",
+        "wears_off": "Your skin returns to normal."
+      },
+      "level": 26
+    },
+    {
+      "id": 2615,
+      "name": "Herikol's Soothing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Restores your warder's health, healing between 193 and 298 hit points, as well as curing them of diseases, poisons, and curses.",
+      "description_template": "Restores your warder's health, healing between #1 and @1 hit points, as well as curing them of diseases, poisons, and curses.",
+      "mana": 108,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 27
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 193,
+          "limit": 0,
+          "formula": 3,
+          "max": 298
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 27
+    },
+    {
+      "id": 2637,
+      "name": "Spirit of Inferno",
+      "icon": 2001,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the power of a great spirit, increasing their dexterity by 75 and giving them a chance to perform *2722%N, a {44}2 attack.",
+      "description_template": "Fills your warder with the power of a great spirit, increasing their dexterity by #2 and giving them a chance to perform *#1%N, a {44}@1 attack.",
+      "mana": 70,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "44 min",
+      "duration_ticks": 440,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2722,
+          "limit": 150,
+          "formula": 100,
+          "max": 2
+        },
+        {
+          "slot": 2,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " is imbued with the spirit of a blazing inferno.",
+        "wears_off": ""
+      },
+      "level": 28
+    },
+    {
+      "id": 147,
+      "name": "Spirit Strength",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target's body with spiritual power, increasing their strength for 36 min.",
+      "description_template": "Fills your target's body with spiritual power, increasing their strength for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 18
+        },
+        {
+          "class": "Beastlord",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 7,
+          "limit": 0,
+          "formula": 101,
+          "max": 18
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel stronger.",
+        "cast_on_other": " looks stronger.",
+        "wears_off": "Your strength fades."
+      },
+      "level": 28
+    },
+    {
+      "id": 79,
+      "name": "Spirit Sight",
+      "icon": 19,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Allows your target to perceive the spirit realm, causing normally invisible creatures to become visible to their eyes.",
+      "description_template": "Allows your target to perceive the spirit realm, causing normally invisible creatures to become visible to their eyes.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 7
+        },
+        {
+          "class": "Beastlord",
+          "level": 29
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "effect": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your eyes tingle.",
+        "cast_on_other": "'s eyes tingle.",
+        "wears_off": "Your eyes stop tingling."
+      },
+      "level": 29
+    },
+    {
+      "id": 50,
+      "name": "Summon Food",
+      "icon": 37,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Focuses mana into an edible loaf of black bread.",
+      "description_template": "Focuses mana into an edible loaf of black bread.",
+      "mana": 10,
+      "range": 0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Magician",
+          "level": 1
+        },
+        {
+          "class": "Shaman",
+          "level": 6
+        },
+        {
+          "class": "Cleric",
+          "level": 8
+        },
+        {
+          "class": "Druid",
+          "level": 11
+        },
+        {
+          "class": "Beastlord",
+          "level": 29
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "SummonItem",
+          "base": 13078,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 29
+    },
+    {
+      "id": 2616,
+      "name": "Spirit of Herikol",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 150,
+      "range": 0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 30
+    },
+    {
+      "id": 1285,
+      "name": "Summon Companion",
+      "icon": 120,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Summons your pet to your current location.",
+      "description_template": "Summons your pet to your current location.",
+      "mana": 50,
+      "range": 0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 31
+        },
+        {
+          "class": "Magician",
+          "level": 36
+        },
+        {
+          "class": "Shaman",
+          "level": 40
+        },
+        {
+          "class": "Necromancer",
+          "level": 40
+        },
+        {
+          "class": "Druid",
+          "level": 41
+        },
+        {
+          "class": "Enchanter",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 103,
+          "effect": "SummonSkeleton",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You summon your companion to your side.",
+        "cast_on_other": " summons a companion to their side.",
+        "wears_off": ""
+      },
+      "level": 31
+    },
+    {
+      "id": 261,
+      "name": "Levitate",
+      "icon": 80,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Forms a cloud of dense air around your feet, allowing you to float slightly off the ground for up to 20 min 30s. Consumes a bat wing when cast.",
+      "description_template": "Forms a cloud of dense air around your feet, allowing you to float slightly off the ground for up to %z. Consumes a bat wing when cast.",
+      "mana": 30,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "20 min 30s",
+      "duration_ticks": 205,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 10
+        },
+        {
+          "class": "Druid",
+          "level": 14
+        },
+        {
+          "class": "Enchanter",
+          "level": 15
+        },
+        {
+          "class": "Wizard",
+          "level": 22
+        },
+        {
+          "class": "Beastlord",
+          "level": 32
+        },
+        {
+          "class": "Ranger",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 57,
+          "effect": "EyeOfZomm",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your feet leave the ground.",
+        "cast_on_other": " floats into the air.",
+        "wears_off": "You can no longer levitate."
+      },
+      "level": 32
+    },
+    {
+      "id": 3568,
+      "name": "Ice Spear",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Strikes your target with an ice spear, causing between 207 and 207 damage. Targets up to level 55 will be momentarily stunned, interrupting their spellcasting.",
+      "description_template": "Strikes your target with an ice spear, causing between #1 and @1 damage. Targets up to level @2 will be momentarily stunned, interrupting their spellcasting.",
+      "mana": 97,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 33
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -207,
+          "limit": 0,
+          "formula": 100,
+          "max": 207
+        },
+        {
+          "slot": 2,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 33
+    },
+    {
+      "id": 228,
+      "name": "Endure Magic",
+      "icon": 69,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Surrounds your target with an aura of protection, warding away magic for 27 min.",
+      "description_template": "Surrounds your target with an aura of protection, warding away magic for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "27 min",
+      "duration_ticks": 270,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 16
+        },
+        {
+          "class": "Enchanter",
+          "level": 17
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Paladin",
+          "level": 29
+        },
+        {
+          "class": "Druid",
+          "level": 34
+        },
+        {
+          "class": "Beastlord",
+          "level": 34
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "effect": "ResistMagic",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel protected from magic.",
+        "cast_on_other": " is protected from magic.",
+        "wears_off": "Your endurance to magic fades."
+      },
+      "level": 34
+    },
+    {
+      "id": 15,
+      "name": "Greater Healing",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends major wounds, healing between 140 and 350 hit points.",
+      "description_template": "Mends major wounds, healing between #1 and @1 hit points.",
+      "mana": 115,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Cleric",
+          "level": 20
+        },
+        {
+          "class": "Druid",
+          "level": 29
+        },
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Paladin",
+          "level": 30
+        },
+        {
+          "class": "Beastlord",
+          "level": 34
+        },
+        {
+          "class": "Ranger",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 140,
+          "limit": 0,
+          "formula": 7,
+          "max": 350
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 34
+    },
+    {
+      "id": 48,
+      "name": "Cancel Magic",
+      "icon": 32,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Cancels magical enchantments affecting your target.",
+      "description_template": "Cancels magical enchantments affecting your target.",
+      "mana": 30,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 7
+        },
+        {
+          "class": "Magician",
+          "level": 10
+        },
+        {
+          "class": "Wizard",
+          "level": 11
+        },
+        {
+          "class": "Cleric",
+          "level": 13
+        },
+        {
+          "class": "Necromancer",
+          "level": 15
+        },
+        {
+          "class": "Druid",
+          "level": 18
+        },
+        {
+          "class": "Shaman",
+          "level": 19
+        },
+        {
+          "class": "Ranger",
+          "level": 30
+        },
+        {
+          "class": "Paladin",
+          "level": 32
+        },
+        {
+          "class": "Beastlord",
+          "level": 35
+        },
+        {
+          "class": "Shadow Knight",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "effect": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a bit dispelled.",
+        "cast_on_other": " feels a bit dispelled.",
+        "wears_off": ""
+      },
+      "level": 35
+    },
+    {
+      "id": 434,
+      "name": "Envenomed Breath",
+      "icon": 42,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Fills your target's blood with poison, causing 21 damage initially and between 53 and 90 damage every six seconds for 42s.",
+      "description_template": "Fills your target's blood with poison, causing #2 damage initially and between #3 and @3 damage every six seconds for %z.",
+      "mana": 173,
+      "range": 200.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "42s",
+      "duration_ticks": 7,
+      "target": "Single Target",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 24
+        },
+        {
+          "class": "Beastlord",
+          "level": 35
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 79,
+          "effect": "CurrentHPPlus",
+          "base": -21,
+          "limit": 0,
+          "formula": 100,
+          "max": 21
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -53,
+          "limit": 0,
+          "formula": 102,
+          "max": 90
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been poisoned.",
+        "cast_on_other": " has been poisoned.",
+        "wears_off": "The poison has run its course."
+      },
+      "level": 35
+    },
+    {
+      "id": 2617,
+      "name": "Yekan's Recovery",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Restores your warder's health, healing between 201 and 467 hit points, as well as curing them of diseases, poisons, and curses.",
+      "description_template": "Restores your warder's health, healing between #1 and @1 hit points, as well as curing them of diseases, poisons, and curses.",
+      "mana": 159,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 201,
+          "limit": 0,
+          "formula": 4,
+          "max": 467
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel much better.",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 36
+    },
+    {
+      "id": 149,
+      "name": "Spirit of Ox",
+      "icon": 10,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target with the sprit of the ox, increasing their stamina for 45 min.",
+      "description_template": "Fills your target with the sprit of the ox, increasing their stamina for %z.",
+      "mana": 60,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "45 min",
+      "duration_ticks": 450,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 21
+        },
+        {
+          "class": "Beastlord",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 7,
+          "effect": "STA",
+          "base": 9,
+          "limit": 0,
+          "formula": 101,
+          "max": 23
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of ox enter you.",
+        "cast_on_other": " is surrounded by a brief bovine aura.",
+        "wears_off": "The spirit of ox leaves you."
+      },
+      "level": 37
+    },
+    {
+      "id": 2619,
+      "name": "Yekan's Quickening",
+      "icon": 134,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the quickening of Yekan, increasing their attack speed, strength, armor class, and attack rating.",
+      "description_template": "Fills your warder with the quickening of Yekan, increasing their attack speed, strength, armor class, and attack rating.",
+      "mana": 200,
+      "range": 100.0,
+      "cast_seconds": 6.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "60 min",
+      "duration_ticks": 600,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 37
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 25,
+          "limit": 0,
+          "formula": 101,
+          "max": 45
+        },
+        {
+          "slot": 4,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 135,
+          "limit": 0,
+          "formula": 102,
+          "max": 160
+        },
+        {
+          "slot": 5,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 101,
+          "max": 40
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " begins to move with the speed of Yekan.",
+        "wears_off": ""
+      },
+      "level": 37
+    },
+    {
+      "id": 146,
+      "name": "Spirit of Monkey",
+      "icon": 8,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target with the spirit of the monkey, increasing their dexterity for 36 min.",
+      "description_template": "Fills your target with the spirit of the monkey, increasing their dexterity for %z.",
+      "mana": 40,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 21
+        },
+        {
+          "class": "Beastlord",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 9,
+          "limit": 0,
+          "formula": 101,
+          "max": 20
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of monkey enter you.",
+        "cast_on_other": " is surrounded by a brief simian aura.",
+        "wears_off": "The spirit of monkey leaves."
+      },
+      "level": 38
+    },
+    {
+      "id": 2638,
+      "name": "Spirit of the Scorpion",
+      "icon": 2001,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the power of a great spirit, increasing their dexterity by 75 and giving them a chance to perform *2723%N, a {44}4 attack.",
+      "description_template": "Fills your warder with the power of a great spirit, increasing their dexterity by #2 and giving them a chance to perform *#1%N, a {44}@1 attack.",
+      "mana": 80,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "46 min",
+      "duration_ticks": 460,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 38
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2723,
+          "limit": 150,
+          "formula": 100,
+          "max": 4
+        },
+        {
+          "slot": 2,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " is imbued with the spirit of a scorpion.",
+        "wears_off": ""
+      },
+      "level": 38
+    },
+    {
+      "id": 4054,
+      "name": "Spirit of the Shrew",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your target with the spirit of the shrew, granting greatly improved night vision and increased movement speed for 36 min.  This spell also functions indoors.",
+      "description_template": "Infuses your target with the spirit of the shrew, granting greatly improved night vision and increased movement speed for %z.  This spell also functions indoors.",
+      "mana": 80,
+      "range": 100.0,
+      "cast_seconds": 4.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Druid",
+          "level": 30
+        },
+        {
+          "class": "Beastlord",
+          "level": 39
+        },
+        {
+          "class": "Ranger",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of shrew enter you.",
+        "cast_on_other": " begins to move more gracefully.",
+        "wears_off": "The spirit of the shrew leaves you."
+      },
+      "level": 39
+    },
+    {
+      "id": 2618,
+      "name": "Spirit of Yekan",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 200,
+      "range": 0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 39
+    },
+    {
+      "id": 3689,
+      "name": "Malaria",
+      "icon": 41,
+      "spell_type": "Detrimental",
+      "skill": "Conjuration",
+      "description": "Infects your target with a deadly plague of malaria, causing between 23 and 93 damage every six seconds for 1 min 12s.",
+      "description_template": "Infects your target with a deadly plague of malaria, causing between #2 and @2 damage every six seconds for %z.",
+      "mana": 173,
+      "range": 200.0,
+      "cast_seconds": 0.0,
+      "fizzle_seconds": 3.0,
+      "recast_seconds": 1.5,
+      "duration": "1 min 12s",
+      "duration_ticks": 12,
+      "target": "Single Target",
+      "resist": "Disease",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -23,
+          "limit": 0,
+          "formula": 102,
+          "max": 93
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You cough and choke.",
+        "cast_on_other": " coughs and chokes.",
+        "wears_off": ""
+      },
+      "level": 40
+    },
+    {
+      "id": 151,
+      "name": "Raging Strength",
+      "icon": 6,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target's body with raging power, increasing their strength for 45 min.",
+      "description_template": "Fills your target's body with raging power, increasing their strength for %z.",
+      "mana": 60,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "45 min",
+      "duration_ticks": 450,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 28
+        },
+        {
+          "class": "Beastlord",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 9,
+          "limit": 0,
+          "formula": 101,
+          "max": 26
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel stronger.",
+        "cast_on_other": " looks stronger.",
+        "wears_off": "Your strength fades."
+      },
+      "level": 41
+    },
+    {
+      "id": 2176,
+      "name": "Spiritual Light",
+      "icon": 72,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Envelops your target in an aura of spiritual light, increasing their mana and hit point regeneration.",
+      "description_template": "Envelops your target in an aura of spiritual light, increasing their mana and hit point regeneration.",
+      "mana": 200,
+      "range": 0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "45 min",
+      "duration_ticks": 450,
+      "target": "Single in Group",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 41
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 15,
+          "effect": "CurrentMana",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 3
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 3
+        }
+      ],
+      "messages": {
+        "cast_on_you": "An aura of spiritual light envelops you.",
+        "cast_on_other": " is enveloped by an aura of spiritual light.",
+        "wears_off": "The aura of light fades."
+      },
+      "level": 41
+    },
+    {
+      "id": 2178,
+      "name": "Spiritual Brawn",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your target with spiritual brawn, increasing their hit points and attack rating for 72 min.",
+      "description_template": "Fills your target with spiritual brawn, increasing their hit points and attack rating for %z.",
+      "mana": 75,
+      "range": 75.0,
+      "cast_seconds": 10.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "72 min",
+      "duration_ticks": 720,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 2,
+          "effect": "ATK",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 2,
+          "effect_id": 148,
+          "effect": "StackingHP",
+          "base": 2,
+          "limit": 1,
+          "formula": 100,
+          "max": 113
+        },
+        {
+          "slot": 3,
+          "effect_id": 148,
+          "effect": "StackingHP",
+          "base": 69,
+          "limit": 4,
+          "formula": 100,
+          "max": 1075
+        },
+        {
+          "slot": 4,
+          "effect_id": 69,
+          "effect": "CurrentHPOnce",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel imbued with spiritual brawn.",
+        "cast_on_other": " has been filled with spiritual brawn.",
+        "wears_off": "Your spiritual brawn fades."
+      },
+      "level": 42
+    },
+    {
+      "id": 42,
+      "name": "Invisibility",
+      "icon": 18,
+      "spell_type": "Beneficial",
+      "skill": "Divination",
+      "description": "Cloaks your target in a mystic veil, making them invisible to many creatures.",
+      "description_template": "Cloaks your target in a mystic veil, making them invisible to many creatures.",
+      "mana": 30,
+      "range": 100.0,
+      "cast_seconds": 5.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "20 min",
+      "duration_ticks": 200,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 4
+        },
+        {
+          "class": "Magician",
+          "level": 8
+        },
+        {
+          "class": "Wizard",
+          "level": 16
+        },
+        {
+          "class": "Shaman",
+          "level": 27
+        },
+        {
+          "class": "Beastlord",
+          "level": 43
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "effect": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You vanish.",
+        "cast_on_other": " fades away.",
+        "wears_off": "You appear."
+      },
+      "level": 43
+    },
+    {
+      "id": 162,
+      "name": "Listless Power",
+      "icon": 50,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Saps your target's power, decreasing their agility, strength, and armor class for 6 min 30s.",
+      "description_template": "Saps your target's power, decreasing their agility, strength, and armor class for %z.",
+      "mana": 90,
+      "range": 200.0,
+      "cast_seconds": 2.75,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "6 min 30s",
+      "duration_ticks": 65,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 25
+        },
+        {
+          "class": "Shaman",
+          "level": 29
+        },
+        {
+          "class": "Beastlord",
+          "level": 44
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 35
+        },
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 35
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 60
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel frail.",
+        "cast_on_other": " looks frail.",
+        "wears_off": "You feel your strength return."
+      },
+      "level": 44
+    },
+    {
+      "id": 4055,
+      "name": "Pack Shrew",
+      "icon": 4,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Infuses your group with the spirit of the shrew, granting greatly improved night vision and increased movement speed for 36 min.  This spell also functions indoors.",
+      "description_template": "Infuses your group with the spirit of the shrew, granting greatly improved night vision and increased movement speed for %z.  This spell also functions indoors.",
+      "mana": 320,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Group v1",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 34
+        },
+        {
+          "class": "Druid",
+          "level": 35
+        },
+        {
+          "class": "Beastlord",
+          "level": 44
+        },
+        {
+          "class": "Ranger",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 66,
+          "effect": "Sentinel",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "effect": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel the spirit of shrew enter you.",
+        "cast_on_other": " begins to move more gracefully.",
+        "wears_off": "The spirit of the shrew leaves you."
+      },
+      "level": 44
+    },
+    {
+      "id": 96,
+      "name": "Counteract Disease",
+      "icon": 41,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cleanses your target's immune system, curing them of moderate diseases.",
+      "description_template": "Cleanses your target's immune system, curing them of moderate diseases.",
+      "mana": 50,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 22
+        },
+        {
+          "class": "Cleric",
+          "level": 28
+        },
+        {
+          "class": "Druid",
+          "level": 28
+        },
+        {
+          "class": "Necromancer",
+          "level": 36
+        },
+        {
+          "class": "Beastlord",
+          "level": 45
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 45
+    },
+    {
+      "id": 2621,
+      "name": "Spirit of Kashek",
+      "icon": 144,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Summons a feral warder to aid you in battle.",
+      "description_template": "Summons a feral warder to aid you in battle.",
+      "mana": 250,
+      "range": 0,
+      "cast_seconds": 7.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "effect": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 46
+    },
+    {
+      "id": 2639,
+      "name": "Spirit of Vermin",
+      "icon": 2001,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Fills your warder with the power of a great spirit, increasing their dexterity by 75 and giving them a chance to perform *2724%N, a {44}5 attack.",
+      "description_template": "Fills your warder with the power of a great spirit, increasing their dexterity by #2 and giving them a chance to perform *#1%N, a {44}@1 attack.",
+      "mana": 90,
+      "range": 100.0,
+      "cast_seconds": 3.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "48 min",
+      "duration_ticks": 480,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 46
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "effect": "Charisma",
+          "base": 2724,
+          "limit": 150,
+          "formula": 100,
+          "max": 5
+        },
+        {
+          "slot": 2,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 75
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " is imbued with the spirit of vermin.",
+        "wears_off": ""
+      },
+      "level": 46
+    },
+    {
+      "id": 308,
+      "name": "Frenzy",
+      "icon": 49,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Sends you into a frenzy, increasing your strength, dexterity, and armor class.",
+      "description_template": "Sends you into a frenzy, increasing your strength, dexterity, and armor class.",
+      "mana": 35,
+      "range": 0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 30.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 16
+        },
+        {
+          "class": "Beastlord",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 15,
+          "limit": 0,
+          "formula": 101,
+          "max": 35
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": 10,
+          "limit": 0,
+          "formula": 101,
+          "max": 25
+        },
+        {
+          "slot": 6,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": 15,
+          "limit": 0,
+          "formula": 109,
+          "max": 28
+        },
+        {
+          "slot": 7,
+          "effect_id": 5,
+          "effect": "DEX",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 25
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You go berserk.",
+        "cast_on_other": " goes berserk.",
+        "wears_off": "Your frenzy fades."
+      },
+      "level": 47
+    },
+    {
+      "id": 3569,
+      "name": "Frost Shard",
+      "icon": 56,
+      "spell_type": "Detrimental",
+      "skill": "Evocation",
+      "description": "Strikes your target with a frost shard, causing between 281 and 281 damage. Targets up to level 55 will be momentarily stunned, interrupting their spellcasting.",
+      "description_template": "Strikes your target with a frost shard, causing between #1 and @1 damage. Targets up to level @2 will be momentarily stunned, interrupting their spellcasting.",
+      "mana": 119,
+      "range": 200.0,
+      "cast_seconds": 0.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 10.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Target",
+      "resist": "Cold",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 47
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": -281,
+          "limit": 0,
+          "formula": 100,
+          "max": 281
+        },
+        {
+          "slot": 2,
+          "effect_id": 21,
+          "effect": "Stun",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 55
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You stagger as a frost shard slams against you.",
+        "cast_on_other": " staggers as a frost shard slams against them.",
+        "wears_off": ""
+      },
+      "level": 47
+    },
+    {
+      "id": 649,
+      "name": "Protect",
+      "icon": 151,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Places a spiritual protection on your target, increasing their armor class for 36 min.",
+      "description_template": "Places a spiritual protection on your target, increasing their armor class for %z.",
+      "mana": 75,
+      "range": 100.0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 20
+        },
+        {
+          "class": "Beastlord",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "effect": "ArmorClass",
+          "base": 17,
+          "limit": 0,
+          "formula": 102,
+          "max": 45
+        }
+      ],
+      "messages": {
+        "cast_on_you": "A protective aura settles over you.",
+        "cast_on_other": " is covered in a protective aura.",
+        "wears_off": "Your protection fades."
+      },
+      "level": 48
+    },
+    {
+      "id": 6874,
+      "name": "Spirit Salve",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Mends your target's wounds, healing between 326 and 456 hit points.",
+      "description_template": "Mends your target's wounds, healing between #1 and @1 hit points.",
+      "mana": 181,
+      "range": 100.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Shaman",
+          "level": 40
+        },
+        {
+          "class": "Beastlord",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 326,
+          "limit": 0,
+          "formula": 104,
+          "max": 456
+        }
+      ],
+      "messages": {
+        "cast_on_you": "Your wounds heal.",
+        "cast_on_other": "'s wounds heal.",
+        "wears_off": ""
+      },
+      "level": 48
+    },
+    {
+      "id": 2620,
+      "name": "Vigor of Zehkes",
+      "icon": 99,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Restores your warder's health, healing between 431 and 671 hit points, as well as curing them of diseases, poisons, and curses.",
+      "description_template": "Restores your warder's health, healing between #1 and @1 hit points, as well as curing them of diseases, poisons, and curses.",
+      "mana": 206,
+      "range": 100.0,
+      "cast_seconds": 3.75,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "effect": "CurrentHP",
+          "base": 431,
+          "limit": 0,
+          "formula": 5,
+          "max": 671
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "effect": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "effect": "CombatStability",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": " feels much better.",
+        "wears_off": ""
+      },
+      "level": 49
+    },
+    {
+      "id": 4079,
+      "name": "Ward of Calliav",
+      "icon": 46,
+      "spell_type": "Beneficial",
+      "skill": "Abjuration",
+      "description": "Places the Ward of Calliav on your pet, absorbing up to 11747 damage from the next 1 melee strikes or direct damage spells that hit it.",
+      "description_template": "Places the Ward of Calliav on your pet, absorbing up to @1 damage from the next #1 melee strikes or direct damage spells that hit it.",
+      "mana": 200,
+      "range": 100.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 36.0,
+      "duration": "36 min",
+      "duration_ticks": 360,
+      "target": "Pet",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Magician",
+          "level": 46
+        },
+        {
+          "class": "Necromancer",
+          "level": 49
+        },
+        {
+          "class": "Beastlord",
+          "level": 49
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 163,
+          "effect": "CritHits",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 11747
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You have been warded from harm.",
+        "cast_on_other": " has been surrounded in the ward of Calliav.",
+        "wears_off": "The ward fades away."
+      },
+      "level": 49
+    },
+    {
+      "id": 2634,
+      "name": "Sha's Lethargy",
+      "icon": 17,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Causes your target to fall into a lethargic state, slowing their attack speed for 3 min 30s.",
+      "description_template": "Causes your target to fall into a lethargic state, slowing their attack speed for %z.",
+      "mana": 45,
+      "range": 200.0,
+      "cast_seconds": 3.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 5.0,
+      "duration": "3 min 30s",
+      "duration_ticks": 35,
+      "target": "Single Target",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Beastlord",
+          "level": 50
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 11,
+          "effect": "AttackSpeed",
+          "base": 70,
+          "limit": 0,
+          "formula": 100,
+          "max": 70
+        },
+        {
+          "slot": 3,
+          "effect_id": 35,
+          "effect": "DiseaseCounter",
+          "base": 12,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel lethargic.",
+        "cast_on_other": " feels lethargic.",
+        "wears_off": "You are no longer lethargic."
+      },
+      "level": 50
+    }
+  ]
+}
