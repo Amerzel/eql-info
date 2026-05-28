@@ -167,10 +167,11 @@ SCALAR_SCHEMA = [
     (167, "eql_reserved_2", int, 1),
     (168, "eql_reserved_3", int, 1),
     (169, "eql_reserved_4", int, 1),
-    # Added by the 2026-05 patch: a binary flag (0 for ~99.9% of spells, 1 for
-    # 55). Meaning undetermined. Appended just before the effects blob, which
-    # shifted the blob from field 170 → 171.
-    (170, "eql_new_10", int, 1),
+    # Added by the 2026-05 patch for the "Rituals" feature: 1 = this portal-type
+    # spell can be cast as a Ritual (from the Actions window, bypassing class/
+    # level if any unlocked class meets the requirement). Set on 55 portal/
+    # travel spells. Appended just before the effects blob, shifting it 170→171.
+    (170, "ritual_eligible", int, 1),
 ]
 
 

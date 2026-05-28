@@ -184,7 +184,8 @@ def write_field_catalog():
         },
         "undecoded": {
             "deities": "16-slot raw array; no deity-name table available — emitted as integers.",
-            "eql_new_1..4, eql_new_10": "EQL-custom fields, meaning undetermined — emitted verbatim.",
+            "eql_new_1..4": "EQL-custom fields, meaning undetermined — emitted verbatim.",
+            "ritual_eligible": "col 170: 1 = portal-type spell castable as a Ritual (Rituals feature, 2026-05 patch); set on 55 travel spells.",
             "eql_pet_template": "col 166: pet template id (177700=Mage, 177701=Necro, 177702=Ench pets); 0 if not a pet summon.",
             "eql_reserved_1..4": "cols 165, 167-169: EQL-only, constant across observed spells (0, -1, -1, -1).",
             "classes": "16-slot raw min-level array (255 = N/A); see class_availability for the decoded form.",
