@@ -1,0 +1,213 @@
+# Spells with no wiki page (alias-corrected).
+# 210 truly missing out of 1042 verified.
+
+Amplification
+Aria of Asceticism
+Armor of the Faithful
+Auspice
+Blessing of Faith
+Blessing of Piety
+Blessing of Temperance
+Blessing of the Knight
+Blessing of the Lord Commander
+Blessing of the Page
+Blessing of the Squire
+Blood of Pain
+Bounce
+Brell's Steadfast Aegis
+Burning Arrow
+Calming Visage
+Cancelling of Life
+Cease
+Celestial Echo
+Celestial Health
+Celestial Remedy
+Cessation of Life
+Circle of Stonebrunt
+Dark Soul
+Dark Temptation
+Desist
+Despair
+Divine Vigor
+Echo of Health
+Echoing Light
+Elnerick's Entombment of Ice
+Entrancing Lights
+Eternities Torment
+Ethereal Cleansing
+Evacuate: West Karana
+Flaming Arrow
+Focus Death
+Force Snap
+Force of Nature
+Forest's Renewal
+Form of Bleached Bone
+Form of Chilled Bone
+Frost Dagger
+Frost Shard
+Garrison's Mighty Mana Shock
+Greater Mass Imbue Fire Opal
+Grimling Gate
+Grow
+Guard of Alendar
+Guard of Vie
+Harmony of Nature
+Haunting Visage
+Hawk Eye
+Healing Light
+Healing Water
+Herikol's Soothing
+Ice Spear
+Illusion: Imp
+Illusion: Scaled Wolf
+Improved Invisibility to Undead
+Infusion of Spirit
+Insidious Retrogression
+Instrument of Nife
+Intellectual Advancement
+Intellectual Superiority
+Katta's Song of Sword Dancing
+Lesser Evacuate
+Lesser Familiar
+Lesser Succor
+Leviathan Eyes
+Magical Monologue
+Malaria
+Mana Detonation
+Mana Ignition
+Mass Clarify Mana
+Mass Crystallize Mana
+Mass Distill Mana
+Mass Enchant Clay
+Mass Enchant Electrum
+Mass Enchant Gold
+Mass Enchant Platinum
+Mass Enchant Silver
+Mass Imbue Black Pearl
+Mass Imbue Black Sapphire
+Mass Imbue Emerald
+Mass Imbue Fire Opal
+Mass Imbue Opal
+Mass Imbue Peridot
+Mass Imbue Plains Pebble
+Mass Imbue Rose Quartz
+Mass Imbue Ruby
+Mass Imbue Topaz
+Mass Purify Mana
+Mass Thicken Mana
+Minor Familiar
+Nature's Precision
+Nature's Renewal
+Negation of Life
+O`Keil's Embers
+O`Keil's Flickering Flame
+O`Keil's Levity
+Primal Remedy
+Promised Renewal
+Protection of Diamond
+Protection of Nature
+Protection of Rock
+Protection of Steel
+Protection of Wood
+Rancor
+Reanimation
+Reconstitution
+Refresh Summoning
+Remove Curse
+Renewal
+Renewing Echo
+Reparation
+Restoration
+Riftwind's Protection
+Ring of Stonebrunt
+Rizlona's Embers
+Sacred Echo
+Sacred Word
+Sanctuary
+Scream of Death
+Scream of Hate
+Scream of Pain
+Scythe of Darkness
+Selo's Accelerating Chorus
+Sermon of the Righteous
+Sha's Lethargy
+Shackle of Bone
+Shackle of Spirit
+Share Form of the Great Wolf
+Sionachie's Dreams
+Song of Sustenance
+Spear of Disease
+Spear of Pain
+Spike of Disease
+Spirit of Herikol
+Spirit of Inferno
+Spirit of Kashek
+Spirit of Keshuval
+Spirit of Vermin
+Spirit of Yekan
+Spirit of the Blizzard
+Spirit of the Scorpion
+Spiritual Brawn
+Spiritual Light
+Stonebrunt Gate
+Stonebrunt Portal
+Summon Brass Choker
+Summon Elemental Blanket
+Summon Elemental Defender
+Summon Golden Choker
+Summon Jade Bracelet
+Summon Leather Mantle
+Summon Linen Mantle
+Summon Opal Bracelet
+Summon Phantom Chain
+Summon Phantom Leather
+Summon Phantom Plate
+Summon Shiny Bauble
+Summon Silver Choker
+Summon Stone Bracelet
+Summon Tarnished Bauble
+Summon Tiny Ring
+Summon Twisted Ring
+Summon Wooden Bracelet
+Summon: Orb of Exploration
+Swarm of Pain
+Tame Spirit
+Tangling Weeds
+Tashina
+Temperance
+Terror of Darkness
+Terror of Shadows
+Thunder of Karana
+Torbas' Poison Blast
+Translocate: Stonebrunt
+Translocate: West Karana
+Tuyen's Chant of Disease
+Tuyen's Chant of Poison
+Valor of Marr
+Vengeance of the Wild
+Vigor of Zehkes
+Vision Shift
+Voice of Darkness
+Voice of Shadows
+Ward of Alendar
+Ward of Calliav
+Ward of Calrena
+Ward of Vie
+Ward of the Divine
+Wave of Life
+West Karana Gate
+West Karana Portal
+Wild Spirit
+Yekan's Quickening
+Yekan's Recovery
+Zephyr: Butcherblock
+Zephyr: Feerrott
+Zephyr: Lavastorm
+Zephyr: Misty Thicket
+Zephyr: North Karana
+Zephyr: South Ro
+Zephyr: Steamfont
+Zephyr: Stonebrunt
+Zephyr: Surefall Glade
+Zephyr: Toxxulia
+Zephyr: West Commons

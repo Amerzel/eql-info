@@ -1,0 +1,65 @@
+# Wiki rename queue.
+#
+# These wiki pages exist under shortened classic-era titles, but EQL's
+# in-game spell name is the longer canonical form. Action for the wiki
+# team: use Special:MovePage (or "Move" tab) to rename each page from the
+# current title to the canonical title. Leave a redirect from the old
+# title so external links still resolve.
+#
+# Format:  current-wiki-title | canonical-title-(matches-EQL-data)
+# Lines starting with # are comments; blank lines are ignored.
+#
+# After each rename, also remove the matching entry from
+# _wiki_name_aliases.txt (it provided a working link during the
+# transition; once the page is at the canonical title, no alias needed).
+#
+# Confirmed against the wiki API on 2026-05-22.
+
+# Druid zone-name shortenings: wiki dropped directional adjectives and
+# truncated zone names. Our data uses the full in-game zone names.
+Circle of Karana | Circle of North Karana
+Circle of Ro | Circle of South Ro
+Circle of Commons | Circle of West Commons
+Circle of Butcher | Circle of Butcherblock
+Circle of Misty | Circle of Misty Thicket
+Ring of Karana | Ring of North Karana
+Ring of Ro | Ring of South Ro
+Ring of Commons | Ring of West Commons
+Ring of Butcher | Ring of Butcherblock
+Ring of Misty | Ring of Misty Thicket
+Succor: Butcher | Succor: Butcherblock
+Succor: East | Succor: East Karana
+Succor: North | Succor: North Karana
+Succor: Ro | Succor: South Ro
+
+# Wizard / Druid shared teleports.
+Evacuate: Ro | Evacuate: South Ro
+Translocate: Ro | Translocate: North Ro
+Ro Gate | North Ro Gate
+Ro Portal | North Ro Portal
+
+# === Wizard teleports — added 2026-05-22 ===
+# Wizard zone-name shortenings: same pattern as druid (Cazic Temple→Cazic),
+# plus Faydark→Fay, Nektulos→Nek, Toxxulia→Tox, North Karana→North,
+# West Commons→West.
+Cazic Gate | Cazic Temple Gate
+Cazic Portal | Cazic Temple Portal
+Evacuate: Fay | Evacuate: Greater Faydark
+Evacuate: Nek | Evacuate: Nektulos
+Evacuate: North | Evacuate: North Karana
+Fay Gate | Greater Faydark Gate
+Fay Portal | Greater Faydark Portal
+Nek Gate | Nektulos Gate
+Nek Portal | Nektulos Portal
+North Gate | North Karana Gate
+North Portal | North Karana Portal
+Tox Gate | Toxxulia Gate
+Tox Portal | Toxxulia Portal
+Translocate: Cazic | Translocate: Cazic Temple
+Translocate: Fay | Translocate: Greater Faydark
+Translocate: Nek | Translocate: Nektulos
+Translocate: North | Translocate: North Karana
+Translocate: Tox | Translocate: Toxxulia
+Translocate: West | Translocate: West Commons
+West Gate | West Commons Gate
+West Portal | West Commons Portal
