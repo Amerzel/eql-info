@@ -10,7 +10,7 @@
   {% set icp = spell.new_icon | icon_path %}
   {% if icp %}<img src="{{ icp }}" alt="" class="icon icon-lg">{% endif %}
   <div>
-    <h1>{{ spell.name }}</h1>
+    <h1>{{ spell.name }}{% if spell.ritual_eligible %} <span class="tag tag-ritual" title="Castable as a Ritual from the Actions window (default L): bypasses class/level requirements if an unlocked class qualifies.">Ritual</span>{% endif %}</h1>
     <div class="muted">
       Spell #{{ spell.id }} ·
       {% if spell.is_discipline %}Discipline{% else %}Spell{% endif %} ·

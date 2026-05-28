@@ -179,7 +179,8 @@ CREATE TABLE spells (
   timer_id          INTEGER,
   reflectable       INTEGER,
   min_level         INTEGER,
-  teleport_zone     TEXT
+  teleport_zone     TEXT,
+  ritual_eligible   INTEGER
 );
 
 CREATE TABLE spell_classes (
@@ -305,7 +306,7 @@ def main():
             d.get("recourse_link"), d.get("eql_pet_template"),
             d.get("resist_difficulty"),
             d.get("timer_id"), d.get("reflectable"),
-            min_level, d.get("teleport_zone"),
+            min_level, d.get("teleport_zone"), d.get("ritual_eligible"),
         ))
 
         for ci, lvl in enumerate(d["classes"]):
@@ -324,7 +325,7 @@ def main():
 
     conn.executemany(
         "INSERT INTO spells VALUES "
-        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         spell_rows)
     conn.executemany(
         "INSERT INTO spell_classes (spell_id, class_index, class_name, min_level) "

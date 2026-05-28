@@ -240,7 +240,7 @@ export async function renderSpell(spellId) {
       <span>${escapeHtml(spell.name)} <span class="muted">(#${spell.id})</span></span></nav>
     <div class="spell-header">
       ${iconImg(spell.new_icon, "icon icon-lg")}
-      <div><h1>${escapeHtml(spell.name)}</h1>
+      <div><h1>${escapeHtml(spell.name)}${spell.ritual_eligible ? ' <span class="tag tag-ritual" title="Castable as a Ritual from the Actions window (default L): bypasses class/level requirements if an unlocked class qualifies.">Ritual</span>' : ""}</h1>
         <div class="muted">
           Spell #${spell.id} · ${spell.is_discipline ? "Discipline" : "Spell"}
           ${spell.spell_group ? ` · <a href="#/group/${spell.spell_group}">Spell group ${spell.spell_group}</a> (Rk.${spell.rank})` : ""}

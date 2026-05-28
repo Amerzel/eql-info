@@ -13,6 +13,7 @@
   --tag-grp: #4f5e3a;
   --tag-deb: #6c3433;
   --tag-disc: #5a4673;
+  --tag-ritual: #2f6b66;
 }
 * { box-sizing: border-box; }
 html, body { background: var(--bg); color: var(--fg); margin: 0;
@@ -100,6 +101,7 @@ img.icon-lg { width: 40px; height: 40px; border-radius: 3px; }
 .tag-grp  { background: var(--tag-grp); }
 .tag-deb  { background: var(--tag-deb); }
 .tag-disc { background: var(--tag-disc); }
+.tag-ritual { background: var(--tag-ritual); }
 
 .link-tiny { font-size: 0.85em; color: var(--muted); }
 
