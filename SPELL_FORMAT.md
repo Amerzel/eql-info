@@ -249,6 +249,78 @@ Notes:
 - Up to 41 effects observed; standard EQEmu caps at 12.
 - Effect IDs can exceed 254 (EQL extends the SE_ enumeration; e.g. 289 seen).
 
+### Effect `formula` values (per-effect value scaling)
+
+Each effect's `formula` field tells the server how to compute the actual
+applied value from `base` and `max`, usually as a function of caster level
+and (for ticking effects) elapsed duration. The result is clamped to
+`max_value` as a ceiling (or floor, if `max < base`).
+
+> **Source of truth:** `EQEmu/Server/zone/spell_effects.cpp ::
+> Mob::CalcSpellEffectValue_formula`. This documents the **classic-era /
+> EQEmu** behavior. **EQL may diverge** here — formulas are server-side
+> logic, not client data, so the only way to confirm what EQL actually does
+> with a given formula is in-game testing. Verify before relying on these
+> exact rules for EQL math. The EQEmu source itself opens with a comment
+> ("i need those formulas checked!!!!"), so even the canonical reference
+> flags some as unverified.
+
+**Linear per-level** (most static/scaling buffs):
+
+| Formula | Calculation | Per-level |
+|---|---|---|
+| `0`, `100` | `base` | static (no scaling) |
+| `1`–`99` | `base + level × formula` | +N/level (where N = formula value) |
+| `101` | `base + level / 2` | +½ per level |
+| `102` | `base + level` | **+1 per level** (Holy Armor's AC line) |
+| `103` / `104` / `105` | `base + level × N` | +2 / +3 / +4 per level |
+| `109` / `110` / `119` / `121` | `base + level / N` | +1 every 4 / 6 / 8 / 3 levels |
+| `143` | `base + 3 × level / 4` | +¾ per level |
+
+**Decrementing-per-tick** (DoTs that fade, HoTs that build — value changes
+across the spell's `buff_duration`):
+
+| Formula | Per-tick change |
+|---|---|
+| `107` / `108` | −1 / −2 per tick |
+| `120` | −5 per tick |
+| `122` ("splurt") | −12 per tick |
+| `1001`–`1998` | −(formula − 1000) per tick (generalized splurt) |
+
+**Level-threshold ramps** (effect only grows past a trigger level):
+
+| Formula | Activates at | Per-level above threshold |
+|---|---|---|
+| `111` / `112` / `113` / `114` | L16 / L24 / L34 / L44 | +6 / +8 / +10 / +15 |
+| `115`–`118` | L15 / L24 / L34 / L44 | the four Cleric "Symbol of …" buffs |
+| `124`–`132` | L50+ | +1× / 2× / 3× / 4× / 5× / 10× / 15× / 20× / 25× per level above 50 |
+| `139`–`142` | L30+ | varying rates |
+| `144` | — | L40+ Harm Touch specific |
+
+**Specials:**
+- `60` / `70`: `base / 100` (used in some stun spells)
+- `123`: random integer in `base..|max|` (random-roll damage)
+- `137`: HP-ratio scaling (Berserker desperation AA)
+- `138`: HP-threshold scaling
+- `201` / `203`: returns `max` (stacking-issue cases)
+
+**Modern Live (multiplicative, high-magnitude):**
+- `2000`–`2650`: `base × (level × (formula − 2000) + 1)`
+
+**Unknown / out-of-range:** EQL's data includes formulas beyond the EQEmu
+switch (notably `3000` ≈ 109 effects and `3500` ≈ 277 effects). EQEmu logs
+these as `"Unknown spell effect value formula"` and returns `0`. They're
+likely newer Live spell formulas; on a L50-cap server most won't matter.
+Confirming what EQL does with them is another **beta-testing** item.
+
+### Final-result clamping
+
+After the per-formula calc, the result is clamped:
+- If `max_value != 0` and the formula scales upward: `result = min(result, max_value)`
+- If `max_value < base_value` (the spell "grows downward"): `result = max(result, max_value)`
+- If `base_value < 0` and the raw result came out positive, it's inverted
+  back to negative — so damage / decrease effects keep their sign.
+
 ---
 
 ## File 2: `spells_us_str.txt`
