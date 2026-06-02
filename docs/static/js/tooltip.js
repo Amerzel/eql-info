@@ -65,8 +65,7 @@ export function prefetchSpells(spellIds) {
 
 function renderTooltip(data) {
   const { spell, effects, classes, duration, description, category } = data;
-  // new_icon is 0-indexed; our extracted PNGs are 1-indexed → look up cell N+1.
-  const padded = String((spell.new_icon || 0) + 1).padStart(4, "0");
+  const padded = String(spell.new_icon || 0).padStart(4, "0");
   const iconHtml = spell.new_icon
     ? `<img src="static/icons/icon_${padded}.png" class="tt-icon" alt="">` : "";
   const cost = spell.is_discipline

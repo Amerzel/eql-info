@@ -2,9 +2,11 @@
 """Extract spell icons from the EQL Spells*.tga spritesheets into PNGs.
 
 EQ convention: each Spells##.tga is 256x256 with a 6x6 grid of 40x40 icons
-(240x240 of useful area, padded at the bottom-right). Icon id N maps to:
-  sheet  = (N - 1) // 36 + 1   -> Spells{sheet:02d}.tga
-  local  = (N - 1) % 36
+(240x240 of useful area, padded at the bottom-right). Output filenames are
+**0-indexed to match the spell file's `new_icon` field directly**, so a spell
+with new_icon=N uses icon_NNNN.png with no off-by-one. The math:
+  sheet  = N // 36 + 1    -> Spells{sheet:02d}.tga
+  local  = N % 36
   col, row = local % 6, local // 6
   crop box = (col*40, row*40, col*40+40, row*40+40)
 
@@ -64,7 +66,7 @@ def extract_spell_icons():
             print(f"  ERROR loading {path}: {exc}")
             continue
         for local in range(ICONS_PER_SHEET):
-            icon_id = (sheet - 1) * ICONS_PER_SHEET + local + 1
+            icon_id = (sheet - 1) * ICONS_PER_SHEET + local  # 0-indexed, matches new_icon
             col = local % ICONS_PER_ROW
             row = local // ICONS_PER_ROW
             box = (col * ICON_SIZE, row * ICON_SIZE,

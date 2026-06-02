@@ -14,9 +14,7 @@ import {
 
 function iconImg(newIcon, cls = "icon") {
   if (!newIcon || newIcon < 1) return "";
-  // Spell-file `new_icon` is 0-indexed (new_icon=0 → first cell). Our extracted
-  // PNGs are 1-indexed (icon_0001.png = first cell), so we look up cell N+1.
-  const padded = String(newIcon + 1).padStart(4, "0");
+  const padded = String(newIcon).padStart(4, "0");
   return `<img src="static/icons/icon_${padded}.png" class="${cls}" alt="">`;
 }
 

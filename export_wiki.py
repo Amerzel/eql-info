@@ -197,7 +197,7 @@ def write_index(total, per_class):
     <li><a href="icons.html">icons.html</a>
       <span class="muted">— side-by-side comparison of wiki letter vs. in-game icon, per spell, grouped by class</span></li>
     <li><a href="spell_icons.json">spell_icons.json</a>
-      <span class="muted">— id → (new_icon, cell_id, sheet, current wiki letter) for every verified spell</span></li>
+      <span class="muted">— id → (new_icon, sheet, sheet_row/col, icon_url, current wiki letter) for every verified spell</span></li>
     <li><a href="spell_icons.zip">spell_icons.zip</a>
       <span class="muted">— the 138 PNGs actually rendered in-game + a README with the naming convention (for uploading to the wiki)</span></li>
   </ul>
