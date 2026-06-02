@@ -189,6 +189,17 @@ def write_index(total, per_class):
 {rows}
   </ul>
 
+  <h2>Spell icon mapping</h2>
+  <p class="muted">EQL renders icons numerically from <code>Spells##.tga</code> sheets,
+  <em>not</em> the wiki's 22-letter Spellicon set. The wiki's <code>spellicon = X</code>
+  is a lossy approximation of the real per-spell icon.</p>
+  <ul>
+    <li><a href="icons.html">icons.html</a>
+      <span class="muted">— side-by-side comparison of wiki letter vs. in-game icon, per spell, grouped by class</span></li>
+    <li><a href="spell_icons.json">spell_icons.json</a>
+      <span class="muted">— id → (new_icon, cell_id, sheet, current wiki letter) for every verified spell</span></li>
+  </ul>
+
   <h2>What's in each spell</h2>
   <ul class="fields">
     <li><code>name</code>, <code>icon</code>, <code>spell_type</code>, <code>skill</code></li>

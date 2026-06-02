@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-28",
+  "generated": "2026-06-02",
   "notes": {
     "_about": "Stripped EQL spell data for generating eqlwiki overview (RadSpellRow2) and detail (Spellpage) pages. In-game/verified spells only.",
     "icon": "numeric spell icon; the wiki's single-letter spellicon code is a wiki convention not present in client data.",
