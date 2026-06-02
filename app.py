@@ -301,7 +301,7 @@ def api_spell(spell_id: int):
     return jsonify({
         "id": spell["id"],
         "name": spell["name"],
-        "icon": (url_for("static", filename=f"icons/icon_{spell['new_icon']:04d}.png")
+        "icon": (url_for("static", filename=f"icons/icon_{spell['new_icon'] + 1:04d}.png")
                  if spell["new_icon"] else None),
         "mana": spell["mana"],
         "endurance_cost": spell["endurance_cost"],
@@ -586,7 +586,8 @@ def _filter_skill_name(skill_id):
 def icon_path(new_icon):
     if not new_icon or new_icon < 1:
         return None
-    return url_for("static", filename=f"icons/icon_{new_icon:04d}.png")
+    # new_icon is 0-indexed in the spell file; our extracted PNGs are 1-indexed.
+    return url_for("static", filename=f"icons/icon_{new_icon + 1:04d}.png")
 
 
 @app.template_filter("ms_to_seconds")
