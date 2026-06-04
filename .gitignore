@@ -39,3 +39,7 @@ Thumbs.db
 # Local logs / scratch
 *.log
 .scratch/
+
+# Local credentials (wiki upload, etc.) — never commit
+.env
+.env.local
