@@ -114,6 +114,9 @@ export function calcSpellValue(base, formula, max, level) {
       case 124: delta = Math.max(0, level - 50); break;
       case 125: delta = 2 * Math.max(0, level - 50); break;
       case 126: delta = 3 * Math.max(0, level - 50); break;
+      // 139/140 — late-level bonus on top of base (kicks in past L30)
+      case 139: delta = level > 30 ? Math.floor((level - 30) / 2) : 0; break;
+      case 140: delta = level > 30 ? level - 30 : 0; break;
       default:  delta = 0; break;
     }
   }
@@ -219,6 +222,7 @@ export const FORMULA_TIER = {
   106: "inferred", 107: "inferred", 108: "inferred", 110: "inferred",
   111: "inferred", 112: "inferred", 113: "inferred", 114: "inferred", 115: "inferred",
   116: "inferred", 117: "inferred", 118: "inferred", 119: "inferred", 120: "inferred",
+  121: "inferred", 139: "inferred", 140: "inferred",
 };
 
 export const SPA_TIER = {
