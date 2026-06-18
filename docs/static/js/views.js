@@ -5,7 +5,7 @@ import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
   targetName, resistName, className, spaName, skillName, classSlug, displayedValue,
-  confidenceTier,
+  confidenceTier, limitValueLabel,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -226,7 +226,7 @@ export async function renderSpell(spellId) {
             <span class="muted">#${e.effect_id}</span></td>
         <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)} ${tierBadge(tier)}</td>
         <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)}</td>
-        <td>${e.limit_value}</td>
+        <td>${escapeHtml(limitValueLabel(e.effect_id, e.limit_value))}</td>
         <td>${e.formula}</td>
       </tr>`;
       }).join("")}</tbody>
@@ -350,7 +350,8 @@ export async function renderEffect(eid) {
         <td>${iconImg(r.new_icon)}</td>
         <td><a href="#/spell/${r.id}">${escapeHtml(r.name)}</a></td>
         <td>${r.slot + 1}</td>
-        <td>${r.base_value}</td><td>${r.limit_value}</td>
+        <td>${r.base_value}</td>
+        <td>${escapeHtml(limitValueLabel(eid, r.limit_value))}</td>
         <td>${r.formula}</td><td>${r.max_value}</td>
       </tr>`).join("")}</tbody>
     </table>`;

@@ -47,6 +47,24 @@ const HP_DAMAGE_EFFECTS = new Set([0, 69, 79]);
 //
 // Confirmed at L1 against in-game observations (Yaulp +10 STR / +5 AC; Courage
 // +2 AC; Strengthen +5 STR; Dexterous Aura +5 DEX; Minor Healing 12 HP).
+//
+// Mirrors Server/zone/spell_effects.cpp CalcSpellEffectValue_formula. Two
+// quirks to know:
+//
+//   • Degenerating formulas (107, 108, 120, 122) shrink over the buff's
+//     remaining-tick count — we can't compute this statically, so we return
+//     `base` (the un-degenerated starting value, which is what a tooltip
+//     shows). Mark these `degenerating: true` so the caller can choose how
+//     to label them.
+//   • Breakpoint formulas (111-118) only start scaling past a level
+//     threshold (e.g. 111 needs level >16). Below the threshold, return
+//     `base`. The Symbol-line spells (115-118) are class-specific.
+//   • Random formula (123) returns a midpoint estimate; the real cast rolls
+//     between base and abs(max).
+//
+// Formula 121 is `level/3` per EQEmu source but `level/4` per the
+// content-creator gist; EQL's behavior not yet observed. Going with /3 to
+// match EQEmu canon — flag if a Bard L1 Chant-of-* observation contradicts.
 export function calcSpellValue(base, formula, max, level) {
   let delta = 0;
   if (formula === 0 || formula === 100) {
@@ -61,20 +79,41 @@ export function calcSpellValue(base, formula, max, level) {
       case 104: delta = level * 3; break;
       case 105: delta = level * 4; break;
       case 106: delta = level * 5; break;
-      case 107: delta = Math.floor(level / 4); break;
-      case 108: delta = Math.floor(level / 6); break;
-      case 109: delta = Math.floor(level / 4); break;  // EQL: /4, not /3 (confirmed via Chant of Battle @ L10)
-      case 110: delta = Math.floor(level / 4); break;
-      case 111: delta = level * 8; break;
-      case 112: delta = level * 10; break;
-      case 113: delta = level * 12; break;
-      case 114: delta = level * 15; break;
-      case 115: delta = level * 20; break;
-      case 116: delta = Math.floor(level * 1.5); break;
-      case 117: delta = Math.floor(level * 2.5); break;
-      case 118: delta = Math.floor(level * 3.5); break;
-      case 119: delta = Math.floor(level * 5.5); break;
-      case 120: delta = Math.floor(level * 6.5); break;
+      // 107/108: degenerating — return base (un-degenerated start value)
+      case 107: delta = 0; break;
+      case 108: delta = 0; break;
+      // EQL: 109 uses /4 (matches EQEmu; confirmed via Chant of Battle @ L10)
+      case 109: delta = Math.floor(level / 4); break;
+      case 110: delta = Math.floor(level / 6); break;
+      // 111-114: breakpoint scaling (no contribution below the threshold)
+      case 111: delta = 6 * Math.max(0, level - 16); break;
+      case 112: delta = 8 * Math.max(0, level - 24); break;
+      case 113: delta = 10 * Math.max(0, level - 34); break;
+      case 114: delta = 15 * Math.max(0, level - 44); break;
+      // 115-118: Symbol-line breakpoints (Symbol of Transal, Ryltan, Pinzarn, Naltron).
+      // These ignore the negative-base sign convention upstream — return delta
+      // applied to `ubase` directly, not `updownsign * (ubase + delta)`.
+      case 115: delta = level > 15 ? 7 * (level - 15) : 0; break;
+      case 116: delta = level > 24 ? 10 * (level - 24) : 0; break;
+      case 117: delta = level > 34 ? 13 * (level - 34) : 0; break;
+      case 118: delta = level > 44 ? 20 * (level - 44) : 0; break;
+      case 119: delta = Math.floor(level / 8); break;
+      case 120: delta = 0; break;  // degenerating
+      case 121: delta = Math.floor(level / 3); break;
+      case 122: delta = 0; break;  // degenerating (Splurt)
+      case 123: {
+        // Random between base and abs(max) — return midpoint estimate.
+        const m = Math.abs(max);
+        if (m === 0) { delta = 0; break; }
+        // Caller's base+delta is `base + delta` for buffs, so set delta so
+        // that result lands at (base + m) / 2.
+        delta = Math.floor((m - Math.abs(base)) / 2);
+        break;
+      }
+      // 124-126: level>50 only (no L1-50 contribution)
+      case 124: delta = Math.max(0, level - 50); break;
+      case 125: delta = 2 * Math.max(0, level - 50); break;
+      case 126: delta = 3 * Math.max(0, level - 50); break;
       default:  delta = 0; break;
     }
   }
@@ -89,6 +128,15 @@ export function calcSpellValue(base, formula, max, level) {
   }
   return result;
 }
+
+// Formulas whose value shrinks each tick (107, 108, 120, 122). For these
+// the calc returns the starting (un-degenerated) value; the caller may
+// want to show "starts at X / fades to base" or label them with a hint.
+export const DEGENERATING_FORMULAS = new Set([107, 108, 120, 122]);
+
+// Formula 123 is a random roll between base and abs(max). The calc returns
+// the midpoint estimate; the caller may want to show the full range.
+export const RANDOM_FORMULAS = new Set([123]);
 
 // SPA divisors applied at display time. effect_id=1 (AC) shows raw/4.
 // SPA 416 (AC2) is the only other confirmed AC variant per the canonical SPA
@@ -105,7 +153,24 @@ const SPA_DIVISORS = new Map([
 
 // SPAs where the `base_value` is a SPELL ID reference, not a magnitude.
 // The display should resolve the referenced spell rather than show "+N".
-export const SPELL_ID_REF_SPAS = new Set([85]);
+//   85  — MeleeProc (a.k.a. AddProcSpell): proc the referenced spell on hit
+//   289 — CastOnFadeEffect: cast spell when buff fades naturally
+//   333 — CastOnRuneFadeEffect: cast spell when rune is depleted
+//   361 — SpellOnDeath: cast spell when buffed target dies
+//   373 — CastOnFadeEffectAlways: cast spell when buff fades (any reason)
+//   442 — TriggerOnReqTarget: cast spell when target condition is met
+//   443 — TriggerOnReqCaster: cast spell when caster condition is met
+// (For 442/443 the limit_value is a spell-restriction ID; rendering
+// support for those is TODO — we'd need a restriction-ID label table.)
+export const SPELL_ID_REF_SPAS = new Set([85, 289, 333, 361, 373, 442, 443]);
+
+// SPAs where `limit_value` (not base_value) holds the spell ID to trigger.
+// Most trigger / proc SPAs put `chance` in base and the target spell ID in
+// limit. Wiki Tier-1 gate doesn't render these yet — included for future
+// extension. Source: EQEmu spell_effects.cpp + the content-creator gist.
+export const SPELL_ID_LIMIT_SPAS = new Set([
+  201, 288, 323, 339, 340, 360, 365, 374, 419, 470, 475,
+]);
 
 // Instant nukes display HP damage as a positive magnitude (game shows "8 damage").
 // Duration spells (DoT, HP-cost buff) preserve the negative sign instead — the
@@ -214,4 +279,21 @@ export const SKILL_BY_ID = new Map(SKILLS.map(s => [s.id, s]));
 export function skillName(id) {
   const s = SKILL_BY_ID.get(id);
   return s ? s.name : `Skill #${id}`;
+}
+
+// SPAs whose `limit_value` column is a skill ID (the SkillType enum), not a
+// numeric magnitude. Source: EQEmu spell_effects.cpp + the content-creator
+// gist. limit_value = -1 means "all skills".
+export const SKILL_LIMIT_SPAS = new Set([
+  169, 185, 186, 197, 220, 288, 330, 418, 427, 428, 429, 459,
+]);
+
+// Render `limit_value` for one effect row. For SPAs that gate by a combat
+// skill type we resolve to the skill name; otherwise return the raw number.
+export function limitValueLabel(effectId, limitValue) {
+  if (SKILL_LIMIT_SPAS.has(effectId)) {
+    if (limitValue === -1 || limitValue === 255) return "All Skills";
+    return skillName(limitValue);
+  }
+  return String(limitValue);
 }
