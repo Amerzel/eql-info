@@ -1,14 +1,21 @@
-"""SPA (Spell Affect) name table extracted from Server/common/spdat.h #defines.
+"""SPA (Spell Affect) name table.
 
 EQ effects are identified by numeric SPA ID (column "effect_id" in our DB,
-"SPELLAFFECT" in the raw spdat). This table maps the id to the symbolic name
-used in EQEmu source. EQL extends the standard set with custom ids above 254;
-those that aren't in this table are shown as "SE #<id>".
+"SPELLAFFECT" in the raw spdat). This table maps the id to a readable name.
+Source: Daybreak Games' official EQ forum "Enumerated SPA List" thread
+(forums.daybreakgames.com/eq/index.php?threads/enumerated-spa-list.206288/)
+— RedGuides / MacroQuest mirror the same enum. Cross-checked against
+EQEmu's SE_<name> defines in Server/common/spdat.h.
+
+EQL extends the standard set with custom ids beyond 526; those that
+aren't in this table are shown as "SE #<id>". One known EQL extension:
+SPA 537 = PromisedRenewalTrigger (delayed-cast heal mechanic).
 """
 
-# Auto-generated from /home/james/work/eq/Server/common/spdat.h.
-# Trimmed to readable display strings (the SE_ prefix dropped, CamelCase
-# left intact so consumers can render as a code label).
+# Names in CamelCase from the canonical list, with two overrides for EQL:
+# - SPA 85 ('MeleeProc') is rendered as 'AddProcSpell' since we resolve the
+#   base_value to a referenced spell name rather than displaying a magnitude.
+# - SPA 537 is the EQL-specific Promised Renewal delayed-trigger reference.
 SPA_NAMES_RAW = """
 0 HP
 1 AC
