@@ -141,7 +141,14 @@ export async function renderClass(classIndex, params) {
       const hasDuration = sp.buff_duration > 0 || sp.buff_duration_formula > 0;
       const tags = [];
       if (sp.is_discipline) tags.push('<span class="tag tag-disc">disc</span>');
-      if (sp.teleport_zone) tags.push('<span class="tag tag-port">port</span>');
+      // teleport_zone is dual-use: pet summons store the pet template here
+      // (always "PCPet..." prefix), real teleport spells store a zone short
+      // name like "northkarana" or "qrg". Only flag the latter as port.
+      if (sp.teleport_zone && !sp.teleport_zone.startsWith("PCPet")) {
+        tags.push('<span class="tag tag-port">port</span>');
+      } else if (sp.teleport_zone) {
+        tags.push('<span class="tag tag-pet">pet</span>');
+      }
       if ((sp.good_effect === 1 || sp.good_effect === 2) && hasDuration) tags.push('<span class="tag tag-buff">buff</span>');
       if ([3, 36, 39, 52].includes(sp.target_type)) tags.push('<span class="tag tag-grp">group</span>');
       if (sp.good_effect === 0) tags.push('<span class="tag tag-deb">det</span>');
