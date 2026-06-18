@@ -4,7 +4,8 @@
 import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
-  targetName, resistName, className, spaName, skillName, classSlug, effectValue,
+  targetName, resistName, className, spaName, skillName, classSlug, displayedValue,
+  confidenceTier,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -205,17 +206,30 @@ export async function renderSpell(spellId) {
     ? await dbstr(spell.spell_category, 27) : null;
   const rendered = descText ? substitute(descText, effects, duration) : "";
 
+  const isDuration = (spell.buff_duration_formula || 0) > 0;
+  const tierBadge = (tier) => {
+    if (tier === "solid")    return "";
+    if (tier === "inferred") return `<span class="tier-badge tier-inferred" title="Predicted from EQEmu source — not yet verified in EQL">?</span>`;
+    if (tier === "partial")  return `<span class="tier-badge tier-partial"  title="Mechanic understood but observed values diverge from prediction">~</span>`;
+    if (tier === "unknown")  return `<span class="tier-badge tier-unknown"  title="Unknown formula or SPA — value may be wrong">!</span>`;
+    return "";
+  };
   const effectsHtml = effects.length ? `
     <table class="effects-table">
-      <thead><tr><th>Slot</th><th>Effect</th><th>Base</th><th>Limit</th>
-        <th>Formula</th><th>Max</th></tr></thead>
-      <tbody>${effects.map(e => `<tr>
+      <thead><tr><th>Slot</th><th>Effect</th><th>@L1</th><th>@L${MAX_LEVEL}</th>
+        <th>Limit</th><th>Formula</th></tr></thead>
+      <tbody>${effects.map(e => {
+        const tier = confidenceTier(e.effect_id, e.formula);
+        return `<tr class="tier-${tier}">
         <td>${e.slot + 1}</td>
         <td><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
             <span class="muted">#${e.effect_id}</span></td>
-        <td>${effectValue(e.effect_id, e.base_value)}</td><td>${e.limit_value}</td>
-        <td>${e.formula}</td><td>${effectValue(e.effect_id, e.max_value)}</td>
-      </tr>`).join("")}</tbody>
+        <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)} ${tierBadge(tier)}</td>
+        <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)}</td>
+        <td>${e.limit_value}</td>
+        <td>${e.formula}</td>
+      </tr>`;
+      }).join("")}</tbody>
     </table>` : `<p class="muted">No effects recorded.</p>`;
 
   const classesHtml = classes.length ? `

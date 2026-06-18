@@ -4,7 +4,7 @@
 
 import { query, queryOne, dbstr } from "./db.js";
 import {
-  targetName, resistName, MAX_LEVEL, spaName, effectValue,
+  targetName, resistName, MAX_LEVEL, spaName, displayedValue,
 } from "./data.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, escapeHtml,
@@ -71,14 +71,17 @@ function renderTooltip(data) {
   const cost = spell.is_discipline
     ? `<dt>Endurance</dt><dd>${spell.endurance_cost || 0}</dd>`
     : `<dt>Mana</dt><dd>${spell.mana || 0}</dd>`;
+  const isDuration = (spell.buff_duration_formula || 0) > 0;
   const effectsHtml = effects.length
     ? `<table class="tt-effects">
-         <thead><tr><th>#</th><th>Effect</th><th>Base</th><th>Lim</th><th>Form</th><th>Max</th></tr></thead>
+         <thead><tr><th>#</th><th>Effect</th><th>@L1</th><th>@L${MAX_LEVEL}</th><th>Lim</th><th>Form</th></tr></thead>
          <tbody>${effects.map(e => `<tr>
            <td>${e.slot + 1}</td>
            <td>${escapeHtml(spaName(e.effect_id))} <span class="muted">#${e.effect_id}</span></td>
-           <td>${effectValue(e.effect_id, e.base_value)}</td><td>${e.limit_value}</td>
-           <td>${e.formula}</td><td>${effectValue(e.effect_id, e.max_value)}</td></tr>`).join("")}
+           <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)}</td>
+           <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)}</td>
+           <td>${e.limit_value}</td>
+           <td>${e.formula}</td></tr>`).join("")}
          </tbody></table>`
     : '<p class="muted">No effects.</p>';
   const classesHtml = classes.length

@@ -38,8 +38,151 @@ export function className(i) { return CLASS_NAMES[i] || `Class ${i}`; }
 // live client shows the magnitude — so display abs(). Other effects keep their
 // sign, where negative means a real decrease (snare, stat debuff, AC down).
 const HP_DAMAGE_EFFECTS = new Set([0, 69, 79]);
+
+// EQEmu spell-value formula table. Given the spell file's raw `base`,
+// `formula`, and `max`, compute the value the live client would show at the
+// given caster `level`. For negative-base effects (damage/debuff) each level
+// makes the magnitude grow rather than shrink — implemented symmetrically so
+// the same formula works for both buffs and damage.
+//
+// Confirmed at L1 against in-game observations (Yaulp +10 STR / +5 AC; Courage
+// +2 AC; Strengthen +5 STR; Dexterous Aura +5 DEX; Minor Healing 12 HP).
+export function calcSpellValue(base, formula, max, level) {
+  let delta = 0;
+  if (formula === 0 || formula === 100) {
+    delta = 0;
+  } else if (formula >= 1 && formula <= 10) {
+    delta = level * formula;
+  } else {
+    switch (formula) {
+      case 101: delta = Math.floor(level / 2); break;
+      case 102: delta = level; break;
+      case 103: delta = level * 2; break;
+      case 104: delta = level * 3; break;
+      case 105: delta = level * 4; break;
+      case 106: delta = level * 5; break;
+      case 107: delta = Math.floor(level / 4); break;
+      case 108: delta = Math.floor(level / 6); break;
+      case 109: delta = Math.floor(level / 4); break;  // EQL: /4, not /3 (confirmed via Chant of Battle @ L10)
+      case 110: delta = Math.floor(level / 4); break;
+      case 111: delta = level * 8; break;
+      case 112: delta = level * 10; break;
+      case 113: delta = level * 12; break;
+      case 114: delta = level * 15; break;
+      case 115: delta = level * 20; break;
+      case 116: delta = Math.floor(level * 1.5); break;
+      case 117: delta = Math.floor(level * 2.5); break;
+      case 118: delta = Math.floor(level * 3.5); break;
+      case 119: delta = Math.floor(level * 5.5); break;
+      case 120: delta = Math.floor(level * 6.5); break;
+      default:  delta = 0; break;
+    }
+  }
+  let result = base >= 0 ? base + delta : base - delta;
+  if (max !== 0) {
+    if (base >= 0) {
+      if (result > max) result = max;
+    } else {
+      const cap = -Math.abs(max);
+      if (result < cap) result = cap;
+    }
+  }
+  return result;
+}
+
+// SPA divisors applied at display time. effect_id=1 (AC) shows raw/4.
+// SPA 416 (AC2) is the only other confirmed AC variant per the canonical SPA
+// list — likely also /4 but not yet validated in-game. (Earlier we suspected
+// 221 and 262 were AC variants too; per the RedGuides canonical list they are
+// REDUCE_WEIGHT and INCREASE_STAT_CAP respectively, unrelated to AC.)
+const SPA_DIVISORS = new Map([
+  [1, 4],   // ArmorClass — confirmed
+  // effect_id 3 (MovementSpeed) — NOT a simple divisor. Buffs (Spirit of
+  // Wolf raw=35 → +7) look additive ~ raw/5, but debuffs (Snare raw=-50 →
+  // -19 velocity, ~57% slow on base=33) look multiplicative. Two different
+  // display mechanics; needs more data to model. Leaving raw for now.
+]);
+
+// SPAs where the `base_value` is a SPELL ID reference, not a magnitude.
+// The display should resolve the referenced spell rather than show "+N".
+export const SPELL_ID_REF_SPAS = new Set([85]);
+
+// Instant nukes display HP damage as a positive magnitude (game shows "8 damage").
+// Duration spells (DoT, HP-cost buff) preserve the negative sign instead — the
+// game's effect breakdown shows "-5 HP" per tick. Caller passes `isDuration`
+// (typically `spell.buff_duration_formula > 0`).
+export function displayedValue(effectId, base, formula, max, level, isDuration = false) {
+  const raw = calcSpellValue(base, formula, max, level);
+  const div = SPA_DIVISORS.get(effectId) || 1;
+  let v = div === 1 ? raw : Math.trunc(raw / div);
+  if (HP_DAMAGE_EFFECTS.has(effectId) && !isDuration) v = Math.abs(v);
+  return v;
+}
+
+// Backwards-compat shim: old callsites passed (effectId, rawValue) and got
+// just the abs() treatment for HP damage. New code should call displayedValue
+// instead.
 export function effectValue(effectId, v) {
   return HP_DAMAGE_EFFECTS.has(effectId) ? Math.abs(v) : v;
+}
+
+// ─── Confidence tiers ──────────────────────────────────────────────────────
+// How much we trust our prediction for a given formula or SPA. Use
+// `confidenceTier(effectId, formula)` for the combined tier of an effect row.
+// See project_spell_formula_table.md memory for details.
+//
+//   "solid"    — confirmed via in-game observation, safe to publish
+//   "inferred" — extrapolated from EQEmu source, not yet validated in EQL
+//   "partial"  — mechanic understood but numbers don't match cleanly
+//   "unknown"  — no info; render generically and omit from confident outputs
+
+export const FORMULA_TIER = {
+  0: "solid", 100: "solid", 101: "solid", 102: "solid", 103: "solid",
+  109: "solid",  // EQL diverges from EQEmu: /4 (not /3)
+  2: "solid", 3: "solid",
+  // Promoted to solid 2026-06-10 via eqprogression tooltip cross-check.
+  // Tooltip range lower = formula at spell's lowest-class min_level; upper = max cap.
+  4: "solid",    // Healing (Cleric L10): tooltip 135–175; 95+10·4=135 ✓
+  7: "solid",    // Greater Healing (Cleric L20): tooltip 280–350; 140+20·7=280 ✓
+  10: "solid",   // Superior Healing (Cleric L30): tooltip 500–600; 200+30·10=500 ✓
+  104: "solid",  // Lightning Strike (Druid L31): tooltip 163–184; 70+31·3=163 ✓
+  105: "solid",  // Earthquake (Druid L31): tooltip 214–246; 90+31·4=214 ✓
+  1: "solid",    // Mend Bones @L10: tooltip 25–32; 15+10·1=25 ✓
+  // Tier 2 — from EQEmu source, not yet validated against tooltip or in-game
+  5: "inferred", 6: "inferred",
+  8: "inferred", 9: "inferred",
+  106: "inferred", 107: "inferred", 108: "inferred", 110: "inferred",
+  111: "inferred", 112: "inferred", 113: "inferred", 114: "inferred", 115: "inferred",
+  116: "inferred", 117: "inferred", 118: "inferred", 119: "inferred", 120: "inferred",
+};
+
+export const SPA_TIER = {
+  // Solid — directly verified at L1 or L10
+  0: "solid", 1: "solid", 4: "solid", 5: "solid", 6: "solid", 10: "solid",
+  46: "solid", 47: "solid", 50: "solid", 69: "solid", 79: "solid",
+  85: "solid",
+  // Promoted 2026-06-10 via in-game stat-sheet observation @ L10:
+  2: "solid",   // Grim Aura @L10: +10 ATK ✓ (base=5 fm=101 → 5+5=10)
+  7: "solid",   // Spirit of Bear @L10: +13 STA ✓ (base=8 fm=101 → 8+5=13)
+  15: "solid",  // Dark Pact @L10: +2 mana/tick ✓ (base=2 fm=100)
+  48: "solid",  // Endure Poison @L10: +20 PR (capped at max) ✓
+  49: "solid",  // Endure Disease @L10: +20 DR (capped at max) ✓
+  // Inferred by analogy with the confirmed family members
+  8: "inferred", 9: "inferred",
+  59: "inferred",
+  97: "inferred", 111: "inferred",
+  416: "inferred",  // AC2 — likely /4 like SPA 1, not yet validated
+  // Partial — mechanic confirmed but numbers off
+  3: "partial",
+};
+
+export function confidenceTier(effectId, formula) {
+  const f = FORMULA_TIER[formula] ?? "unknown";
+  const s = SPA_TIER[effectId] ?? "unknown";
+  // Combined tier is the WEAKEST of the two — if either is unknown the row is
+  // unknown; if either is partial it's partial; etc.
+  const rank = { solid: 0, inferred: 1, partial: 2, unknown: 3 };
+  return rank[f] >= rank[s] ? f : s;
 }
 
 // URL slug ↔ class index. Lowercased, spaces → hyphens ("Shadow Knight" →
@@ -59,7 +202,7 @@ export function classIndexFromArg(arg) {
   return Number.isNaN(n) ? NaN : n;
 }
 // SPA names (485 entries from EQEmu spdat.h #defines)
-export const SPA_NAMES = {"0": "CurrentHP", "1": "ArmorClass", "2": "ATK", "3": "MovementSpeed", "4": "STR", "5": "DEX", "6": "AGI", "7": "STA", "8": "INT", "9": "WIS", "10": "CHA", "11": "AttackSpeed", "12": "Invisibility", "13": "SeeInvis", "14": "WaterBreathing", "15": "CurrentMana", "18": "Lull", "19": "AddFaction", "20": "Blind", "21": "Stun", "22": "Charm", "23": "Fear", "24": "Stamina", "25": "BindAffinity", "26": "Gate", "27": "CancelMagic", "28": "InvisVsUndead", "29": "InvisVsAnimals", "30": "ChangeFrenzyRad", "31": "Mez", "32": "SummonItem", "33": "SummonPet", "35": "DiseaseCounter", "36": "PoisonCounter", "40": "Invulnerability", "41": "Destroy", "42": "ShadowStep", "43": "Berserk", "44": "Lycanthropy", "45": "Vampirism", "46": "ResistFire", "47": "ResistCold", "48": "ResistPoison", "49": "ResistDisease", "50": "ResistMagic", "52": "SeeInvisible", "53": "EnduringBreath", "54": "SpinTarget", "55": "InfraVision", "56": "UltraVision", "57": "EyeOfZomm", "58": "ReclaimPets", "59": "TotalHP", "60": "CorpseBomb", "61": "NecPet", "62": "PreserveCorpse", "63": "BindSight", "64": "FeignDeath", "65": "VoiceGraft", "66": "Sentinel", "67": "LocateCorpse", "68": "AbsorbMagicAtt", "69": "CurrentHPOnce", "71": "Revive", "72": "SummonPC", "73": "ModelSize", "74": "Cloak", "75": "SummonCorpse", "76": "Calm", "77": "StopRain", "78": "SummonHelpers", "79": "CurrentHPPlus", "81": "Translocate", "82": "BeastLordPet", "83": "AlterPlayerSize", "84": "SummonItem2", "85": "Charisma", "86": "EvilDeity", "87": "ChangeAggro", "88": "CallOfHero", "90": "PetDisc", "91": "EnchLight", "92": "IllusionPet", "93": "IllusionStatue", "94": "NoCombatSkills", "95": "Sacrifice", "96": "Silence", "97": "ManaPool", "98": "AttackSpeed2", "99": "Root", "100": "HealOverTime", "102": "FleeSpeed", "103": "SummonSkeleton", "104": "SummonItemAttr", "105": "IllusionShield", "106": "SummonAA", "107": "NPCHate", "108": "BindAffinity2", "109": "SummonCorpseHandle", "110": "NPCRegen", "111": "ResistAll", "112": "CastingLevel", "113": "SummonHorse", "114": "NPCHate2", "115": "IllusionThorny", "116": "CombatStability", "117": "InterruptCasting", "118": "LowResist", "119": "AttackSpeed3", "120": "IncreaseSpellDmg", "121": "DamageShield", "122": "DimensionalReturn", "123": "ReduceWeight", "124": "SpellDmg", "125": "HealRate", "126": "ResistSpellChance", "127": "SpellHasteSpa", "128": "SpellDurationIncrease", "129": "SpellRangeIncrease", "130": "SpellAndHate", "131": "SpellHasteAttack", "132": "SpellMana", "133": "IncreaseRange", "134": "SpellTimerReset", "135": "ResistAll2", "136": "SpellTrigger", "137": "EraseDmgShield", "138": "SpellSlot", "139": "Sense", "140": "Crit", "141": "BashChance", "142": "CastingLevel2", "143": "AggroDifficulty", "144": "Frenzy", "145": "IllusionOther", "146": "Distort", "147": "HealRate2", "148": "StackingHP", "149": "StackingHP2", "150": "Berserk2", "151": "SeBlock", "152": "PetSummon", "153": "NPCHelpRadius", "154": "NegateMagic", "155": "AbsorbMeleeDmg", "156": "AbsorbSpellDmg", "157": "SpellShield", "158": "Reflect", "159": "AllStats", "160": "IncreaseDOT", "161": "Mitigation", "162": "MeleeMitigation", "163": "CritHits", "164": "AvoidMelee", "165": "Riposte", "166": "Dodge", "167": "Parry", "168": "DualWield", "169": "DoubleAttack", "170": "MeleeLifetap", "171": "PutNPC", "172": "BashMod", "173": "BackstabMod", "174": "KickMod", "175": "TigerClawMod", "176": "EagleStrikeMod", "177": "DragonPunchMod", "178": "FlyingKickMod", "179": "RoundKickMod", "180": "FrenzyMod", "181": "ResistSpells", "182": "ResistFear", "183": "SpellDmgShield", "184": "HoT", "185": "Lifetap", "186": "CurseCounter", "187": "ReduceHitPoints", "188": "SummonObject", "189": "Charisma2", "190": "Illusion", "191": "IllusionTribe", "192": "PoisonCleric", "193": "DispelDetrimental", "194": "DispelBeneficial", "195": "ResistCorruption", "196": "CombatAgility", "197": "RestoreMana", "198": "ShieldBlock", "199": "GroupSpellCalc", "200": "IncreaseFleeSpeed", "201": "PetCalc", "202": "GravityFlux", "203": "ApplyDamage", "204": "ApplyTimer", "205": "SkillResist", "206": "RaiseStatCap", "207": "PointBlankAE", "208": "Symbol", "209": "SummonCorpseZone", "210": "IncreaseSkill", "211": "IncreaseEvolve", "212": "ColdBuff", "213": "InventorySlots", "214": "IncreaseSizes", "215": "RangeIncrease", "216": "IncreaseAccuracy", "217": "SpellDmgMod", "218": "LimitPercent", "219": "LimitTotalEffect", "220": "SkillDmg", "221": "ArmorClassFocus", "222": "ArmorClassCheck", "223": "LimitChannelChance", "224": "LimitChannelTotal", "225": "SpellChannelInterrupt", "226": "NumHits", "227": "SkillReuseTimer", "228": "SkillDmgTaken", "229": "PetCommand", "230": "ParryChance", "231": "LimitTarget", "232": "NoCombat", "233": "SpellMaxValue", "234": "IncreaseHP", "235": "GroupVuln", "236": "ItemManaRegenCapIncrease", "237": "PvPResistance", "238": "HateRedirect", "239": "PetCriticalHit", "240": "BindFire", "241": "IncreaseStatCap", "242": "GroupLeader", "243": "RaidLeader", "244": "Identify", "245": "Sympathetic", "246": "PetSpellTrigger", "247": "PetCalcAdjust", "248": "PetCommand2", "249": "SkillCap", "250": "EnduranceCost", "251": "SummonItem3", "252": "LimitInterval", "253": "BuyBackSpell", "254": "NoOpSpell", "255": "IncreaseSize", "256": "SummonFamiliar", "257": "LimitSpellEffect", "258": "ItemDmgScale", "259": "LimitEffectExcept", "260": "NegateForCertainTime", "261": "SkillSpellDmg", "262": "ArmorClassMastery", "263": "BuffStacking", "264": "ZoneEffect", "265": "SetItemFlag", "266": "ExtraAttackChance", "267": "PetCriticalChance", "268": "PetCommandList", "269": "IncreaseStat", "270": "SkillPercentMod", "271": "LimitSlot", "272": "CastingLevel2", "273": "InstantHate", "274": "SeeBeyondLOS", "275": "HateMod", "276": "GroupHealMod", "277": "SkillDmgBonus", "278": "SkillRange", "279": "SubtractDamage", "280": "NPCSpawn", "281": "PetHaste", "282": "SkillHasteMod", "283": "LimitClass", "284": "LimitRace", "285": "SkillDmgMod", "286": "ConvergeAbility", "287": "IncreaseManaReg", "288": "SpellEffectStun", "289": "TriggerOnFade", "290": "IncreaseFear", "291": "IncreaseFearResist", "292": "IncreaseDuration", "293": "IncreaseCharisma", "294": "SpellCritChance", "295": "ReduceTimer", "296": "IncreaseSpellDmgMod", "297": "IncreaseSpellResist", "298": "GiantClick", "299": "IncreaseHatePerLevel", "300": "IncreaseSkillLevel", "301": "IncreaseChance", "302": "SpellCritDmg", "303": "SpellCritDmgIncrease", "304": "NoBuff", "305": "IncreaseCurrentMana", "306": "IncreaseHateUntilCap", "307": "SetSkillCap", "308": "SkillCheck", "309": "TriggerEffect", "310": "NPCSpawnAdjust", "311": "LimitMaxDmg", "312": "LimitTargets", "313": "LimitDuration", "314": "NPCFleeMod", "315": "LimitRange", "316": "GiftOfMana", "317": "NPCSpawnLevel", "318": "IncreaseEffectiveness", "319": "IncreasePower", "320": "PetClassDistinction", "321": "BeneficialMod", "322": "RecoverMana", "323": "NPCRoamLimits", "324": "NPCHateMod", "325": "ProcChance", "326": "ProcSpellEffect", "327": "NPCAggro", "328": "ManaCostMod", "329": "EventOnFade", "330": "NPCMaxLevel", "331": "SkillCap2", "332": "NoStackingHit", "333": "SetHateRange", "334": "NoChanceToBlock", "335": "SkillCap3", "336": "SkillCap4", "337": "SkillCap5", "338": "SkillCap6", "339": "Detrimental", "340": "IncreaseHateMod", "341": "ManaMod", "342": "SkillRollMax", "343": "ApplyDOT", "344": "ReduceMeleeMiss", "345": "SkillReuseTimerMod", "346": "IncreaseHateMod2", "347": "PetTrigger", "348": "SetSkill", "349": "PetSpawnMaxCount", "350": "ResistSpellsByName", "351": "LimitMin", "352": "PutOnRailroad", "353": "LimitMax", "354": "SkillFreeFromCost", "355": "IncreaseClassFlee", "356": "IncreaseGroupRange", "357": "SpellCritChance2", "358": "LimitCastingMode", "359": "LimitSpellSubcategory", "360": "LimitTargetType", "361": "LimitForageMass", "362": "PutPlayer", "363": "PetMaxTargets", "364": "IncreaseTribute", "365": "IncreaseTime", "366": "SetEnduranceCost", "367": "SetSkillMod", "368": "SetSkillLimit", "369": "SetSkillIncrease", "370": "SetSkillTime", "371": "AttackSpeed4", "372": "SkillIgnoreHate", "373": "IncrementSkill", "374": "SetSkillRequirement", "375": "SetPC", "376": "PutLocation", "377": "GroupCriticalChance", "378": "PetCriticalDmg", "379": "IncreaseDamageMod", "380": "IncreaseHealMod", "381": "SetSummonMaxLevel", "382": "SkillReuseChange", "383": "SetEffect", "384": "IncreaseAvoidance", "385": "IncreaseCritChance", "386": "IncreaseSkillCap", "387": "IncreaseRaceLevel", "388": "IncreaseSpellRange", "389": "IncreaseEffect", "390": "IncreaseSize2", "391": "IncreaseMana", "392": "IncreaseCurrentEndurance", "393": "IncreaseHealEffect", "394": "ResetSkillCap", "395": "IncreaseCriticalHit", "396": "SetSkillDamage", "397": "IncreaseDuration2", "398": "IncreaseDuration3", "399": "IncreaseFlash", "400": "IncreaseManaUse", "401": "SetMaxLevel", "402": "IncreaseFireResist", "403": "IncreaseColdResist", "404": "IncreaseDiseaseResist", "405": "IncreasePoisonResist", "406": "IncreaseEnduranceReg", "407": "IncreaseManaReg2", "408": "IncreaseCorruptionResist", "409": "IncreaseCritDmg", "410": "IncreaseHateRandom", "411": "SetSkillBonus", "412": "SetSkillMaxStat", "413": "SetSpellEffect", "414": "IncreaseSkillMod", "415": "SetSkillModifier", "416": "ACv2", "417": "IncreaseSpellEffect", "418": "IncreaseManaRegen", "419": "IncreaseRiposteMod", "420": "IncreaseHealTotal", "421": "IncreaseStunDuration", "422": "ManaBurnIncrease", "423": "EnduranceBurn", "424": "ResearchEnable", "425": "SpellCritChanceMod", "426": "SpellCritDmgMod", "427": "SpellMinCritDmg", "428": "SpellMaxCritDmg", "429": "IncreaseSkill2", "430": "IncreaseSkill3", "431": "ReduceHate", "432": "SetSkillModifier2", "433": "IncreaseSkillDmgTaken", "434": "SetSkillLimit2", "435": "AbsorbDmg", "436": "IncreaseHateGenerationCap", "437": "GroupCorruption", "438": "SetForce", "439": "PetMageSpell", "440": "PetTier", "441": "ReduceWeightMod", "442": "SetEffectSlot", "443": "SetSpellEffect2", "444": "SetSpellEffect3", "445": "SetSpellEffect4", "446": "IncreaseAEDmg", "447": "Berserk3", "448": "IncreaseLevel", "449": "IncreaseHealMana", "450": "IncreaseHealMana2", "451": "IncreaseHealMana3", "452": "IncreaseHealMana4", "453": "SetSkillTimer", "454": "SetSkillCD", "455": "SetSkillEffect", "456": "SetSkillCount", "457": "SetSkillRound", "458": "IncreaseHealMana5", "459": "DamageModifier2", "460": "IncreaseTotal", "461": "IncreaseCorruptedDmg", "462": "IncreaseSpellDuration", "463": "IncreaseDmgEffect", "464": "IncreaseCriticalDmg", "465": "IncreaseAEMax", "466": "SetMaxTargets", "467": "IncreaseGrouping", "468": "IncreaseSkillCap2", "469": "IncreaseTotal2", "470": "IncreaseDmgShield", "471": "IncreaseDmgEffect2", "472": "IncreaseDmgEffect3", "473": "IncreaseDmgEffect4", "474": "IncreaseHealEffect2", "475": "IncreaseDmgMod", "476": "IncreaseDmgMod2", "477": "IncreaseDmgMod3", "478": "SetSkillName", "479": "SetSkillType", "480": "SetSkillData", "481": "IncreaseStatic", "482": "IncreaseDuration4", "483": "IncreaseDuration5", "484": "IncreaseDuration6", "485": "IncreaseDuration7", "486": "IncreaseRange2", "487": "IncreaseDmgMax", "488": "IncreaseDmgMin", "489": "SetDmgFromHate", "490": "SetDmgFromMaxHP", "491": "SetDmgFromManaUsed", "492": "SetDmgFromAcv2", "493": "SetDmgFromAttackCount", "494": "SetDmgFromMaxHits", "495": "SetDmgFromCriticalHits", "496": "SetTargetRange", "497": "SetTargetRange2", "498": "AddExtraAttackPct_1h_Primary", "499": "AddExtraAttackPct_1h_Secondary", "500": "Fc_CastTimeMod2"};
+export const SPA_NAMES = {"0": "HP", "1": "AC", "2": "AttackPower", "3": "MovementRate", "4": "STR", "5": "DEX", "6": "AGI", "7": "STA", "8": "INT", "9": "WIS", "10": "CHA", "11": "Haste", "12": "Invisibility", "13": "SeeInvis", "14": "EnduringBreath", "15": "MANA", "16": "NpcFrenzy", "17": "NpcAwareness", "18": "NpcAggro", "19": "NpcFaction", "20": "Blindness", "21": "Stun", "22": "Charm", "23": "Fear", "24": "Fatigue", "25": "BindAffinity", "26": "Gate", "27": "DispelMagic", "28": "InvisVsUndead", "29": "InvisVsAnimals", "30": "NpcAggroRadius", "31": "Enthrall", "32": "CreateItem", "33": "SummonPet", "34": "Confuse", "35": "Disease", "36": "Poison", "37": "DetectHostile", "38": "DetectMagic", "39": "NoTwincast", "40": "Invulnerability", "41": "Banish", "42": "ShadowStep", "43": "Berserk", "44": "Lycanthropy", "45": "Vampirism", "46": "ResistFire", "47": "ResistCold", "48": "ResistPoison", "49": "ResistDisease", "50": "ResistMagic", "51": "DetectTraps", "52": "DetectUndead", "53": "DetectSummoned", "54": "DetectAnimals", "55": "Stoneskin", "56": "TrueNorth", "57": "Levitation", "58": "ChangeForm", "59": "DamageShield", "60": "TransferItem", "61": "ItemLore", "62": "ItemIdentify", "63": "NpcWipeHateList", "64": "SpinStun", "65": "Infravision", "66": "Ultravision", "67": "EyeOfZomm", "68": "ReclaimEnergy", "69": "MaxHp", "70": "CorpseBomb", "71": "CreateUndead", "72": "PreserveCorpse", "73": "BindSight", "74": "FeignDeath", "75": "Ventriloquism", "76": "Sentinel", "77": "LocateCorpse", "78": "SpellShield", "79": "InstantHp", "80": "EnchantLight", "81": "Resurrect", "82": "SummonTarget", "83": "Portal", "84": "HpNpcOnly", "85": "AddProcSpell", "86": "NpcHelpRadius", "87": "Magnification", "88": "Evacuate", "89": "Height", "90": "IgnorePet", "91": "SummonCorpse", "92": "Hate", "93": "WeatherControl", "94": "Fragile", "95": "Sacrifice", "96": "Silence", "97": "MaxMana", "98": "BardHaste", "99": "Root", "100": "Healdot", "101": "Completeheal", "102": "PetFearless", "103": "CallPet", "104": "Translocate", "105": "NpcAntiGate", "106": "BeastlordPet", "107": "AlterPetLevel", "108": "Familiar", "109": "CreateItemInBag", "110": "Archery", "111": "ResistAll", "112": "FizzleSkill", "113": "SummonMount", "114": "ModifyHate", "115": "Cornucopia", "116": "Curse", "117": "HitMagic", "118": "Amplification", "119": "AttackSpeedMax", "120": "Healmod", "121": "Ironmaiden", "122": "Reduceskill", "123": "Immunity", "124": "FocusDamageMod", "125": "FocusHealMod", "126": "FocusResistMod", "127": "FocusCastTimeMod", "128": "FocusDurationMod", "129": "FocusRangeMod", "130": "FocusHateMod", "131": "FocusReagentMod", "132": "FocusManacostMod", "133": "FocusStuntimeMod", "134": "FocusLevelMax", "135": "FocusResistType", "136": "FocusTargetType", "137": "FocusWhichSpa", "138": "FocusBeneficial", "139": "FocusWhichSpell", "140": "FocusDurationMin", "141": "FocusInstantOnly", "142": "FocusLevelMin", "143": "FocusCasttimeMin", "144": "FocusCasttimeMax", "145": "NpcPortalWarderBanish", "146": "PortalLocations", "147": "PercentHeal", "148": "StackingBlock", "149": "StripVirtualSlot", "150": "DivineIntervention", "151": "PocketPet", "152": "PetSwarm", "153": "HealthBalance", "154": "CancelNegativeMagic", "155": "PopResurrect", "156": "Mirror", "157": "Feedback", "158": "Reflect", "159": "ModifyAllStats", "160": "ChangeSobriety", "161": "SpellGuard", "162": "MeleeGuard", "163": "AbsorbHit", "164": "ObjectSenseTrap", "165": "ObjectDisarmTrap", "166": "ObjectPicklock", "167": "FocusPet", "168": "Defensive", "169": "CriticalMelee", "170": "CriticalSpell", "171": "CripplingBlow", "172": "Evasion", "173": "Riposte", "174": "Dodge", "175": "Parry", "176": "DualWield", "177": "DoubleAttack", "178": "MeleeLifetap", "179": "Puretone", "180": "Sanctification", "181": "Fearless", "182": "HundredHands", "183": "SkillIncreaseChance", "184": "Accuracy", "185": "SkillDamageMod", "186": "MinDamageDoneMod", "187": "ManaBalance", "188": "Block", "189": "Endurance", "190": "IncreaseMaxEndurance", "191": "Amnesia", "192": "HateOverTime", "193": "SkillAttack", "194": "Fade", "195": "StunResist", "196": "Strikethrough1", "197": "SkillDamageTaken", "198": "InstantEndurance", "199": "Taunt", "200": "ProcChance", "201": "RangeAbility", "202": "IllusionOthers", "203": "MassGroupBuff", "204": "GroupFearImmunity", "205": "Rampage", "206": "AeTaunt", "207": "FleshToBone", "208": "PurgePoison", "209": "CancelBeneficial", "210": "ShieldCaster", "211": "DestructiveForce", "212": "FocusFrenziedDevastation", "213": "PetPctMaxHp", "214": "HpMaxHp", "215": "PetPctAvoidance", "216": "MeleeAccuracy", "217": "Headshot", "218": "PetCritMelee", "219": "SlayUndead", "220": "IncreaseSkillDamage", "221": "ReduceWeight", "222": "BlockBehind", "223": "DoubleRiposte", "224": "AddRiposte", "225": "GiveDoubleAttack", "226": "2hBash", "227": "ReduceSkillTimer", "228": "Acrobatics", "229": "CastThroughStun", "230": "ExtendedShielding", "231": "BashChance", "232": "DivineSave", "233": "Metabolism", "234": "PoisonMastery", "235": "FocusChanneling", "236": "FreePet", "237": "PetAffinity", "238": "PermIllusion", "239": "Stonewall", "240": "StringUnbreakable", "241": "ImproveReclaimEnergy", "242": "IncreaseChangeMemwipe", "243": "EnhancedCharm", "244": "EnhancedRoot", "245": "TrapCircumvention", "246": "IncreaseAirSupply", "247": "IncreaseMaxSkill", "248": "ExtraSpecialization", "249": "OffhandMinWeaponDamage", "250": "IncreaseProcChance", "251": "EndlessQuiver", "252": "BackstabFront", "253": "ChaoticStab", "254": "Nospell", "255": "ShieldingDurationMod", "256": "ShroudOfStealth", "257": "GivePetHold", "258": "TripleBackstab", "259": "AcLimitMod", "260": "AddInstrumentMod", "261": "SongModCap", "262": "IncreaseStatCap", "263": "TradeskillMastery", "264": "ReduceAaTimer", "265": "NoFizzle", "266": "Add2hAttackChance", "267": "AddPetCommands", "268": "AlchemyFailRate", "269": "FirstAid", "270": "ExtendSongRange", "271": "BaseRunMod", "272": "IncreaseCastingLevel", "273": "Dotcrit", "274": "Healcrit", "275": "Mendcrit", "276": "DualWieldAmt", "277": "ExtraDiChance", "278": "FinishingBlow", "279": "Flurry", "280": "PetFlurry", "281": "PetFeign", "282": "IncreaseBandageAmt", "283": "WuAttack", "284": "ImproveLoh", "285": "NimbleEvasion", "286": "FocusDamageAmt", "287": "FocusDurationAmt", "288": "AddProcHit", "289": "DoomEffect", "290": "IncreaseRunSpeedCap", "291": "Purify", "292": "Strikethrough", "293": "StunResist2", "294": "SpellCritChance", "295": "ReduceSpecialTimer", "296": "FocusDamageModDetrimental", "297": "FocusDamageAmtDetrimental", "298": "TinyCompanion", "299": "WakeDead", "300": "Doppelganger", "301": "IncreaseRangeDmg", "302": "FocusDamageModCrit", "303": "FocusDamageAmtCrit", "304": "SecondaryRiposteMod", "305": "DamageShieldMod", "306": "WeakDead2", "307": "Appraisal", "308": "ZoneSuspendMinion", "309": "TeleportCastersBindpoint", "310": "FocusReuseTimer", "311": "FocusCombatSkill", "312": "Observer", "313": "ForageMaster", "314": "ImprovedInvis", "315": "ImprovedInvisUndead", "316": "ImprovedInvisAnimals", "317": "IncreaseWornHpRegenCap", "318": "IncreaseWornManaRegenCap", "319": "CriticalHpRegen", "320": "ShieldBlockChance", "321": "ReduceTargetHate", "322": "GateStartingCity", "323": "DefensiveProc", "324": "HpForMana", "325": "NoBreakAeSneak", "326": "AddSpellSlots", "327": "AddBuffSlots", "328": "IncreaseNegativeHpLimit", "329": "ManaAbsorbPctDmg", "330": "CritAttackModifier", "331": "FailAlchemyItemRecovery", "332": "SummonToCorpse", "333": "DoomRuneEffect", "334": "NoMoveHp", "335": "FocusedImmunity", "336": "IllusionaryTarget", "337": "IncreaseExpMod", "338": "ExpedientRecovery", "339": "FocusCastingProc", "340": "ChanceSpell", "341": "WornAttackCap", "342": "NoPanic", "343": "SpellInterrupt", "344": "ItemChanneling", "345": "AssassinateMaxLevel", "346": "HeadshotMaxLevel", "347": "DoubleRangedAttack", "348": "FocusManaMin", "349": "IncreaseShieldDmg", "350": "Manaburn", "351": "SpawnInteractiveObject", "352": "IncreaseTrapCount", "353": "IncreaseSoiCount", "354": "DeactivateAllTraps", "355": "LearnTrap", "356": "ChangeTriggerType", "357": "FocusMute", "358": "InstantMana", "359": "PassiveSenseTrap", "360": "ProcOnKillShot", "361": "ProcOnDeath", "362": "PotionBelt", "363": "Bandolier", "364": "AddTripleAttackChance", "365": "ProcOnSpellKillShot", "366": "GroupShielding", "367": "ModifyBodyType", "368": "ModifyFaction", "369": "Corruption", "370": "ResistCorruption", "371": "Slow", "372": "GrantForaging", "373": "DoomAlways", "374": "TriggerSpell", "375": "CritDotDmgMod", "376": "Fling", "377": "DoomEntity", "378": "ResistOtherSpa", "379": "DirectionalTeleport", "380": "ExplosiveKnockback", "381": "FlingToward", "382": "Suppression", "383": "FocusCastingProcNormalized", "384": "FlingAt", "385": "FocusWhichGroup", "386": "DoomDispeller", "387": "DoomDispellee", "388": "SummonAllCorpses", "389": "RefreshSpellTimer", "390": "LockoutSpellTimer", "391": "FocusManaMax", "392": "FocusHealAmt", "393": "FocusHealModBeneficial", "394": "FocusHealAmtBeneficial", "395": "FocusHealModCrit", "396": "FocusHealAmtCrit", "397": "AddPetAc", "398": "FocusSwarmPetDuration", "399": "FocusTwincastChance", "400": "Healburn", "401": "ManaIgnite", "402": "EnduranceIgnite", "403": "FocusSpellClass", "404": "FocusSpellSubclass", "405": "StaffBlockChance", "406": "DoomLimitUse", "407": "DoomFocusUsed", "408": "LimitHp", "409": "LimitMana", "410": "LimitEndurance", "411": "FocusLimitClass", "412": "FocusLimitRace", "413": "FocusBaseEffects", "414": "FocusLimitSkill", "415": "FocusLimitItemClass", "416": "AC2", "417": "Mana2", "418": "FocusIncreaseSkillDmg2", "419": "ProcEffect2", "420": "FocusLimitUse", "421": "FocusLimitUseAmt", "422": "FocusLimitUseMin", "423": "FocusLimitUseType", "424": "Gravitate", "425": "Fly", "426": "AddExtendedTargetSlots", "427": "SkillProc", "428": "ProcSkillModifier", "429": "SkillProcSuccess", "430": "PostEffect", "431": "PostEffectData", "432": "ExpandMaxActiveTrophyBenefits", "433": "AddNormalizedSkillMinDmgAmt", "434": "AddNormalizedSkillMinDmgAmt2", "435": "FragileDefense", "436": "FreezeBuffTimer", "437": "TeleportToAnchor", "438": "TranslocateToAnchor", "439": "Assassinate", "440": "FinishingBlowMax", "441": "DistanceRemoval", "442": "RequireTargetDoom", "443": "RequireCasterDoom", "444": "ImprovedTaunt", "445": "AddMercSlot", "446": "StackerA", "447": "StackerB", "448": "StackerC", "449": "StackerD", "450": "DotGuard", "451": "MeleeThresholdGuard", "452": "SpellThresholdGuard", "453": "MeleeThresholdDoom", "454": "SpellThresholdDoom", "455": "AddHatePct", "456": "AddHateOverTimePct", "457": "ResourceTap", "458": "FactionMod", "459": "SkillDamageMod2", "460": "OverrideNotFocusable", "461": "FocusDamageMod2", "462": "FocusDamageAmt2", "463": "Shield", "464": "PcPetRampage", "465": "PcPetAeRampage", "466": "PcPetFlurry", "467": "DamageShieldMitigationAmt", "468": "DamageShieldMitigationPct", "469": "ChanceBestInSpellGroup", "470": "TriggerBestInSpellGroup", "471": "DoubleMeleeAttacks", "472": "AaBuyNextRank", "473": "DoubleBackstabFront", "474": "PetMeleeCritDmgMod", "475": "TriggerSpellNonItem", "476": "WeaponStance", "477": "HatelistToTop", "478": "HatelistToTail", "479": "FocusLimitMinValue", "480": "FocusLimitMaxValue", "481": "FocusCastSpellOnLand", "482": "SkillBaseDamageMod", "483": "FocusIncomingDmgMod", "484": "FocusIncomingDmgAmt", "485": "FocusLimitCasterClass", "486": "FocusLimitSameCaster", "487": "ExtendTradeskillCap", "488": "DefenderMeleeForcePct", "489": "WornEnduranceRegenCap", "490": "FocusMinReuseTime", "491": "FocusMaxReuseTime", "492": "FocusEnduranceMin", "493": "FocusEnduranceMax", "494": "PetAddAtk", "495": "FocusDurationMax", "496": "CritMeleeDmgModMax", "497": "FocusCastProcNoBypass", "498": "AddExtraPrimaryAttackPct", "499": "AddExtraSecondaryAttackPct", "500": "FocusCastTimeMod2", "501": "FocusCastTimeAmt", "502": "Fearstun", "503": "MeleeDmgPositionMod", "504": "MeleeDmgPositionAmt", "505": "DmgTakenPositionMod", "506": "DmgTakenPositionAmt", "507": "AmplifyMod", "508": "AmplifyAmt", "509": "HealthTransfer", "510": "FocusResistIncoming", "511": "FocusTimerMin", "512": "ProcTimerMod", "513": "ManaMax", "514": "EnduranceMax", "515": "AcAvoidanceMax", "516": "AcMitigationMax", "517": "AttackOffenseMax", "518": "AttackAccuracyMax", "519": "LuckAmt", "520": "LuckPct", "521": "EnduranceAbsorbPctDmg", "522": "InstantManaPct", "523": "InstantEndurancePct", "524": "DurationHpPct", "525": "DurationManaPct", "526": "DurationEndurancePct", "537": "PromisedRenewalTrigger"};
 
 export function spaName(id) { return SPA_NAMES[id] || `SE #${id}`; }
 

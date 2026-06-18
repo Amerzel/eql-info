@@ -209,3 +209,22 @@ code { background: var(--bg-3); padding: 0.1em 0.35em; border-radius: 2px;
 .spell-tooltip .tt-det  { background: var(--tag-deb); }
 .spell-tooltip .tt-disc { background: var(--tag-disc); }
 .spell-tooltip .muted { color: var(--muted); }
+
+/* Confidence tier indicators on effect rows */
+.tier-badge {
+  display: inline-block;
+  margin-left: 0.3em;
+  padding: 0 0.35em;
+  border-radius: 2px;
+  font-size: 0.75em;
+  font-weight: 700;
+  cursor: help;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+.tier-badge.tier-inferred { background: #4a3f1f; color: #f0d97a; border: 1px solid #5a4f2f; }
+.tier-badge.tier-partial  { background: #4a3520; color: #f0b070; border: 1px solid #5a4530; }
+.tier-badge.tier-unknown  { background: #3f1f20; color: #f08080; border: 1px solid #5f2f30; }
+.effects-table tr.tier-inferred td { background: rgba(240, 217, 122, 0.04); }
+.effects-table tr.tier-partial td  { background: rgba(240, 176, 112, 0.05); }
+.effects-table tr.tier-unknown td  { background: rgba(240, 128, 128, 0.06); }
