@@ -18,6 +18,7 @@ L 2  Grasping Roots
 L 2  Ward Summoned
 L 3  Burst of Fire
 L 3  Whirling Wind
+L 4  Budding Heal
 L 4  Camouflage
 L 4  Cure Disease
 L 4  Invoke Lightning
@@ -38,6 +39,7 @@ L 9  Light Healing
 L 9  Protection of Wood
 L 9  Starshine
 L10  Spirit of Wolf
+L10  Sprouting Heal
 L10  Stinging Swarm
 L10  Summon Drink
 L11  Halo of Light
@@ -69,6 +71,7 @@ L19  Endure Disease
 L19  Endure Poison
 L19  Healing
 L19  Protection of Rock
+L20  Flowering Heal
 L20  Resist Fire
 L20  Ring of South Ro
 L20  Ring of Stonebrunt
@@ -110,6 +113,7 @@ L29  Imbue Emerald
 L29  Imbue Plains Pebble
 L29  Mass Imbue Emerald
 L29  Mass Imbue Plains Pebble
+L30  Blooming Heal
 L30  Circle of Lavastorm
 L30  Fury of Air
 L30  Greater Wolf Form
@@ -151,6 +155,7 @@ L39  Pack Regeneration
 L39  Protection of Diamond
 L39  Zephyr: Feerrott
 L39  Zephyr: Steamfont
+L40  Blossoming Heal
 L40  Drifting Death
 L40  Form of the Great Wolf
 L40  Zephyr: South Ro
@@ -178,6 +183,7 @@ L47  Ice
 L47  Shield of Thorns
 L47  Thorncoat
 L47  Zephyr: Lavastorm
+L48  Efflorescing Heal
 L48  Fire
 L48  Improved Superior Camouflage
 L48  Starfire

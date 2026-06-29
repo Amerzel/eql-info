@@ -1,0 +1,18 @@
+# Rogue — L1-50 spells from EQL client data.
+# Delete lines for spells NOT actually obtainable in-game.
+# Lines that remain are treated as verified.
+# Created 2026-06-29 patch — utility/combination poisons.
+#
+# NOT in client data (likely server-side abilities, like Striker Stance):
+#   - Stunning Poison  (patch notes: adjusted down to L14)
+#   - Mind Break Poison (patch notes: NEW at L30, Spell Slow + Interrupt)
+
+L 7  Concussive Poison
+L18  Clumsiness Poison
+L23  Fettering Poison
+L25  Binding Poison
+L28  Neurotoxic Poison
+L33  Thought Drain Poison
+L36  Antimagic Poison
+L39  Mage Bane Poison
+L42  Paralytic Poison
