@@ -51,7 +51,7 @@ L15  Infectious Cloud
 L15  Shrink
 L16  Frenzy
 L16  Grow
-L16  Rancor
+L16  Impassivity
 L16  Tiny Companion
 L17  Insidious Fever
 L17  Vision

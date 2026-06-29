@@ -35,10 +35,10 @@ L 7  Cancel Magic
 L 7  Chaotic Feedback
 L 7  Enchant Silver
 L 7  Mass Enchant Silver
+L 7  Enchant Clay
 L 7  Mircyl's Animation
 L 8  Alliance
 L 8  Bind Sight
-L 8  Enchant Clay
 L 8  Illusion: Gnome
 L 8  Mass Enchant Clay
 L 9  Ebbing Strength

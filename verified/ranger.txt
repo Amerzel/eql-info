@@ -63,9 +63,9 @@ L45  Ensnaring Roots
 L46  Resist Fire
 L46  Scorching Arrow
 L47  Superior Camouflage
-L48  Force of Nature
+L48  Call of Earth
 L48  Wolf Form
 L49  Call of Flame
 L49  Pack Shrew
-L50  Call of Earth
+L50  Force of Nature
 L50  Jolt

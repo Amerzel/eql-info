@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-18",
+  "generated": "2026-06-29",
   "note": "All spells_us.txt fields are parsed and exported verbatim. The trailing pipe-delimited field is the effects blob (exported as the 'effects' array with effect_name labels). Messages come from spells_us_str.txt.",
-  "raw_field_count": 172,
+  "raw_field_count": 173,
   "fields": [
     {
       "raw_index": 0,
@@ -517,7 +517,7 @@
     },
     {
       "raw_index": 103,
-      "name": "pvp_resist_base",
+      "name": "eql_upgrade_placeholder",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -525,7 +525,7 @@
     },
     {
       "raw_index": 104,
-      "name": "pvp_resist_per_level",
+      "name": "pvp_resist_base",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -533,7 +533,7 @@
     },
     {
       "raw_index": 105,
-      "name": "pvp_resist_cap",
+      "name": "pvp_resist_per_level",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -541,7 +541,7 @@
     },
     {
       "raw_index": 106,
-      "name": "pvp_duration",
+      "name": "pvp_resist_cap",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -549,7 +549,7 @@
     },
     {
       "raw_index": 107,
-      "name": "pvp_duration_cap",
+      "name": "pvp_duration",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -557,7 +557,7 @@
     },
     {
       "raw_index": 108,
-      "name": "pcnpc_only_flag",
+      "name": "pvp_duration_cap",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -565,7 +565,7 @@
     },
     {
       "raw_index": 109,
-      "name": "cast_not_standing",
+      "name": "pcnpc_only_flag",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -573,7 +573,7 @@
     },
     {
       "raw_index": 110,
-      "name": "can_mgb",
+      "name": "cast_not_standing",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -581,7 +581,7 @@
     },
     {
       "raw_index": 111,
-      "name": "dispel_flag",
+      "name": "can_mgb",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -589,7 +589,7 @@
     },
     {
       "raw_index": 112,
-      "name": "npc_category",
+      "name": "dispel_flag",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -597,7 +597,7 @@
     },
     {
       "raw_index": 113,
-      "name": "npc_usefulness",
+      "name": "npc_category",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -605,7 +605,7 @@
     },
     {
       "raw_index": 114,
-      "name": "min_resist",
+      "name": "npc_usefulness",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -613,7 +613,7 @@
     },
     {
       "raw_index": 115,
-      "name": "max_resist",
+      "name": "min_resist",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -621,7 +621,7 @@
     },
     {
       "raw_index": 116,
-      "name": "viral_targets",
+      "name": "max_resist",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -629,7 +629,7 @@
     },
     {
       "raw_index": 117,
-      "name": "viral_timer",
+      "name": "viral_targets",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -637,7 +637,7 @@
     },
     {
       "raw_index": 118,
-      "name": "nimbus_effect",
+      "name": "viral_timer",
       "type": "int",
       "array_len": 1,
       "decoded": false,
@@ -645,6 +645,14 @@
     },
     {
       "raw_index": 119,
+      "name": "nimbus_effect",
+      "type": "int",
+      "array_len": 1,
+      "decoded": false,
+      "label_field": null
+    },
+    {
+      "raw_index": 120,
       "name": "directional_start",
       "type": "float",
       "array_len": 1,
@@ -652,7 +660,7 @@
       "label_field": null
     },
     {
-      "raw_index": 120,
+      "raw_index": 121,
       "name": "directional_end",
       "type": "float",
       "array_len": 1,
@@ -660,7 +668,7 @@
       "label_field": null
     },
     {
-      "raw_index": 121,
+      "raw_index": 122,
       "name": "sneak",
       "type": "int",
       "array_len": 1,
@@ -668,7 +676,7 @@
       "label_field": null
     },
     {
-      "raw_index": 122,
+      "raw_index": 123,
       "name": "not_focusable",
       "type": "int",
       "array_len": 1,
@@ -676,7 +684,7 @@
       "label_field": null
     },
     {
-      "raw_index": 123,
+      "raw_index": 124,
       "name": "no_detrimental_spell_aggro",
       "type": "int",
       "array_len": 1,
@@ -684,7 +692,7 @@
       "label_field": null
     },
     {
-      "raw_index": 124,
+      "raw_index": 125,
       "name": "show_wear_off_message",
       "type": "int",
       "array_len": 1,
@@ -692,7 +700,7 @@
       "label_field": null
     },
     {
-      "raw_index": 125,
+      "raw_index": 126,
       "name": "suspendable",
       "type": "int",
       "array_len": 1,
@@ -700,7 +708,7 @@
       "label_field": null
     },
     {
-      "raw_index": 126,
+      "raw_index": 127,
       "name": "viral_range",
       "type": "int",
       "array_len": 1,
@@ -708,7 +716,7 @@
       "label_field": null
     },
     {
-      "raw_index": 127,
+      "raw_index": 128,
       "name": "song_cap",
       "type": "int",
       "array_len": 1,
@@ -716,7 +724,7 @@
       "label_field": null
     },
     {
-      "raw_index": 128,
+      "raw_index": 129,
       "name": "stacks_with_self",
       "type": "int",
       "array_len": 1,
@@ -724,7 +732,7 @@
       "label_field": null
     },
     {
-      "raw_index": 129,
+      "raw_index": 130,
       "name": "not_shown_to_player",
       "type": "int",
       "array_len": 1,
@@ -732,7 +740,7 @@
       "label_field": null
     },
     {
-      "raw_index": 130,
+      "raw_index": 131,
       "name": "no_block",
       "type": "int",
       "array_len": 1,
@@ -740,7 +748,7 @@
       "label_field": null
     },
     {
-      "raw_index": 131,
+      "raw_index": 132,
       "name": "anim_variation",
       "type": "int",
       "array_len": 1,
@@ -748,7 +756,7 @@
       "label_field": null
     },
     {
-      "raw_index": 132,
+      "raw_index": 133,
       "name": "spell_group",
       "type": "int",
       "array_len": 1,
@@ -756,7 +764,7 @@
       "label_field": null
     },
     {
-      "raw_index": 133,
+      "raw_index": 134,
       "name": "rank",
       "type": "int",
       "array_len": 1,
@@ -764,7 +772,7 @@
       "label_field": null
     },
     {
-      "raw_index": 134,
+      "raw_index": 135,
       "name": "no_resist",
       "type": "int",
       "array_len": 1,
@@ -772,7 +780,7 @@
       "label_field": null
     },
     {
-      "raw_index": 135,
+      "raw_index": 136,
       "name": "allow_spellscribe",
       "type": "int",
       "array_len": 1,
@@ -780,7 +788,7 @@
       "label_field": null
     },
     {
-      "raw_index": 136,
+      "raw_index": 137,
       "name": "cast_restriction",
       "type": "int",
       "array_len": 1,
@@ -788,7 +796,7 @@
       "label_field": null
     },
     {
-      "raw_index": 137,
+      "raw_index": 138,
       "name": "allow_rest",
       "type": "int",
       "array_len": 1,
@@ -796,7 +804,7 @@
       "label_field": null
     },
     {
-      "raw_index": 138,
+      "raw_index": 139,
       "name": "can_cast_in_combat",
       "type": "int",
       "array_len": 1,
@@ -804,7 +812,7 @@
       "label_field": null
     },
     {
-      "raw_index": 139,
+      "raw_index": 140,
       "name": "can_cast_out_of_combat",
       "type": "int",
       "array_len": 1,
@@ -812,7 +820,7 @@
       "label_field": null
     },
     {
-      "raw_index": 140,
+      "raw_index": 141,
       "name": "show_dot_message",
       "type": "int",
       "array_len": 1,
@@ -820,7 +828,7 @@
       "label_field": null
     },
     {
-      "raw_index": 141,
+      "raw_index": 142,
       "name": "invalid",
       "type": "int",
       "array_len": 1,
@@ -828,7 +836,7 @@
       "label_field": null
     },
     {
-      "raw_index": 142,
+      "raw_index": 143,
       "name": "aoe_max_targets",
       "type": "int",
       "array_len": 1,
@@ -836,7 +844,7 @@
       "label_field": null
     },
     {
-      "raw_index": 143,
+      "raw_index": 144,
       "name": "no_heal_damage_item_mod",
       "type": "int",
       "array_len": 1,
@@ -844,7 +852,7 @@
       "label_field": null
     },
     {
-      "raw_index": 144,
+      "raw_index": 145,
       "name": "caster_requirement_id",
       "type": "int",
       "array_len": 1,
@@ -852,7 +860,7 @@
       "label_field": null
     },
     {
-      "raw_index": 145,
+      "raw_index": 146,
       "name": "spell_class",
       "type": "int",
       "array_len": 1,
@@ -860,7 +868,7 @@
       "label_field": null
     },
     {
-      "raw_index": 146,
+      "raw_index": 147,
       "name": "spell_subclass",
       "type": "int",
       "array_len": 1,
@@ -868,7 +876,7 @@
       "label_field": null
     },
     {
-      "raw_index": 147,
+      "raw_index": 148,
       "name": "ai_valid_targets",
       "type": "int",
       "array_len": 1,
@@ -876,7 +884,7 @@
       "label_field": null
     },
     {
-      "raw_index": 148,
+      "raw_index": 149,
       "name": "persist_death",
       "type": "int",
       "array_len": 1,
@@ -884,7 +892,7 @@
       "label_field": null
     },
     {
-      "raw_index": 149,
+      "raw_index": 150,
       "name": "base_effects_focus_slope",
       "type": "float",
       "array_len": 1,
@@ -892,7 +900,7 @@
       "label_field": null
     },
     {
-      "raw_index": 150,
+      "raw_index": 151,
       "name": "base_effects_focus_offset",
       "type": "float",
       "array_len": 1,
@@ -900,7 +908,7 @@
       "label_field": null
     },
     {
-      "raw_index": 151,
+      "raw_index": 152,
       "name": "min_distance",
       "type": "float",
       "array_len": 1,
@@ -908,7 +916,7 @@
       "label_field": null
     },
     {
-      "raw_index": 152,
+      "raw_index": 153,
       "name": "min_distance_mod",
       "type": "float",
       "array_len": 1,
@@ -916,7 +924,7 @@
       "label_field": null
     },
     {
-      "raw_index": 153,
+      "raw_index": 154,
       "name": "max_distance",
       "type": "float",
       "array_len": 1,
@@ -924,7 +932,7 @@
       "label_field": null
     },
     {
-      "raw_index": 154,
+      "raw_index": 155,
       "name": "max_distance_mod",
       "type": "float",
       "array_len": 1,
@@ -932,7 +940,7 @@
       "label_field": null
     },
     {
-      "raw_index": 155,
+      "raw_index": 156,
       "name": "min_range",
       "type": "float",
       "array_len": 1,
@@ -940,7 +948,7 @@
       "label_field": null
     },
     {
-      "raw_index": 156,
+      "raw_index": 157,
       "name": "no_remove",
       "type": "int",
       "array_len": 1,
@@ -948,7 +956,7 @@
       "label_field": null
     },
     {
-      "raw_index": 157,
+      "raw_index": 158,
       "name": "spell_recourse_type",
       "type": "int",
       "array_len": 1,
@@ -956,7 +964,7 @@
       "label_field": null
     },
     {
-      "raw_index": 158,
+      "raw_index": 159,
       "name": "only_during_fast_regen",
       "type": "int",
       "array_len": 1,
@@ -964,7 +972,7 @@
       "label_field": null
     },
     {
-      "raw_index": 159,
+      "raw_index": 160,
       "name": "is_beta_only",
       "type": "int",
       "array_len": 1,
@@ -972,7 +980,7 @@
       "label_field": null
     },
     {
-      "raw_index": 160,
+      "raw_index": 161,
       "name": "spell_subgroup",
       "type": "int",
       "array_len": 1,
@@ -980,7 +988,7 @@
       "label_field": null
     },
     {
-      "raw_index": 161,
+      "raw_index": 162,
       "name": "eql_new_2",
       "type": "int",
       "array_len": 1,
@@ -988,7 +996,7 @@
       "label_field": null
     },
     {
-      "raw_index": 162,
+      "raw_index": 163,
       "name": "eql_new_3",
       "type": "float",
       "array_len": 1,
@@ -996,7 +1004,7 @@
       "label_field": null
     },
     {
-      "raw_index": 163,
+      "raw_index": 164,
       "name": "eql_new_4",
       "type": "float",
       "array_len": 1,
@@ -1004,7 +1012,7 @@
       "label_field": null
     },
     {
-      "raw_index": 164,
+      "raw_index": 165,
       "name": "spell_category",
       "type": "int",
       "array_len": 1,
@@ -1012,7 +1020,7 @@
       "label_field": null
     },
     {
-      "raw_index": 165,
+      "raw_index": 166,
       "name": "eql_reserved_1",
       "type": "int",
       "array_len": 1,
@@ -1020,7 +1028,7 @@
       "label_field": null
     },
     {
-      "raw_index": 166,
+      "raw_index": 167,
       "name": "eql_pet_template",
       "type": "int",
       "array_len": 1,
@@ -1028,7 +1036,7 @@
       "label_field": null
     },
     {
-      "raw_index": 167,
+      "raw_index": 168,
       "name": "eql_reserved_2",
       "type": "int",
       "array_len": 1,
@@ -1036,7 +1044,7 @@
       "label_field": null
     },
     {
-      "raw_index": 168,
+      "raw_index": 169,
       "name": "eql_reserved_3",
       "type": "int",
       "array_len": 1,
@@ -1044,7 +1052,7 @@
       "label_field": null
     },
     {
-      "raw_index": 169,
+      "raw_index": 170,
       "name": "eql_reserved_4",
       "type": "int",
       "array_len": 1,
@@ -1052,7 +1060,7 @@
       "label_field": null
     },
     {
-      "raw_index": 170,
+      "raw_index": 171,
       "name": "ritual_eligible",
       "type": "int",
       "array_len": 1,
