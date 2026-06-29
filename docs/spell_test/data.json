@@ -1,0 +1,2676 @@
+{
+  "generated": "2026-06-08",
+  "total_combos": 103,
+  "spells": [
+    {
+      "id": 700,
+      "name": "Chant of Battle",
+      "class": "Bard",
+      "level": 1,
+      "mana": 0,
+      "endur": 0,
+      "target": 41,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 4,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0,
+          "pred_l1": 5,
+          "pred_l10": 7,
+          "pred_l50": 17,
+          "novel": true
+        },
+        {
+          "slot": 3,
+          "effect_id": 5,
+          "spa": "DEX",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0,
+          "pred_l1": 5,
+          "pred_l10": 7,
+          "pred_l50": 17,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 200,
+      "name": "Minor Healing",
+      "class": "Beastlord",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 51,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": 10,
+          "limit": 0,
+          "formula": 2,
+          "max": 20,
+          "pred_l1": 12,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 74006,
+      "name": "Wild Spirit",
+      "class": "Beastlord",
+      "level": 1,
+      "mana": 12,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 106,
+          "spa": "SummonAA",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 202,
+      "name": "Courage",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 12,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 10,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": 2,
+          "pred_l10": 3,
+          "pred_l50": 3,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 69,
+          "spa": "CurrentHPOnce",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        },
+        {
+          "slot": 3,
+          "effect_id": 79,
+          "spa": "CurrentHPPlus",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 203,
+      "name": "Cure Poison",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "spa": "PoisonCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4,
+          "pred_l1": -1,
+          "pred_l10": -3,
+          "pred_l50": -4,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 207,
+      "name": "Divine Aura",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 40,
+          "spa": "Invulnerability",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 201,
+      "name": "Flash of Light",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 12,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 20,
+          "spa": "Blind",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -1,
+          "pred_l10": -1,
+          "pred_l50": -1,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 2,
+          "spa": "ATK",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -5,
+          "pred_l10": -5,
+          "pred_l50": -5,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Holy Armor",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 15,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 4,
+          "pred_l10": 5,
+          "pred_l50": 5,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 208,
+      "name": "Lull",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "spa": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30,
+          "pred_l1": 15,
+          "pred_l10": 15,
+          "pred_l50": 15,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "spa": "EvilDeity",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30,
+          "pred_l1": 15,
+          "pred_l10": 15,
+          "pred_l50": 15,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "name": "Spook the Dead",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 10,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 23,
+          "spa": "Fear",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 52,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Strike",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 7,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -8,
+          "limit": 0,
+          "formula": 101,
+          "max": 10,
+          "pred_l1": 8,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 205,
+      "name": "True North",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 56,
+          "spa": "UltraVision",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 210,
+      "name": "Yaulp",
+      "class": "Cleric",
+      "level": 1,
+      "mana": 1,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 3,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 10,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        },
+        {
+          "slot": 5,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 5,
+          "pred_l10": 5,
+          "pred_l50": 5,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 237,
+      "name": "Dance of the Fireflies",
+      "class": "Druid",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "spa": "SummonItem",
+          "base": 10295,
+          "limit": 1,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 10295,
+          "pred_l10": 10295,
+          "pred_l50": 10295,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 224,
+      "name": "Endure Fire",
+      "class": "Druid",
+      "level": 1,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 46,
+          "spa": "ResistFire",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 240,
+      "name": "Lull Animal",
+      "class": "Druid",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 9,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 30,
+          "spa": "ChangeFrenzyRad",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 30,
+          "pred_l1": 15,
+          "pred_l10": 15,
+          "pred_l50": 15,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 86,
+          "spa": "EvilDeity",
+          "base": 25,
+          "limit": 0,
+          "formula": 100,
+          "max": 30,
+          "pred_l1": 25,
+          "pred_l10": 25,
+          "pred_l50": 25,
+          "novel": false
+        },
+        {
+          "slot": 3,
+          "effect_id": 18,
+          "spa": "Lull",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 0,
+          "pred_l10": 0,
+          "pred_l50": 0,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 238,
+      "name": "Sense Animals",
+      "class": "Druid",
+      "level": 1,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 54,
+          "spa": "SpinTarget",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 242,
+      "name": "Snare",
+      "class": "Druid",
+      "level": 1,
+      "mana": 15,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "spa": "MovementSpeed",
+          "base": -40,
+          "limit": 3,
+          "formula": 102,
+          "max": 55,
+          "pred_l1": -41,
+          "pred_l10": -50,
+          "pred_l50": -55,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 287,
+      "name": "Minor Illusion",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 58,
+          "spa": "ReclaimPets",
+          "base": 142,
+          "limit": 0,
+          "formula": 100,
+          "max": 3,
+          "pred_l1": 3,
+          "pred_l10": 3,
+          "pred_l50": 3,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "spa": "MovementSpeed",
+          "base": -7000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -7000,
+          "pred_l10": -7000,
+          "pred_l50": -7000,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 285,
+      "name": "Pendril's Animation",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 12,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 33,
+          "spa": "SummonPet",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 331,
+      "name": "Reclaim Energy",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 5,
+      "endur": 0,
+      "target": 14,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 68,
+          "spa": "AbsorbMagicAtt",
+          "base": 75,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 75,
+          "pred_l10": 75,
+          "pred_l50": 75,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Strengthen",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 4,
+          "limit": 0,
+          "formula": 102,
+          "max": 10,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 289,
+      "name": "Taper Enchantment",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 5,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "spa": "CancelMagic",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 0,
+          "pred_l10": 0,
+          "pred_l50": 0,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Weaken",
+      "class": "Enchanter",
+      "level": 1,
+      "mana": 8,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": -10,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": -10,
+          "pred_l10": -15,
+          "pred_l50": -15,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 310,
+      "name": "Flare",
+      "class": "Magician",
+      "level": 1,
+      "mana": 3,
+      "endur": 0,
+      "target": 1,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 24,
+          "spa": "Stamina",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -1,
+          "pred_l10": -1,
+          "pred_l50": -1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 338,
+      "name": "Cavorting Bones",
+      "class": "Necromancer",
+      "level": 1,
+      "mana": 15,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 71,
+          "spa": "Revive",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 340,
+      "name": "Disease Cloud",
+      "class": "Necromancer",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "spa": "DiseaseCounter",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 79,
+          "spa": "CurrentHPPlus",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -5,
+          "pred_l10": -5,
+          "pred_l50": -5,
+          "novel": true
+        },
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -1,
+          "limit": 0,
+          "formula": 100,
+          "max": 1,
+          "pred_l1": -1,
+          "pred_l10": -1,
+          "pred_l50": -1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Invisibility Versus Undead",
+      "class": "Necromancer",
+      "level": 1,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 28,
+          "spa": "InvisVsUndead",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 221,
+      "name": "Sense the Dead",
+      "class": "Necromancer",
+      "level": 1,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 52,
+          "spa": "SeeInvisible",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 213,
+      "name": "Cure Disease",
+      "class": "Shaman",
+      "level": 1,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 35,
+          "spa": "DiseaseCounter",
+          "base": -1,
+          "limit": 0,
+          "formula": 109,
+          "max": 4,
+          "pred_l1": -1,
+          "pred_l10": -3,
+          "pred_l50": -4,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 266,
+      "name": "Dexterous Aura",
+      "class": "Shaman",
+      "level": 1,
+      "mana": 10,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 5,
+          "spa": "DEX",
+          "base": 4,
+          "limit": 0,
+          "formula": 102,
+          "max": 10,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 225,
+      "name": "Endure Cold",
+      "class": "Shaman",
+      "level": 1,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 47,
+          "spa": "ResistCold",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 372,
+      "name": "Blast of Cold",
+      "class": "Wizard",
+      "level": 1,
+      "mana": 8,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -10,
+          "limit": 0,
+          "formula": 102,
+          "max": 18,
+          "pred_l1": 11,
+          "pred_l10": 18,
+          "pred_l50": 18,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 703,
+      "name": "Chords of Dissonance",
+      "class": "Bard",
+      "level": 2,
+      "mana": 0,
+      "endur": 0,
+      "target": 4,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 334,
+          "spa": "SPA#334",
+          "base": -2,
+          "limit": 0,
+          "formula": 109,
+          "max": 0,
+          "pred_l1": -2,
+          "pred_l10": -4,
+          "pred_l50": -14,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 215,
+      "name": "Reckless Strength",
+      "class": "Cleric",
+      "level": 2,
+      "mana": 30,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 20,
+          "limit": 0,
+          "formula": 1001,
+          "max": 0,
+          "pred_l1": 20,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 216,
+      "name": "Stun",
+      "class": "Cleric",
+      "level": 2,
+      "mana": 35,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 21,
+          "spa": "Stun",
+          "base": 4000,
+          "limit": 4000,
+          "formula": 100,
+          "max": 55,
+          "pred_l1": 55,
+          "pred_l10": 55,
+          "pred_l50": 55,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 249,
+      "name": "Grasping Roots",
+      "class": "Druid",
+      "level": 2,
+      "mana": 35,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "spa": "CurrentHPPlus",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -10,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 99,
+          "spa": "Root",
+          "base": -10000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -10000,
+          "pred_l10": -10000,
+          "pred_l50": -10000,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 292,
+      "name": "Mesmerize",
+      "class": "Enchanter",
+      "level": 2,
+      "mana": 15,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 31,
+          "spa": "Mez",
+          "base": 2,
+          "limit": 0,
+          "formula": 100,
+          "max": 55,
+          "pred_l1": 2,
+          "pred_l10": 2,
+          "pred_l50": 2,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 676,
+      "name": "Tashina",
+      "class": "Enchanter",
+      "level": 2,
+      "mana": 10,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 36,
+          "spa": "PoisonCounter",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 50,
+          "spa": "ResistMagic",
+          "base": -5,
+          "limit": 0,
+          "formula": 102,
+          "max": 13,
+          "pred_l1": -6,
+          "pred_l10": -13,
+          "pred_l50": -13,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Glimpse",
+      "class": "Ranger",
+      "level": 2,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 87,
+          "spa": "SPA#87",
+          "base": 55,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 55,
+          "pred_l10": 55,
+          "pred_l50": 55,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 378,
+      "name": "O`Keil's Radiation",
+      "class": "Wizard",
+      "level": 2,
+      "mana": 15,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "spa": "TotalHP",
+          "base": -2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -2,
+          "pred_l10": -2,
+          "pred_l50": -2,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 46,
+          "spa": "ResistFire",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 10,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 722,
+      "name": "Jaxan's Jig o` Vigor",
+      "class": "Bard",
+      "level": 3,
+      "mana": 0,
+      "endur": 0,
+      "target": 41,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 189,
+          "spa": "SPA#189",
+          "base": 1,
+          "limit": 0,
+          "formula": 119,
+          "max": 7,
+          "pred_l1": 6,
+          "pred_l10": 7,
+          "pred_l50": 7,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 232,
+      "name": "Sense Summoned",
+      "class": "Magician",
+      "level": 3,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 53,
+          "spa": "SPA#53",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 346,
+      "name": "Grim Aura",
+      "class": "Necromancer",
+      "level": 3,
+      "mana": 25,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 2,
+          "spa": "ATK",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 10,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 269,
+      "name": "Feet like Cat",
+      "class": "Shaman",
+      "level": 3,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 6,
+          "spa": "AGI",
+          "base": 9,
+          "limit": 0,
+          "formula": 102,
+          "max": 18,
+          "pred_l1": 10,
+          "pred_l10": 18,
+          "pred_l50": 18,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 375,
+      "name": "Fade",
+      "class": "Wizard",
+      "level": 3,
+      "mana": 10,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 42,
+          "spa": "SPA#42",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Light Healing",
+      "class": "Cleric",
+      "level": 4,
+      "mana": 28,
+      "endur": 0,
+      "target": 51,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": 35,
+          "limit": 0,
+          "formula": 3,
+          "max": 65,
+          "pred_l1": 38,
+          "pred_l10": 65,
+          "pred_l50": 65,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 247,
+      "name": "Camouflage",
+      "class": "Druid",
+      "level": 4,
+      "mana": 15,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 12,
+          "spa": "Invisibility",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Gate",
+      "class": "Enchanter",
+      "level": 4,
+      "mana": 70,
+      "endur": 0,
+      "target": 6,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 26,
+          "spa": "Gate",
+          "base": 98,
+          "limit": 1,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 98,
+          "pred_l10": 98,
+          "pred_l50": 98,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 294,
+      "name": "Suffocating Sphere",
+      "class": "Enchanter",
+      "level": 4,
+      "mana": 38,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "spa": "CurrentHPPlus",
+          "base": -13,
+          "limit": 0,
+          "formula": 100,
+          "max": 13,
+          "pred_l1": -13,
+          "pred_l10": -13,
+          "pred_l50": -13,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -5,
+          "pred_l10": -5,
+          "pred_l50": -5,
+          "novel": false
+        },
+        {
+          "slot": 3,
+          "effect_id": 6,
+          "spa": "AGI",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -5,
+          "pred_l10": -5,
+          "pred_l50": -5,
+          "novel": true
+        },
+        {
+          "slot": 4,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -6,
+          "limit": 0,
+          "formula": 101,
+          "max": 10,
+          "pred_l1": -6,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": false
+        }
+      ]
+    },
+    {
+      "id": 271,
+      "name": "Fleeting Fury",
+      "class": "Shaman",
+      "level": 4,
+      "mana": 10,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 15,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 15,
+          "pred_l10": 15,
+          "pred_l50": 15,
+          "novel": false
+        },
+        {
+          "slot": 3,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 5,
+          "pred_l10": 5,
+          "pred_l50": 5,
+          "novel": false
+        },
+        {
+          "slot": 4,
+          "effect_id": 5,
+          "spa": "DEX",
+          "base": 20,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 20,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "name": "See Invisible",
+      "class": "Wizard",
+      "level": 4,
+      "mana": 25,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "spa": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 299,
+      "name": "Sentinel",
+      "class": "Enchanter",
+      "level": 5,
+      "mana": 25,
+      "endur": 0,
+      "target": 45,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 76,
+          "spa": "SPA#76",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 246,
+      "name": "Lesser Shielding",
+      "class": "Magician",
+      "level": 5,
+      "mana": 25,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 69,
+          "spa": "CurrentHPOnce",
+          "base": 12,
+          "limit": 0,
+          "formula": 102,
+          "max": 30,
+          "pred_l1": 13,
+          "pred_l10": 22,
+          "pred_l50": 30,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 12,
+          "limit": 0,
+          "formula": 102,
+          "max": 30,
+          "pred_l1": 3,
+          "pred_l10": 5,
+          "pred_l50": 7,
+          "novel": false
+        },
+        {
+          "slot": 6,
+          "effect_id": 50,
+          "spa": "ResistMagic",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 10,
+          "pred_l1": 5,
+          "pred_l10": 7,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 352,
+      "name": "Deadeye",
+      "class": "Necromancer",
+      "level": 5,
+      "mana": 35,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 13,
+          "spa": "SeeInvis",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 65,
+          "spa": "SPA#65",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 270,
+      "name": "Drowsy",
+      "class": "Shaman",
+      "level": 5,
+      "mana": 20,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 11,
+          "spa": "AttackSpeed",
+          "base": 90,
+          "limit": 0,
+          "formula": 109,
+          "max": 75,
+          "pred_l1": 75,
+          "pred_l10": 75,
+          "pred_l50": 75,
+          "novel": true
+        },
+        {
+          "slot": 3,
+          "effect_id": 35,
+          "spa": "DiseaseCounter",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 3,
+          "pred_l10": 3,
+          "pred_l50": 3,
+          "novel": false
+        }
+      ]
+    },
+    {
+      "id": 477,
+      "name": "Fire Bolt",
+      "class": "Wizard",
+      "level": 5,
+      "mana": 28,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -35,
+          "limit": 0,
+          "formula": 103,
+          "max": 65,
+          "pred_l1": 37,
+          "pred_l10": 55,
+          "pred_l50": 65,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Hymn of Restoration",
+      "class": "Bard",
+      "level": 6,
+      "mana": 0,
+      "endur": 0,
+      "target": 41,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": 1,
+          "limit": 0,
+          "formula": 110,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 3,
+          "pred_l50": 13,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 227,
+      "name": "Endure Poison",
+      "class": "Cleric",
+      "level": 6,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "spa": "ResistPoison",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Enduring Breath",
+      "class": "Druid",
+      "level": 6,
+      "mana": 35,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 14,
+          "spa": "WaterBreathing",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 258,
+      "name": "Treeform",
+      "class": "Druid",
+      "level": 6,
+      "mana": 30,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 58,
+          "spa": "ReclaimPets",
+          "base": 143,
+          "limit": 0,
+          "formula": 100,
+          "max": 3,
+          "pred_l1": 3,
+          "pred_l10": 3,
+          "pred_l50": 3,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 99,
+          "spa": "Root",
+          "base": -10000,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -10000,
+          "pred_l10": -10000,
+          "pred_l50": -10000,
+          "novel": false
+        },
+        {
+          "slot": 4,
+          "effect_id": 46,
+          "spa": "ResistFire",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -10,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "name": "Eye of Zomm",
+      "class": "Magician",
+      "level": 6,
+      "mana": 30,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 67,
+          "spa": "SPA#67",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 641,
+      "name": "Dark Pact",
+      "class": "Necromancer",
+      "level": 6,
+      "mana": 5,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 15,
+          "spa": "CurrentMana",
+          "base": 2,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 2,
+          "pred_l10": 2,
+          "pred_l50": 2,
+          "novel": true
+        },
+        {
+          "slot": 7,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": -3,
+          "pred_l10": -3,
+          "pred_l50": -3,
+          "novel": false
+        }
+      ]
+    },
+    {
+      "id": 279,
+      "name": "Spirit of Bear",
+      "class": "Shaman",
+      "level": 6,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 7,
+          "spa": "STA",
+          "base": 8,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": 8,
+          "pred_l10": 13,
+          "pred_l50": 15,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 256,
+      "name": "Shield of Thistles",
+      "class": "Druid",
+      "level": 7,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 59,
+          "spa": "TotalHP",
+          "base": -3,
+          "limit": 0,
+          "formula": 109,
+          "max": 6,
+          "pred_l1": -3,
+          "pred_l10": -5,
+          "pred_l50": -6,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Cancel Magic",
+      "class": "Enchanter",
+      "level": 7,
+      "mana": 30,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 27,
+          "spa": "CancelMagic",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 1504,
+      "name": "Renew Elements",
+      "class": "Magician",
+      "level": 7,
+      "mana": 15,
+      "endur": 0,
+      "target": 14,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": 15,
+          "limit": 0,
+          "formula": 1,
+          "max": 32,
+          "pred_l1": 16,
+          "pred_l10": 25,
+          "pred_l50": 32,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 35,
+          "spa": "DiseaseCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10,
+          "pred_l1": -10,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": false
+        },
+        {
+          "slot": 3,
+          "effect_id": 36,
+          "spa": "PoisonCounter",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10,
+          "pred_l1": -10,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": false
+        },
+        {
+          "slot": 4,
+          "effect_id": 116,
+          "spa": "SPA#116",
+          "base": -10,
+          "limit": 0,
+          "formula": 100,
+          "max": 10,
+          "pred_l1": -10,
+          "pred_l10": -10,
+          "pred_l50": -10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 359,
+      "name": "Vampiric Embrace",
+      "class": "Necromancer",
+      "level": 7,
+      "mana": 30,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 85,
+          "spa": "AddProcSpell",
+          "base": 821,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": "\u2192 Vampiric Embrace",
+          "pred_l10": "\u2192 Vampiric Embrace",
+          "pred_l50": "\u2192 Vampiric Embrace",
+          "novel": true,
+          "is_spell_ref": true
+        }
+      ]
+    },
+    {
+      "id": 74008,
+      "name": "Blessing of the Page",
+      "class": "Cleric",
+      "level": 8,
+      "mana": 175,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 121,
+          "spa": "SPA#121",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 74001,
+      "name": "Echo of Health",
+      "class": "Cleric",
+      "level": 8,
+      "mana": 35,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "spa": "CurrentHPPlus",
+          "base": 30,
+          "limit": 0,
+          "formula": 3,
+          "max": 50,
+          "pred_l1": 33,
+          "pred_l10": 50,
+          "pred_l50": 50,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 100,
+          "spa": "HealOverTime",
+          "base": 12,
+          "limit": 0,
+          "formula": 103,
+          "max": 20,
+          "pred_l1": 14,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 255,
+      "name": "Invisibility Versus Animals",
+      "class": "Druid",
+      "level": 8,
+      "mana": 30,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 29,
+          "spa": "InvisVsAnimals",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 298,
+      "name": "Alliance",
+      "class": "Enchanter",
+      "level": 8,
+      "mana": 35,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 19,
+          "spa": "AddFaction",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 100,
+          "pred_l10": 100,
+          "pred_l50": 100,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 500,
+      "name": "Bind Sight",
+      "class": "Enchanter",
+      "level": 8,
+      "mana": 15,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 73,
+          "spa": "SPA#73",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 74011,
+      "name": "Cancelling of Life",
+      "class": "Necromancer",
+      "level": 8,
+      "mana": 60,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -11,
+          "limit": 0,
+          "formula": 100,
+          "max": 11,
+          "pred_l1": -11,
+          "pred_l10": -11,
+          "pred_l50": -11,
+          "novel": false
+        },
+        {
+          "slot": 2,
+          "effect_id": 120,
+          "spa": "SPA#120",
+          "base": -20,
+          "limit": 3,
+          "formula": 100,
+          "max": 20,
+          "pred_l1": -20,
+          "pred_l10": -20,
+          "pred_l50": -20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 226,
+      "name": "Endure Disease",
+      "class": "Shaman",
+      "level": 8,
+      "mana": 20,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "spa": "ResistDisease",
+          "base": 10,
+          "limit": 0,
+          "formula": 102,
+          "max": 20,
+          "pred_l1": 11,
+          "pred_l10": 20,
+          "pred_l50": 20,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 710,
+      "name": "Elemental Rhythms",
+      "class": "Bard",
+      "level": 9,
+      "mana": 0,
+      "endur": 0,
+      "target": 41,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 50,
+          "spa": "ResistMagic",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 30,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 47,
+          "spa": "ResistCold",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 30,
+          "novel": true
+        },
+        {
+          "slot": 3,
+          "effect_id": 46,
+          "spa": "ResistFire",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 50,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 30,
+          "novel": false
+        },
+        {
+          "slot": 4,
+          "effect_id": 1,
+          "spa": "ArmorClass",
+          "base": 5,
+          "limit": 0,
+          "formula": 109,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 4,
+          "novel": false
+        }
+      ]
+    },
+    {
+      "id": 2601,
+      "name": "Magical Monologue",
+      "class": "Bard",
+      "level": 9,
+      "mana": 0,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 117,
+          "spa": "SPA#117",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 303,
+      "name": "Whirl Till You Hurl",
+      "class": "Enchanter",
+      "level": 9,
+      "mana": 55,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 64,
+          "spa": "FeignDeath",
+          "base": 7500,
+          "limit": 7500,
+          "formula": 100,
+          "max": 55,
+          "pred_l1": 55,
+          "pred_l10": 55,
+          "pred_l50": 55,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 1509,
+      "name": "Leech",
+      "class": "Necromancer",
+      "level": 9,
+      "mana": 72,
+      "endur": 0,
+      "target": 5,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 3,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": -8,
+          "limit": 0,
+          "formula": 100,
+          "max": 8,
+          "pred_l1": -8,
+          "pred_l10": -8,
+          "pred_l50": -8,
+          "novel": false
+        },
+        {
+          "slot": 4,
+          "effect_id": 457,
+          "spa": "SPA#457",
+          "base": 1000,
+          "limit": 0,
+          "formula": 100,
+          "max": 28,
+          "pred_l1": 28,
+          "pred_l10": 28,
+          "pred_l50": 28,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 278,
+      "name": "Spirit of Wolf",
+      "class": "Shaman",
+      "level": 9,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 2,
+          "effect_id": 3,
+          "spa": "MovementSpeed",
+          "base": 30,
+          "limit": 0,
+          "formula": 101,
+          "max": 55,
+          "pred_l1": 30,
+          "pred_l10": 35,
+          "pred_l50": 55,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 381,
+      "name": "Resistant Skin",
+      "class": "Wizard",
+      "level": 9,
+      "mana": 35,
+      "endur": 0,
+      "target": 6,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 49,
+          "spa": "ResistDisease",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 15,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 48,
+          "spa": "ResistPoison",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 15,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 701,
+      "name": "Anthem de Arms",
+      "class": "Bard",
+      "level": 10,
+      "mana": 0,
+      "endur": 0,
+      "target": 41,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 11,
+          "spa": "AttackSpeed",
+          "base": 110,
+          "limit": 0,
+          "formula": 100,
+          "max": 110,
+          "pred_l1": 110,
+          "pred_l10": 110,
+          "pred_l50": 110,
+          "novel": true
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "spa": "STR",
+          "base": 5,
+          "limit": 0,
+          "formula": 101,
+          "max": 0,
+          "pred_l1": 5,
+          "pred_l10": 10,
+          "pred_l50": 30,
+          "novel": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Bind Affinity",
+      "class": "Cleric",
+      "level": 10,
+      "mana": 100,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 25,
+          "spa": "BindAffinity",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Healing",
+      "class": "Cleric",
+      "level": 10,
+      "mana": 65,
+      "endur": 0,
+      "target": 51,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 0,
+          "spa": "CurrentHP",
+          "base": 95,
+          "limit": 0,
+          "formula": 4,
+          "max": 175,
+          "pred_l1": 99,
+          "pred_l10": 135,
+          "pred_l50": 175,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 301,
+      "name": "Memory Blur",
+      "class": "Enchanter",
+      "level": 10,
+      "mana": 40,
+      "endur": 0,
+      "target": 5,
+      "is_duration": false,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 63,
+          "spa": "BindSight",
+          "base": 10,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 10,
+          "pred_l10": 10,
+          "pred_l50": 10,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 261,
+      "name": "Levitate",
+      "class": "Shaman",
+      "level": 10,
+      "mana": 30,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 3,
+          "effect_id": 57,
+          "spa": "SPA#57",
+          "base": 1,
+          "limit": 0,
+          "formula": 100,
+          "max": 0,
+          "pred_l1": 1,
+          "pred_l10": 1,
+          "pred_l50": 1,
+          "novel": true
+        }
+      ]
+    },
+    {
+      "id": 284,
+      "name": "Spirit of Snake",
+      "class": "Shaman",
+      "level": 10,
+      "mana": 40,
+      "endur": 0,
+      "target": 51,
+      "is_duration": true,
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "spa": "CHA",
+          "base": 6,
+          "limit": 0,
+          "formula": 101,
+          "max": 15,
+          "pred_l1": 6,
+          "pred_l10": 11,
+          "pred_l50": 15,
+          "novel": true
+        }
+      ]
+    }
+  ]
+}

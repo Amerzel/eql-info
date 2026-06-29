@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EQL Alternate Spell Gem Sets — Bard</title>
+  <style>
+    :root {
+      --bg: #1d1c19;
+      --panel: #2a2823;
+      --line: #3a372f;
+      --text: #d8d3c4;
+      --muted: #95907f;
+      --accent: #c7a85a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.45 -apple-system, "Segoe UI", system-ui, sans-serif;
+      padding: 28px;
+    }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    h1 small { color: var(--muted); font-weight: 400; font-size: 14px; }
+    .lead { color: var(--muted); max-width: 820px; margin-bottom: 22px; }
+    code { background: #000; padding: 1px 5px; border-radius: 3px; color: #e8d49a; }
+
+    .note {
+      background: #1d2a1d; border: 1px solid #3a5a3a; color: #c6e8c6;
+      padding: 12px 16px; border-radius: 6px; margin: 18px 0;
+      max-width: 880px; line-height: 1.5;
+    }
+    .note strong { color: #8de08d; }
+    .warn {
+      background: #2a241a; border: 1px solid #4a3b1f; color: #e8d49a;
+      padding: 12px 16px; border-radius: 6px; margin: 18px 0;
+      max-width: 880px; line-height: 1.5;
+    }
+    .warn strong { color: #f5d97a; }
+
+    table { border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); margin: 18px 0; }
+    th, td { padding: 8px 14px; text-align: center; border-bottom: 1px solid var(--line); }
+    th { background: #15140f; color: var(--accent); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: none; }
+    td.spell { color: var(--text); }
+    td.lvl { color: var(--muted); font-variant-numeric: tabular-nums; }
+    td.icon-id { color: var(--muted); font-size: 11px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+    img.icon-default { width: 40px; height: 40px; image-rendering: pixelated; vertical-align: middle; }
+    img.icon-alt     { width: 48px; height: 48px; image-rendering: pixelated; vertical-align: middle; background: #f0e8d0; padding: 2px; border-radius: 3px; }
+
+    h2 { margin: 32px 0 10px; font-size: 17px; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      max-width: 1400px;
+    }
+    .sheet-card {
+      background: var(--panel); border: 1px solid var(--line);
+      padding: 8px; border-radius: 6px;
+      text-align: center;
+    }
+    .sheet-card .label { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-family: ui-monospace, "SF Mono", monospace; }
+    .sheet-card .label strong { color: #f5d97a; }
+    .sheet-card img { width: 100%; max-width: 256px; image-rendering: pixelated; background: #000; }
+  </style>
+</head>
+<body>
+
+<h1>EQL — Alternate Spell Gem Icon Set <small>· Bard · spot check</small></h1>
+<p class="lead">
+  <code>EQUI_SpellIcons.xml</code> defines two animations keyed by the same <code>new_icon</code>:
+  <code>A_SpellIcons</code> (<code>Spells##.tga</code>, 40×40) and <code>A_SpellGems</code>
+  (<code>gemicons##.tga</code>, 24×24). Only one set of <code>new_icon</code> values exists — both
+  animations index the same number.
+</p>
+
+<div class="warn">
+  <strong>Open question:</strong> there should be 3 alternate styles (Alt 1/2/3), but I've only found ONE
+  alternate texture animation (<code>A_SpellGems</code>). The page below shows my current best mapping
+  (Default → <code>Spells##.tga</code>, Alt → <code>gemicons##.tga</code> at 10×10 grid). Spot-check the
+  alternate column, then inspect the raw gemicons sheets at the bottom — the 3 styles must come from
+  either (a) sub-regions within those sheets, (b) the patch only shipping one of the three sets so far,
+  or (c) something I'm still missing.
+</div>
+
+<h2>Bard spell icons — Default vs Alternate (gemicons mapping)</h2>
+
+<table id="bard-table">
+  <thead>
+    <tr>
+      <th>Bard Spell</th>
+      <th>Lvl</th>
+      <th>new_icon</th>
+      <th>Default<br><span style="font-weight:400;color:#95907f;font-size:10px;">Spells##.tga · 40×40</span></th>
+      <th>Alternate<br><span style="font-weight:400;color:#95907f;font-size:10px;">gemicons##.tga · 24×24</span></th>
+      <th>gemicons sheet / cell</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h2>Raw gemicons##.tga sheets (for visual structure analysis)</h2>
+<p class="lead" style="margin-top:0;">
+  All 23 sheets, native 256×256 size. Highlighted edges = updated in the 2026-06-04 patch
+  (<code>gemicons01.tga</code> and <code>gemicons02.tga</code>). If you can spot 3 distinct
+  style groups within a sheet or across sheets, that's what we're after.
+</p>
+
+<div class="sheet-grid" id="sheets"></div>
+
+<h2>Reference: default Spells01.tga (40×40 grid)</h2>
+<div class="sheet-grid">
+  <div class="sheet-card">
+    <div class="label"><strong>Spells01.tga</strong> · 6×6 grid · 40px cells · default</div>
+    <img src="sheets/Spells01.png" alt="">
+  </div>
+</div>
+
+<script>
+async function main() {
+  const data = await fetch('bard.json').then(r => r.json());
+  const tbody = document.querySelector('#bard-table tbody');
+  data.forEach(sp => {
+    const padded = String(sp.new_icon).padStart(4,'0');
+    const ICONS_PER_SHEET = 100;
+    const sheet = Math.floor(sp.new_icon / ICONS_PER_SHEET) + 1;
+    const local = sp.new_icon % ICONS_PER_SHEET;
+    const col = local % 10;
+    const row = Math.floor(local / 10);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="spell">${sp.name}</td>
+      <td class="lvl">${sp.level}</td>
+      <td class="icon-id">#${sp.new_icon}</td>
+      <td><img class="icon-default" src="icons/icon_${padded}.png" alt=""></td>
+      <td><img class="icon-alt" src="alt_icons/alt_icon_${padded}.png" alt=""></td>
+      <td class="icon-id">gi${String(sheet).padStart(2,'0')} · (${col}, ${row})</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Sheet gallery
+  const sheets = document.getElementById('sheets');
+  for (let n = 1; n <= 23; n++) {
+    const nn = String(n).padStart(2,'0');
+    const patched = (n === 1 || n === 2);
+    const card = document.createElement('div');
+    card.className = 'sheet-card';
+    card.style.borderColor = patched ? '#c7a85a' : '';
+    card.innerHTML = `
+      <div class="label">${patched ? '<strong>PATCHED</strong> · ' : ''}gemicons${nn}.tga · cells ${(n-1)*100}..${n*100-1}</div>
+      <img src="sheets/gemicons${nn}.png" alt="">
+    `;
+    sheets.appendChild(card);
+  }
+}
+main();
+</script>
+
+</body>
+</html>

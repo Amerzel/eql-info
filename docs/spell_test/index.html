@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EQL Spell Formula Test Sheet — L1–10</title>
+  <style>
+    :root {
+      --bg: #1d1c19;
+      --panel: #2a2823;
+      --line: #3a372f;
+      --text: #d8d3c4;
+      --muted: #95907f;
+      --accent: #c7a85a;
+      --good: #8de08d;
+      --warn: #f5d97a;
+      --novel: #2a3a4a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 13px/1.45 -apple-system, "Segoe UI", system-ui, sans-serif;
+      padding: 24px;
+    }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    h1 small { color: var(--muted); font-weight: 400; font-size: 13px; }
+    .lead { color: var(--muted); max-width: 880px; margin-bottom: 18px; }
+    code { background: #000; padding: 1px 5px; border-radius: 3px; color: #e8d49a; }
+
+    .controls {
+      position: sticky; top: 0; z-index: 10; background: var(--bg);
+      padding: 10px 0; border-bottom: 1px solid var(--line); margin-bottom: 16px;
+      display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+    }
+    .controls input[type=search] {
+      padding: 6px 10px; background: var(--panel); border: 1px solid var(--line);
+      color: var(--text); border-radius: 4px; width: 240px;
+    }
+    .controls label { color: var(--muted); cursor: pointer; user-select: none; }
+    .controls .pill {
+      padding: 4px 10px; border-radius: 12px;
+      background: var(--panel); border: 1px solid var(--line);
+      color: var(--muted); cursor: pointer;
+    }
+    .controls .pill.on { background: var(--novel); color: var(--text); border-color: #4a6a8a; }
+    .stat { color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+    h2 {
+      margin: 28px 0 10px; font-size: 17px; color: var(--accent);
+      border-bottom: 1px solid var(--line); padding-bottom: 6px;
+    }
+    h2 small { color: var(--muted); font-weight: 400; font-size: 12px; margin-left: 8px; }
+
+    .spell {
+      background: var(--panel); border: 1px solid var(--line);
+      padding: 10px 14px; margin: 8px 0; border-radius: 6px;
+      page-break-inside: avoid;
+    }
+    .spell.has-novel { border-left: 4px solid var(--novel); }
+
+    .spell-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .spell-name {
+      font-weight: 600; font-size: 15px; color: var(--text);
+    }
+    .spell-name a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--muted); }
+    .spell-meta { color: var(--muted); font-size: 11px; }
+
+    table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    th, td { padding: 4px 8px; text-align: left; border-bottom: 1px solid var(--line); font-size: 12px; }
+    th { color: var(--accent); font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    td.spa { color: var(--text); }
+    td.spa .id { color: var(--muted); font-size: 10px; font-family: ui-monospace, monospace; margin-left: 4px; }
+    td.actual { width: 90px; }
+    td.actual input {
+      width: 100%; padding: 2px 4px;
+      background: #15140f; border: 1px solid var(--line); color: var(--text);
+      font-family: ui-monospace, monospace; font-size: 12px; text-align: right;
+    }
+    tr.novel { background: rgba(42, 58, 74, 0.35); }
+    tr.novel td.spa::before { content: "★ "; color: #6a9cc8; }
+
+    .note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+    .pred { color: var(--good); font-weight: 600; }
+    th.primary, td.primary { background: rgba(141, 224, 141, 0.08); }
+    td.primary.pred { font-size: 13px; }
+
+    /* Row states */
+    tr.confirmed { background: rgba(141, 224, 141, 0.14) !important; }
+    tr.mismatch  { background: rgba(232, 100, 100, 0.18) !important; }
+    td.check { width: 32px; text-align: center; }
+    td.check input { transform: scale(1.2); cursor: pointer; }
+    .controls .btn {
+      padding: 6px 12px; border-radius: 4px;
+      background: var(--accent); border: 1px solid var(--accent);
+      color: #1a1810; font-weight: 600; cursor: pointer;
+    }
+    .controls .btn.secondary {
+      background: var(--panel); color: var(--text); border-color: var(--line);
+    }
+    .controls .btn:hover { filter: brightness(1.1); }
+
+    /* Modal for export */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      display: none; align-items: center; justify-content: center; z-index: 100;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+      padding: 18px; max-width: 600px; width: 90%; max-height: 80vh; overflow: auto;
+    }
+    .modal h3 { margin: 0 0 10px; color: var(--accent); }
+    .modal textarea {
+      width: 100%; height: 200px; background: #000; color: var(--text);
+      border: 1px solid var(--line); padding: 8px; font-family: ui-monospace, monospace;
+      font-size: 11px;
+    }
+    .modal .actions { margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end; }
+
+    @media print {
+      body { background: white; color: black; padding: 8px; }
+      .controls { display: none; }
+      .spell { background: white; border: 1px solid #999; }
+      td.actual input { border: 1px solid #999; }
+      h2 { color: black; border-color: #333; }
+      .pred { color: #060; }
+      tr.novel { background: #eef; }
+      .spell.has-novel { border-left: 4px solid #46a; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>EQL Spell Formula Test Sheet <small>· L1–10 · auto-generated</small></h1>
+<p class="lead">
+  Every spell here adds at least one previously-untested
+  <code>(effect_id, formula)</code> combination to our coverage of the EQEmu
+  spell-value formula table. ★ marks the row(s) that are novel; non-starred
+  rows are extra effects on the same spell that we've already verified.
+  Predictions assume <code>calcSpellValue(base, formula, max, level)</code> +
+  AC <code>/4</code> divisor. <strong>If a predicted value doesn't match what
+  you see in-game, jot it in the "Actual" column.</strong>
+</p>
+
+<div class="controls">
+  <input id="search" type="search" placeholder="filter (spell, class, SPA name)">
+  <span class="pill on" data-filter="all">All</span>
+  <span class="pill" data-filter="novel">Novel only</span>
+  <span class="pill" data-filter="untested">Untested</span>
+  <span class="pill" data-filter="confirmed">Confirmed</span>
+  <span class="pill" data-filter="mismatch">Mismatch</span>
+  <label><input type="checkbox" id="hide-noop"> Hide no-op rows</label>
+  <button class="btn" id="export-btn">Export results</button>
+  <button class="btn secondary" id="clear-btn">Clear all</button>
+  <span class="stat" id="stat"></span>
+</div>
+
+<div id="sections"></div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <h3>Export results</h3>
+    <p style="color: var(--muted); margin: 0 0 10px;">
+      Copy the JSON below and paste it back in chat. It contains every row you've
+      checked or annotated — predictions, your input, and which spell/slot each
+      belongs to. The "ok" / "mismatch" counts give a fast overview.
+    </p>
+    <textarea id="export-text" readonly></textarea>
+    <div class="actions">
+      <button class="btn" id="copy-btn">Copy to clipboard</button>
+      <button class="btn secondary" id="download-btn">Download JSON</button>
+      <button class="btn secondary" id="close-btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(async function () {
+  const data = await fetch('data.json').then(r => r.json());
+
+  // Group spells by "what they primarily test" — pick the first novel effect's SPA family.
+  const FAMILY = e => {
+    const id = e.effect_id;
+    if (id === 1 || id === 221 || id === 262 || id === 416) return "1. AC family";
+    if (id >= 4 && id <= 10) return "2. Stat buffs/debuffs (STR/STA/AGI/DEX/WIS/INT/CHA)";
+    if (id === 0 || id === 69 || id === 79 || id === 100 || id === 184) return "3. HP direct (damage / heal / HoT)";
+    if (id === 15 || id === 97) return "4. Mana (current / pool)";
+    if (id === 2 || id === 11 || id === 24) return "5. Combat stats (ATK / haste / stamina)";
+    if (id === 3) return "6. Movement speed (snare / run buff)";
+    if (id >= 46 && id <= 50 || id === 111 || id === 195) return "7. Resists";
+    if (id === 12 || id === 13 || id === 14 || id === 28 || id === 29 || id === 52 || id === 55 || id === 56) return "8. Senses / invis / breath";
+    if (id === 18 || id === 20 || id === 21 || id === 22 || id === 23 || id === 31 || id === 76 || id === 86 || id === 96) return "9. Crowd control (mez/charm/fear/stun/lull/silence)";
+    if (id === 32 || id === 33 || id === 71 || id === 75 || id === 78 || id === 103) return "10. Summoning";
+    if (id === 25 || id === 26 || id === 27 || id === 36 || id === 40 || id === 42 || id === 63 || id === 67 || id === 81) return "11. Utility / teleport / divines";
+    if (id === 19 || id === 30 || id === 64 || id === 68 || id === 87) return "12. Threat / aggro / faction";
+    return "99. Other (" + e.spa + ")";
+  };
+
+  // For each spell, pick its first novel effect; use that to bucket.
+  const bucketed = {};
+  for (const s of data.spells) {
+    const novelEff = s.effects.find(e => e.novel) || s.effects[0];
+    const fam = FAMILY(novelEff);
+    (bucketed[fam] = bucketed[fam] || []).push(s);
+  }
+
+  const sections = document.getElementById('sections');
+  // Sort by leading numeric prefix so "2." comes before "10."
+  const famKeys = Object.keys(bucketed).sort((a, b) => {
+    const na = parseInt(a, 10); const nb = parseInt(b, 10);
+    if (na !== nb) return na - nb;
+    return a.localeCompare(b);
+  });
+
+  for (const fam of famKeys) {
+    const list = bucketed[fam];
+    const sec = document.createElement('section');
+    sec.innerHTML = `<h2>${escapeHtml(fam)} <small>${list.length} spell${list.length===1?'':'s'}</small></h2>`;
+    for (const s of list) {
+      const hasNovel = s.effects.some(e => e.novel);
+      const div = document.createElement('div');
+      div.className = 'spell' + (hasNovel ? ' has-novel' : '');
+      div.dataset.search = (s.name + " " + s.class + " " + s.effects.map(e => e.spa).join(" ")).toLowerCase();
+      div.dataset.hasNovel = hasNovel ? '1' : '0';
+
+      const url = `http://127.0.0.1:8011/#/spell/${s.id}`;
+      div.innerHTML = `
+        <div class="spell-head">
+          <div>
+            <span class="spell-name"><a href="${url}" target="_blank">${escapeHtml(s.name)}</a></span>
+            <span class="spell-meta"> · ${escapeHtml(s.class)} L${s.level} · mana ${s.mana} · spell #${s.id}</span>
+          </div>
+          <div class="spell-meta">${s.effects.filter(e => e.novel).length} novel combo${s.effects.filter(e => e.novel).length===1?'':'s'}</div>
+        </div>
+        <table>
+          <thead><tr>
+            <th>#</th><th>SPA</th><th>Base</th><th>Formula</th><th>Cap</th>
+            <th>@L1</th><th class="primary">@L10 (predict)</th><th>@L50</th>
+            <th>OK?</th><th>Actual @L10</th>
+          </tr></thead>
+          <tbody>${s.effects.map(e => `
+            <tr class="row ${e.novel ? 'novel' : ''}"
+                data-novel="${e.novel ? '1' : '0'}"
+                data-spell="${s.id}" data-slot="${e.slot}"
+                data-spell-name="${escapeHtml(s.name)}" data-class="${escapeHtml(s.class)}"
+                data-spa="${escapeHtml(e.spa)}" data-effect-id="${e.effect_id}"
+                data-formula="${e.formula}" data-base="${e.base}" data-max="${e.max}"
+                data-pred="${e.pred_l10}"
+                data-noop="${(e.effect_id===10 || e.effect_id===254) && e.base===0 && e.max===0 ? '1' : '0'}">
+              <td>${e.slot}</td>
+              <td class="spa">${escapeHtml(e.spa)} <span class="id">#${e.effect_id}</span></td>
+              <td class="num">${e.base}</td>
+              <td class="num">${e.formula}</td>
+              <td class="num">${e.max}</td>
+              <td class="num">${e.pred_l1}</td>
+              <td class="num pred primary">${e.pred_l10}</td>
+              <td class="num">${e.pred_l50}</td>
+              <td class="check"><input type="checkbox" class="ok-check" title="Matches prediction"></td>
+              <td class="actual"><input type="text" class="actual-input" placeholder="(only if wrong)"></td>
+            </tr>`).join("")}</tbody>
+        </table>
+      `;
+      sec.appendChild(div);
+    }
+    sections.appendChild(sec);
+  }
+
+  // Storage schema: { "<spellId>:<slot>": { check: bool, actual: string } }
+  const LS_KEY = 'eql-spell-test-state-v2';
+  const stash = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  function save() { localStorage.setItem(LS_KEY, JSON.stringify(stash)); }
+  function stateFor(row) {
+    const k = row.dataset.spell + ':' + row.dataset.slot;
+    return (stash[k] = stash[k] || { check: false, actual: '' });
+  }
+  function rowKey(row) { return row.dataset.spell + ':' + row.dataset.slot; }
+
+  // Re-apply row class given its current state
+  function paint(row) {
+    const st = stateFor(row);
+    const pred = row.dataset.pred;
+    const actual = st.actual.trim();
+    const hasActual = actual !== '';
+    const mismatch = hasActual && actual !== pred;
+    row.classList.toggle('confirmed', st.check && !mismatch);
+    row.classList.toggle('mismatch', mismatch);
+  }
+
+  // Wire checkboxes & inputs
+  document.querySelectorAll('tr.row').forEach(row => {
+    const st = stateFor(row);
+    const cb = row.querySelector('.ok-check');
+    const inp = row.querySelector('.actual-input');
+    cb.checked = !!st.check;
+    inp.value = st.actual || '';
+    cb.addEventListener('change', () => { st.check = cb.checked; save(); paint(row); updateStat(); applyFilter(); });
+    inp.addEventListener('input', () => { st.actual = inp.value; save(); paint(row); updateStat(); applyFilter(); });
+    paint(row);
+  });
+
+  // Counts: total testable rows = rows excluding no-op
+  function counts() {
+    const rows = [...document.querySelectorAll('tr.row')].filter(r => r.dataset.noop !== '1');
+    let confirmed = 0, mismatch = 0, untested = 0;
+    rows.forEach(r => {
+      if (r.classList.contains('mismatch')) mismatch++;
+      else if (r.classList.contains('confirmed')) confirmed++;
+      else untested++;
+    });
+    return { confirmed, mismatch, untested, total: rows.length };
+  }
+  function updateStat() {
+    const c = counts();
+    const visible = document.querySelectorAll('.spell:not([hidden])').length;
+    const total = document.querySelectorAll('.spell').length;
+    document.getElementById('stat').innerHTML =
+      `<b style="color:var(--good)">${c.confirmed}</b> ok · ` +
+      `<b style="color:#e86464">${c.mismatch}</b> mismatch · ` +
+      `<b>${c.untested}</b> untested · ${visible}/${total} spells`;
+  }
+  updateStat();
+
+  // Filter wiring
+  const search = document.getElementById('search');
+  const pills = document.querySelectorAll('.pill');
+  const hideNoop = document.getElementById('hide-noop');
+  let mode = 'all';
+
+  function rowMatchesMode(row) {
+    if (mode === 'mismatch')  return row.classList.contains('mismatch');
+    if (mode === 'confirmed') return row.classList.contains('confirmed');
+    if (mode === 'untested')  return !row.classList.contains('confirmed') && !row.classList.contains('mismatch');
+    if (mode === 'novel')     return row.dataset.novel === '1';
+    return true;
+  }
+  function applyFilter() {
+    const q = search.value.trim().toLowerCase();
+    document.querySelectorAll('.spell').forEach(div => {
+      const matchQ = !q || div.dataset.search.includes(q);
+      const rows = [...div.querySelectorAll('tr.row')].filter(r => r.dataset.noop !== '1');
+      const anyMatch = rows.some(rowMatchesMode);
+      div.hidden = !(matchQ && anyMatch);
+    });
+    document.querySelectorAll('tr[data-noop="1"]').forEach(tr => tr.hidden = hideNoop.checked);
+    updateStat();
+  }
+  search.addEventListener('input', applyFilter);
+  hideNoop.addEventListener('change', applyFilter);
+  pills.forEach(p => p.addEventListener('click', () => {
+    pills.forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+    mode = p.dataset.filter;
+    applyFilter();
+  }));
+
+  // Export wiring
+  function buildExport() {
+    const c = counts();
+    const items = [];
+    document.querySelectorAll('tr.row').forEach(row => {
+      const st = stateFor(row);
+      if (!st.check && !st.actual.trim()) return;  // skip untouched rows
+      const mismatch = st.actual.trim() !== '' && st.actual.trim() !== row.dataset.pred;
+      items.push({
+        spell_id: parseInt(row.dataset.spell, 10),
+        spell: row.dataset.spellName,
+        class: row.dataset.class,
+        slot: parseInt(row.dataset.slot, 10),
+        spa: row.dataset.spa,
+        effect_id: parseInt(row.dataset.effectId, 10),
+        base: parseInt(row.dataset.base, 10),
+        formula: parseInt(row.dataset.formula, 10),
+        max: parseInt(row.dataset.max, 10),
+        predicted_l10: row.dataset.pred,
+        actual_l10: st.actual || null,
+        confirmed: st.check && !mismatch,
+        mismatch,
+      });
+    });
+    return {
+      generated: new Date().toISOString(),
+      summary: c,
+      results: items,
+    };
+  }
+  const modal = document.getElementById('modal');
+  const exportText = document.getElementById('export-text');
+  document.getElementById('export-btn').addEventListener('click', () => {
+    exportText.value = JSON.stringify(buildExport(), null, 2);
+    modal.classList.add('show');
+  });
+  document.getElementById('close-btn').addEventListener('click', () => modal.classList.remove('show'));
+  modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+  document.getElementById('copy-btn').addEventListener('click', async () => {
+    exportText.select();
+    try { await navigator.clipboard.writeText(exportText.value); document.getElementById('copy-btn').textContent = 'Copied!'; }
+    catch { document.execCommand('copy'); }
+    setTimeout(() => document.getElementById('copy-btn').textContent = 'Copy to clipboard', 1500);
+  });
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const blob = new Blob([exportText.value], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `eql-spell-test-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+  });
+  document.getElementById('clear-btn').addEventListener('click', () => {
+    if (!confirm('Clear all checks and notes? This cannot be undone.')) return;
+    localStorage.removeItem(LS_KEY);
+    location.reload();
+  });
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+})();
+</script>
+
+</body>
+</html>
