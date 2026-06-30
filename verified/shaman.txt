@@ -46,7 +46,6 @@ L12  Enduring Breath
 L12  Root
 L13  Walking Sleep
 L14  Bind Affinity
-L14  Snails Healing
 L14  Spirit Strike
 L15  Infectious Cloud
 L15  Shrink
@@ -103,7 +102,6 @@ L29  Mass Imbue Sapphire
 L29  Spirit of the Shrew
 L30  Fury
 L30  Health
-L30  Nonchalance
 L30  Resist Disease
 L31  Nimble
 L31  Scourge
@@ -142,7 +140,6 @@ L41  Incapacitate
 L42  Alacrity
 L42  Blast of Poison
 L42  Guardian
-L42  Slugs Healing
 L43  Odium
 L43  Resist Magic
 L43  Stamina
