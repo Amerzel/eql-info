@@ -36,56 +36,9 @@ Wrath of Al`Kabor | Wrath of Al'Kabor
 Invisibility Versus Animals | Invisibility versus Animals
 Invisibility Versus Undead | Invisibility versus Undead
 
-# ====================================================================
-# TRANSITIONAL ALIASES — pending wiki page rename
-# ====================================================================
-# These wiki pages have classic-era short titles, but our DB has the
-# canonical full EQL zone names. Aliases below provide working links
-# until the wiki team renames the pages. Once renamed, delete the
-# matching entry here. See _wiki_pages_to_rename.txt for the rename
-# queue.
-
-# Druid (and Wizard) teleport spells — directional adjective dropped.
-Circle of North Karana | Circle of Karana
-Circle of South Ro | Circle of Ro
-Circle of West Commons | Circle of Commons
-Evacuate: South Ro | Evacuate: Ro
-North Ro Gate | Ro Gate
-North Ro Portal | Ro Portal
-Ring of North Karana | Ring of Karana
-Ring of South Ro | Ring of Ro
-Ring of West Commons | Ring of Commons
-Succor: South Ro | Succor: Ro
-Translocate: North Ro | Translocate: Ro
-
-# Zone-name shortenings — Butcherblock→Butcher, Misty Thicket→Misty.
-Circle of Butcherblock | Circle of Butcher
-Circle of Misty Thicket | Circle of Misty
-Ring of Butcherblock | Ring of Butcher
-Ring of Misty Thicket | Ring of Misty
-Succor: Butcherblock | Succor: Butcher
-Succor: East Karana | Succor: East
-Succor: North Karana | Succor: North
-
-# Wizard zone-name shortenings (transitional — see _wiki_pages_to_rename.txt).
-Cazic Temple Gate | Cazic Gate
-Cazic Temple Portal | Cazic Portal
-Evacuate: Greater Faydark | Evacuate: Fay
-Evacuate: Nektulos | Evacuate: Nek
-Evacuate: North Karana | Evacuate: North
-Greater Faydark Gate | Fay Gate
-Greater Faydark Portal | Fay Portal
-Nektulos Gate | Nek Gate
-Nektulos Portal | Nek Portal
-North Karana Gate | North Gate
-North Karana Portal | North Portal
-Toxxulia Gate | Tox Gate
-Toxxulia Portal | Tox Portal
-Translocate: Cazic Temple | Translocate: Cazic
-Translocate: Greater Faydark | Translocate: Fay
-Translocate: Nektulos | Translocate: Nek
-Translocate: North Karana | Translocate: North
-Translocate: Toxxulia | Translocate: Tox
-Translocate: West Commons | Translocate: West
-West Commons Gate | West Gate
-West Commons Portal | West Portal
+# The transitional shortening aliases (Circle of North Karana → Circle
+# of Karana, Butcherblock → Butcher, etc.) were removed 2026-06-30.
+# The live wiki has been updated to use the full canonical names — both
+# the spell row titles and the page titles match our DB now (some short
+# titles persist as redirects). Restoring an alias here would re-rewrite
+# our correct full names into stale short ones on the spell tables.
