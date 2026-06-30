@@ -8,6 +8,7 @@ L 1  Minor Illusion
 L 1  Minor Shielding
 L 1  Pendril's Animation
 L 1  Reclaim Energy
+L 1  Shallow Breath
 L 1  Strengthen
 L 1  Taper Enchantment
 L 1  True North
@@ -89,12 +90,14 @@ L19  Berserker Strength
 L19  Crystallize Mana
 L19  Feckless Might
 L19  Tiny Companion
+L20  Benevolence
 L20  Color Shift
 L20  Illusion: Iksar
 L20  Mass Crystallize Mana
 L20  Shifting Sight
 L21  Alacrity
 L21  Chaos Flux
+L21  Enchant Steel
 L21  Illusion: Earth Elemental
 L22  Rune II
 L22  Sagar's Animation
@@ -186,9 +189,12 @@ L47  Dazzle
 L47  Gasping Embrace
 L47  Mass Purify Mana
 L47  Swift Like the Wind
+L48  Enchant Adamantite
+L48  Enchant Mithril
 L48  Group Resist Magic
 L48  Kintaz's Animation
 L48  Shadow
+L49  Enchant Brellium
 L50  Collaboration
 L50  Improved Invisibility
 L50  Theft of Thought
