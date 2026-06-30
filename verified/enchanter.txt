@@ -90,6 +90,7 @@ L19  Berserker Strength
 L19  Crystallize Mana
 L19  Feckless Might
 L19  Tiny Companion
+L20  Benevolence
 L20  Color Shift
 L20  Illusion: Iksar
 L20  Mass Crystallize Mana
