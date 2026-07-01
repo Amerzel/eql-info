@@ -54,7 +54,6 @@ L19  Tishan's Clash
 L19  Toxxulia Gate
 L20  Elemental Shield
 L20  Greater Faydark Gate
-L20  Grimling Gate
 L21  Leatherskin
 L21  Stonebrunt Gate
 L21  West Commons Gate
