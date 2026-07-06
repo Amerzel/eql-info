@@ -101,7 +101,6 @@ L35  Translocate: North Karana
 L35  Translocate: Stonebrunt
 L35  West Commons Portal
 L36  North Ro Portal
-L36  Tishan's Relocation
 L36  Translocate: Greater Faydark
 L37  Concussion
 L37  Lightning Shock
