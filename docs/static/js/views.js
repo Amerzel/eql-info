@@ -94,7 +94,9 @@ export async function renderClass(classIndex, params) {
     `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time,
             s.buff_duration, s.buff_duration_formula, s.target_type,
             s.good_effect, s.is_discipline, s.teleport_zone,
-            sc.min_level
+            sc.min_level,
+            (SELECT text FROM dbstr WHERE id = s.type_description_id AND type = 5)   AS cat,
+            (SELECT text FROM dbstr WHERE id = s.effect_description_id AND type = 5) AS cat2
        FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
       WHERE ${where.join(" AND ")}
       ORDER BY sc.min_level, s.name`,
@@ -153,9 +155,17 @@ export async function renderClass(classIndex, params) {
       if ([3, 36, 39, 52].includes(sp.target_type)) tags.push('<span class="tag tag-grp">group</span>');
       if (sp.good_effect === 0) tags.push('<span class="tag tag-deb">det</span>');
       const tag = tags.join(" ");
+      // Category from the client's own dbstr type-5 label. `cat2` (effect
+      // category) is the sub-label — Blast of Cold's cat="Direct Damage",
+      // cat2="Cold". Show cat2 in-line when it differs from cat, else the
+      // top-level cat alone.
+      const catText = sp.cat2 && sp.cat2 !== sp.cat
+        ? `${escapeHtml(sp.cat)} · ${escapeHtml(sp.cat2)}`
+        : (sp.cat ? escapeHtml(sp.cat) : "");
       return `<tr>
         <td>${iconImg(sp.new_icon)}</td>
         <td><a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a> ${tag}</td>
+        <td class="muted">${catText}</td>
         <td>${sp.mana}</td>
         <td>${fmtSeconds(sp.cast_time)}s</td>
         <td>${sp.buff_duration || '—'}</td>
@@ -165,7 +175,7 @@ export async function renderClass(classIndex, params) {
     body += `<section class="level-block">
       <h2>Level ${levelDisplay(lvl)}</h2>
       <table class="spell-table">
-        <thead><tr><th>Icon</th><th>Name</th><th>Mana</th><th>Cast</th>
+        <thead><tr><th>Icon</th><th>Name</th><th>Category</th><th>Mana</th><th>Cast</th>
           <th>Duration</th><th>Targets</th></tr></thead>
         <tbody>${items}</tbody>
       </table>
