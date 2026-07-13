@@ -2,12 +2,12 @@
 // Ported from app.py (render_duration + substitute).
 
 export function renderDuration(formula, cap) {
-  // buff_duration_formula = 50 marks a permanent buff when cap is 0.
-  // Applies to Shielding lines, Damage Shield coats, Combat Innates,
-  // all Rogue poisons, various perma-buffs — the game shows "Permanent".
-  // A few formula=50 spells DO carry a cap (Dark Temptation: 600 → 60
-  // min); those keep the numeric render.
-  if (formula === 50 && !cap) return "permanent";
+  // buff_duration_formula = 50 marks a permanent buff. Applies to
+  // Shielding lines, Damage Shield coats, Combat Innates, all Rogue
+  // poisons, various perma-buffs — the game shows "Permanent".
+  // The flag overrides any numeric cap (verified in-game on Phantom
+  // Plate cap=720 and Dark Temptation cap=600 — both show "Permanent").
+  if (formula === 50) return "permanent";
   if (!cap) return "instant";
   // 1 tick = 6 seconds. We don't try to map every EQ formula precisely; we
   // expose the cap-as-ticks since that's what the live client shows for most
