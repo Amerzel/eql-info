@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-07",
+  "generated": "2026-07-14",
   "note": "All spells_us.txt fields are parsed and exported verbatim. The trailing pipe-delimited field is the effects blob (exported as the 'effects' array with effect_name labels). Messages come from spells_us_str.txt.",
   "raw_field_count": 173,
   "fields": [
