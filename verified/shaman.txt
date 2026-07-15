@@ -126,7 +126,6 @@ L36  Spirit of Bih`Li
 L37  Glamour
 L37  Venom of the Snake
 L37  Vigilant Spirit
-L38  Cannibalize II
 L38  Insidious Malady
 L38  Remove Curse
 L38  Togor's Insects

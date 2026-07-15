@@ -24,6 +24,7 @@ L 4  Gate
 L 5  Elementalkin: Earth
 L 5  Flame Bolt
 L 5  Lesser Shielding
+L 6  Dimensional Pocket
 L 6  Elementaling: Water
 L 6  Eye of Zomm
 L 7  Elementaling: Fire
