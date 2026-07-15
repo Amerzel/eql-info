@@ -118,3 +118,20 @@ def render_duration_static(formula: int | None, cap: int | None) -> str:
     if not cap:
         return "Instant"
     return _fmt_ticks(cap)
+
+
+def render_duration_at_level(formula: int | None,
+                             cap: int | None,
+                             level: int = MAX_LEVEL) -> str:
+    """Render the single duration value at a specific caster level.
+
+    Unlike render_duration_range this emits no @L annotation — just
+    the duration value at `level`. Used on RadSpellRow2 class-list
+    rows where the user wants the L50 max, not the ramp.
+    """
+    if formula == 50:
+        return "Permanent"
+    if not cap:
+        return "Instant"
+    ticks = calc_buff_duration(formula or 0, cap, level)
+    return _fmt_ticks(ticks)
