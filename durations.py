@@ -40,19 +40,15 @@ def calc_buff_duration(formula: int, cap: int, level: int) -> int:
 
 
 def _fmt_ticks(ticks: int) -> str:
-    """Render a tick count as "N Sec" / "N Min" / "N Min N Sec" /
-    "N Hour[s] N Min". Matches the phrasing style used across the
-    existing wiki (`_fmt_duration` in wiki_export.py)."""
+    """Render a tick count as "N Sec" / "N Min" / "N Min N Sec".
+
+    Never converts to hours — a 3-hour buff renders as "180 Min", not
+    "3 Hours". Minute-form is more scannable in dense spell tables and
+    matches the wiki editors' existing phrasing.
+    """
     if ticks <= 0:
         return "0 Sec"
     secs = ticks * 6
-    if secs >= 3600:
-        h, rem = divmod(secs, 3600)
-        m = rem // 60
-        h_word = "Hour" if h == 1 else "Hours"
-        if m:
-            return f"{h} {h_word} {m} Min"
-        return f"{h} {h_word}"
     if secs >= 60:
         m, s = divmod(secs, 60)
         return f"{m} Min {s} Sec" if s else f"{m} Min"
