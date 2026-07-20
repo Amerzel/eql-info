@@ -12,6 +12,7 @@ import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
   escapeHtml,
 } from "./text.js";
+import { renderUpgradePanel } from "./upgrades.js";
 
 function iconImg(newIcon, cls = "icon") {
   if (!newIcon || newIcon < 1) return "";
@@ -316,6 +317,7 @@ export async function renderSpell(spellId) {
           ${spell.teleport_zone ? `<tr><th>Teleport / pet</th><td>${escapeHtml(spell.teleport_zone)}</td></tr>` : ""}
           ${spell.recourse_link ? `<tr><th>Recourse</th><td><a href="#/spell/${spell.recourse_link}">spell #${spell.recourse_link}</a></td></tr>` : ""}
         </table>
+        ${renderUpgradePanel(spell, effects)}
         <h2>Classes</h2>${classesHtml}
         ${lineHtml}
       </aside>

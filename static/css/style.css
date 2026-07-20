@@ -209,3 +209,15 @@ code { background: var(--bg-3); padding: 0.1em 0.35em; border-radius: 2px;
 .spell-tooltip .tt-det  { background: var(--tag-deb); }
 .spell-tooltip .tt-disc { background: var(--tag-disc); }
 .spell-tooltip .muted { color: var(--muted); }
+
+/* ── Spell upgrade (mote tier) prototype ────────────────────────────── */
+.upgrade-panel { border: 1px solid var(--border, #444); border-radius: 6px;
+  padding: 0.6em 0.8em; margin: 0.4em 0 1em; }
+.upgrade-slider-row { display: flex; align-items: center; gap: 0.8em; }
+.upgrade-slider-row label { font-weight: 600; white-space: nowrap; }
+.upgrade-slider-row output { display: inline-block; min-width: 1.4em;
+  text-align: center; font-variant-numeric: tabular-nums; }
+.upgrade-slider-row input[type=range] { flex: 1; }
+.upg-cat { margin: 0.4em 0; }
+.upg-note { font-size: 0.85em; margin: 0.6em 0 0; }
+.upg-paren { color: var(--tag-buff, #6fc276); font-weight: 600; }

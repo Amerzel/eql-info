@@ -12,6 +12,7 @@ import {
 import { initDb } from "./db.js";
 import { prefetchSpells } from "./tooltip.js";
 import { classSlug, classIndexFromArg } from "./data.js";
+import { updateUpgradePanel } from "./upgrades.js";
 
 const app = document.getElementById("app");
 
@@ -90,6 +91,13 @@ app.addEventListener("submit", (e) => {
   } else if (kind === "search") {
     window.location.hash = "#/search" + (qs ? "?" + qs : "");
   }
+});
+
+// Spell-upgrade tier slider (spell detail page) — recompute displayed
+// values client-side without a re-route.
+app.addEventListener("input", (e) => {
+  const slider = e.target.closest("input[data-upgrade-slider]");
+  if (slider) updateUpgradePanel(slider);
 });
 
 // Top-bar search form (lives outside #app).
