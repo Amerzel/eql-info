@@ -146,6 +146,11 @@ export function renderUpgradePanel(spell, effects) {
   const durBadge = cat.durConf === "inferred" ? ` ${Q}` : "";
   const dmgBadge = cat.key === "nuke" ? "" : ` ${Q}`;
 
+  // Level-scaled uncapped durations (formula > 0, cap = 0, e.g. Boon of the
+  // Garou durf=7) — we can't show absolute ticks, but the rate still applies.
+  const levelScaledDur = !c.hasDur && !c.isPerm && cat.dur !== null &&
+    (spell.buff_duration_formula || 0) > 0 && !(spell.buff_duration > 0);
+
   const t0 = c.tiers[0];
   return `
     <h2>Spell upgrades <span class="muted">(motes)</span></h2>
@@ -155,7 +160,7 @@ export function renderUpgradePanel(spell, effects) {
         <input type="range" min="0" max="${TIER_MAX}" value="0" step="1"
                data-upgrade-slider aria-label="Upgrade tier">
       </div>
-      <p class="muted upg-cat">Category: <strong>${escapeHtml(cat.label)}</strong>${catBadge}
+      <p class="muted upg-cat">Category: <strong><a href="#/upgrades">${escapeHtml(cat.label)}</a></strong>${catBadge}
         · cast −${cat.cast * 100}%/tier · mana −${cat.mana * 100}%/tier${cat.dur ? ` · duration +${cat.dur * 100}%/tier` : ""}</p>
       <table class="kv">
         ${spell.mana > 0 ? `<tr><th>Mana</th><td data-u="mana">${spell.mana}</td></tr>` : ""}
@@ -164,16 +169,105 @@ export function renderUpgradePanel(spell, effects) {
         <tr><th>Reuse <span class="muted">(in-game)</span></th><td data-u="reuse">${t0.reuse}s</td></tr>
         ${c.hasDur ? `<tr><th>Duration${durBadge}</th><td data-u="dur">${fmtTicks(spell.buff_duration)}</td></tr>` : ""}
         ${c.isPerm ? `<tr><th>Duration</th><td class="muted">Permanent (exempt from tier scaling)</td></tr>` : ""}
+        ${levelScaledDur ? `<tr><th>Duration</th><td class="muted">Level-scaled — +${cat.dur * 100}%/tier applies on top</td></tr>` : ""}
         ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
         ${t0.dmg ? `<tr><th>Damage @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
         ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
         <tr><th>Motes → next tier</th><td data-u="motes">1 <span class="muted">(0 spent total)</span></td></tr>
       </table>
-      <p class="muted upg-note">Server-pushed system reverse-engineered from
-      community tooltip captures (n=88, 2026-07-20). Damage/heal rows are
-      <em>combat-observed</em> — the in-game tooltip does not show them
-      scaling yet. Tier cap assumed 10 (unverified past 8).</p>
+      ${UPGRADE_CAVEAT}
     </div>`;
+}
+
+const UPGRADE_CAVEAT = `
+  <aside class="notice upg-caveat">
+    <strong>Caveat:</strong> the upgrade system is <em>server-side</em> —
+    none of these numbers come from client data. They're reverse-engineered
+    from community tooltip captures and may change with any patch. Values
+    marked <span class="tier-badge tier-inferred">?</span> are extrapolated
+    or combat-observed rather than tooltip-confirmed; your own AAs and
+    stances further modify mana costs. Tier cap assumed 10 (unverified past
+    8). <a href="#/upgrades">Full details →</a>
+  </aside>`;
+
+// ---- general "Spell Upgrades" summary page (#/upgrades) ------------------
+
+export function renderUpgradesPage() {
+  const pct = r => (r === null ? "—" : `${r > 0 ? "+" : "−"}${Math.abs(r) * 100}%`);
+  const catRows = [
+    ["nuke",   "Instant direct damage: nukes, lifetaps, stun-nukes",       ""],
+    ["dot",    "Anything with a damage-over-time component, incl. DD+DoT hybrids (Burning/Searing Arrow)", ""],
+    ["heal",   "Instant heals",                                            ""],
+    ["hot",    "Heals over time",                                          "duration rate unverified"],
+    ["debuff", "Non-damage detrimentals: Tash, slows, snares",             "duration rate assumed"],
+    ["cc",     "Charm and mesmerize",                                      ""],
+    ["buff",   "Beneficial duration spells, incl. self-only and damage shields", ""],
+  ].map(([k, desc, note]) => {
+    const c = CATEGORIES[k];
+    return `<tr><td><strong>${escapeHtml(c.label)}</strong><br><span class="muted">${escapeHtml(desc)}</span></td>
+      <td>${pct(-c.cast)}</td><td>${pct(-c.mana)}</td>
+      <td>${c.dur === null ? "—" : pct(c.dur) + (note.includes("duration") ? ` ${Q}` : "")}</td>
+      ${note ? `<td class="muted">${escapeHtml(note)}</td>` : "<td></td>"}</tr>`;
+  }).join("");
+
+  const motes = Array.from({ length: TIER_MAX }, (_, i) => {
+    const t = i + 1;
+    const unv = t >= 9 ? ` ${Q}` : "";
+    return `<tr><td>Tier ${t}</td><td>${Math.pow(2, t - 1)}${unv}</td><td>${Math.pow(2, t) - 1}${unv}</td></tr>`;
+  }).join("");
+
+  return `
+    <nav class="breadcrumb"><a href="#/">Classes</a> › <span>Spell Upgrades</span></nav>
+    <h1>Spell Upgrades <span class="muted">(motes)</span></h1>
+    <p class="lede">Since the 2026 Preorder Beta, spells can be upgraded
+    through numeric tiers by placing <strong>motes</strong> (right-click-hold
+    a spell → Place Mote). Each tier improves several stats at fixed
+    per-tier rates — but the rates depend on the spell's <em>category</em>.
+    Every spell page here has a tier slider showing its exact numbers.</p>
+    ${UPGRADE_CAVEAT}
+
+    <h2>Benefits by category</h2>
+    <table class="spell-table">
+      <thead><tr><th>Category</th><th>Cast time</th><th>Mana</th>
+        <th>Duration</th><th></th></tr></thead>
+      <tbody>${catRows}</tbody>
+    </table>
+    <p class="muted">Instant and Permanent durations never scale. Zero-mana
+    spells (e.g. Cannibalize) have no mana row to reduce.</p>
+
+    <h2>Universal — every category</h2>
+    <table class="spell-table">
+      <thead><tr><th>Stat</th><th>Per tier</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Recovery</td><td>−2%</td><td>shown to the nearest 0.1s; exact halves round down (1.35 → 1.3)</td></tr>
+        <tr><td>Reuse</td><td>−2%</td><td>display drops fractions (11.96 → 11s); hard floor of 1 second</td></tr>
+        <tr><td>Resist modifier</td><td>−15</td><td>added to the spell's own resist mod; only on resistable offensive spells</td></tr>
+        <tr><td>Damage ${Q}</td><td>+6% of base</td><td><em>combat-observed</em>, rounded down — tooltips don't show it yet; verified on nukes, uncertain for DoT ticks</td></tr>
+        <tr><td>Heal ${Q}</td><td>~+3% of base</td><td><em>combat-observed</em>, single report — treat as provisional</td></tr>
+        <tr><td>Proc potency</td><td>tier ÷ 2</td><td>combat-innate buffs cast their proc at half the buff's tier (rounded down, caps at proc rank V)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Mote costs</h2>
+    <p>Each tier costs double the previous: <code>2^tier</code> motes to
+    advance. Cumulative:</p>
+    <table class="spell-table" style="max-width:28em">
+      <thead><tr><th>Reach</th><th>Motes for this tier</th><th>Total spent</th></tr></thead>
+      <tbody>${motes}</tbody>
+    </table>
+
+    <h2>Also scaling (per patch notes, mostly not visible in tooltips)</h2>
+    <ul>
+      <li>Pet summons: +1 pet level per tier, capped at your level −1; pet HP/stats scale too.</li>
+      <li>Charm/mez max target level increases with tier (tooltip text doesn't update).</li>
+      <li>10% chance per tier to skip reagent costs (100% at tier 10).</li>
+      <li>Summon-item spells summon matching-tier items.</li>
+      <li>Spellblade, Quickbuff, and Symphonic Aura trigger the upgraded versions.</li>
+    </ul>
+
+    <p class="muted">Model derived from ${escapeHtml("94")} community tooltip
+    captures (last updated 2026-07-20) — thanks to the players sharing
+    screenshots in the spell-upgrade research thread. Corrections welcome.</p>`;
 }
 
 // Called from app.js on slider input. Reads the precomputed tier table off
