@@ -108,8 +108,6 @@ function computeTiers(spell, effects, cat) {
       resist: spell.good_effect === 0 ? (spell.resist_difficulty || 0) - 15 * t : null,
       dmg:   dmgAtCap ? Math.floor(dmgAtCap * (1 + 0.06 * t)) : null,
       heal:  healAtCap ? Math.round(healAtCap * (1 + 0.03 * t)) : null,
-      motesNext: Math.pow(2, t),
-      motesCum:  Math.pow(2, t) - 1,
     });
   }
   return { tiers, hasDur, isPerm, dmgAtCap, healAtCap };
@@ -173,7 +171,6 @@ export function renderUpgradePanel(spell, effects) {
         ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
         ${t0.dmg ? `<tr><th>Damage @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
         ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
-        <tr><th>Motes → next tier</th><td data-u="motes">1 <span class="muted">(0 spent total)</span></td></tr>
       </table>
       ${UPGRADE_CAVEAT}
     </div>`;
@@ -302,7 +299,4 @@ export function updateUpgradePanel(slider) {
   if (v.resist !== null) set("resist", String(v.resist));
   if (v.dmg) set("dmg", String(v.dmg));
   if (v.heal) set("heal", String(v.heal));
-  set("motes", t >= data.tiers.length - 1
-    ? `<span class="muted">at assumed cap · ${v.motesCum} spent total</span>`
-    : `${v.motesNext} <span class="muted">(${v.motesCum} spent total)</span>`);
 }
