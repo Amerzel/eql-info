@@ -194,19 +194,28 @@ const UPGRADE_CAVEAT = `
 
 export function renderUpgradesPage() {
   const pct = r => (r === null ? "—" : `${r > 0 ? "+" : "−"}${Math.abs(r) * 100}%`);
+  // 4th entry: damage/healing per tier (combat-observed — tooltips hide it).
   const catRows = [
-    ["nuke",   "Instant direct damage: nukes, lifetaps, stun-nukes",       ""],
-    ["dot",    "Anything with a damage-over-time component, incl. DD+DoT hybrids (Burning/Searing Arrow)", ""],
-    ["heal",   "Instant heals",                                            ""],
-    ["hot",    "Heals over time",                                          "duration rate unverified"],
-    ["debuff", "Non-damage detrimentals: Tash, slows, snares",             "duration rate assumed"],
-    ["cc",     "Charm and mesmerize",                                      ""],
-    ["buff",   "Beneficial duration spells, incl. self-only and damage shields", ""],
-  ].map(([k, desc, note]) => {
+    ["nuke",   "Instant direct damage: nukes, lifetaps, stun-nukes",
+               `<strong>+6%</strong> damage <span class="muted">(of base, rounded down — verified on a fixed-roll ladder)</span>`, ""],
+    ["dot",    "Anything with a damage-over-time component, incl. DD+DoT hybrids (Burning/Searing Arrow)",
+               `+6% on the direct-damage hit ${Q}; per-tick reports conflict (~+3% vs no gain) ${Q}`, ""],
+    ["heal",   "Instant heals",
+               `~+3% healing ${Q} <span class="muted">(single report: 65→79 at T7)</span>`, ""],
+    ["hot",    "Heals over time",
+               `~+3% per tick ${Q} <span class="muted">(community table only)</span>`, "duration rate unverified"],
+    ["debuff", "Non-damage detrimentals: Tash, slows, snares",
+               `— <span class="muted">(debuff magnitudes not observed to scale)</span>`, "duration rate assumed"],
+    ["cc",     "Charm and mesmerize",
+               `— <span class="muted">(max target level rises instead, per patch notes)</span>`, ""],
+    ["buff",   "Beneficial duration spells, incl. self-only and damage shields",
+               `— <span class="muted">(stat gains reportedly none right now)</span>`, ""],
+  ].map(([k, desc, hp, note]) => {
     const c = CATEGORIES[k];
     return `<tr><td><strong>${escapeHtml(c.label)}</strong><br><span class="muted">${escapeHtml(desc)}</span></td>
       <td>${pct(-c.cast)}</td><td>${pct(-c.mana)}</td>
       <td>${c.dur === null ? "—" : pct(c.dur) + (note.includes("duration") ? ` ${Q}` : "")}</td>
+      <td>${hp}</td>
       ${note ? `<td class="muted">${escapeHtml(note)}</td>` : "<td></td>"}</tr>`;
   }).join("");
 
@@ -229,11 +238,14 @@ export function renderUpgradesPage() {
     <h2>Benefits by category</h2>
     <table class="spell-table">
       <thead><tr><th>Category</th><th>Cast time</th><th>Mana</th>
-        <th>Duration</th><th></th></tr></thead>
+        <th>Duration</th><th>Damage / healing</th><th></th></tr></thead>
       <tbody>${catRows}</tbody>
     </table>
     <p class="muted">Instant and Permanent durations never scale. Zero-mana
-    spells (e.g. Cannibalize) have no mana row to reduce.</p>
+    spells (e.g. Cannibalize) have no mana row to reduce. Damage/healing
+    rates are <em>combat-observed</em> — the in-game tooltip does not
+    display them yet. Rule of thumb: a nuke at T5 costs 10% less mana,
+    casts 10% faster, and hits ~30% harder — damage compounds fastest.</p>
 
     <h2>Universal — every category</h2>
     <table class="spell-table">
@@ -242,8 +254,6 @@ export function renderUpgradesPage() {
         <tr><td>Recovery</td><td>−2%</td><td>shown to the nearest 0.1s; exact halves round down (1.35 → 1.3)</td></tr>
         <tr><td>Reuse</td><td>−2%</td><td>display drops fractions (11.96 → 11s); hard floor of 1 second</td></tr>
         <tr><td>Resist modifier</td><td>−15</td><td>added to the spell's own resist mod; only on resistable offensive spells</td></tr>
-        <tr><td>Damage ${Q}</td><td>+6% of base</td><td><em>combat-observed</em>, rounded down — tooltips don't show it yet; verified on nukes, uncertain for DoT ticks</td></tr>
-        <tr><td>Heal ${Q}</td><td>~+3% of base</td><td><em>combat-observed</em>, single report — treat as provisional</td></tr>
         <tr><td>Proc potency</td><td>tier ÷ 2</td><td>combat-innate buffs cast their proc at half the buff's tier (rounded down, caps at proc rank V)</td></tr>
       </tbody>
     </table>
