@@ -33,6 +33,7 @@ const CATEGORIES = {
   debuff: { label: "Debuff",         cast: 0.04, mana: 0.04, dur: 0.10, durConf: "inferred", conf: "solid" },
   cc:     { label: "Charm / mez",    cast: 0.04, mana: 0.04, dur: 0.10, durConf: "solid",    conf: "solid" },
   buff:   { label: "Buff",           cast: 0.04, mana: 0.04, dur: 0.10, durConf: "solid",    conf: "solid" },
+  pet:    { label: "Pet summon",     cast: 0.04, mana: 0.04, dur: null, durConf: null,       conf: "inferred" },
   other:  { label: "Uncategorized",  cast: 0.04, mana: 0.04, dur: 0.10, durConf: "inferred", conf: "inferred" },
 };
 
@@ -55,7 +56,9 @@ export function classifyUpgradeCategory(spell, effects) {
     else if (dmg) key = "nuke";
     else key = "debuff";
   } else {
-    if (heal && !hasDur && !isPerm) key = "heal";
+    const isPet = !!(spell.teleport_zone && spell.teleport_zone.startsWith("PCPet"));
+    if (isPet) key = "pet";
+    else if (heal && !hasDur && !isPerm) key = "heal";
     else if (heal && hasDur) key = "hot";
     else if (hasDur || isPerm) key = "buff";
     else key = "other";
@@ -151,6 +154,11 @@ export function renderUpgradePanel(spell, effects) {
   const dmgBadge = (cat.key === "nuke" || cat.key === "dot") ? "" : ` ${Q}`;
   const dmgLabel = cat.key === "dot" ? "Damage/tick" : "Damage";
 
+  // CC spells: SPA 22 (charm) / 31 (mez) max_value = max target level. It
+  // rises with tier (patch notes) but the rate is unknown and the tooltip
+  // text never updates — show the base with a note.
+  const ccEff = effects.find(e => (e.effect_id === 22 || e.effect_id === 31) && e.max_value > 0);
+
   // Level-scaled uncapped durations (formula > 0, cap = 0, e.g. Boon of the
   // Garou durf=7) — we can't show absolute ticks, but the rate still applies.
   const levelScaledDur = !c.hasDur && !c.isPerm && cat.dur !== null &&
@@ -176,6 +184,8 @@ export function renderUpgradePanel(spell, effects) {
         ${c.isPerm ? `<tr><th>Duration</th><td class="muted">Permanent (exempt from tier scaling)</td></tr>` : ""}
         ${levelScaledDur ? `<tr><th>Duration</th><td class="muted">Level-scaled — +${cat.dur * 100}%/tier applies on top</td></tr>` : ""}
         ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
+        ${cat.key === "pet" ? `<tr><th>Pet level</th><td class="muted">+1 per tier, capped at your level −1</td></tr>` : ""}
+        ${ccEff ? `<tr><th>Max target level</th><td>${ccEff.max_value} <span class="muted">— rises with tier (rate unknown; tooltip text doesn't update)</span></td></tr>` : ""}
         ${t0.init ? `<tr><th>Initial hit @L${MAX_LEVEL} ${Q}</th><td data-u="init">${t0.init}</td></tr>` : ""}
         ${t0.dmg ? `<tr><th>${dmgLabel} @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
         ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
@@ -211,8 +221,10 @@ export function renderUpgradesPage() {
                `~+3% per tick ${Q} <span class="muted">(community table only)</span>`, "duration rate unverified"],
     ["debuff", "Non-damage detrimentals: Tash, slows, snares",
                `— <span class="muted">(debuff magnitudes not observed to scale)</span>`, "duration rate assumed"],
-    ["cc",     "Charm and mesmerize",
+    ["cc",     "Charm and mesmerize (reportedly lull too)",
                `— <span class="muted">(max target level rises instead, per patch notes)</span>`, ""],
+    ["pet",    "Pet and warder summons",
+               `+1 pet level per tier <span class="muted">(capped at your level −1; pet HP/stats scale with level)</span>`, "mana/cast rates unverified"],
     ["buff",   "Beneficial duration spells, incl. self-only and damage shields",
                `— <span class="muted">(stat and damage-shield values don't scale — buff tiers give duration/mana/cast only)</span>`, ""],
   ].map(([k, desc, hp, note]) => {
