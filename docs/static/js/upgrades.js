@@ -214,7 +214,7 @@ export function renderUpgradesPage() {
     ["cc",     "Charm and mesmerize",
                `— <span class="muted">(max target level rises instead, per patch notes)</span>`, ""],
     ["buff",   "Beneficial duration spells, incl. self-only and damage shields",
-               `— <span class="muted">(stat gains reportedly none right now)</span>`, ""],
+               `— <span class="muted">(stat gains reportedly none; damage-shield values reportedly do scale)</span> ${Q}`, ""],
   ].map(([k, desc, hp, note]) => {
     const c = CATEGORIES[k];
     return `<tr><td><strong>${escapeHtml(c.label)}</strong><br><span class="muted">${escapeHtml(desc)}</span></td>
@@ -273,8 +273,9 @@ export function renderUpgradesPage() {
 
     <h2>Also scaling (per patch notes, mostly not visible in tooltips)</h2>
     <ul>
-      <li>Pet summons: +1 pet level per tier, capped at your level −1; pet HP/stats scale too.</li>
-      <li>Charm/mez max target level increases with tier (tooltip text doesn't update).</li>
+      <li>Pet summons: +1 pet level per tier, capped at your level −1; pet HP/stats scale too, and mana/cast reportedly drop like other spells.</li>
+      <li>Charm/mez (and reportedly lull) max target level increases with tier (tooltip text doesn't update).</li>
+      <li>Songs reportedly follow the same categories (unverified — no captures yet).</li>
       <li>10% chance per tier to skip reagent costs (100% at tier 10).</li>
       <li>Summon-item spells summon matching-tier items.</li>
       <li>Spellblade, Quickbuff, and Symphonic Aura trigger the upgraded versions.</li>
