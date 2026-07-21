@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Ranger",
   "spell_count": 66,
   "spells": [
@@ -50,7 +50,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 10,
           "limit": 0,
           "formula": 2,
@@ -95,7 +95,7 @@
         {
           "slot": 1,
           "effect_id": 87,
-          "effect": "ChangeAggro",
+          "effect": "Magnification",
           "base": 55,
           "limit": 0,
           "formula": 100,
@@ -124,7 +124,7 @@
       "recast_seconds": 1.5,
       "duration": "36s",
       "duration_ticks": 6,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -149,7 +149,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -221,7 +221,7 @@
         {
           "slot": 10,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -12,
           "limit": 0,
           "formula": 100,
@@ -266,7 +266,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -275,7 +275,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 25,
           "limit": 0,
           "formula": 100,
@@ -284,7 +284,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -313,7 +313,7 @@
       "recast_seconds": 6.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -338,7 +338,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -20,
           "limit": 0,
           "formula": 102,
@@ -367,7 +367,7 @@
       "recast_seconds": 4.0,
       "duration": "3 min 54s",
       "duration_ticks": 39,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -392,7 +392,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -40,
           "limit": 3,
           "formula": 102,
@@ -437,7 +437,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 101,
@@ -446,7 +446,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -548,7 +548,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10295,
           "limit": 1,
           "formula": 100,
@@ -589,7 +589,7 @@
         {
           "slot": 1,
           "effect_id": 184,
-          "effect": "HoT",
+          "effect": "Accuracy",
           "base": 10,
           "limit": 7,
           "formula": 100,
@@ -695,7 +695,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -749,7 +749,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 7,
           "limit": 0,
           "formula": 102,
@@ -758,7 +758,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -787,7 +787,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -803,7 +803,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -10,
           "limit": 0,
           "formula": 101,
@@ -877,7 +877,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -893,7 +893,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -947,7 +947,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -16,
           "limit": 0,
           "formula": 102,
@@ -976,7 +976,7 @@
       "recast_seconds": 10.0,
       "duration": "6s",
       "duration_ticks": 1,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -988,7 +988,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -58,
           "limit": 0,
           "formula": 100,
@@ -997,7 +997,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -29,
           "limit": 0,
           "formula": 100,
@@ -1058,7 +1058,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 35,
           "limit": 0,
           "formula": 3,
@@ -1132,7 +1132,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -1156,7 +1156,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -5,
           "limit": 0,
           "formula": 101,
@@ -1185,7 +1185,7 @@
       "recast_seconds": 10.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1205,7 +1205,7 @@
         {
           "slot": 1,
           "effect_id": 73,
-          "effect": "ModelSize",
+          "effect": "BindSight",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1250,7 +1250,7 @@
         {
           "slot": 1,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 101,
@@ -1344,7 +1344,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -1360,7 +1360,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -30,
           "limit": 0,
           "formula": 102,
@@ -1417,7 +1417,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1462,7 +1462,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 16,
           "limit": 0,
           "formula": 101,
@@ -1471,7 +1471,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -1480,7 +1480,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -1549,7 +1549,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -1594,7 +1594,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -1603,7 +1603,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -1648,7 +1648,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 109,
@@ -1677,7 +1677,7 @@
       "recast_seconds": 1.5,
       "duration": "54s",
       "duration_ticks": 9,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1693,7 +1693,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -17,
           "limit": 0,
           "formula": 102,
@@ -1722,7 +1722,7 @@
       "recast_seconds": 10.0,
       "duration": "6s",
       "duration_ticks": 1,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -1734,7 +1734,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -102,
           "limit": 0,
           "formula": 100,
@@ -1743,7 +1743,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -51,
           "limit": 0,
           "formula": 100,
@@ -1829,7 +1829,7 @@
         {
           "slot": 1,
           "effect_id": 65,
-          "effect": "VoiceGraft",
+          "effect": "Infravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1890,7 +1890,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 95,
           "limit": 0,
           "formula": 4,
@@ -1952,7 +1952,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -2002,7 +2002,7 @@
         {
           "slot": 2,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -2,
           "limit": 0,
           "formula": 100,
@@ -2011,7 +2011,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 30,
           "limit": 0,
           "formula": 121,
@@ -2065,7 +2065,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 18,
           "limit": 0,
           "formula": 102,
@@ -2074,7 +2074,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -2,
           "limit": 0,
           "formula": 100,
@@ -2103,7 +2103,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2155,7 +2155,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2200,7 +2200,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -2209,7 +2209,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -2218,7 +2218,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -2304,7 +2304,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -2328,7 +2328,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -180,
           "limit": 0,
           "formula": 103,
@@ -2382,7 +2382,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 29,
           "limit": 0,
           "formula": 102,
@@ -2391,7 +2391,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 100,
@@ -2470,7 +2470,7 @@
         {
           "slot": 3,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2499,7 +2499,7 @@
       "recast_seconds": 10.0,
       "duration": "6s",
       "duration_ticks": 1,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -2511,7 +2511,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -155,
           "limit": 0,
           "formula": 100,
@@ -2520,7 +2520,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -78,
           "limit": 0,
           "formula": 100,
@@ -2560,8 +2560,53 @@
       "effects": [
         {
           "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 3129,
           "limit": 0,
           "formula": 100,
@@ -2590,7 +2635,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2606,7 +2651,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -80,
           "limit": 0,
           "formula": 102,
@@ -2647,7 +2692,7 @@
         {
           "slot": 1,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -2708,7 +2753,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 140,
           "limit": 0,
           "formula": 7,
@@ -2753,7 +2798,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -2762,7 +2807,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -2771,7 +2816,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -2791,8 +2836,8 @@
       "icon": 39,
       "spell_type": "Beneficial",
       "skill": "Abjuration",
-      "description": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level 65, and only works outdoors.",
-      "description_template": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level @1, and only works outdoors.",
+      "description": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level 65.",
+      "description_template": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level @1.",
       "mana": 100,
       "range": 200.0,
       "cast_seconds": 2.5,
@@ -2800,7 +2845,7 @@
       "recast_seconds": 3.0,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2816,7 +2861,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -2825,7 +2870,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -2854,7 +2899,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min",
       "duration_ticks": 10,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2866,7 +2911,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -2919,7 +2964,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2928,7 +2973,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -2982,7 +3027,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -2991,7 +3036,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -3036,7 +3081,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -4,
           "limit": 0,
           "formula": 109,
@@ -3065,7 +3110,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -3090,7 +3135,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -17,
           "limit": 0,
           "formula": 102,
@@ -3162,7 +3207,7 @@
         {
           "slot": 10,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -3191,7 +3236,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min 36s",
       "duration_ticks": 16,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3207,7 +3252,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -3298,7 +3343,7 @@
       "recast_seconds": 10.0,
       "duration": "6s",
       "duration_ticks": 1,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -3310,7 +3355,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -210,
           "limit": 0,
           "formula": 100,
@@ -3319,7 +3364,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -105,
           "limit": 0,
           "formula": 100,
@@ -3379,20 +3424,20 @@
       "level": 47
     },
     {
-      "id": 2595,
-      "name": "Force of Nature",
+      "id": 1462,
+      "name": "Call of Earth",
       "icon": 158,
       "spell_type": "Beneficial",
-      "skill": "Alteration",
-      "description": "Focuses your target with the force of nature, increasing their attack rating, and causing damage to anything that strikes them for 20 min 30s.",
-      "description_template": "Focuses your target with the force of nature, increasing their attack rating, and causing damage to anything that strikes them for %z.",
-      "mana": 100,
-      "range": 100.0,
-      "cast_seconds": 6.0,
+      "skill": "Abjuration",
+      "description": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for 60 min.",
+      "description_template": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for %z.",
+      "mana": 50,
+      "range": 150.0,
+      "cast_seconds": 3.5,
       "fizzle_seconds": 1.5,
-      "recast_seconds": 1.5,
-      "duration": "20 min 30s",
-      "duration_ticks": 205,
+      "recast_seconds": 6.0,
+      "duration": "60 min",
+      "duration_ticks": 600,
       "target": "Single Friendly (or Self)",
       "resist": "Unresistable",
       "classes": [
@@ -3404,9 +3449,9 @@
       "effects": [
         {
           "slot": 1,
-          "effect_id": 0,
-          "effect": "CurrentHP",
-          "base": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
           "limit": 0,
           "formula": 100,
           "max": 0
@@ -3414,26 +3459,26 @@
         {
           "slot": 2,
           "effect_id": 59,
-          "effect": "TotalHP",
-          "base": -3,
+          "effect": "DamageShield",
+          "base": -4,
           "limit": 0,
           "formula": 100,
           "max": 0
         },
         {
           "slot": 3,
-          "effect_id": 2,
-          "effect": "ATK",
-          "base": 15,
+          "effect_id": 1,
+          "effect": "AC",
+          "base": 30,
           "limit": 0,
-          "formula": 100,
-          "max": 0
+          "formula": 102,
+          "max": 85
         }
       ],
       "messages": {
-        "cast_on_you": "You become a force of nature.",
-        "cast_on_other": " becomes a force of nature.",
-        "wears_off": "You return to normal."
+        "cast_on_you": "The Call of Earth surrounds your body protectively.",
+        "cast_on_other": "'s body is surrounded by the Call of Earth.",
+        "wears_off": "The Call of Earth leaves."
       },
       "level": 48
     },
@@ -3468,7 +3513,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 0,
           "formula": 100,
@@ -3477,7 +3522,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -3486,7 +3531,7 @@
         {
           "slot": 3,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 102,
@@ -3515,7 +3560,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -3527,7 +3572,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -300,
           "limit": 0,
           "formula": 100,
@@ -3556,7 +3601,7 @@
       "recast_seconds": 3.5,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3580,7 +3625,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3589,7 +3634,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -3604,21 +3649,21 @@
       "level": 49
     },
     {
-      "id": 1462,
-      "name": "Call of Earth",
+      "id": 2595,
+      "name": "Force of Nature",
       "icon": 158,
       "spell_type": "Beneficial",
-      "skill": "Abjuration",
-      "description": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for 60 min.",
-      "description_template": "Focuses your target with the call of earth, increasing their armor class, and causing damage to anything that strikes them for %z.",
-      "mana": 50,
-      "range": 150.0,
-      "cast_seconds": 3.5,
+      "skill": "Alteration",
+      "description": "Focus yourself with the force of nature, increasing your attack rating, hitpoint regeneration, endurance regeneration, and causing damage to anything that strikes you.",
+      "description_template": "Focus yourself with the force of nature, increasing your attack rating, hitpoint regeneration, endurance regeneration, and causing damage to anything that strikes you.",
+      "mana": 100,
+      "range": 100.0,
+      "cast_seconds": 6.0,
       "fizzle_seconds": 1.5,
-      "recast_seconds": 6.0,
-      "duration": "60 min",
-      "duration_ticks": 600,
-      "target": "Single Friendly (or Self)",
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3629,36 +3674,45 @@
       "effects": [
         {
           "slot": 1,
-          "effect_id": 10,
-          "effect": "CHA",
-          "base": 0,
+          "effect_id": 0,
+          "effect": "HP",
+          "base": 6,
           "limit": 0,
-          "formula": 100,
-          "max": 0
+          "formula": 139,
+          "max": 19
         },
         {
           "slot": 2,
           "effect_id": 59,
-          "effect": "TotalHP",
-          "base": -4,
+          "effect": "DamageShield",
+          "base": -5,
           "limit": 0,
           "formula": 100,
           "max": 0
         },
         {
           "slot": 3,
-          "effect_id": 1,
-          "effect": "ArmorClass",
-          "base": 30,
+          "effect_id": 2,
+          "effect": "AttackPower",
+          "base": 20,
           "limit": 0,
-          "formula": 102,
-          "max": 85
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 189,
+          "effect": "Endurance",
+          "base": 3,
+          "limit": 0,
+          "formula": 139,
+          "max": 10
         }
       ],
       "messages": {
-        "cast_on_you": "The Call of Earth surrounds your body protectively.",
-        "cast_on_other": "'s body is surrounded by the Call of Earth.",
-        "wears_off": "The Call of Earth leaves."
+        "cast_on_you": "You become a force of nature.",
+        "cast_on_other": " becomes a force of nature.",
+        "wears_off": "You return to normal."
       },
       "level": 50
     },
@@ -3677,7 +3731,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3689,7 +3743,7 @@
         {
           "slot": 1,
           "effect_id": 92,
-          "effect": "IllusionPet",
+          "effect": "Hate",
           "base": -500,
           "limit": 0,
           "formula": 100,

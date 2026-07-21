@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Bard",
   "spell_count": 61,
   "spells": [
@@ -18,7 +18,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -30,7 +30,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -89,7 +89,7 @@
         {
           "slot": 1,
           "effect_id": 334,
-          "effect": "NoChanceToBlock",
+          "effect": "NoMoveHp",
           "base": -2,
           "limit": 0,
           "formula": 109,
@@ -118,7 +118,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -130,7 +130,7 @@
         {
           "slot": 1,
           "effect_id": 189,
-          "effect": "Charisma2",
+          "effect": "Endurance",
           "base": 1,
           "limit": 0,
           "formula": 119,
@@ -159,7 +159,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -171,7 +171,7 @@
         {
           "slot": 1,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 15,
           "limit": 0,
           "formula": 102,
@@ -200,7 +200,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -212,7 +212,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 1,
           "limit": 0,
           "formula": 110,
@@ -262,7 +262,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 115,
           "limit": 0,
           "formula": 109,
@@ -271,7 +271,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 101,
@@ -318,7 +318,7 @@
       "recast_seconds": 0.0,
       "duration": "30s",
       "duration_ticks": 5,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -330,7 +330,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -339,7 +339,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -348,7 +348,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -377,7 +377,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -416,7 +416,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -457,7 +457,7 @@
         {
           "slot": 1,
           "effect_id": 117,
-          "effect": "InterruptCasting",
+          "effect": "HitMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -486,7 +486,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -498,7 +498,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 110,
           "limit": 0,
           "formula": 100,
@@ -536,7 +536,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -548,7 +548,7 @@
         {
           "slot": 1,
           "effect_id": 19,
-          "effect": "AddFaction",
+          "effect": "NpcFaction",
           "base": 10,
           "limit": 0,
           "formula": 10,
@@ -577,7 +577,7 @@
       "recast_seconds": 30.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -589,7 +589,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -618,7 +618,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -657,7 +657,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -686,7 +686,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -698,7 +698,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -727,7 +727,7 @@
       "recast_seconds": 0.0,
       "duration": "1 min 30s",
       "duration_ticks": 15,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -739,7 +739,7 @@
         {
           "slot": 1,
           "effect_id": 115,
-          "effect": "IllusionThorny",
+          "effect": "Cornucopia",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -768,7 +768,7 @@
       "recast_seconds": 0.0,
       "duration": "24s",
       "duration_ticks": 4,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -780,7 +780,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -809,7 +809,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -821,7 +821,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 101,
@@ -871,7 +871,7 @@
         {
           "slot": 1,
           "effect_id": 334,
-          "effect": "NoChanceToBlock",
+          "effect": "NoMoveHp",
           "base": -4,
           "limit": 0,
           "formula": 109,
@@ -880,7 +880,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -1,
           "limit": 0,
           "formula": 102,
@@ -909,7 +909,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -968,7 +968,7 @@
       "recast_seconds": 0.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -989,7 +989,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -1039,7 +1039,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 95,
           "limit": 0,
           "formula": 101,
@@ -1075,7 +1075,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -5,
           "limit": 0,
           "formula": 101,
@@ -1104,7 +1104,7 @@
       "recast_seconds": 0.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1145,7 +1145,7 @@
       "recast_seconds": 0.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1157,7 +1157,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1186,7 +1186,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1207,7 +1207,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -30,
           "limit": 3,
           "formula": 102,
@@ -1216,7 +1216,7 @@
         {
           "slot": 3,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 95,
           "limit": 0,
           "formula": 101,
@@ -1245,7 +1245,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1266,7 +1266,7 @@
         {
           "slot": 2,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1295,7 +1295,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Fire",
       "classes": [
         {
@@ -1307,7 +1307,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 110,
@@ -1325,7 +1325,7 @@
         {
           "slot": 3,
           "effect_id": 65,
-          "effect": "VoiceGraft",
+          "effect": "Infravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1334,7 +1334,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -1404,7 +1404,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1454,7 +1454,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1466,7 +1466,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1504,7 +1504,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Magic",
       "classes": [
         {
@@ -1516,7 +1516,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 110,
@@ -1543,7 +1543,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -1584,16 +1584,16 @@
         {
           "slot": 1,
           "effect_id": 118,
-          "effect": "LowResist",
+          "effect": "Amplification",
           "base": 2,
           "limit": 0,
-          "formula": 119,
+          "formula": 110,
           "max": 28
         },
         {
           "slot": 2,
           "effect_id": 382,
-          "effect": "SkillReuseChange",
+          "effect": "Suppression",
           "base": 4,
           "limit": 118,
           "formula": 100,
@@ -1622,7 +1622,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1634,7 +1634,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 121,
@@ -1661,7 +1661,7 @@
         {
           "slot": 4,
           "effect_id": 340,
-          "effect": "IncreaseHateMod",
+          "effect": "ChanceSpell",
           "base": 100,
           "limit": 22486,
           "formula": 100,
@@ -1690,7 +1690,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1702,7 +1702,7 @@
         {
           "slot": 1,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1731,7 +1731,7 @@
       "recast_seconds": 0.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1752,7 +1752,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 1,
           "limit": 0,
           "formula": 119,
@@ -1781,7 +1781,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Cold",
       "classes": [
         {
@@ -1793,7 +1793,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 110,
@@ -1811,7 +1811,7 @@
         {
           "slot": 3,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1820,7 +1820,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -1849,7 +1849,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1861,7 +1861,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -1870,7 +1870,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -1879,7 +1879,7 @@
         {
           "slot": 3,
           "effect_id": 189,
-          "effect": "Charisma2",
+          "effect": "Endurance",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -1908,7 +1908,7 @@
       "recast_seconds": 0.0,
       "duration": "24s",
       "duration_ticks": 4,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1920,7 +1920,7 @@
         {
           "slot": 1,
           "effect_id": 73,
-          "effect": "ModelSize",
+          "effect": "BindSight",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1961,7 +1961,7 @@
         {
           "slot": 1,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -5,
           "limit": 0,
           "formula": 101,
@@ -1990,7 +1990,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2002,7 +2002,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -2020,7 +2020,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 1,
           "limit": 0,
           "formula": 101,
@@ -2049,7 +2049,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Magic",
       "classes": [
         {
@@ -2061,7 +2061,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 110,
@@ -2088,7 +2088,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -2117,7 +2117,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -2129,7 +2129,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -2156,7 +2156,7 @@
         {
           "slot": 4,
           "effect_id": 340,
-          "effect": "IncreaseHateMod",
+          "effect": "ChanceSpell",
           "base": 100,
           "limit": 22487,
           "formula": 100,
@@ -2185,7 +2185,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2197,7 +2197,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2834,
           "limit": 0,
           "formula": 100,
@@ -2253,7 +2253,7 @@
       "recast_seconds": 0.0,
       "duration": "1 min",
       "duration_ticks": 10,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2303,7 +2303,7 @@
       "recast_seconds": 0.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2315,7 +2315,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2353,7 +2353,7 @@
       "recast_seconds": 0.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2365,7 +2365,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -2394,7 +2394,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2415,7 +2415,7 @@
         {
           "slot": 2,
           "effect_id": 78,
-          "effect": "SummonHelpers",
+          "effect": "SpellShield",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -2424,7 +2424,7 @@
         {
           "slot": 3,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -2433,7 +2433,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 109,
@@ -2462,7 +2462,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2474,7 +2474,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 108,
           "limit": 0,
           "formula": 109,
@@ -2492,7 +2492,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 1,
           "limit": 0,
           "formula": 101,
@@ -2521,7 +2521,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Disease",
       "classes": [
         {
@@ -2533,7 +2533,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -2560,7 +2560,7 @@
         {
           "slot": 4,
           "effect_id": 340,
-          "effect": "IncreaseHateMod",
+          "effect": "ChanceSpell",
           "base": 100,
           "limit": 22490,
           "formula": 100,
@@ -2601,7 +2601,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -315,
           "limit": 0,
           "formula": 144,
@@ -2630,7 +2630,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2701,7 +2701,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -2,
           "limit": 0,
           "formula": 119,
@@ -2710,7 +2710,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -2,
           "limit": 0,
           "formula": 119,
@@ -2751,7 +2751,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 103,
           "limit": 0,
           "formula": 102,
@@ -2778,7 +2778,7 @@
         {
           "slot": 4,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 2,
           "limit": 0,
           "formula": 109,
@@ -2807,7 +2807,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2819,7 +2819,7 @@
         {
           "slot": 1,
           "effect_id": 124,
-          "effect": "SpellDmg",
+          "effect": "FocusDamageMod",
           "base": 1,
           "limit": 15,
           "formula": 100,
@@ -2837,7 +2837,7 @@
         {
           "slot": 3,
           "effect_id": 137,
-          "effect": "EraseDmgShield",
+          "effect": "FocusWhichSpa",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -2846,7 +2846,7 @@
         {
           "slot": 4,
           "effect_id": 141,
-          "effect": "BashChance",
+          "effect": "FocusInstantOnly",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2855,7 +2855,7 @@
         {
           "slot": 5,
           "effect_id": 138,
-          "effect": "SpellSlot",
+          "effect": "FocusBeneficial",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -2864,7 +2864,7 @@
         {
           "slot": 6,
           "effect_id": 136,
-          "effect": "SpellTrigger",
+          "effect": "FocusTargetType",
           "base": -2,
           "limit": 0,
           "formula": 100,
@@ -2873,7 +2873,7 @@
         {
           "slot": 7,
           "effect_id": 136,
-          "effect": "SpellTrigger",
+          "effect": "FocusTargetType",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -2882,7 +2882,7 @@
         {
           "slot": 8,
           "effect_id": 136,
-          "effect": "SpellTrigger",
+          "effect": "FocusTargetType",
           "base": -8,
           "limit": 0,
           "formula": 100,
@@ -2891,7 +2891,7 @@
         {
           "slot": 9,
           "effect_id": 136,
-          "effect": "SpellTrigger",
+          "effect": "FocusTargetType",
           "base": -17,
           "limit": 0,
           "formula": 100,
@@ -2900,7 +2900,7 @@
         {
           "slot": 10,
           "effect_id": 136,
-          "effect": "SpellTrigger",
+          "effect": "FocusTargetType",
           "base": -18,
           "limit": 0,
           "formula": 100,
@@ -2909,7 +2909,7 @@
         {
           "slot": 11,
           "effect_id": 134,
-          "effect": "SpellTimerReset",
+          "effect": "FocusLevelMax",
           "base": 52,
           "limit": 5,
           "formula": 100,
@@ -2918,7 +2918,7 @@
         {
           "slot": 12,
           "effect_id": 311,
-          "effect": "LimitMaxDmg",
+          "effect": "FocusCombatSkill",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -2947,7 +2947,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -2959,7 +2959,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -2986,7 +2986,7 @@
         {
           "slot": 4,
           "effect_id": 340,
-          "effect": "IncreaseHateMod",
+          "effect": "ChanceSpell",
           "base": 100,
           "limit": 22488,
           "formula": 100,
@@ -3015,7 +3015,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3036,7 +3036,7 @@
         {
           "slot": 2,
           "effect_id": 78,
-          "effect": "SummonHelpers",
+          "effect": "SpellShield",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -3045,7 +3045,7 @@
         {
           "slot": 3,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 1,
           "limit": 0,
           "formula": 119,
@@ -3086,7 +3086,7 @@
         {
           "slot": 1,
           "effect_id": 334,
-          "effect": "NoChanceToBlock",
+          "effect": "NoMoveHp",
           "base": -2,
           "limit": 0,
           "formula": 101,
@@ -3131,7 +3131,7 @@
         {
           "slot": 6,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 95,
           "limit": 0,
           "formula": 109,
@@ -3160,7 +3160,7 @@
       "recast_seconds": 0.0,
       "duration": "2 min 30s",
       "duration_ticks": 25,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3172,7 +3172,7 @@
         {
           "slot": 1,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 15,
           "limit": 0,
           "formula": 102,
@@ -3201,7 +3201,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3213,7 +3213,7 @@
         {
           "slot": 1,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -3222,7 +3222,7 @@
         {
           "slot": 2,
           "effect_id": 78,
-          "effect": "SummonHelpers",
+          "effect": "SpellShield",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -3251,7 +3251,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3263,7 +3263,7 @@
         {
           "slot": 1,
           "effect_id": 98,
-          "effect": "AttackSpeed2",
+          "effect": "BardHaste",
           "base": 105,
           "limit": 0,
           "formula": 100,
@@ -3310,7 +3310,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Poison",
       "classes": [
         {
@@ -3322,7 +3322,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -3349,7 +3349,7 @@
         {
           "slot": 4,
           "effect_id": 340,
-          "effect": "IncreaseHateMod",
+          "effect": "ChanceSpell",
           "base": 100,
           "limit": 22489,
           "formula": 100,
@@ -3378,7 +3378,7 @@
       "recast_seconds": 0.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3390,7 +3390,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 130,
           "limit": 0,
           "formula": 100,
@@ -3408,7 +3408,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 50,
           "limit": 0,
           "formula": 100,

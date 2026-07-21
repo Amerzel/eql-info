@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Enchanter",
-  "spell_count": 189,
+  "spell_count": 191,
   "spells": [
     {
       "id": 208,
@@ -18,7 +18,7 @@
       "recast_seconds": 3.0,
       "duration": "2 min",
       "duration_ticks": 20,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -38,7 +38,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -47,7 +47,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -88,7 +88,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 142,
           "limit": 0,
           "formula": 100,
@@ -97,7 +97,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -7000,
           "limit": 0,
           "formula": 100,
@@ -150,7 +150,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 5,
           "limit": 0,
           "formula": 102,
@@ -159,7 +159,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -249,7 +249,7 @@
         {
           "slot": 1,
           "effect_id": 68,
-          "effect": "AbsorbMagicAtt",
+          "effect": "ReclaimEnergy",
           "base": 75,
           "limit": 0,
           "formula": 100,
@@ -260,6 +260,65 @@
         "cast_on_you": "",
         "cast_on_other": " disperses.",
         "wears_off": ""
+      },
+      "level": 1
+    },
+    {
+      "id": 286,
+      "name": "Shallow Breath",
+      "icon": 137,
+      "spell_type": "Detrimental",
+      "skill": "Alteration",
+      "description": "Constricts your target's throat, causing between 3 and 5 damage, as well as lowering their strength and agility for 12s.",
+      "description_template": "Constricts your target's throat, causing between #1 and @1 damage, as well as lowering their strength and agility for %z.",
+      "mana": 7,
+      "range": 200.0,
+      "cast_seconds": 1.5,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "12s",
+      "duration_ticks": 2,
+      "target": "Single",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 1
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 79,
+          "effect": "InstantHp",
+          "base": -3,
+          "limit": 0,
+          "formula": 101,
+          "max": 5
+        },
+        {
+          "slot": 2,
+          "effect_id": 4,
+          "effect": "STR",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 6,
+          "effect": "AGI",
+          "base": -5,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a shortness of breath.",
+        "cast_on_other": " begins to choke.",
+        "wears_off": "You can breathe again."
       },
       "level": 1
     },
@@ -327,7 +386,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -339,7 +398,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -404,7 +463,7 @@
         {
           "slot": 1,
           "effect_id": 56,
-          "effect": "UltraVision",
+          "effect": "TrueNorth",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -433,7 +492,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min",
       "duration_ticks": 60,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -486,7 +545,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -556,7 +615,7 @@
       "recast_seconds": 1.5,
       "duration": "24s",
       "duration_ticks": 4,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -568,7 +627,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -597,7 +656,7 @@
       "recast_seconds": 1.5,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -609,7 +668,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -688,7 +747,7 @@
       "recast_seconds": 7.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -780,7 +839,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 11,
           "limit": 0,
           "formula": 101,
@@ -821,7 +880,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 7,
           "limit": 0,
           "formula": 100,
@@ -850,7 +909,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min",
       "duration_ticks": 60,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -871,7 +930,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1022,7 +1081,7 @@
       "recast_seconds": 1.5,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1034,7 +1093,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -13,
           "limit": 0,
           "formula": 100,
@@ -1044,7 +1103,7 @@
           "slot": 2,
           "effect_id": 4,
           "effect": "STR",
-          "base": -5,
+          "base": -6,
           "limit": 0,
           "formula": 100,
           "max": 0
@@ -1053,7 +1112,7 @@
           "slot": 3,
           "effect_id": 6,
           "effect": "AGI",
-          "base": -5,
+          "base": -6,
           "limit": 0,
           "formula": 100,
           "max": 0
@@ -1061,7 +1120,7 @@
         {
           "slot": 4,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -6,
           "limit": 0,
           "formula": 101,
@@ -1090,7 +1149,7 @@
       "recast_seconds": 5.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1102,7 +1161,7 @@
         {
           "slot": 1,
           "effect_id": 20,
-          "effect": "Blind",
+          "effect": "Blindness",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -1143,7 +1202,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -1172,7 +1231,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Pet Owner",
+      "target": "Free Target AE",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1184,7 +1243,7 @@
         {
           "slot": 1,
           "effect_id": 76,
-          "effect": "Calm",
+          "effect": "Sentinel",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1237,7 +1296,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 12,
           "limit": 0,
           "formula": 102,
@@ -1246,7 +1305,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 12,
           "limit": 0,
           "formula": 102,
@@ -1311,7 +1370,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1438,7 +1497,7 @@
       "recast_seconds": 4.0,
       "duration": "2 min 30s",
       "duration_ticks": 25,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1458,7 +1517,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -1467,7 +1526,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -1476,7 +1535,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -1505,7 +1564,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1557,7 +1616,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1586,7 +1645,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1598,7 +1657,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -25,
           "limit": 0,
           "formula": 101,
@@ -1617,6 +1676,47 @@
       "messages": {
         "cast_on_you": "Your brain begins to smolder.",
         "cast_on_other": "'s brain begins to smolder.",
+        "wears_off": ""
+      },
+      "level": 7
+    },
+    {
+      "id": 1359,
+      "name": "Enchant Clay",
+      "icon": 83,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Enchants a large block of clay with magical energy. Consumes a large block of clay when cast.",
+      "description_template": "Enchants a large block of clay with magical energy. Consumes a large block of clay when cast.",
+      "mana": 60,
+      "range": 0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 1.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "CreateItem",
+          "base": 16896,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
         "wears_off": ""
       },
       "level": 7
@@ -1648,7 +1748,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16504,
           "limit": 1,
           "formula": 100,
@@ -1689,7 +1789,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16504,
           "limit": 5,
           "formula": 100,
@@ -1759,7 +1859,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1771,7 +1871,7 @@
         {
           "slot": 1,
           "effect_id": 19,
-          "effect": "AddFaction",
+          "effect": "NpcFaction",
           "base": 100,
           "limit": 0,
           "formula": 100,
@@ -1800,7 +1900,7 @@
       "recast_seconds": 10.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1820,7 +1920,7 @@
         {
           "slot": 1,
           "effect_id": 73,
-          "effect": "ModelSize",
+          "effect": "BindSight",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1831,47 +1931,6 @@
         "cast_on_you": "Your sight is bound.",
         "cast_on_other": "'s eyes gleam and then go dark.",
         "wears_off": "Your binding ends."
-      },
-      "level": 8
-    },
-    {
-      "id": 1359,
-      "name": "Enchant Clay",
-      "icon": 83,
-      "spell_type": "Beneficial",
-      "skill": "Alteration",
-      "description": "Enchants a large block of clay with magical energy. Consumes a large block of clay when cast.",
-      "description_template": "Enchants a large block of clay with magical energy. Consumes a large block of clay when cast.",
-      "mana": 60,
-      "range": 0,
-      "cast_seconds": 6.0,
-      "fizzle_seconds": 1.5,
-      "recast_seconds": 1.5,
-      "duration": "instant",
-      "duration_ticks": 0,
-      "target": "Self",
-      "resist": "Unresistable",
-      "classes": [
-        {
-          "class": "Enchanter",
-          "level": 8
-        }
-      ],
-      "effects": [
-        {
-          "slot": 1,
-          "effect_id": 32,
-          "effect": "SummonItem",
-          "base": 16896,
-          "limit": 1,
-          "formula": 100,
-          "max": 0
-        }
-      ],
-      "messages": {
-        "cast_on_you": "",
-        "cast_on_other": "",
-        "wears_off": ""
       },
       "level": 8
     },
@@ -1902,7 +1961,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 12,
           "limit": 0,
           "formula": 100,
@@ -1943,7 +2002,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16896,
           "limit": 5,
           "formula": 100,
@@ -1972,7 +2031,7 @@
       "recast_seconds": 3.5,
       "duration": "7 min 30s",
       "duration_ticks": 75,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2054,7 +2113,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min 30s",
       "duration_ticks": 35,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2075,7 +2134,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 85,
           "limit": 0,
           "formula": 109,
@@ -2084,7 +2143,7 @@
         {
           "slot": 3,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 6,
           "limit": 0,
           "formula": 100,
@@ -2113,7 +2172,7 @@
       "recast_seconds": 6.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2125,7 +2184,7 @@
         {
           "slot": 1,
           "effect_id": 64,
-          "effect": "FeignDeath",
+          "effect": "SpinStun",
           "base": 7500,
           "limit": 7500,
           "formula": 100,
@@ -2166,7 +2225,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 6,
           "limit": 0,
           "formula": 100,
@@ -2195,7 +2254,7 @@
       "recast_seconds": 12.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2207,7 +2266,7 @@
         {
           "slot": 1,
           "effect_id": 63,
-          "effect": "BindSight",
+          "effect": "NpcWipeHateList",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -2275,7 +2334,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 9,
           "limit": 0,
           "formula": 102,
@@ -2324,7 +2383,7 @@
         {
           "slot": 1,
           "effect_id": 65,
-          "effect": "VoiceGraft",
+          "effect": "Infravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2353,7 +2412,7 @@
       "recast_seconds": 1.5,
       "duration": "20 min 30s",
       "duration_ticks": 205,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2394,7 +2453,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2406,7 +2465,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -27,
           "limit": 0,
           "formula": 101,
@@ -2433,7 +2492,7 @@
         {
           "slot": 4,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -14,
           "limit": 0,
           "formula": 101,
@@ -2474,7 +2533,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -2515,7 +2574,7 @@
         {
           "slot": 1,
           "effect_id": 112,
-          "effect": "CastingLevel",
+          "effect": "FizzleSkill",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -2556,7 +2615,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10250,
           "limit": 5,
           "formula": 100,
@@ -2597,7 +2656,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10250,
           "limit": 1,
           "formula": 100,
@@ -2626,7 +2685,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2719,7 +2778,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2760,7 +2819,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -2801,7 +2860,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 11,
           "limit": 0,
           "formula": 100,
@@ -2830,7 +2889,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2842,7 +2901,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -2883,7 +2942,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 8,
           "limit": 0,
           "formula": 100,
@@ -2924,7 +2983,7 @@
         {
           "slot": 1,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 27,
           "limit": 0,
           "formula": 111,
@@ -3001,7 +3060,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 1,
           "limit": 0,
           "formula": 109,
@@ -3042,7 +3101,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16505,
           "limit": 1,
           "formula": 100,
@@ -3140,7 +3199,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16505,
           "limit": 5,
           "formula": 100,
@@ -3222,7 +3281,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -3263,7 +3322,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 143,
           "limit": 0,
           "formula": 100,
@@ -3351,7 +3410,7 @@
         {
           "slot": 3,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3396,7 +3455,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 120,
           "limit": 0,
           "formula": 101,
@@ -3425,7 +3484,7 @@
       "recast_seconds": 1.5,
       "duration": "36s",
       "duration_ticks": 6,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3466,7 +3525,7 @@
       "recast_seconds": 1.5,
       "duration": "2 min",
       "duration_ticks": 20,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3509,7 +3568,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -16,
           "limit": 0,
           "formula": 101,
@@ -3550,7 +3609,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -3579,7 +3638,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3591,7 +3650,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -65,
           "limit": 0,
           "formula": 102,
@@ -3653,7 +3712,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 30,
           "limit": 0,
           "formula": 102,
@@ -3662,7 +3721,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 24,
           "limit": 0,
           "formula": 102,
@@ -3766,7 +3825,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -3868,7 +3927,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -3909,7 +3968,7 @@
         {
           "slot": 1,
           "effect_id": 112,
-          "effect": "CastingLevel",
+          "effect": "FizzleSkill",
           "base": 6,
           "limit": 0,
           "formula": 100,
@@ -3979,7 +4038,7 @@
       "recast_seconds": 5.0,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3999,7 +4058,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -4008,7 +4067,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -4017,7 +4076,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -4058,7 +4117,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 9,
           "limit": 0,
           "formula": 100,
@@ -4067,7 +4126,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4137,7 +4196,7 @@
       "recast_seconds": 1.5,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -4149,7 +4208,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4208,7 +4267,7 @@
         {
           "slot": 2,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -4258,7 +4317,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10251,
           "limit": 1,
           "formula": 100,
@@ -4287,7 +4346,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min 30s",
       "duration_ticks": 65,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4364,7 +4423,7 @@
         {
           "slot": 1,
           "effect_id": 298,
-          "effect": "GiantClick",
+          "effect": "TinyCompanion",
           "base": 50,
           "limit": 0,
           "formula": 100,
@@ -4377,6 +4436,47 @@
         "wears_off": "You return to normal height."
       },
       "level": 19
+    },
+    {
+      "id": 173,
+      "name": "Benevolence",
+      "icon": 22,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Cloaks you in an amiable aura, causing creatures of your target's faction to view you more favorably.",
+      "description_template": "Cloaks you in an amiable aura, causing creatures of your target's faction to view you more favorably.",
+      "mana": 50,
+      "range": 200.0,
+      "cast_seconds": 4.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 3.5,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Single",
+      "resist": "Magic",
+      "classes": [
+        {
+          "class": "Enchanter",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 19,
+          "effect": "NpcFaction",
+          "base": 200,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel quite amicable.",
+        "cast_on_other": " looks friendly.",
+        "wears_off": "You no longer feel amicable."
+      },
+      "level": 20
     },
     {
       "id": 177,
@@ -4446,7 +4546,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 128,
           "limit": 0,
           "formula": 100,
@@ -4455,7 +4555,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4496,7 +4596,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10251,
           "limit": 5,
           "formula": 100,
@@ -4541,7 +4641,7 @@
         {
           "slot": 1,
           "effect_id": 73,
-          "effect": "ModelSize",
+          "effect": "BindSight",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4559,7 +4659,7 @@
         {
           "slot": 3,
           "effect_id": 65,
-          "effect": "VoiceGraft",
+          "effect": "Infravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4604,7 +4704,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 122,
           "limit": 0,
           "formula": 101,
@@ -4633,7 +4733,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4645,7 +4745,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -110,
           "limit": 0,
           "formula": 103,
@@ -4695,7 +4795,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 75,
           "limit": 0,
           "formula": 100,
@@ -4799,7 +4899,7 @@
         {
           "slot": 1,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 71,
           "limit": 0,
           "formula": 112,
@@ -4896,7 +4996,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4908,7 +5008,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4917,7 +5017,7 @@
         {
           "slot": 2,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4926,7 +5026,7 @@
         {
           "slot": 3,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4935,7 +5035,7 @@
         {
           "slot": 4,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4964,7 +5064,7 @@
       "recast_seconds": 1.5,
       "duration": "20 min 30s",
       "duration_ticks": 205,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5029,7 +5129,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 45,
           "limit": 0,
           "formula": 102,
@@ -5038,7 +5138,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 32,
           "limit": 0,
           "formula": 102,
@@ -5103,7 +5203,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min 30s",
       "duration_ticks": 35,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5124,7 +5224,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 80,
           "limit": 0,
           "formula": 101,
@@ -5133,7 +5233,7 @@
         {
           "slot": 3,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 9,
           "limit": 0,
           "formula": 100,
@@ -5174,7 +5274,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16506,
           "limit": 1,
           "formula": 100,
@@ -5215,7 +5315,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 802,
           "limit": 0,
           "formula": 100,
@@ -5256,7 +5356,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16506,
           "limit": 5,
           "formula": 100,
@@ -5297,7 +5397,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -4,
           "limit": 0,
           "formula": 109,
@@ -5326,7 +5426,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min 36s",
       "duration_ticks": 16,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5388,7 +5488,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min 30s",
       "duration_ticks": 65,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5435,7 +5535,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -5485,7 +5585,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 1,
           "limit": 0,
           "formula": 109,
@@ -5514,7 +5614,7 @@
       "recast_seconds": 3.5,
       "duration": "9 min",
       "duration_ticks": 90,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5576,7 +5676,7 @@
         {
           "slot": 1,
           "effect_id": 114,
-          "effect": "NPCHate2",
+          "effect": "ModifyHate",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -5605,7 +5705,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5617,7 +5717,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -55,
           "limit": 0,
           "formula": 102,
@@ -5644,7 +5744,7 @@
         {
           "slot": 4,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -27,
           "limit": 0,
           "formula": 101,
@@ -5685,7 +5785,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10252,
           "limit": 1,
           "formula": 100,
@@ -5753,7 +5853,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 11,
           "limit": 0,
           "formula": 102,
@@ -5798,7 +5898,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -5839,7 +5939,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 115,
           "limit": 0,
           "formula": 109,
@@ -5857,7 +5957,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 101,
@@ -5875,7 +5975,7 @@
         {
           "slot": 5,
           "effect_id": 148,
-          "effect": "StackingHP",
+          "effect": "StackingBlock",
           "base": 1,
           "limit": 3,
           "formula": 100,
@@ -5904,7 +6004,7 @@
       "recast_seconds": 35.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5916,7 +6016,7 @@
         {
           "slot": 1,
           "effect_id": 64,
-          "effect": "FeignDeath",
+          "effect": "SpinStun",
           "base": 7500,
           "limit": 7500,
           "formula": 100,
@@ -5925,7 +6025,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -1,
           "limit": 0,
           "formula": 102,
@@ -5934,7 +6034,7 @@
         {
           "slot": 3,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -50,
           "limit": 0,
           "formula": 100,
@@ -5984,7 +6084,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 75,
           "limit": 2,
           "formula": 100,
@@ -5993,7 +6093,7 @@
         {
           "slot": 2,
           "effect_id": 475,
-          "effect": "IncreaseDmgMod",
+          "effect": "TriggerSpellNonItem",
           "base": 100,
           "limit": 40617,
           "formula": 100,
@@ -6022,7 +6122,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6058,7 +6158,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -6067,7 +6167,7 @@
         {
           "slot": 2,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -6108,7 +6208,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 75,
           "limit": 3,
           "formula": 100,
@@ -6117,7 +6217,7 @@
         {
           "slot": 2,
           "effect_id": 374,
-          "effect": "SetSkillRequirement",
+          "effect": "TriggerSpell",
           "base": 100,
           "limit": 40624,
           "formula": 100,
@@ -6158,7 +6258,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10252,
           "limit": 5,
           "formula": 100,
@@ -6240,7 +6340,7 @@
         {
           "slot": 1,
           "effect_id": 161,
-          "effect": "Mitigation",
+          "effect": "SpellGuard",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -6269,7 +6369,7 @@
       "recast_seconds": 3.75,
       "duration": "1 min 12s",
       "duration_ticks": 12,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6281,7 +6381,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -6322,7 +6422,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -6351,7 +6451,7 @@
       "recast_seconds": 8.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6363,7 +6463,7 @@
         {
           "slot": 1,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -10,
           "limit": 0,
           "formula": 6,
@@ -6457,7 +6557,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 60,
           "limit": 0,
           "formula": 102,
@@ -6466,7 +6566,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 36,
           "limit": 0,
           "formula": 102,
@@ -6572,7 +6672,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6584,7 +6684,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -200,
           "limit": 0,
           "formula": 103,
@@ -6622,7 +6722,7 @@
       "recast_seconds": 5.0,
       "duration": "195 min",
       "duration_ticks": 1950,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6634,7 +6734,7 @@
         {
           "slot": 1,
           "effect_id": 73,
-          "effect": "ModelSize",
+          "effect": "BindSight",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -6652,7 +6752,7 @@
         {
           "slot": 3,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -6693,7 +6793,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16507,
           "limit": 1,
           "formula": 100,
@@ -6734,7 +6834,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 16507,
           "limit": 5,
           "formula": 100,
@@ -6775,7 +6875,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 75,
           "limit": 1,
           "formula": 100,
@@ -6838,7 +6938,7 @@
         {
           "slot": 8,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -6879,7 +6979,7 @@
         {
           "slot": 1,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 168,
           "limit": 0,
           "formula": 113,
@@ -6947,7 +7047,7 @@
         {
           "slot": 1,
           "effect_id": 97,
-          "effect": "ManaPool",
+          "effect": "MaxMana",
           "base": 50,
           "limit": 0,
           "formula": 100,
@@ -6976,7 +7076,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min 54s",
       "duration_ticks": 39,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7076,7 +7176,7 @@
       "recast_seconds": 7.0,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7129,7 +7229,7 @@
       "recast_seconds": 6.0,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7149,7 +7249,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -7158,7 +7258,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -7167,7 +7267,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -7208,7 +7308,7 @@
         {
           "slot": 1,
           "effect_id": 114,
-          "effect": "NPCHate2",
+          "effect": "ModifyHate",
           "base": -5,
           "limit": 0,
           "formula": 100,
@@ -7253,7 +7353,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -170,
           "limit": 0,
           "formula": 103,
@@ -7262,7 +7362,7 @@
         {
           "slot": 2,
           "effect_id": 84,
-          "effect": "SummonItem2",
+          "effect": "HpNpcOnly",
           "base": -100,
           "limit": 0,
           "formula": 100,
@@ -7303,7 +7403,7 @@
         {
           "slot": 1,
           "effect_id": 63,
-          "effect": "BindSight",
+          "effect": "NpcWipeHateList",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -7373,7 +7473,7 @@
       "recast_seconds": 1.5,
       "duration": "20 min 30s",
       "duration_ticks": 205,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7426,7 +7526,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 802,
           "limit": 1,
           "formula": 100,
@@ -7556,7 +7656,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 11,
           "limit": 0,
           "formula": 102,
@@ -7597,7 +7697,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10253,
           "limit": 1,
           "formula": 100,
@@ -7638,7 +7738,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -7647,7 +7747,7 @@
         {
           "slot": 2,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -7706,7 +7806,7 @@
         {
           "slot": 2,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -7744,7 +7844,7 @@
       "recast_seconds": 150.0,
       "duration": "2 min",
       "duration_ticks": 20,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7756,7 +7856,7 @@
         {
           "slot": 1,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -6,
           "limit": 0,
           "formula": 100,
@@ -7797,7 +7897,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 128,
           "limit": 0,
           "formula": 101,
@@ -7826,7 +7926,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min",
       "duration_ticks": 10,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7896,7 +7996,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10253,
           "limit": 5,
           "formula": 100,
@@ -7949,7 +8049,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 100,
           "limit": 0,
           "formula": 102,
@@ -7958,7 +8058,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 42,
           "limit": 0,
           "formula": 102,
@@ -8023,7 +8123,7 @@
       "recast_seconds": 180.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Free Target",
+      "target": "Target Group Member or Self",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8035,7 +8135,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 14,
           "limit": 0,
           "formula": 100,
@@ -8044,7 +8144,7 @@
         {
           "slot": 2,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 1965,
           "limit": 0,
           "formula": 100,
@@ -8053,7 +8153,7 @@
         {
           "slot": 3,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 20,
           "limit": 0,
           "formula": 109,
@@ -8091,7 +8191,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min 30s",
       "duration_ticks": 65,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8134,7 +8234,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -30,
           "limit": 0,
           "formula": 102,
@@ -8175,7 +8275,7 @@
         {
           "slot": 1,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 305,
           "limit": 0,
           "formula": 114,
@@ -8290,7 +8390,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min 30s",
       "duration_ticks": 35,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8311,7 +8411,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 95,
           "limit": 0,
           "formula": 102,
@@ -8320,7 +8420,7 @@
         {
           "slot": 3,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 12,
           "limit": 0,
           "formula": 100,
@@ -8349,7 +8449,7 @@
       "recast_seconds": 1.5,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8361,7 +8461,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -8440,7 +8540,7 @@
       "recast_seconds": 1.5,
       "duration": "27 min",
       "duration_ticks": 270,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8461,7 +8561,7 @@
         {
           "slot": 2,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 1,
           "limit": 0,
           "formula": 119,
@@ -8502,7 +8602,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 14,
           "limit": 0,
           "formula": 100,
@@ -8531,7 +8631,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8543,7 +8643,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -8552,7 +8652,7 @@
         {
           "slot": 2,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -8561,7 +8661,7 @@
         {
           "slot": 3,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -8570,7 +8670,7 @@
         {
           "slot": 4,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -8599,7 +8699,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min 54s",
       "duration_ticks": 39,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8734,7 +8834,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8746,7 +8846,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -288,
           "limit": 0,
           "formula": 104,
@@ -8816,7 +8916,7 @@
         {
           "slot": 1,
           "effect_id": 103,
-          "effect": "SummonSkeleton",
+          "effect": "CallPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -8857,7 +8957,7 @@
         {
           "slot": 1,
           "effect_id": 161,
-          "effect": "Mitigation",
+          "effect": "SpellGuard",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -8898,7 +8998,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 356,
           "limit": 1,
           "formula": 100,
@@ -8948,7 +9048,7 @@
         {
           "slot": 2,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -8957,7 +9057,7 @@
         {
           "slot": 3,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -8998,7 +9098,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 46,
           "limit": 0,
           "formula": 100,
@@ -9007,7 +9107,7 @@
         {
           "slot": 2,
           "effect_id": 374,
-          "effect": "SetSkillRequirement",
+          "effect": "TriggerSpell",
           "base": 100,
           "limit": 40624,
           "formula": 100,
@@ -9036,7 +9136,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min",
       "duration_ticks": 30,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9106,7 +9206,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10254,
           "limit": 1,
           "formula": 100,
@@ -9135,7 +9235,7 @@
       "recast_seconds": 24.0,
       "duration": "24s",
       "duration_ticks": 4,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9147,7 +9247,7 @@
         {
           "slot": 1,
           "effect_id": 63,
-          "effect": "BindSight",
+          "effect": "NpcWipeHateList",
           "base": 25,
           "limit": 0,
           "formula": 100,
@@ -9217,7 +9317,7 @@
       "recast_seconds": 1.5,
       "duration": "20 min 30s",
       "duration_ticks": 205,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9270,7 +9370,7 @@
         {
           "slot": 1,
           "effect_id": 63,
-          "effect": "BindSight",
+          "effect": "NpcWipeHateList",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -9279,7 +9379,7 @@
         {
           "slot": 2,
           "effect_id": 63,
-          "effect": "BindSight",
+          "effect": "NpcWipeHateList",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -9329,7 +9429,7 @@
         {
           "slot": 2,
           "effect_id": 55,
-          "effect": "InfraVision",
+          "effect": "Stoneskin",
           "base": 200,
           "limit": 0,
           "formula": 100,
@@ -9367,7 +9467,7 @@
       "recast_seconds": 5.0,
       "duration": "1 min 36s",
       "duration_ticks": 16,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9379,7 +9479,7 @@
         {
           "slot": 1,
           "effect_id": 31,
-          "effect": "Mez",
+          "effect": "Enthrall",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -9408,7 +9508,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9420,7 +9520,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -113,
           "limit": 0,
           "formula": 100,
@@ -9447,7 +9547,7 @@
         {
           "slot": 4,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -39,
           "limit": 0,
           "formula": 102,
@@ -9488,7 +9588,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10254,
           "limit": 5,
           "formula": 100,
@@ -9529,7 +9629,7 @@
         {
           "slot": 1,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 160,
           "limit": 0,
           "formula": 100,
@@ -9558,7 +9658,7 @@
       "recast_seconds": 1.5,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -9679,7 +9779,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 65,
           "limit": 0,
           "formula": 100,
@@ -9708,7 +9808,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9720,7 +9820,7 @@
         {
           "slot": 1,
           "effect_id": 19,
-          "effect": "AddFaction",
+          "effect": "NpcFaction",
           "base": 300,
           "limit": 0,
           "formula": 100,
@@ -9761,7 +9861,7 @@
         {
           "slot": 1,
           "effect_id": 314,
-          "effect": "NPCFleeMod",
+          "effect": "ImprovedInvis",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -9802,7 +9902,7 @@
         {
           "slot": 1,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -40,
           "limit": 0,
           "formula": 6,

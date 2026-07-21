@@ -104,7 +104,6 @@ L36  North Ro Portal
 L36  Translocate: Greater Faydark
 L37  Concussion
 L37  Lightning Shock
-L37  Markar's Relocation
 L37  Translocate: Toxxulia
 L37  West Karana Portal
 L38  Chill Sight

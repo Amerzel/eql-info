@@ -1,0 +1,1114 @@
+{
+  "generated": "2026-07-21",
+  "class": "Rogue",
+  "spell_count": 9,
+  "spells": [
+    {
+      "id": 74032,
+      "name": "Concussive Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in Concussive Poison, giving you a chance to trigger *74023%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in Concussive Poison, giving you a chance to trigger *#7%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 7
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74023,
+          "limit": 200,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades with a potent venom.",
+        "cast_on_other": " blinks, looking confused!",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 7
+    },
+    {
+      "id": 74056,
+      "name": "Clumsiness Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Clumsiness Poison, giving you a chance to trigger *74057%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Clumsiness Poison, giving you a chance to trigger *#7%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 18
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74057,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a numbing poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 18
+    },
+    {
+      "id": 74064,
+      "name": "Fettering Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Fettering Poison, giving you a chance to trigger *74026%N and *74025%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Fettering Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 23
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74026,
+          "limit": 100,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74025,
+          "limit": 100,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a fettering poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 23
+    },
+    {
+      "id": 74065,
+      "name": "Binding Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Binding Poison, giving you a chance to trigger *74022%N and *74025%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Binding Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 25
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74022,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74025,
+          "limit": 100,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a binding poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 25
+    },
+    {
+      "id": 74061,
+      "name": "Neurotoxic Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Neurotoxic Poison, giving you a chance to trigger *74024%N and *74022%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Neurotoxic Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 28
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74024,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74022,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a neurotoxic poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 28
+    },
+    {
+      "id": 74060,
+      "name": "Thought Drain Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Thought Drain Poison, giving you a chance to trigger *74024%N and *74057%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Thought Drain Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 33
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74024,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74057,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a thought draining poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 33
+    },
+    {
+      "id": 74063,
+      "name": "Antimagic Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Antimagic Poison, giving you a chance to trigger *74023%N and *74027%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Antimagic Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 36
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74023,
+          "limit": 200,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74027,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in antimagic poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 36
+    },
+    {
+      "id": 74062,
+      "name": "Mage Bane Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Mage Bane Poison, giving you a chance to trigger *74024%N and *74027%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Mage Bane Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 39
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74024,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74027,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in mage bane poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 39
+    },
+    {
+      "id": 74058,
+      "name": "Paralytic Poison",
+      "icon": 1,
+      "spell_type": "Beneficial",
+      "skill": "Offense",
+      "description": "Coats your weapon in a Paralytic Poison, giving you a chance to trigger *74022%N and *74057%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "description_template": "Coats your weapon in a Paralytic Poison, giving you a chance to trigger *#7%N and *#11%N on striking. This is considered a utility poison, only one of which may be active at a time.",
+      "mana": 0,
+      "range": 200.0,
+      "cast_seconds": 2.5,
+      "fizzle_seconds": 18.0,
+      "recast_seconds": 0.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Poison",
+      "classes": [
+        {
+          "class": "Rogue",
+          "level": 42
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 2,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 5,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 6,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 7,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74022,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 8,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 9,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 10,
+          "effect_id": 10,
+          "effect": "CHA",
+          "base": 0,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 11,
+          "effect_id": 85,
+          "effect": "AddProcSpell",
+          "base": 74057,
+          "limit": 50,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You coat your blades in a paralytic poison.",
+        "cast_on_other": "coats their blades in poison.",
+        "wears_off": "The poison dries from the blade."
+      },
+      "level": 42
+    }
+  ]
+}

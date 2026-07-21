@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Beastlord",
   "spell_count": 75,
   "spells": [
@@ -50,7 +50,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 10,
           "limit": 0,
           "formula": 2,
@@ -91,7 +91,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -140,7 +140,7 @@
         {
           "slot": 1,
           "effect_id": 54,
-          "effect": "SpinTarget",
+          "effect": "DetectAnimals",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -274,7 +274,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -315,7 +315,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -344,7 +344,7 @@
       "recast_seconds": 3.0,
       "duration": "12s",
       "duration_ticks": 2,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -368,7 +368,7 @@
         {
           "slot": 1,
           "effect_id": 20,
-          "effect": "Blind",
+          "effect": "Blindness",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -377,7 +377,7 @@
         {
           "slot": 2,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": -5,
           "limit": 0,
           "formula": 100,
@@ -422,7 +422,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 101,
@@ -431,7 +431,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -440,7 +440,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -481,7 +481,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -579,7 +579,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 41,
           "limit": 0,
           "formula": 1,
@@ -588,7 +588,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -597,7 +597,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -606,7 +606,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -678,7 +678,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 11,
           "limit": 0,
           "formula": 102,
@@ -741,7 +741,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -779,7 +779,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -791,7 +791,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -71,
           "limit": 0,
           "formula": 100,
@@ -861,7 +861,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -902,7 +902,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2720,
           "limit": 150,
           "formula": 100,
@@ -972,7 +972,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 35,
           "limit": 0,
           "formula": 3,
@@ -1001,7 +1001,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min 24s",
       "duration_ticks": 14,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Disease",
       "classes": [
         {
@@ -1017,7 +1017,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1026,7 +1026,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -1035,7 +1035,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -8,
           "limit": 0,
           "formula": 100,
@@ -1125,7 +1125,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 97,
           "limit": 0,
           "formula": 2,
@@ -1134,7 +1134,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1143,7 +1143,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1152,7 +1152,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1193,7 +1193,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1242,7 +1242,7 @@
         {
           "slot": 1,
           "effect_id": 65,
-          "effect": "VoiceGraft",
+          "effect": "Infravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1344,7 +1344,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13079,
           "limit": 1,
           "formula": 100,
@@ -1451,7 +1451,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2721,
           "limit": 150,
           "formula": 100,
@@ -1489,7 +1489,7 @@
       "recast_seconds": 1.5,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Poison",
       "classes": [
         {
@@ -1505,7 +1505,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -1514,7 +1514,7 @@
         {
           "slot": 2,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1523,7 +1523,7 @@
         {
           "slot": 3,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -10,
           "limit": 0,
           "formula": 101,
@@ -1588,7 +1588,7 @@
         {
           "slot": 1,
           "effect_id": 298,
-          "effect": "GiantClick",
+          "effect": "TinyCompanion",
           "base": 50,
           "limit": 0,
           "formula": 100,
@@ -1617,7 +1617,7 @@
       "recast_seconds": 5.0,
       "duration": "3 min 30s",
       "duration_ticks": 35,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1642,7 +1642,7 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 90,
           "limit": 0,
           "formula": 109,
@@ -1651,7 +1651,7 @@
         {
           "slot": 3,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -1692,7 +1692,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1786,7 +1786,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -1798,7 +1798,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -136,
           "limit": 0,
           "formula": 100,
@@ -1836,7 +1836,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1852,7 +1852,7 @@
         {
           "slot": 1,
           "effect_id": 89,
-          "effect": "SE #89",
+          "effect": "Height",
           "base": 66,
           "limit": 0,
           "formula": 100,
@@ -1913,7 +1913,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 95,
           "limit": 0,
           "formula": 4,
@@ -1975,7 +1975,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -2032,7 +2032,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2061,7 +2061,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -2077,7 +2077,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -58,
           "limit": 0,
           "formula": 102,
@@ -2149,7 +2149,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 17,
           "limit": 0,
           "formula": 102,
@@ -2190,7 +2190,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 193,
           "limit": 0,
           "formula": 3,
@@ -2199,7 +2199,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -2208,7 +2208,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -2217,7 +2217,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -2258,7 +2258,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2722,
           "limit": 150,
           "formula": 100,
@@ -2414,7 +2414,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13078,
           "limit": 1,
           "formula": 100,
@@ -2455,7 +2455,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2516,7 +2516,7 @@
         {
           "slot": 1,
           "effect_id": 103,
-          "effect": "SummonSkeleton",
+          "effect": "CallPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2595,7 +2595,7 @@
         {
           "slot": 3,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2624,7 +2624,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -2636,7 +2636,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -207,
           "limit": 0,
           "formula": 100,
@@ -2767,7 +2767,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 140,
           "limit": 0,
           "formula": 7,
@@ -2796,7 +2796,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2848,7 +2848,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2877,7 +2877,7 @@
       "recast_seconds": 1.5,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Poison",
       "classes": [
         {
@@ -2893,7 +2893,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -2902,7 +2902,7 @@
         {
           "slot": 2,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -21,
           "limit": 0,
           "formula": 100,
@@ -2911,7 +2911,7 @@
         {
           "slot": 3,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -53,
           "limit": 0,
           "formula": 102,
@@ -2952,7 +2952,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 201,
           "limit": 0,
           "formula": 4,
@@ -2961,7 +2961,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -2970,7 +2970,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -2979,7 +2979,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -3092,7 +3092,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 135,
           "limit": 0,
           "formula": 102,
@@ -3101,7 +3101,7 @@
         {
           "slot": 5,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -3110,7 +3110,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -3196,7 +3196,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2723,
           "limit": 150,
           "formula": 100,
@@ -3258,7 +3258,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3267,7 +3267,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -3308,7 +3308,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3337,7 +3337,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min 12s",
       "duration_ticks": 12,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Disease",
       "classes": [
         {
@@ -3349,7 +3349,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -3358,7 +3358,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -23,
           "limit": 0,
           "formula": 102,
@@ -3423,8 +3423,8 @@
       "icon": 72,
       "spell_type": "Beneficial",
       "skill": "Alteration",
-      "description": "Envelops your target in an aura of spiritual light, increasing their mana and hit point regeneration.",
-      "description_template": "Envelops your target in an aura of spiritual light, increasing their mana and hit point regeneration.",
+      "description": "Envelops your target in an aura of spiritual light, increasing their mana, endurance and hit point regeneration.",
+      "description_template": "Envelops your target in an aura of spiritual light, increasing their mana, endurance and hit point regeneration.",
       "mana": 200,
       "range": 0,
       "cast_seconds": 5.0,
@@ -3432,7 +3432,7 @@
       "recast_seconds": 1.5,
       "duration": "45 min",
       "duration_ticks": 450,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3480,7 +3480,7 @@
         {
           "slot": 5,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -3507,7 +3507,16 @@
         {
           "slot": 8,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
+          "base": 3,
+          "limit": 0,
+          "formula": 100,
+          "max": 3
+        },
+        {
+          "slot": 9,
+          "effect_id": 189,
+          "effect": "Endurance",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -3548,7 +3557,7 @@
         {
           "slot": 1,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -3557,7 +3566,7 @@
         {
           "slot": 2,
           "effect_id": 148,
-          "effect": "StackingHP",
+          "effect": "StackingBlock",
           "base": 2,
           "limit": 1,
           "formula": 100,
@@ -3566,7 +3575,7 @@
         {
           "slot": 3,
           "effect_id": 148,
-          "effect": "StackingHP",
+          "effect": "StackingBlock",
           "base": 69,
           "limit": 4,
           "formula": 100,
@@ -3575,7 +3584,7 @@
         {
           "slot": 4,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 75,
           "limit": 0,
           "formula": 100,
@@ -3661,7 +3670,7 @@
       "recast_seconds": 1.5,
       "duration": "6 min 30s",
       "duration_ticks": 65,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3708,7 +3717,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -3737,7 +3746,7 @@
       "recast_seconds": 3.5,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3761,7 +3770,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3770,7 +3779,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -3827,7 +3836,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -8,
           "limit": 0,
           "formula": 100,
@@ -3868,7 +3877,7 @@
         {
           "slot": 1,
           "effect_id": 106,
-          "effect": "SummonAA",
+          "effect": "BeastlordPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3909,7 +3918,7 @@
         {
           "slot": 1,
           "effect_id": 85,
-          "effect": "Charisma",
+          "effect": "AddProcSpell",
           "base": 2724,
           "limit": 150,
           "formula": 100,
@@ -3981,7 +3990,7 @@
         {
           "slot": 3,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 15,
           "limit": 0,
           "formula": 101,
@@ -4046,7 +4055,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -4058,7 +4067,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -281,
           "limit": 0,
           "formula": 100,
@@ -4139,7 +4148,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 17,
           "limit": 0,
           "formula": 102,
@@ -4184,7 +4193,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 326,
           "limit": 0,
           "formula": 104,
@@ -4225,7 +4234,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 431,
           "limit": 0,
           "formula": 5,
@@ -4234,7 +4243,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -4243,7 +4252,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -4252,7 +4261,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -4301,7 +4310,7 @@
         {
           "slot": 1,
           "effect_id": 163,
-          "effect": "CritHits",
+          "effect": "AbsorbHit",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -4330,7 +4339,7 @@
       "recast_seconds": 5.0,
       "duration": "3 min 30s",
       "duration_ticks": 35,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4351,16 +4360,16 @@
         {
           "slot": 2,
           "effect_id": 11,
-          "effect": "AttackSpeed",
-          "base": 70,
+          "effect": "Haste",
+          "base": 60,
           "limit": 0,
           "formula": 100,
-          "max": 70
+          "max": 60
         },
         {
           "slot": 3,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": 12,
           "limit": 0,
           "formula": 100,

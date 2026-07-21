@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Magician",
-  "spell_count": 157,
+  "spell_count": 158,
   "spells": [
     {
       "id": 93,
@@ -18,7 +18,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -38,7 +38,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -3,
           "limit": 0,
           "formula": 101,
@@ -79,7 +79,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -8,
           "limit": 0,
           "formula": 101,
@@ -108,7 +108,7 @@
       "recast_seconds": 18.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Line of Sight",
+      "target": "Bolt",
       "resist": "Unresistable",
       "classes": [
         {
@@ -120,7 +120,7 @@
         {
           "slot": 1,
           "effect_id": 24,
-          "effect": "Stamina",
+          "effect": "Fatigue",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -173,7 +173,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 5,
           "limit": 0,
           "formula": 102,
@@ -182,7 +182,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -231,7 +231,7 @@
         {
           "slot": 1,
           "effect_id": 68,
-          "effect": "AbsorbMagicAtt",
+          "effect": "ReclaimEnergy",
           "base": 75,
           "limit": 0,
           "formula": 100,
@@ -272,7 +272,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 7305,
           "limit": 1,
           "formula": 100,
@@ -329,7 +329,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13079,
           "limit": 1,
           "formula": 100,
@@ -386,7 +386,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13078,
           "limit": 1,
           "formula": 100,
@@ -451,7 +451,7 @@
         {
           "slot": 1,
           "effect_id": 56,
-          "effect": "UltraVision",
+          "effect": "TrueNorth",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -533,7 +533,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13081,
           "limit": 20,
           "formula": 100,
@@ -574,7 +574,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23500,
           "limit": 1,
           "formula": 100,
@@ -664,7 +664,7 @@
         {
           "slot": 1,
           "effect_id": 53,
-          "effect": "EnduringBreath",
+          "effect": "DetectSummoned",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -705,7 +705,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10294,
           "limit": 1,
           "formula": 100,
@@ -734,7 +734,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -746,7 +746,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -9,
           "limit": 0,
           "formula": 102,
@@ -922,7 +922,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Line of Sight",
+      "target": "Bolt",
       "resist": "Fire",
       "classes": [
         {
@@ -934,7 +934,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -40,
           "limit": 0,
           "formula": 102,
@@ -987,7 +987,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 12,
           "limit": 0,
           "formula": 102,
@@ -996,7 +996,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 12,
           "limit": 0,
           "formula": 102,
@@ -1045,6 +1045,47 @@
         "wears_off": "Your shielding fades."
       },
       "level": 5
+    },
+    {
+      "id": 325,
+      "name": "Dimensional Pocket",
+      "icon": 126,
+      "spell_type": "Beneficial",
+      "skill": "Conjuration",
+      "description": "Conjures a dimensional pocket that allows you to carry heavy loads unhindered.  The pouch, and all of its contents, will be lost if you leave the world of Norrath for a significant period of time.",
+      "description_template": "Conjures a dimensional pocket that allows you to carry heavy loads unhindered.  The pouch, and all of its contents, will be lost if you leave the world of Norrath for a significant period of time.",
+      "mana": 40,
+      "range": 0,
+      "cast_seconds": 6.0,
+      "fizzle_seconds": 1.5,
+      "recast_seconds": 6.0,
+      "duration": "instant",
+      "duration_ticks": 0,
+      "target": "Self",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Magician",
+          "level": 6
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 32,
+          "effect": "CreateItem",
+          "base": 17304,
+          "limit": 1,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "",
+        "cast_on_other": "",
+        "wears_off": ""
+      },
+      "level": 6
     },
     {
       "id": 398,
@@ -1118,7 +1159,7 @@
         {
           "slot": 1,
           "effect_id": 67,
-          "effect": "LocateCorpse",
+          "effect": "EyeOfZomm",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1200,7 +1241,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 15,
           "limit": 0,
           "formula": 1,
@@ -1209,7 +1250,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1218,7 +1259,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1227,7 +1268,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -1268,7 +1309,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 109,
@@ -1306,7 +1347,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1318,7 +1359,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -30,
           "limit": 0,
           "formula": 102,
@@ -1457,7 +1498,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 6330,
           "limit": 1,
           "formula": 100,
@@ -1498,7 +1539,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23503,
           "limit": 1,
           "formula": 100,
@@ -1580,7 +1621,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 7313,
           "limit": 1,
           "formula": 100,
@@ -1609,7 +1650,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -1633,7 +1674,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -5,
           "limit": 0,
           "formula": 101,
@@ -1662,7 +1703,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1714,7 +1755,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1796,7 +1837,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -26,
           "limit": 0,
           "formula": 100,
@@ -1837,7 +1878,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23512,
           "limit": 1,
           "formula": 100,
@@ -1905,7 +1946,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 109,
           "limit": 0,
           "formula": 121,
@@ -1923,7 +1964,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 25,
           "limit": 0,
           "formula": 100,
@@ -2005,7 +2046,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 3427,
           "limit": 1,
           "formula": 100,
@@ -2034,7 +2075,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2111,7 +2152,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -37,
           "limit": 0,
           "formula": 102,
@@ -2243,7 +2284,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2261,7 +2302,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -2343,7 +2384,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 6331,
           "limit": 1,
           "formula": 100,
@@ -2413,7 +2454,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -2425,7 +2466,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -100,
           "limit": 0,
           "formula": 102,
@@ -2466,7 +2507,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10310,
           "limit": 1,
           "formula": 100,
@@ -2507,7 +2548,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 8317,
           "limit": 100,
           "formula": 100,
@@ -2658,7 +2699,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 30,
           "limit": 0,
           "formula": 102,
@@ -2667,7 +2708,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 24,
           "limit": 0,
           "formula": 102,
@@ -2744,7 +2785,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23509,
           "limit": 1,
           "formula": 100,
@@ -2826,7 +2867,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -75,
           "limit": 0,
           "formula": 100,
@@ -2867,7 +2908,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 17310,
           "limit": 1,
           "formula": 100,
@@ -2876,7 +2917,7 @@
         {
           "slot": 2,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3405,
           "limit": 1,
           "formula": 100,
@@ -2885,7 +2926,7 @@
         {
           "slot": 3,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3406,
           "limit": 1,
           "formula": 100,
@@ -2894,7 +2935,7 @@
         {
           "slot": 4,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3407,
           "limit": 1,
           "formula": 100,
@@ -2903,7 +2944,7 @@
         {
           "slot": 5,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3408,
           "limit": 1,
           "formula": 100,
@@ -2912,7 +2953,7 @@
         {
           "slot": 6,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3408,
           "limit": 1,
           "formula": 100,
@@ -2921,7 +2962,7 @@
         {
           "slot": 7,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3409,
           "limit": 1,
           "formula": 100,
@@ -2930,7 +2971,7 @@
         {
           "slot": 8,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3410,
           "limit": 1,
           "formula": 100,
@@ -2939,7 +2980,7 @@
         {
           "slot": 9,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3411,
           "limit": 1,
           "formula": 100,
@@ -2980,7 +3021,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10342,
           "limit": 1,
           "formula": 100,
@@ -3009,7 +3050,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Line of Sight",
+      "target": "Bolt",
       "resist": "Fire",
       "classes": [
         {
@@ -3021,7 +3062,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -225,
           "limit": 0,
           "formula": 103,
@@ -3050,7 +3091,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -3070,7 +3111,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -100,
           "limit": 0,
           "formula": 102,
@@ -3152,7 +3193,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 39,
           "limit": 0,
           "formula": 2,
@@ -3161,7 +3202,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -3170,7 +3211,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -3179,7 +3220,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -3333,7 +3374,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 109,
@@ -3407,7 +3448,7 @@
         {
           "slot": 1,
           "effect_id": 298,
-          "effect": "GiantClick",
+          "effect": "TinyCompanion",
           "base": 50,
           "limit": 0,
           "formula": 100,
@@ -3489,7 +3530,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 7309,
           "limit": 1,
           "formula": 100,
@@ -3530,7 +3571,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 8316,
           "limit": 100,
           "formula": 100,
@@ -3571,7 +3612,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23506,
           "limit": 1,
           "formula": 100,
@@ -3612,7 +3653,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 59561,
           "limit": 1,
           "formula": 100,
@@ -3653,7 +3694,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13078,
           "limit": 20,
           "formula": 100,
@@ -3735,7 +3776,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23501,
           "limit": 1,
           "formula": 100,
@@ -3776,7 +3817,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13079,
           "limit": 20,
           "formula": 100,
@@ -3817,7 +3858,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -67,
           "limit": 0,
           "formula": 102,
@@ -3846,7 +3887,7 @@
       "recast_seconds": 6.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3968,7 +4009,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -3980,7 +4021,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -150,
           "limit": 0,
           "formula": 103,
@@ -4074,7 +4115,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 45,
           "limit": 0,
           "formula": 102,
@@ -4083,7 +4124,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 32,
           "limit": 0,
           "formula": 102,
@@ -4160,7 +4201,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 6332,
           "limit": 1,
           "formula": 100,
@@ -4230,7 +4271,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -4254,7 +4295,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -180,
           "limit": 0,
           "formula": 103,
@@ -4304,7 +4345,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -4322,7 +4363,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 11,
           "limit": 0,
           "formula": 102,
@@ -4363,7 +4404,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 17310,
           "limit": 1,
           "formula": 100,
@@ -4372,7 +4413,7 @@
         {
           "slot": 2,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3412,
           "limit": 1,
           "formula": 100,
@@ -4381,7 +4422,7 @@
         {
           "slot": 3,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3413,
           "limit": 1,
           "formula": 100,
@@ -4390,7 +4431,7 @@
         {
           "slot": 4,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3414,
           "limit": 1,
           "formula": 100,
@@ -4399,7 +4440,7 @@
         {
           "slot": 5,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3415,
           "limit": 1,
           "formula": 100,
@@ -4408,7 +4449,7 @@
         {
           "slot": 6,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3415,
           "limit": 1,
           "formula": 100,
@@ -4417,7 +4458,7 @@
         {
           "slot": 7,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3416,
           "limit": 1,
           "formula": 100,
@@ -4426,7 +4467,7 @@
         {
           "slot": 8,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3417,
           "limit": 1,
           "formula": 100,
@@ -4435,7 +4476,7 @@
         {
           "slot": 9,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3418,
           "limit": 1,
           "formula": 100,
@@ -4558,7 +4599,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -91,
           "limit": 0,
           "formula": 100,
@@ -4599,7 +4640,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 5319,
           "limit": 1,
           "formula": 100,
@@ -4649,7 +4690,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 20,
           "limit": 0,
           "formula": 100,
@@ -4731,7 +4772,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23504,
           "limit": 1,
           "formula": 100,
@@ -4760,7 +4801,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -4780,7 +4821,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -159,
           "limit": 0,
           "formula": 104,
@@ -4862,7 +4903,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -6,
           "limit": 0,
           "formula": 109,
@@ -4939,7 +4980,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 115,
           "limit": 0,
           "formula": 101,
@@ -4957,7 +4998,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -5039,7 +5080,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10323,
           "limit": 1,
           "formula": 100,
@@ -5080,7 +5121,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 17305,
           "limit": 1,
           "formula": 100,
@@ -5162,7 +5203,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23513,
           "limit": 1,
           "formula": 100,
@@ -5191,7 +5232,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -5203,7 +5244,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -350,
           "limit": 0,
           "formula": 104,
@@ -5285,7 +5326,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 30275,
           "limit": 1,
           "formula": 100,
@@ -5338,7 +5379,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 60,
           "limit": 0,
           "formula": 102,
@@ -5347,7 +5388,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 36,
           "limit": 0,
           "formula": 102,
@@ -5453,7 +5494,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5489,7 +5530,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -5498,7 +5539,7 @@
         {
           "slot": 2,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -5527,7 +5568,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Line of Sight",
+      "target": "Bolt",
       "resist": "Fire",
       "classes": [
         {
@@ -5539,7 +5580,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -400,
           "limit": 0,
           "formula": 104,
@@ -5621,7 +5662,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 6333,
           "limit": 1,
           "formula": 100,
@@ -5703,7 +5744,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 43,
           "limit": 0,
           "formula": 3,
@@ -5712,7 +5753,7 @@
         {
           "slot": 2,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -5721,7 +5762,7 @@
         {
           "slot": 3,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -5730,7 +5771,7 @@
         {
           "slot": 4,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -5771,7 +5812,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 7310,
           "limit": 1,
           "formula": 100,
@@ -5812,7 +5853,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -172,
           "limit": 0,
           "formula": 100,
@@ -5914,7 +5955,7 @@
         {
           "slot": 1,
           "effect_id": 103,
-          "effect": "SummonSkeleton",
+          "effect": "CallPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -5996,7 +6037,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10405,
           "limit": 1,
           "formula": 100,
@@ -6037,7 +6078,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23510,
           "limit": 1,
           "formula": 100,
@@ -6078,7 +6119,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -9,
           "limit": 0,
           "formula": 109,
@@ -6169,7 +6210,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 17310,
           "limit": 1,
           "formula": 100,
@@ -6178,7 +6219,7 @@
         {
           "slot": 2,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3419,
           "limit": 1,
           "formula": 100,
@@ -6187,7 +6228,7 @@
         {
           "slot": 3,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3420,
           "limit": 1,
           "formula": 100,
@@ -6196,7 +6237,7 @@
         {
           "slot": 4,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3421,
           "limit": 1,
           "formula": 100,
@@ -6205,7 +6246,7 @@
         {
           "slot": 5,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3422,
           "limit": 1,
           "formula": 100,
@@ -6214,7 +6255,7 @@
         {
           "slot": 6,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3422,
           "limit": 1,
           "formula": 100,
@@ -6223,7 +6264,7 @@
         {
           "slot": 7,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3423,
           "limit": 1,
           "formula": 100,
@@ -6232,7 +6273,7 @@
         {
           "slot": 8,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3424,
           "limit": 1,
           "formula": 100,
@@ -6241,7 +6282,7 @@
         {
           "slot": 9,
           "effect_id": 109,
-          "effect": "SummonCorpseHandle",
+          "effect": "CreateItemInBag",
           "base": 3425,
           "limit": 1,
           "formula": 100,
@@ -6282,7 +6323,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -93,
           "limit": 0,
           "formula": 103,
@@ -6486,7 +6527,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -6504,7 +6545,7 @@
         {
           "slot": 4,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 36,
           "limit": 0,
           "formula": 101,
@@ -6533,7 +6574,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6545,7 +6586,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -450,
           "limit": 0,
           "formula": 5,
@@ -6680,7 +6721,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23507,
           "limit": 1,
           "formula": 100,
@@ -6721,7 +6762,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 59569,
           "limit": 1,
           "formula": 100,
@@ -6774,7 +6815,7 @@
         {
           "slot": 1,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 100,
           "limit": 0,
           "formula": 102,
@@ -6783,7 +6824,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 42,
           "limit": 0,
           "formula": 102,
@@ -6889,7 +6930,7 @@
       "recast_seconds": 1.5,
       "duration": "30s",
       "duration_ticks": 5,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6901,7 +6942,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -250,
           "limit": 0,
           "formula": 100,
@@ -6910,7 +6951,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -19,
           "limit": 0,
           "formula": 102,
@@ -6980,7 +7021,7 @@
       "recast_seconds": 6.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7073,7 +7114,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 6346,
           "limit": 1,
           "formula": 100,
@@ -7114,7 +7155,7 @@
         {
           "slot": 1,
           "effect_id": 100,
-          "effect": "HealOverTime",
+          "effect": "Healdot",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -7155,7 +7196,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 59562,
           "limit": 1,
           "formula": 100,
@@ -7196,7 +7237,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -25,
           "limit": 0,
           "formula": 100,
@@ -7246,7 +7287,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 28034,
           "limit": 1,
           "formula": 100,
@@ -7336,7 +7377,7 @@
         {
           "slot": 1,
           "effect_id": 163,
-          "effect": "CritHits",
+          "effect": "AbsorbHit",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -7404,7 +7445,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 115,
           "limit": 0,
           "formula": 102,
@@ -7422,7 +7463,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 45,
           "limit": 0,
           "formula": 100,
@@ -7492,7 +7533,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Line of Sight",
+      "target": "Bolt",
       "resist": "Fire",
       "classes": [
         {
@@ -7504,7 +7545,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -700,
           "limit": 0,
           "formula": 5,
@@ -7533,7 +7574,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -7549,7 +7590,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -400,
           "limit": 0,
           "formula": 104,
@@ -7631,7 +7672,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 20075,
           "limit": 1,
           "formula": 100,
@@ -7713,7 +7754,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -324,
           "limit": 0,
           "formula": 100,
@@ -7795,7 +7836,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 23502,
           "limit": 1,
           "formula": 100,

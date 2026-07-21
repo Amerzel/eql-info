@@ -143,7 +143,6 @@ L39  Sacred Word
 L39  Word of Souls
 L40  Guard of Vie
 L40  Hammer of Requital
-L40  Temperance
 L41  Symbol of Naltron
 L41  Yaulp III
 L42  Resolution
@@ -154,7 +153,6 @@ L43  Sacred Echo
 L44  Celestial Healing
 L44  Earthquake
 L44  Retribution
-L45  Blessing of Temperance
 L45  Healing Light
 L45  Shield of Words
 L45  Word of Healing

@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-02",
+  "generated": "2026-07-21",
   "class": "Druid",
-  "spell_count": 186,
+  "spell_count": 192,
   "spells": [
     {
       "id": 93,
@@ -18,7 +18,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -38,7 +38,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -3,
           "limit": 0,
           "formula": 101,
@@ -83,7 +83,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10295,
           "limit": 1,
           "formula": 100,
@@ -169,7 +169,7 @@
       "recast_seconds": 1.5,
       "duration": "36s",
       "duration_ticks": 6,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -194,7 +194,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -1,
           "limit": 0,
           "formula": 101,
@@ -266,7 +266,7 @@
         {
           "slot": 10,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -12,
           "limit": 0,
           "formula": 100,
@@ -311,7 +311,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -320,7 +320,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 25,
           "limit": 0,
           "formula": 100,
@@ -329,7 +329,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -390,7 +390,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 10,
           "limit": 0,
           "formula": 2,
@@ -484,7 +484,7 @@
         {
           "slot": 1,
           "effect_id": 54,
-          "effect": "SpinTarget",
+          "effect": "DetectAnimals",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -529,7 +529,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 101,
@@ -538,7 +538,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -567,7 +567,7 @@
       "recast_seconds": 4.0,
       "duration": "3 min 54s",
       "duration_ticks": 39,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -592,7 +592,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -40,
           "limit": 3,
           "formula": 102,
@@ -621,7 +621,7 @@
       "recast_seconds": 6.0,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -646,7 +646,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -20,
           "limit": 0,
           "formula": 102,
@@ -675,7 +675,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -691,7 +691,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 100,
@@ -729,7 +729,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -753,7 +753,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -5,
           "limit": 0,
           "formula": 101,
@@ -782,7 +782,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -798,7 +798,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -10,
           "limit": 0,
           "formula": 101,
@@ -818,8 +818,8 @@
       "icon": 85,
       "spell_type": "Detrimental",
       "skill": "Conjuration",
-      "description": "Summons a whirling wind to stun your target, also doing between 8 and 13 damage. This spell can only be cast outdoors and stuns targets up to level 55 for 1000 seconds.",
-      "description_template": "Summons a whirling wind to stun your target, also doing between #1 and @1 damage. This spell can only be cast outdoors and stuns targets up to level @2 for #2 seconds.",
+      "description": "Summons a whirling wind to stun your target, also doing between 8 and 13 damage. This spell can only stun targets up to level 55 for 1000 seconds.",
+      "description_template": "Summons a whirling wind to stun your target, also doing between #1 and @1 damage. This spell can only stun targets up to level @2 for #2 seconds.",
       "mana": 7,
       "range": 200.0,
       "cast_seconds": 1.5,
@@ -827,7 +827,7 @@
       "recast_seconds": 12.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -839,7 +839,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -8,
           "limit": 0,
           "formula": 101,
@@ -861,6 +861,92 @@
         "wears_off": ""
       },
       "level": 3
+    },
+    {
+      "id": 74071,
+      "name": "Budding Heal",
+      "icon": 632,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 11 every 6 seconds for 24s and then healing for 18.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 20,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 4
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 11,
+          "limit": 0,
+          "formula": 103,
+          "max": 11
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74072,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 18,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 18
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 18
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74071,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal budding within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
+      },
+      "level": 4
     },
     {
       "id": 247,
@@ -962,7 +1048,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -1007,7 +1093,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -16,
           "limit": 0,
           "formula": 102,
@@ -1068,7 +1154,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -1,
           "limit": 0,
           "formula": 109,
@@ -1178,7 +1264,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -1187,7 +1273,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -1244,7 +1330,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -1289,7 +1375,7 @@
         {
           "slot": 1,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 101,
@@ -1330,7 +1416,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 143,
           "limit": 0,
           "formula": 100,
@@ -1402,7 +1488,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 109,
@@ -1501,7 +1587,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 7,
           "limit": 0,
           "formula": 102,
@@ -1510,7 +1596,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -1539,7 +1625,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -1555,7 +1641,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -30,
           "limit": 0,
           "formula": 102,
@@ -1653,7 +1739,7 @@
         {
           "slot": 1,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -2,
           "limit": 0,
           "formula": 100,
@@ -1779,7 +1865,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 35,
           "limit": 0,
           "formula": 3,
@@ -1808,7 +1894,7 @@
       "recast_seconds": 6.0,
       "duration": "27 min",
       "duration_ticks": 270,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -1820,7 +1906,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 10,
           "limit": 0,
           "formula": 101,
@@ -1829,7 +1915,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 10,
           "limit": 0,
           "formula": 102,
@@ -1870,7 +1956,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10293,
           "limit": 1,
           "formula": 100,
@@ -1932,7 +2018,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -1943,6 +2029,92 @@
         "cast_on_you": "You feel the spirit of wolf enter you.",
         "cast_on_other": " is surrounded by a brief lupine aura.",
         "wears_off": "The spirit of wolf leaves you."
+      },
+      "level": 10
+    },
+    {
+      "id": 74073,
+      "name": "Sprouting Heal",
+      "icon": 633,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 30 every 6 seconds for 24s and then healing for 100.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 70,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 10
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 30,
+          "limit": 0,
+          "formula": 103,
+          "max": 30
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74074,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 100,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 100
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 100
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74073,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal sprouting within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
       },
       "level": 10
     },
@@ -1961,7 +2133,7 @@
       "recast_seconds": 1.5,
       "duration": "54s",
       "duration_ticks": 9,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -1977,7 +2149,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -17,
           "limit": 0,
           "formula": 102,
@@ -2034,7 +2206,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13079,
           "limit": 1,
           "formula": 100,
@@ -2087,7 +2259,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 10290,
           "limit": 1,
           "formula": 100,
@@ -2144,7 +2316,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 13078,
           "limit": 1,
           "formula": 100,
@@ -2173,7 +2345,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -2250,7 +2422,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -27,
           "limit": 0,
           "formula": 100,
@@ -2324,7 +2496,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -2344,7 +2516,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -100,
           "limit": 0,
           "formula": 102,
@@ -2480,7 +2652,7 @@
         {
           "slot": 3,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -2525,7 +2697,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 16,
           "limit": 0,
           "formula": 101,
@@ -2534,7 +2706,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -2543,7 +2715,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -2588,7 +2760,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 5,
           "limit": 0,
           "formula": 100,
@@ -2597,7 +2769,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 10,
           "limit": 0,
           "formula": 100,
@@ -2606,7 +2778,7 @@
         {
           "slot": 3,
           "effect_id": 18,
-          "effect": "Lull",
+          "effect": "NpcAggro",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -2647,7 +2819,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2706,
           "limit": 0,
           "formula": 100,
@@ -2656,7 +2828,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1494,
           "limit": 0,
           "formula": 100,
@@ -2665,7 +2837,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -2674,7 +2846,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 209,
           "limit": 0,
           "formula": 100,
@@ -2715,7 +2887,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -209,
           "limit": 0,
           "formula": 100,
@@ -2724,7 +2896,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -391,
           "limit": 0,
           "formula": 100,
@@ -2733,7 +2905,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 9,
           "limit": 0,
           "formula": 100,
@@ -2742,7 +2914,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 384,
           "limit": 0,
           "formula": 100,
@@ -2812,7 +2984,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2828,7 +3000,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -80,
           "limit": 0,
           "formula": 102,
@@ -2848,8 +3020,8 @@
       "icon": 85,
       "spell_type": "Detrimental",
       "skill": "Conjuration",
-      "description": "Summons a whirling wind to stun your target while also doing between 65 and 95 damage. This spell can only be cast outdoors and stuns targets up to level 55 for 1000 seconds.",
-      "description_template": "Summons a whirling wind to stun your target while also doing between #1 and @1 damage. This spell can only be cast outdoors and stuns targets up to level @2 for #2 seconds.",
+      "description": "Summons a whirling wind to stun your target while also doing between 65 and 95 damage. This spell can only stun targets up to level 55 for 1000 seconds.",
+      "description_template": "Summons a whirling wind to stun your target while also doing between #1 and @1 damage. This spell can only stun targets up to level @2 for #2 seconds.",
       "mana": 50,
       "range": 200.0,
       "cast_seconds": 2.0,
@@ -2857,7 +3029,7 @@
       "recast_seconds": 12.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -2869,7 +3041,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -65,
           "limit": 0,
           "formula": 102,
@@ -2919,7 +3091,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2135,
           "limit": 0,
           "formula": 100,
@@ -2928,7 +3100,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1984,
           "limit": 0,
           "formula": 100,
@@ -2937,7 +3109,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -2946,7 +3118,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 58,
           "limit": 0,
           "formula": 100,
@@ -3000,7 +3172,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 18,
           "limit": 0,
           "formula": 102,
@@ -3009,7 +3181,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -2,
           "limit": 0,
           "formula": 100,
@@ -3050,7 +3222,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 1099,
           "limit": 0,
           "formula": 100,
@@ -3059,7 +3231,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -357,
           "limit": 0,
           "formula": 100,
@@ -3068,7 +3240,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -53,
           "limit": 0,
           "formula": 100,
@@ -3077,7 +3249,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 256,
           "limit": 0,
           "formula": 100,
@@ -3118,7 +3290,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 478,
           "limit": 0,
           "formula": 100,
@@ -3127,7 +3299,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1427,
           "limit": 0,
           "formula": 100,
@@ -3136,7 +3308,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -48,
           "limit": 0,
           "formula": 100,
@@ -3145,7 +3317,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 140,
           "limit": 0,
           "formula": 100,
@@ -3186,7 +3358,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 109,
@@ -3251,7 +3423,7 @@
         {
           "slot": 1,
           "effect_id": 298,
-          "effect": "GiantClick",
+          "effect": "TinyCompanion",
           "base": 50,
           "limit": 0,
           "formula": 100,
@@ -3280,7 +3452,7 @@
       "recast_seconds": 5.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3332,7 +3504,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -3400,7 +3572,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 112,
           "limit": 0,
           "formula": 109,
@@ -3418,7 +3590,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 15,
           "limit": 0,
           "formula": 101,
@@ -3447,7 +3619,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3459,7 +3631,7 @@
         {
           "slot": 1,
           "effect_id": 15,
-          "effect": "CurrentMana",
+          "effect": "MANA",
           "base": -300,
           "limit": 0,
           "formula": 100,
@@ -3468,7 +3640,7 @@
         {
           "slot": 2,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -3477,7 +3649,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -3486,7 +3658,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -3723,7 +3895,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 95,
           "limit": 0,
           "formula": 4,
@@ -3752,7 +3924,7 @@
       "recast_seconds": 8.0,
       "duration": "27 min",
       "duration_ticks": 270,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -3764,7 +3936,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 16,
           "limit": 0,
           "formula": 101,
@@ -3773,7 +3945,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -3782,7 +3954,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -3795,6 +3967,92 @@
         "wears_off": "Your skin returns to normal."
       },
       "level": 19
+    },
+    {
+      "id": 74075,
+      "name": "Flowering Heal",
+      "icon": 634,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 60 every 6 seconds for 24s and then healing for 197.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 130,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 20
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 60,
+          "limit": 0,
+          "formula": 103,
+          "max": 60
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74076,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 197,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 197
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 197
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74075,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal flowering within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
+      },
+      "level": 20
     },
     {
       "id": 60,
@@ -3876,7 +4134,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2034,
           "limit": 0,
           "formula": 100,
@@ -3885,7 +4143,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 317,
           "limit": 0,
           "formula": 100,
@@ -3894,7 +4152,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -19,
           "limit": 0,
           "formula": 100,
@@ -3903,7 +4161,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -3944,7 +4202,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -4531,
           "limit": 0,
           "formula": 100,
@@ -3953,7 +4211,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 673,
           "limit": 0,
           "formula": 100,
@@ -3962,7 +4220,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -3971,7 +4229,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 47,
           "limit": 0,
           "formula": 100,
@@ -4016,7 +4274,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 0,
           "formula": 100,
@@ -4025,7 +4283,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -4034,7 +4292,7 @@
         {
           "slot": 3,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 102,
@@ -4063,7 +4321,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min 36s",
       "duration_ticks": 16,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4079,7 +4337,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -4129,7 +4387,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -1779,
           "limit": 0,
           "formula": 100,
@@ -4138,7 +4396,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1668,
           "limit": 0,
           "formula": 100,
@@ -4147,7 +4405,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -104,
           "limit": 0,
           "formula": 100,
@@ -4156,7 +4414,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 472,
           "limit": 0,
           "formula": 100,
@@ -4246,7 +4504,7 @@
         {
           "slot": 6,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 75,
           "limit": 0,
           "formula": 102,
@@ -4291,7 +4549,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -64,
           "limit": 0,
           "formula": 103,
@@ -4332,7 +4590,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -62,
           "limit": 0,
           "formula": 100,
@@ -4373,7 +4631,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 367,
           "limit": 0,
           "formula": 100,
@@ -4382,7 +4640,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1885,
           "limit": 0,
           "formula": 100,
@@ -4391,7 +4649,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 16,
           "limit": 0,
           "formula": 100,
@@ -4400,7 +4658,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 70,
           "limit": 0,
           "formula": 100,
@@ -4441,7 +4699,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 1014,
           "limit": 0,
           "formula": 100,
@@ -4450,7 +4708,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1389,
           "limit": 0,
           "formula": 100,
@@ -4459,7 +4717,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 131,
           "limit": 0,
           "formula": 100,
@@ -4468,7 +4726,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 450,
           "limit": 0,
           "formula": 100,
@@ -4509,7 +4767,7 @@
         {
           "slot": 1,
           "effect_id": 20,
-          "effect": "Blind",
+          "effect": "Blindness",
           "base": -1,
           "limit": 0,
           "formula": 100,
@@ -4583,7 +4841,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -4607,7 +4865,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -180,
           "limit": 0,
           "formula": 103,
@@ -4660,7 +4918,7 @@
         {
           "slot": 1,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -4689,7 +4947,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -4701,7 +4959,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -53,
           "limit": 0,
           "formula": 102,
@@ -4746,7 +5004,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -4755,7 +5013,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -4764,7 +5022,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -4793,7 +5051,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -4805,7 +5063,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2135,
           "limit": 0,
           "formula": 100,
@@ -4814,7 +5072,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1984,
           "limit": 0,
           "formula": 100,
@@ -4823,7 +5081,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -4832,7 +5090,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 58,
           "limit": 0,
           "formula": 100,
@@ -4861,7 +5119,7 @@
       "recast_seconds": 12.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -4873,7 +5131,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2706,
           "limit": 0,
           "formula": 100,
@@ -4882,7 +5140,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1494,
           "limit": 0,
           "formula": 100,
@@ -4891,7 +5149,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -4900,7 +5158,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 209,
           "limit": 0,
           "formula": 100,
@@ -4929,7 +5187,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -4941,7 +5199,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 1099,
           "limit": 0,
           "formula": 100,
@@ -4950,7 +5208,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -357,
           "limit": 0,
           "formula": 100,
@@ -4959,7 +5217,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -53,
           "limit": 0,
           "formula": 100,
@@ -4968,7 +5226,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 256,
           "limit": 0,
           "formula": 100,
@@ -4997,7 +5255,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -5022,7 +5280,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -17,
           "limit": 0,
           "formula": 102,
@@ -5094,7 +5352,7 @@
         {
           "slot": 10,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -10,
           "limit": 0,
           "formula": 102,
@@ -5135,7 +5393,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -490,
           "limit": 0,
           "formula": 100,
@@ -5144,7 +5402,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1896,
           "limit": 0,
           "formula": 100,
@@ -5153,7 +5411,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -5162,7 +5420,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 332,
           "limit": 0,
           "formula": 100,
@@ -5191,7 +5449,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5203,7 +5461,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -209,
           "limit": 0,
           "formula": 100,
@@ -5212,7 +5470,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -391,
           "limit": 0,
           "formula": 100,
@@ -5221,7 +5479,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 9,
           "limit": 0,
           "formula": 100,
@@ -5230,7 +5488,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 384,
           "limit": 0,
           "formula": 100,
@@ -5259,7 +5517,7 @@
       "recast_seconds": 4.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -5280,7 +5538,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": -40,
           "limit": 3,
           "formula": 102,
@@ -5309,7 +5567,7 @@
       "recast_seconds": 3.5,
       "duration": "45 min",
       "duration_ticks": 450,
-      "target": "Free Target",
+      "target": "Target Group Member or Self",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5325,7 +5583,7 @@
         {
           "slot": 1,
           "effect_id": 94,
-          "effect": "NoCombatSkills",
+          "effect": "Fragile",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -5334,7 +5592,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 45,
           "limit": 0,
           "formula": 101,
@@ -5363,7 +5621,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5375,7 +5633,7 @@
         {
           "slot": 1,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": 1359,
           "limit": 0,
           "formula": 100,
@@ -5384,7 +5642,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 375,
           "limit": 0,
           "formula": 100,
@@ -5393,7 +5651,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -5402,7 +5660,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 152,
           "limit": 0,
           "formula": 100,
@@ -5456,7 +5714,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 29,
           "limit": 0,
           "formula": 102,
@@ -5465,7 +5723,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -3,
           "limit": 0,
           "formula": 100,
@@ -5494,7 +5752,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5506,7 +5764,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 478,
           "limit": 0,
           "formula": 100,
@@ -5515,7 +5773,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1427,
           "limit": 0,
           "formula": 100,
@@ -5524,7 +5782,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -48,
           "limit": 0,
           "formula": 100,
@@ -5533,7 +5791,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 140,
           "limit": 0,
           "formula": 100,
@@ -5562,7 +5820,7 @@
       "recast_seconds": 9.0,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5574,7 +5832,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 20,
           "limit": 0,
           "formula": 101,
@@ -5583,7 +5841,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -5592,7 +5850,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 50,
           "limit": 0,
           "formula": 102,
@@ -5637,7 +5895,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -4,
           "limit": 0,
           "formula": 109,
@@ -5707,7 +5965,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -5719,7 +5977,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -4531,
           "limit": 0,
           "formula": 100,
@@ -5728,7 +5986,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 673,
           "limit": 0,
           "formula": 100,
@@ -5737,7 +5995,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -5746,7 +6004,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 47,
           "limit": 0,
           "formula": 100,
@@ -5775,7 +6033,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -5787,7 +6045,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -100,
           "limit": 0,
           "formula": 103,
@@ -5844,7 +6102,7 @@
         {
           "slot": 1,
           "effect_id": 35,
-          "effect": "DiseaseCounter",
+          "effect": "Disease",
           "base": -8,
           "limit": 0,
           "formula": 100,
@@ -5897,7 +6155,7 @@
         {
           "slot": 1,
           "effect_id": 36,
-          "effect": "PoisonCounter",
+          "effect": "Poison",
           "base": -8,
           "limit": 0,
           "formula": 100,
@@ -5958,7 +6216,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 140,
           "limit": 0,
           "formula": 7,
@@ -5978,8 +6236,8 @@
       "icon": 39,
       "spell_type": "Beneficial",
       "skill": "Abjuration",
-      "description": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level 65, and only works outdoors.",
-      "description_template": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level @1, and only works outdoors.",
+      "description": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level 65.",
+      "description_template": "Calms the savage spirit of almost any creature, making them less likely to attack.  This spell works on creatures up to level @1.",
       "mana": 100,
       "range": 200.0,
       "cast_seconds": 2.5,
@@ -5987,7 +6245,7 @@
       "recast_seconds": 3.0,
       "duration": "42s",
       "duration_ticks": 7,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6003,7 +6261,7 @@
         {
           "slot": 1,
           "effect_id": 30,
-          "effect": "ChangeFrenzyRad",
+          "effect": "NpcAggroRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -6012,7 +6270,7 @@
         {
           "slot": 2,
           "effect_id": 86,
-          "effect": "EvilDeity",
+          "effect": "NpcHelpRadius",
           "base": 15,
           "limit": 0,
           "formula": 100,
@@ -6057,7 +6315,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 22507,
           "limit": 1,
           "formula": 100,
@@ -6102,7 +6360,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 22553,
           "limit": 1,
           "formula": 100,
@@ -6147,7 +6405,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 22507,
           "limit": 5,
           "formula": 100,
@@ -6192,7 +6450,7 @@
         {
           "slot": 1,
           "effect_id": 32,
-          "effect": "SummonItem",
+          "effect": "CreateItem",
           "base": 22553,
           "limit": 5,
           "formula": 100,
@@ -6205,6 +6463,92 @@
         "wears_off": ""
       },
       "level": 29
+    },
+    {
+      "id": 74077,
+      "name": "Blooming Heal",
+      "icon": 635,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 90 every 6 seconds for 24s and then healing for 300.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 195,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 30
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 90,
+          "limit": 0,
+          "formula": 103,
+          "max": 90
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74078,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 300,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 300
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 300
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74077,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal blooming within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
+      },
+      "level": 30
     },
     {
       "id": 554,
@@ -6221,7 +6565,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6233,7 +6577,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 1014,
           "limit": 0,
           "formula": 100,
@@ -6242,7 +6586,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1389,
           "limit": 0,
           "formula": 100,
@@ -6251,7 +6595,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 131,
           "limit": 0,
           "formula": 100,
@@ -6260,7 +6604,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 450,
           "limit": 0,
           "formula": 100,
@@ -6289,7 +6633,7 @@
       "recast_seconds": 12.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6301,7 +6645,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -170,
           "limit": 0,
           "formula": 100,
@@ -6351,7 +6695,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 3,
           "formula": 100,
@@ -6360,7 +6704,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 35,
           "limit": 0,
           "formula": 101,
@@ -6369,7 +6713,7 @@
         {
           "slot": 3,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 102,
@@ -6479,7 +6823,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -6488,7 +6832,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -6517,7 +6861,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6529,7 +6873,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -1779,
           "limit": 0,
           "formula": 100,
@@ -6538,7 +6882,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1668,
           "limit": 0,
           "formula": 100,
@@ -6547,7 +6891,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -104,
           "limit": 0,
           "formula": 100,
@@ -6556,7 +6900,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 472,
           "limit": 0,
           "formula": 100,
@@ -6601,7 +6945,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -90,
           "limit": 0,
           "formula": 105,
@@ -6621,8 +6965,8 @@
       "icon": 162,
       "spell_type": "Detrimental",
       "skill": "Evocation",
-      "description": "Calls down lightning from the sky over your target, causing between 70 and 184 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
-      "description_template": "Calls down lightning from the sky over your target, causing between #1 and @1 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
+      "description": "Calls down lightning from the sky over your target, causing between 70 and 184 damage to up to %T creatures in the area.",
+      "description_template": "Calls down lightning from the sky over your target, causing between #1 and @1 damage to up to %T creatures in the area.",
       "mana": 149,
       "range": 200.0,
       "cast_seconds": 4.5,
@@ -6642,7 +6986,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -70,
           "limit": 0,
           "formula": 104,
@@ -6671,7 +7015,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6683,7 +7027,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": 367,
           "limit": 0,
           "formula": 100,
@@ -6692,7 +7036,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1885,
           "limit": 0,
           "formula": 100,
@@ -6701,7 +7045,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 16,
           "limit": 0,
           "formula": 100,
@@ -6710,7 +7054,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 70,
           "limit": 0,
           "formula": 100,
@@ -6739,7 +7083,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6751,7 +7095,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -2034,
           "limit": 0,
           "formula": 100,
@@ -6760,7 +7104,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 317,
           "limit": 0,
           "formula": 100,
@@ -6769,7 +7113,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -19,
           "limit": 0,
           "formula": 100,
@@ -6778,7 +7122,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -6807,7 +7151,7 @@
       "recast_seconds": 1.5,
       "duration": "48s",
       "duration_ticks": 8,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -6819,7 +7163,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -116,
           "limit": 0,
           "formula": 102,
@@ -6848,7 +7192,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6860,7 +7204,7 @@
         {
           "slot": 1,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": -2135,
           "limit": 0,
           "formula": 100,
@@ -6869,7 +7213,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1984,
           "limit": 0,
           "formula": 100,
@@ -6878,7 +7222,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -6887,7 +7231,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 58,
           "limit": 0,
           "formula": 100,
@@ -6916,7 +7260,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -6928,7 +7272,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": 1099,
           "limit": 0,
           "formula": 100,
@@ -6937,7 +7281,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -357,
           "limit": 0,
           "formula": 100,
@@ -6946,7 +7290,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -53,
           "limit": 0,
           "formula": 100,
@@ -6955,7 +7299,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 256,
           "limit": 0,
           "formula": 100,
@@ -7025,7 +7369,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -7045,7 +7389,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -159,
           "limit": 0,
           "formula": 104,
@@ -7074,7 +7418,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7086,7 +7430,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -2135,
           "limit": 0,
           "formula": 100,
@@ -7095,7 +7439,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1984,
           "limit": 0,
           "formula": 100,
@@ -7104,7 +7448,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 3,
           "limit": 0,
           "formula": 100,
@@ -7113,7 +7457,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 58,
           "limit": 0,
           "formula": 100,
@@ -7215,7 +7559,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 175,
           "limit": 0,
           "formula": 5,
@@ -7260,7 +7604,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 0,
           "limit": 0,
           "formula": 109,
@@ -7330,7 +7674,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7342,7 +7686,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -2706,
           "limit": 0,
           "formula": 100,
@@ -7351,7 +7695,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1494,
           "limit": 0,
           "formula": 100,
@@ -7360,7 +7704,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -7369,7 +7713,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 209,
           "limit": 0,
           "formula": 100,
@@ -7398,7 +7742,7 @@
       "recast_seconds": 3.5,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7422,7 +7766,7 @@
         {
           "slot": 1,
           "effect_id": 66,
-          "effect": "Sentinel",
+          "effect": "Ultravision",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -7431,7 +7775,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 100,
@@ -7460,7 +7804,7 @@
       "recast_seconds": 9.0,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7481,7 +7825,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -7510,7 +7854,7 @@
       "recast_seconds": 1.5,
       "duration": "36 min",
       "duration_ticks": 360,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7522,7 +7866,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 0,
           "formula": 100,
@@ -7531,7 +7875,7 @@
         {
           "slot": 2,
           "effect_id": 3,
-          "effect": "MovementSpeed",
+          "effect": "MovementRate",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -7540,7 +7884,7 @@
         {
           "slot": 3,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": 1,
           "limit": 0,
           "formula": 102,
@@ -7569,7 +7913,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7581,7 +7925,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -4531,
           "limit": 0,
           "formula": 100,
@@ -7590,7 +7934,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 673,
           "limit": 0,
           "formula": 100,
@@ -7599,7 +7943,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 0,
           "limit": 0,
           "formula": 100,
@@ -7608,7 +7952,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 47,
           "limit": 0,
           "formula": 100,
@@ -7637,7 +7981,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7649,7 +7993,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -209,
           "limit": 0,
           "formula": 100,
@@ -7658,7 +8002,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -391,
           "limit": 0,
           "formula": 100,
@@ -7667,7 +8011,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 9,
           "limit": 0,
           "formula": 100,
@@ -7676,7 +8020,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 384,
           "limit": 0,
           "formula": 100,
@@ -7705,7 +8049,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7717,7 +8061,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": 478,
           "limit": 0,
           "formula": 100,
@@ -7726,7 +8070,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1427,
           "limit": 0,
           "formula": 100,
@@ -7735,7 +8079,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -48,
           "limit": 0,
           "formula": 100,
@@ -7744,7 +8088,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 140,
           "limit": 0,
           "formula": 100,
@@ -7773,7 +8117,7 @@
       "recast_seconds": 10.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -7785,7 +8129,7 @@
         {
           "slot": 1,
           "effect_id": 83,
-          "effect": "AlterPlayerSize",
+          "effect": "Portal",
           "base": -490,
           "limit": 0,
           "formula": 100,
@@ -7794,7 +8138,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1896,
           "limit": 0,
           "formula": 100,
@@ -7803,7 +8147,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -7812,7 +8156,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 332,
           "limit": 0,
           "formula": 100,
@@ -7841,7 +8185,7 @@
       "recast_seconds": 1.5,
       "duration": "1 min",
       "duration_ticks": 10,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -7853,7 +8197,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 103,
@@ -7903,7 +8247,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 25,
           "limit": 0,
           "formula": 101,
@@ -7912,7 +8256,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 100,
           "limit": 0,
           "formula": 103,
@@ -7921,7 +8265,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 100,
           "limit": 0,
           "formula": 103,
@@ -7962,7 +8306,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -125,
           "limit": 0,
           "formula": 100,
@@ -8003,7 +8347,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -5,
           "limit": 0,
           "formula": 109,
@@ -8057,7 +8401,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 40,
           "limit": 0,
           "formula": 102,
@@ -8066,7 +8410,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -8095,7 +8439,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -8107,7 +8451,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -250,
           "limit": 0,
           "formula": 105,
@@ -8160,7 +8504,7 @@
         {
           "slot": 1,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -8169,7 +8513,7 @@
         {
           "slot": 2,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -8198,7 +8542,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8210,7 +8554,7 @@
         {
           "slot": 1,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": -2034,
           "limit": 0,
           "formula": 100,
@@ -8219,7 +8563,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 314,
           "limit": 0,
           "formula": 100,
@@ -8228,7 +8572,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -19,
           "limit": 0,
           "formula": 100,
@@ -8237,7 +8581,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -8278,7 +8622,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 317,
           "limit": 0,
           "formula": 104,
@@ -8307,7 +8651,7 @@
       "recast_seconds": 6.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8319,7 +8663,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 0,
           "limit": 0,
           "formula": 109,
@@ -8348,7 +8692,7 @@
       "recast_seconds": 10.0,
       "duration": "54 min",
       "duration_ticks": 540,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8360,7 +8704,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 25,
           "limit": 0,
           "formula": 101,
@@ -8369,7 +8713,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 100,
           "limit": 0,
           "formula": 103,
@@ -8378,7 +8722,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 100,
           "limit": 0,
           "formula": 103,
@@ -8407,7 +8751,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8419,7 +8763,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": 367,
           "limit": 0,
           "formula": 100,
@@ -8428,7 +8772,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1885,
           "limit": 0,
           "formula": 100,
@@ -8437,7 +8781,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 16,
           "limit": 0,
           "formula": 100,
@@ -8446,7 +8790,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 70,
           "limit": 0,
           "formula": 100,
@@ -8475,7 +8819,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8487,7 +8831,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -1779,
           "limit": 0,
           "formula": 100,
@@ -8496,7 +8840,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1668,
           "limit": 0,
           "formula": 100,
@@ -8505,7 +8849,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -104,
           "limit": 0,
           "formula": 100,
@@ -8514,7 +8858,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 472,
           "limit": 0,
           "formula": 100,
@@ -8527,6 +8871,92 @@
         "wears_off": ""
       },
       "level": 39
+    },
+    {
+      "id": 74079,
+      "name": "Blossoming Heal",
+      "icon": 636,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 120 every 6 seconds for 24s and then healing for 390.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 250,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 40
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 120,
+          "limit": 0,
+          "formula": 103,
+          "max": 120
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74080,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 390,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 390
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 390
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74079,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal blossoming within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
+      },
+      "level": 40
     },
     {
       "id": 665,
@@ -8543,7 +8973,7 @@
       "recast_seconds": 1.5,
       "duration": "54s",
       "duration_ticks": 9,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -8555,7 +8985,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -145,
           "limit": 0,
           "formula": 102,
@@ -8596,7 +9026,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 2,
           "formula": 100,
@@ -8605,7 +9035,7 @@
         {
           "slot": 2,
           "effect_id": 475,
-          "effect": "IncreaseDmgMod",
+          "effect": "TriggerSpellNonItem",
           "base": 100,
           "limit": 40593,
           "formula": 100,
@@ -8634,7 +9064,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8646,7 +9076,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -2034,
           "limit": 0,
           "formula": 100,
@@ -8655,7 +9085,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 314,
           "limit": 0,
           "formula": 100,
@@ -8664,7 +9094,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -19,
           "limit": 0,
           "formula": 100,
@@ -8673,7 +9103,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -8741,7 +9171,7 @@
         {
           "slot": 4,
           "effect_id": 11,
-          "effect": "AttackSpeed",
+          "effect": "Haste",
           "base": 120,
           "limit": 0,
           "formula": 102,
@@ -8759,7 +9189,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 30,
           "limit": 0,
           "formula": 101,
@@ -8788,7 +9218,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -8800,7 +9230,7 @@
         {
           "slot": 1,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": 1014,
           "limit": 0,
           "formula": 100,
@@ -8809,7 +9239,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1389,
           "limit": 0,
           "formula": 100,
@@ -8818,7 +9248,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 131,
           "limit": 0,
           "formula": 100,
@@ -8827,7 +9257,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 450,
           "limit": 0,
           "formula": 100,
@@ -8888,7 +9318,7 @@
         {
           "slot": 1,
           "effect_id": 103,
-          "effect": "SummonSkeleton",
+          "effect": "CallPet",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -8908,8 +9338,8 @@
       "icon": 118,
       "spell_type": "Beneficial",
       "skill": "Alteration",
-      "description": "Hastens your target's natural healing, regenerating up to 19 hit points every 6 seconds for 20 min 30s.",
-      "description_template": "Hastens your target's natural healing, regenerating up to @1 hit points every 6 seconds for %z.",
+      "description": "Hastens your target's natural healing, regenerating up to 19 hit points, and up to 10 endurance every 6 seconds for 20 min 30s.",
+      "description_template": "Hastens your target's natural healing, regenerating up to @1 hit points, and up to @2 endurance every 6 seconds for %z.",
       "mana": 200,
       "range": 100.0,
       "cast_seconds": 6.0,
@@ -8933,11 +9363,20 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 6,
           "limit": 0,
           "formula": 139,
           "max": 19
+        },
+        {
+          "slot": 2,
+          "effect_id": 189,
+          "effect": "Endurance",
+          "base": 3,
+          "limit": 0,
+          "formula": 139,
+          "max": 10
         }
       ],
       "messages": {
@@ -8962,7 +9401,7 @@
       "recast_seconds": 6.0,
       "duration": "10 min",
       "duration_ticks": 100,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -9001,7 +9440,7 @@
         {
           "slot": 4,
           "effect_id": 2,
-          "effect": "ATK",
+          "effect": "AttackPower",
           "base": -30,
           "limit": 0,
           "formula": 101,
@@ -9019,7 +9458,7 @@
         {
           "slot": 6,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": -30,
           "limit": 0,
           "formula": 101,
@@ -9089,7 +9528,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Summoned",
+      "target": "Construct/Elemental",
       "resist": "Magic",
       "classes": [
         {
@@ -9105,7 +9544,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -400,
           "limit": 0,
           "formula": 104,
@@ -9134,7 +9573,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9146,7 +9585,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -582,
           "limit": 0,
           "formula": 100,
@@ -9175,7 +9614,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9211,7 +9650,7 @@
         {
           "slot": 1,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -9220,7 +9659,7 @@
         {
           "slot": 2,
           "effect_id": 27,
-          "effect": "CancelMagic",
+          "effect": "DispelMagic",
           "base": 4,
           "limit": 0,
           "formula": 100,
@@ -9429,7 +9868,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 200,
           "limit": 0,
           "formula": 10,
@@ -9458,7 +9897,7 @@
       "recast_seconds": 1.5,
       "duration": "3 min",
       "duration_ticks": 30,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Magic",
       "classes": [
         {
@@ -9470,7 +9909,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -10,
           "limit": 0,
           "formula": 104,
@@ -9508,7 +9947,7 @@
       "recast_seconds": 12.0,
       "duration": "14 min",
       "duration_ticks": 140,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -9520,11 +9959,20 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 6,
           "limit": 0,
           "formula": 139,
           "max": 19
+        },
+        {
+          "slot": 2,
+          "effect_id": 189,
+          "effect": "Endurance",
+          "base": 3,
+          "limit": 0,
+          "formula": 139,
+          "max": 10
         }
       ],
       "messages": {
@@ -9549,7 +9997,7 @@
       "recast_seconds": 12.0,
       "duration": "360 min",
       "duration_ticks": 3600,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -9561,7 +10009,7 @@
         {
           "slot": 1,
           "effect_id": 58,
-          "effect": "ReclaimPets",
+          "effect": "ChangeForm",
           "base": 796,
           "limit": 0,
           "formula": 100,
@@ -9570,7 +10018,7 @@
         {
           "slot": 2,
           "effect_id": 475,
-          "effect": "IncreaseDmgMod",
+          "effect": "TriggerSpellNonItem",
           "base": 100,
           "limit": 40593,
           "formula": 100,
@@ -9599,7 +10047,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -9611,7 +10059,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": -490,
           "limit": 0,
           "formula": 100,
@@ -9620,7 +10068,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1896,
           "limit": 0,
           "formula": 100,
@@ -9629,7 +10077,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 120,
           "limit": 0,
           "formula": 100,
@@ -9638,7 +10086,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 332,
           "limit": 0,
           "formula": 100,
@@ -9658,8 +10106,8 @@
       "icon": 162,
       "spell_type": "Detrimental",
       "skill": "Evocation",
-      "description": "Calls down lightning from the sky over your target, causing between 477 and 477 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
-      "description_template": "Calls down lightning from the sky over your target, causing between #1 and @1 damage to up to %T creatures in the area. This spell can only be cast outdoors.",
+      "description": "Calls down lightning from the sky over your target, causing between 477 and 477 damage to up to %T creatures in the area.",
+      "description_template": "Calls down lightning from the sky over your target, causing between #1 and @1 damage to up to %T creatures in the area.",
       "mana": 234,
       "range": 200.0,
       "cast_seconds": 6.1,
@@ -9679,7 +10127,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -477,
           "limit": 0,
           "formula": 100,
@@ -9720,7 +10168,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 102,
@@ -9729,7 +10177,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 150,
           "limit": 0,
           "formula": 103,
@@ -9738,7 +10186,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 150,
           "limit": 0,
           "formula": 103,
@@ -9756,7 +10204,7 @@
         {
           "slot": 5,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -9785,7 +10233,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Group v1",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -9797,7 +10245,7 @@
         {
           "slot": 1,
           "effect_id": 88,
-          "effect": "CallOfHero",
+          "effect": "Evacuate",
           "base": -2706,
           "limit": 0,
           "formula": 100,
@@ -9806,7 +10254,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -1494,
           "limit": 0,
           "formula": 100,
@@ -9815,7 +10263,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": -4,
           "limit": 0,
           "formula": 100,
@@ -9824,7 +10272,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 209,
           "limit": 0,
           "formula": 100,
@@ -9853,7 +10301,7 @@
       "recast_seconds": 1.5,
       "duration": "18s",
       "duration_ticks": 3,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Cold",
       "classes": [
         {
@@ -9865,7 +10313,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -370,
           "limit": 0,
           "formula": 104,
@@ -9906,7 +10354,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -24,
           "limit": 0,
           "formula": 100,
@@ -9956,7 +10404,7 @@
         {
           "slot": 2,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 105,
           "limit": 0,
           "formula": 100,
@@ -9965,7 +10413,7 @@
         {
           "slot": 3,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -5,
           "limit": 0,
           "formula": 100,
@@ -9994,7 +10442,7 @@
       "recast_seconds": 6.0,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Unresistable",
       "classes": [
         {
@@ -10006,7 +10454,7 @@
         {
           "slot": 1,
           "effect_id": 104,
-          "effect": "SummonItemAttr",
+          "effect": "Translocate",
           "base": 1014,
           "limit": 0,
           "formula": 100,
@@ -10015,7 +10463,7 @@
         {
           "slot": 2,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 1389,
           "limit": 0,
           "formula": 100,
@@ -10024,7 +10472,7 @@
         {
           "slot": 3,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 131,
           "limit": 0,
           "formula": 100,
@@ -10033,7 +10481,7 @@
         {
           "slot": 4,
           "effect_id": 146,
-          "effect": "Distort",
+          "effect": "PortalLocations",
           "base": 450,
           "limit": 0,
           "formula": 100,
@@ -10046,6 +10494,92 @@
         "wears_off": ""
       },
       "level": 47
+    },
+    {
+      "id": 74081,
+      "name": "Efflorescing Heal",
+      "icon": 631,
+      "spell_type": "Beneficial",
+      "skill": "Alteration",
+      "description": "Seeds your target with healing energy, healing for 150 every 6 seconds for 24s and then healing for 450.",
+      "description_template": "Seeds your target with healing energy, healing for #1 every 6 seconds for %z and then healing for #3.",
+      "mana": 255,
+      "range": 100.0,
+      "cast_seconds": 2.0,
+      "fizzle_seconds": 2.0,
+      "recast_seconds": 2.0,
+      "duration": "24s",
+      "duration_ticks": 4,
+      "target": "Single Friendly (or Self)",
+      "resist": "Unresistable",
+      "classes": [
+        {
+          "class": "Druid",
+          "level": 48
+        }
+      ],
+      "effects": [
+        {
+          "slot": 1,
+          "effect_id": 100,
+          "effect": "Healdot",
+          "base": 150,
+          "limit": 0,
+          "formula": 103,
+          "max": 150
+        },
+        {
+          "slot": 2,
+          "effect_id": 289,
+          "effect": "DoomEffect",
+          "base": 74082,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 3,
+          "effect_id": 44,
+          "effect": "Lycanthropy",
+          "base": 450,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        },
+        {
+          "slot": 4,
+          "effect_id": 148,
+          "effect": "StackingBlock",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 450
+        },
+        {
+          "slot": 5,
+          "effect_id": 149,
+          "effect": "StripVirtualSlot",
+          "base": 44,
+          "limit": 3,
+          "formula": 0,
+          "max": 450
+        },
+        {
+          "slot": 6,
+          "effect_id": 537,
+          "effect": "PromisedRenewalTrigger",
+          "base": 74081,
+          "limit": 0,
+          "formula": 100,
+          "max": 0
+        }
+      ],
+      "messages": {
+        "cast_on_you": "You feel a heal efflorescing within you.",
+        "cast_on_other": " is seeded with healing energy.",
+        "wears_off": ""
+      },
+      "level": 48
     },
     {
       "id": 433,
@@ -10074,7 +10608,7 @@
         {
           "slot": 1,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": -392,
           "limit": 0,
           "formula": 100,
@@ -10124,7 +10658,7 @@
         {
           "slot": 1,
           "effect_id": 314,
-          "effect": "NPCFleeMod",
+          "effect": "ImprovedInvis",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -10153,7 +10687,7 @@
       "recast_seconds": 1.5,
       "duration": "instant",
       "duration_ticks": 0,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -10165,7 +10699,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -500,
           "limit": 0,
           "formula": 104,
@@ -10206,7 +10740,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -138,
           "limit": 0,
           "formula": 10,
@@ -10247,7 +10781,7 @@
         {
           "slot": 1,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 490,
           "limit": 0,
           "formula": 105,
@@ -10276,7 +10810,7 @@
       "recast_seconds": 1.5,
       "duration": "15 min",
       "duration_ticks": 150,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Magic",
       "classes": [
         {
@@ -10288,7 +10822,7 @@
         {
           "slot": 1,
           "effect_id": 59,
-          "effect": "TotalHP",
+          "effect": "DamageShield",
           "base": -24,
           "limit": 0,
           "formula": 100,
@@ -10317,7 +10851,7 @@
       "recast_seconds": 12.0,
       "duration": "72 min",
       "duration_ticks": 720,
-      "target": "Single in Group",
+      "target": "Group",
       "resist": "Unresistable",
       "classes": [
         {
@@ -10329,7 +10863,7 @@
         {
           "slot": 1,
           "effect_id": 1,
-          "effect": "ArmorClass",
+          "effect": "AC",
           "base": 5,
           "limit": 0,
           "formula": 102,
@@ -10338,7 +10872,7 @@
         {
           "slot": 2,
           "effect_id": 69,
-          "effect": "CurrentHPOnce",
+          "effect": "MaxHp",
           "base": 150,
           "limit": 0,
           "formula": 103,
@@ -10347,7 +10881,7 @@
         {
           "slot": 3,
           "effect_id": 79,
-          "effect": "CurrentHPPlus",
+          "effect": "InstantHp",
           "base": 150,
           "limit": 0,
           "formula": 103,
@@ -10365,7 +10899,7 @@
         {
           "slot": 5,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": 2,
           "limit": 0,
           "formula": 100,
@@ -10447,7 +10981,7 @@
       "recast_seconds": 6.0,
       "duration": "30s",
       "duration_ticks": 5,
-      "target": "Single Target",
+      "target": "Single",
       "resist": "Fire",
       "classes": [
         {
@@ -10459,7 +10993,7 @@
         {
           "slot": 1,
           "effect_id": 116,
-          "effect": "CombatStability",
+          "effect": "Curse",
           "base": 8,
           "limit": 0,
           "formula": 100,
@@ -10468,7 +11002,7 @@
         {
           "slot": 2,
           "effect_id": 0,
-          "effect": "CurrentHP",
+          "effect": "HP",
           "base": -72,
           "limit": 0,
           "formula": 102,
@@ -10509,7 +11043,7 @@
         {
           "slot": 1,
           "effect_id": 14,
-          "effect": "WaterBreathing",
+          "effect": "EnduringBreath",
           "base": 1,
           "limit": 0,
           "formula": 100,
@@ -10572,7 +11106,7 @@
         {
           "slot": 3,
           "effect_id": 57,
-          "effect": "EyeOfZomm",
+          "effect": "Levitation",
           "base": 1,
           "limit": 0,
           "formula": 100,
