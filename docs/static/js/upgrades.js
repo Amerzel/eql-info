@@ -214,7 +214,7 @@ export function renderUpgradesPage() {
     ["cc",     "Charm and mesmerize",
                `— <span class="muted">(max target level rises instead, per patch notes)</span>`, ""],
     ["buff",   "Beneficial duration spells, incl. self-only and damage shields",
-               `— <span class="muted">(stat gains reportedly none; damage-shield values reportedly do scale)</span> ${Q}`, ""],
+               `— <span class="muted">(stat and damage-shield values don't scale — buff tiers give duration/mana/cast only)</span>`, ""],
   ].map(([k, desc, hp, note]) => {
     const c = CATEGORIES[k];
     return `<tr><td><strong>${escapeHtml(c.label)}</strong><br><span class="muted">${escapeHtml(desc)}</span></td>
