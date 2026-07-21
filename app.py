@@ -36,24 +36,25 @@ CLASS_NAMES = [
     "Necromancer", "Wizard", "Magician", "Enchanter", "Beastlord", "Berserker",
 ]
 
-# Target-type names — follow the EQEmu spdat.h SpellTargetType enum
-# (verified against source 2026-07-21). 51/52 are post-enum client
-# values named from observed EQL behavior; 56 is EQL-only, introduced
-# by the 2026-07-01 patch that unified 29 friendly-target spells off
-# tt=43/51. Keep in sync with eqlwiki/audit_spellpage_targets.py.
+# Target-type display names. Player-verified types use the exact
+# in-game "Target:" tooltip string (eqlwiki/audit/
+# ingame_target_strings.md, 2026-07-21); the rest keep EQEmu spdat.h
+# names until someone reads their tooltip. Note tt=3 and tt=41 both
+# display "Group" in game. Keep in sync with
+# eqlwiki/audit_spellpage_targets.py INGAME.
 TARGET_TYPES = {
-    1: "Line of Sight", 2: "Targeted AE", 3: "Group v1", 4: "PB AE",
-    5: "Single Target", 6: "Self", 8: "Targeted AE", 9: "Animal",
-    10: "Undead", 11: "Summoned", 13: "Lifetap", 14: "Pet",
+    1: "Bolt", 2: "Targeted AE", 3: "Group", 4: "PB AE",
+    5: "Single", 6: "Self", 8: "Targeted AE", 9: "Animal",
+    10: "Undead", 11: "Construct/Elemental", 13: "Lifetap", 14: "Pet",
     15: "Corpse", 16: "Plant", 17: "Uber Giants", 18: "Uber Dragons",
     20: "Targeted AE Tap", 24: "AE Undead", 25: "AE Summoned",
     32: "AE Hatelist", 33: "Hatelist", 34: "Chest", 35: "Special Muramite",
     36: "Area (Players)", 37: "Area (NPCs)", 38: "Summoned Pet",
     39: "Group (No Pets)", 40: "AE Bard", 41: "Group",
     42: "Directional AE", 43: "Single in Group (and Pet)", 44: "Beam",
-    45: "Ring (Ground Target)", 46: "Target of Target", 47: "Pet Owner",
+    45: "Free Target AE", 46: "Target of Target", 47: "Pet Owner",
     50: "Targeted AE (No Players' Pets)", 51: "Single Friendly (or Self)",
-    52: "All Group Members", 56: "Single Friendly (or Self)",
+    52: "All Group Members", 56: "Target Group Member or Self",
 }
 
 RESIST_TYPES = {0: "Unresistable", 1: "Magic", 2: "Fire", 3: "Cold",
