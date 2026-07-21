@@ -90,10 +90,15 @@ function computeTiers(spell, effects, cat) {
                  (spell.buff_duration_formula || 0) > 0;
   const isDurationSpell = (spell.buff_duration_formula || 0) > 0;
 
+  // SPA 0 = per-tick HP on duration spells / the whole hit on instants;
+  // SPA 79 = the separate one-time initial hit on DD+DoT hybrids.
   const dmgEff  = effects.find(e => e.effect_id === 0 && e.base_value < 0);
+  const initEff = effects.find(e => e.effect_id === 79 && e.base_value < 0);
   const healEff = effects.find(e => e.effect_id === 0 && e.base_value > 0);
   const dmgAtCap = dmgEff ? Math.abs(displayedValue(
     0, dmgEff.base_value, dmgEff.formula, dmgEff.max_value, MAX_LEVEL, isDurationSpell)) : 0;
+  const initAtCap = initEff ? Math.abs(displayedValue(
+    79, initEff.base_value, initEff.formula, initEff.max_value, MAX_LEVEL, false)) : 0;
   const healAtCap = healEff ? Math.abs(displayedValue(
     0, healEff.base_value, healEff.formula, healEff.max_value, MAX_LEVEL, false)) : 0;
 
@@ -107,6 +112,7 @@ function computeTiers(spell, effects, cat) {
       dur:   hasDur ? Math.round(durTicks * (1 + cat.dur * t)) : null,
       resist: spell.good_effect === 0 ? (spell.resist_difficulty || 0) - 15 * t : null,
       dmg:   dmgAtCap ? Math.floor(dmgAtCap * (1 + (cat.key === "dot" ? 0.03 : 0.06) * t)) : null,
+      init:  initAtCap ? Math.floor(initAtCap * (1 + 0.06 * t)) : null,
       heal:  healAtCap ? Math.round(healAtCap * (1 + 0.03 * t)) : null,
     });
   }
@@ -170,6 +176,7 @@ export function renderUpgradePanel(spell, effects) {
         ${c.isPerm ? `<tr><th>Duration</th><td class="muted">Permanent (exempt from tier scaling)</td></tr>` : ""}
         ${levelScaledDur ? `<tr><th>Duration</th><td class="muted">Level-scaled — +${cat.dur * 100}%/tier applies on top</td></tr>` : ""}
         ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
+        ${t0.init ? `<tr><th>Initial hit @L${MAX_LEVEL} ${Q}</th><td data-u="init">${t0.init}</td></tr>` : ""}
         ${t0.dmg ? `<tr><th>${dmgLabel} @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
         ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
       </table>
@@ -298,6 +305,7 @@ export function updateUpgradePanel(slider) {
   set("reuse", t === 0 ? `${Math.max(1, data.reuseBase)}s` : valCell(`${Math.max(1, data.reuseBase)}s`, `${v.reuse}s`));
   if (v.dur !== null) set("dur", t === 0 ? fmtTicks(data.durBase) : valCell(fmtTicks(data.durBase), fmtTicks(v.dur)));
   if (v.resist !== null) set("resist", String(v.resist));
+  if (v.init) set("init", String(v.init));
   if (v.dmg) set("dmg", String(v.dmg));
   if (v.heal) set("heal", String(v.heal));
 }
