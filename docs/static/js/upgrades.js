@@ -106,7 +106,7 @@ function computeTiers(spell, effects, cat) {
       reuse: Math.max(1, Math.floor(reuseS * (1 - 0.02 * t))),
       dur:   hasDur ? Math.round(durTicks * (1 + cat.dur * t)) : null,
       resist: spell.good_effect === 0 ? (spell.resist_difficulty || 0) - 15 * t : null,
-      dmg:   dmgAtCap ? Math.floor(dmgAtCap * (1 + 0.06 * t)) : null,
+      dmg:   dmgAtCap ? Math.floor(dmgAtCap * (1 + (cat.key === "dot" ? 0.03 : 0.06) * t)) : null,
       heal:  healAtCap ? Math.round(healAtCap * (1 + 0.03 * t)) : null,
     });
   }
@@ -142,7 +142,8 @@ export function renderUpgradePanel(spell, effects) {
 
   const catBadge = cat.conf === "solid" ? "" : ` ${Q}`;
   const durBadge = cat.durConf === "inferred" ? ` ${Q}` : "";
-  const dmgBadge = cat.key === "nuke" ? "" : ` ${Q}`;
+  const dmgBadge = (cat.key === "nuke" || cat.key === "dot") ? "" : ` ${Q}`;
+  const dmgLabel = cat.key === "dot" ? "Damage/tick" : "Damage";
 
   // Level-scaled uncapped durations (formula > 0, cap = 0, e.g. Boon of the
   // Garou durf=7) — we can't show absolute ticks, but the rate still applies.
@@ -169,7 +170,7 @@ export function renderUpgradePanel(spell, effects) {
         ${c.isPerm ? `<tr><th>Duration</th><td class="muted">Permanent (exempt from tier scaling)</td></tr>` : ""}
         ${levelScaledDur ? `<tr><th>Duration</th><td class="muted">Level-scaled — +${cat.dur * 100}%/tier applies on top</td></tr>` : ""}
         ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
-        ${t0.dmg ? `<tr><th>Damage @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
+        ${t0.dmg ? `<tr><th>${dmgLabel} @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
         ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
       </table>
       ${UPGRADE_CAVEAT}
@@ -196,7 +197,7 @@ export function renderUpgradesPage() {
     ["nuke",   "Instant direct damage: nukes, lifetaps, stun-nukes",
                `<strong>+6%</strong> damage <span class="muted">(of base, rounded down — verified on a fixed-roll ladder)</span>`, ""],
     ["dot",    "Anything with a damage-over-time component, incl. DD+DoT hybrids (Burning/Searing Arrow)",
-               `+6% on the direct-damage hit ${Q}; per-tick reports conflict (~+3% vs no gain) ${Q}`, ""],
+               `<strong>+3%</strong> damage per tick; +6% on the direct-damage hit of hybrids ${Q}`, ""],
     ["heal",   "Instant heals",
                `~+3% healing ${Q} <span class="muted">(single report: 65→79 at T7)</span>`, ""],
     ["hot",    "Heals over time",
