@@ -64,7 +64,9 @@ export async function renderHome() {
     <p class="lede">${total.toLocaleString()} spells obtainable at L1–${MAX_LEVEL}.
     Pick a class to browse its spell list by level, or search by name above.
     <br>New: <a href="#/upgrades">Spell Upgrades (motes)</a> — per-tier
-    benefits by category, plus a tier slider on every spell page.</p>
+    benefits by category, plus a tier slider on every spell page.
+    <br>Reference: <a href="#/targets">Target Types</a> — every targeting
+    type with its exact in-game tooltip string.</p>
     <div class="class-grid">${cards}</div>
   `;
 }

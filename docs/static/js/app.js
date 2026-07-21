@@ -13,6 +13,7 @@ import { initDb } from "./db.js";
 import { prefetchSpells } from "./tooltip.js";
 import { classSlug, classIndexFromArg } from "./data.js";
 import { updateUpgradePanel, renderUpgradesPage } from "./upgrades.js";
+import { renderTargetsPage } from "./targets.js";
 
 const app = document.getElementById("app");
 
@@ -66,6 +67,7 @@ async function route() {
       case "race":   return setHtml(await renderRace(parseInt(arg1, 10)));
       case "search": return setHtml(await renderSearch(params));
       case "upgrades": return setHtml(renderUpgradesPage());
+      case "targets": return setHtml(await renderTargetsPage());
       default:       return setHtml(`<p>Unknown route: ${head}</p>`);
     }
   } catch (err) {
