@@ -291,15 +291,31 @@ export function spaName(id) { return SPA_NAMES[id] || `SE #${id}`; }
 export const EFFECT_DUR = "(s.buff_duration_formula>0 OR s.buff_duration>0)";
 export const EFFECT_VAL = "COALESCE(NULLIF(se.base_value,0), se.max_value)";
 
+// Lifetap / Mana Tap are identified by the client's own category labels
+// (dbstr type 5): category "Taps" + subcategory "Health" (drain→heal) or
+// "Power Tap" (drain→mana). {lifetap}/{manatap} expand to these correlated
+// checks; lifetaps are pulled OUT of the nuke/dot buckets so they don't double.
+export const EFFECT_LIFETAP =
+  "(EXISTS(SELECT 1 FROM dbstr dt WHERE dt.id=s.type_description_id AND dt.type=5 AND dt.text='Taps')"
+  + " AND EXISTS(SELECT 1 FROM dbstr dh WHERE dh.id=s.effect_description_id AND dh.type=5 AND dh.text='Health'))";
+export const EFFECT_MANATAP =
+  "(EXISTS(SELECT 1 FROM dbstr dt WHERE dt.id=s.type_description_id AND dt.type=5 AND dt.text='Taps')"
+  + " AND EXISTS(SELECT 1 FROM dbstr dp WHERE dp.id=s.effect_description_id AND dp.type=5 AND dp.text='Power Tap'))";
+
 export const EFFECT_BUCKETS = [
-  { key: "nuke", label: "Nuke (Direct Damage)", pred: "(({V}<0) AND ((se.effect_id=79) OR (se.effect_id=0 AND NOT {dur})))" },
-  { key: "dot", label: "Damage over Time (DoT)", pred: "(se.effect_id=0 AND {V}<0 AND {dur})" },
+  { key: "nuke", label: "Nuke (Direct Damage)", pred: "(({V}<0) AND ((se.effect_id=79) OR (se.effect_id=0 AND NOT {dur})) AND NOT {lifetap})" },
+  { key: "dot", label: "Damage over Time (DoT)", pred: "(se.effect_id=0 AND {V}<0 AND {dur} AND NOT {lifetap})" },
+  { key: "lifetap", label: "Lifetap (drain → heal)", pred: "{lifetap}" },
+  { key: "manatap", label: "Mana Tap (drain → mana)", pred: "{manatap}" },
   { key: "heal", label: "Direct Heal", pred: "(({V}>0) AND ((se.effect_id=79) OR (se.effect_id=0 AND NOT {dur})))" },
   { key: "hot", label: "Heal over Time / Regen", pred: "(se.effect_id=100 OR (se.effect_id=0 AND {V}>0 AND {dur}))" },
+  // Movement rate (SPA 3) split by sign: snare (slow) vs run-speed buff.
+  { key: "snare", label: "Snare (slow)", pred: "(se.effect_id=3 AND {V}<0)" },
+  { key: "runspeed", label: "Run Speed (buff)", pred: "(se.effect_id=3 AND {V}>0)" },
 ];
 
 export const EFFECT_LABELS = {
-  1: "Armor Class (AC)", 2: "Attack Power (ATK)", 3: "Movement Speed", 4: "Strength (STR)",
+  1: "Armor Class (AC)", 2: "Attack Power (ATK)", 4: "Strength (STR)",
   5: "Dexterity (DEX)", 6: "Agility (AGI)", 7: "Stamina (STA)", 8: "Intelligence (INT)",
   9: "Wisdom (WIS)", 10: "Charisma (CHA)", 11: "Melee Haste", 12: "Invisibility",
   13: "See Invisible", 14: "Enduring Breath (Water Breathing)", 15: "Mana",

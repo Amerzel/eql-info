@@ -7,6 +7,7 @@ import {
   targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
   displayedValue, confidenceTier, limitValueLabel,
   EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
+  EFFECT_LIFETAP, EFFECT_MANATAP,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -273,13 +274,20 @@ function sortHeader(params, col, label, curSort, curDir) {
   return `<th><a href="${browseUrl(params, { sort: col, dir: nextDir, page: null })}">${label}${arrow}</a></th>`;
 }
 
+// Expand the {dur}/{V}/{lifetap}/{manatap} placeholders in a bucket predicate
+// into their SQL fragments (over spell_effects se + spells s).
+function expandPred(p) {
+  return p.replace(/\{dur\}/g, EFFECT_DUR).replace(/\{V\}/g, EFFECT_VAL)
+          .replace(/\{lifetap\}/g, EFFECT_LIFETAP).replace(/\{manatap\}/g, EFFECT_MANATAP);
+}
+
 // Resolve the ?effect= param to a SQL predicate (over spell_effects se +
-// spells s). Returns { pred, spa } or null. Bucket predicates expand the
-// {dur}/{V} placeholders; a plain "spa:<n>" becomes an effect_id match.
+// spells s). Returns { pred, spa } or null. A plain "spa:<n>" is an
+// effect_id match; a "bucket:<key>" expands the bucket's placeholders.
 function resolveEffect(effect) {
   if (effect.startsWith("bucket:")) {
     const b = EFFECT_BUCKETS.find(x => x.key === effect.slice(7));
-    if (b) return { pred: b.pred.replace(/\{dur\}/g, EFFECT_DUR).replace(/\{V\}/g, EFFECT_VAL), spa: null };
+    if (b) return { pred: expandPred(b.pred), spa: null };
   } else if (effect.startsWith("spa:")) {
     const n = parseInt(effect.slice(4), 10);
     if (Number.isInteger(n)) return { pred: "se.effect_id = " + n, spa: n };
@@ -349,6 +357,28 @@ export async function renderBrowse(params) {
     }
   }
 
+  // Class-aware effect list: when a trio is selected, restrict the Effect
+  // dropdown to effects those classes actually have. The current selection is
+  // always kept so it never vanishes while you're editing other filters.
+  let classSpas = null, classBuckets = null;
+  if (clsIdxs.length) {
+    const ph = clsIdxs.map(() => "?").join(",");
+    const cargs = [...clsIdxs, MAX_LEVEL];
+    const cwhere = `sc.verified=1 AND s.is_discipline=0 AND sc.class_index IN (${ph}) AND sc.min_level<=?`;
+    const spaRows = await query(
+      `SELECT DISTINCT se.effect_id FROM spell_effects se
+         JOIN spells s ON s.id = se.spell_id JOIN spell_classes sc ON sc.spell_id = s.id
+        WHERE ${cwhere}`, cargs);
+    classSpas = new Set(spaRows.map(r => r.effect_id));
+    const caseCols = EFFECT_BUCKETS.map(b =>
+      `MAX(CASE WHEN ${expandPred(b.pred)} THEN 1 ELSE 0 END) AS b_${b.key}`).join(", ");
+    const bRow = await queryOne(
+      `SELECT ${caseCols} FROM spell_effects se
+         JOIN spells s ON s.id = se.spell_id JOIN spell_classes sc ON sc.spell_id = s.id
+        WHERE ${cwhere}`, cargs);
+    classBuckets = new Set(EFFECT_BUCKETS.filter(b => bRow && bRow["b_" + b.key]).map(b => b.key));
+  }
+
   // ── filter form ──
   const sel = (cur, val) => (cur === val ? " selected" : "");
   // Class picker: an "All" button plus three single-class dropdowns (EQL's
@@ -363,15 +393,17 @@ export async function renderBrowse(params) {
   const allBtn = `<a href="#/spells${allParams.toString() ? "?" + allParams.toString() : ""}"
     class="classbtn${clsIdxs.length ? "" : " active"}">All classes</a>`;
   const plainOpts = Object.keys(EFFECT_LABELS).map(Number)
+    .filter(spa => !classSpas || classSpas.has(spa) || effect === "spa:" + spa)
     .map(spa => ({ spa, label: EFFECT_LABELS[spa] }))
     .sort((a, b) => a.label.localeCompare(b.label))
     .map(o => `<option value="spa:${o.spa}"${sel(effect, "spa:" + o.spa)}>${escapeHtml(o.label)}</option>`).join("");
-  const bucketOpts = EFFECT_BUCKETS.map(b =>
-    `<option value="bucket:${b.key}"${sel(effect, "bucket:" + b.key)}>${escapeHtml(b.label)}</option>`).join("");
+  const bucketOpts = EFFECT_BUCKETS
+    .filter(b => !classBuckets || classBuckets.has(b.key) || effect === "bucket:" + b.key)
+    .map(b => `<option value="bucket:${b.key}"${sel(effect, "bucket:" + b.key)}>${escapeHtml(b.label)}</option>`).join("");
   const effectSelect = `
     <select name="effect">
       <option value="">Any effect</option>
-      <optgroup label="Damage &amp; Healing">${bucketOpts}</optgroup>
+      <optgroup label="Damage / Heal / Move / Tap">${bucketOpts}</optgroup>
       <optgroup label="Other effects">${plainOpts}</optgroup>
     </select>`;
 
