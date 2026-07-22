@@ -314,6 +314,29 @@ export const EFFECT_BUCKETS = [
   { key: "runspeed", label: "Run Speed (buff)", pred: "(se.effect_id=3 AND {V}>0)" },
 ];
 
+// Ordered <optgroup> layout for the Effect dropdown. Each group lists its
+// buckets (by key, shown first in order) then its plain SPAs (sorted by label
+// at render time). Every EFFECT_LABELS SPA and EFFECT_BUCKETS key appears in
+// exactly one group.
+export const EFFECT_GROUPS = [
+  { label: "Damage", buckets: ["nuke", "dot", "lifetap"], spas: [] },
+  { label: "Healing", buckets: ["heal", "hot"], spas: [120, 81] },
+  { label: "Drains & Taps", buckets: ["lifetap", "manatap"], spas: [] },
+  { label: "Movement", buckets: ["snare", "runspeed"], spas: [57, 42] },
+  { label: "Crowd Control", buckets: [], spas: [22, 31, 21, 64, 23, 99, 20, 382] },
+  { label: "Aggro & Hate", buckets: [], spas: [92, 18, 114, 192, 30, 86, 63, 19] },
+  { label: "Debuffs & Cures", buckets: [], spas: [35, 36, 116, 27, 24] },
+  { label: "Resists", buckets: [], spas: [46, 47, 48, 49, 50, 111] },
+  { label: "Attributes", buckets: [], spas: [4, 5, 6, 7, 8, 9, 10, 1, 2, 69, 97, 15, 189, 84] },
+  { label: "Melee & Defense", buckets: [], spas: [11, 98, 184, 59, 55, 78, 161, 162, 163, 40, 121, 158, 117, 323, 334, 94] },
+  { label: "Detection & Vision", buckets: [], spas: [12, 314, 28, 315, 29, 13, 65, 66, 52, 53, 54, 87, 56] },
+  { label: "Summon, Pet & Illusion", buckets: [], spas: [32, 109, 33, 106, 71, 103, 298, 68, 58, 44, 89, 115] },
+  { label: "Travel", buckets: [], spas: [83, 146, 88, 104, 26, 25, 73, 67, 76, 75] },
+  { label: "Procs & Triggers", buckets: [], spas: [85, 289, 340, 374, 475, 537, 457, 118, 112] },
+  { label: "Focus & Stacking", buckets: [], spas: [124, 127, 134, 136, 137, 138, 139, 141, 143, 311, 148, 149] },
+  { label: "Other Utility", buckets: [], spas: [14, 74] },
+];
+
 export const EFFECT_LABELS = {
   1: "Armor Class (AC)", 2: "Attack Power (ATK)", 4: "Strength (STR)",
   5: "Dexterity (DEX)", 6: "Agility (AGI)", 7: "Stamina (STA)", 8: "Intelligence (INT)",

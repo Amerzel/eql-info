@@ -7,7 +7,7 @@ import {
   targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
   displayedValue, confidenceTier, limitValueLabel,
   EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
-  EFFECT_LIFETAP, EFFECT_MANATAP,
+  EFFECT_LIFETAP, EFFECT_MANATAP, EFFECT_GROUPS,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -392,20 +392,27 @@ export async function renderBrowse(params) {
   const allParams = new URLSearchParams(params); allParams.delete("class");
   const allBtn = `<a href="#/spells${allParams.toString() ? "?" + allParams.toString() : ""}"
     class="classbtn${clsIdxs.length ? "" : " active"}">All classes</a>`;
-  const plainOpts = Object.keys(EFFECT_LABELS).map(Number)
-    .filter(spa => !classSpas || classSpas.has(spa) || effect === "spa:" + spa)
-    .map(spa => ({ spa, label: EFFECT_LABELS[spa] }))
-    .sort((a, b) => a.label.localeCompare(b.label))
-    .map(o => `<option value="spa:${o.spa}"${sel(effect, "spa:" + o.spa)}>${escapeHtml(o.label)}</option>`).join("");
-  const bucketOpts = EFFECT_BUCKETS
-    .filter(b => !classBuckets || classBuckets.has(b.key) || effect === "bucket:" + b.key)
-    .map(b => `<option value="bucket:${b.key}"${sel(effect, "bucket:" + b.key)}>${escapeHtml(b.label)}</option>`).join("");
-  const effectSelect = `
-    <select name="effect">
-      <option value="">Any effect</option>
-      <optgroup label="Damage / Heal / Move / Tap">${bucketOpts}</optgroup>
-      <optgroup label="Other effects">${plainOpts}</optgroup>
-    </select>`;
+  // Build the Effect dropdown as one <optgroup> per EFFECT_GROUPS entry:
+  // buckets first (in listed order), then that group's SPAs sorted by label.
+  // Class-aware: hide options the selected trio can't cast, but always keep
+  // the current selection. Empty groups are dropped.
+  const bucketByKey = new Map(EFFECT_BUCKETS.map(b => [b.key, b]));
+  const showBucket = key => !classBuckets || classBuckets.has(key) || effect === "bucket:" + key;
+  const showSpa = spa => !classSpas || classSpas.has(spa) || effect === "spa:" + spa;
+  const groupsHtml = EFFECT_GROUPS.map(g => {
+    const opts = [];
+    for (const key of g.buckets) {
+      const b = bucketByKey.get(key);
+      if (b && showBucket(key))
+        opts.push(`<option value="bucket:${key}"${sel(effect, "bucket:" + key)}>${escapeHtml(b.label)}</option>`);
+    }
+    g.spas.filter(showSpa)
+      .map(spa => ({ spa, label: EFFECT_LABELS[spa] }))
+      .sort((a, b) => a.label.localeCompare(b.label))
+      .forEach(o => opts.push(`<option value="spa:${o.spa}"${sel(effect, "spa:" + o.spa)}>${escapeHtml(o.label)}</option>`));
+    return opts.length ? `<optgroup label="${escapeHtml(g.label)}">${opts.join("")}</optgroup>` : "";
+  }).join("");
+  const effectSelect = `<select name="effect"><option value="">Any effect</option>${groupsHtml}</select>`;
 
   const filterForm = `
     <form class="diff-form" data-form="browse">
