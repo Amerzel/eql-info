@@ -64,14 +64,28 @@ export async function renderHome() {
   return `
     <h1>EverQuest Legends — Spell Explorer</h1>
     <p class="lede">${total.toLocaleString()} spells obtainable at L1–${MAX_LEVEL}.
-    Pick a class to browse its spell list by level, or search by name above.
-    <br>New: <a href="#/spells">Browse all spells</a> — every class in one
-    filterable, sortable table, including search by effect (nuke, heal, ATK, …).
-    <br><a href="#/upgrades">Spell Upgrades (motes)</a> — per-tier
-    benefits by category, plus a tier slider on every spell page.
-    <br>Reference: <a href="#/targets">Target Types</a> — every targeting
-    type with its exact in-game tooltip string.</p>
+    Search by name above, jump into a tool below, or browse by class.</p>
+    <div class="feature-grid">
+      <a class="feature-card" href="#/spells">
+        <span class="feature-title">Browse Spells</span>
+        <span class="feature-desc">Every spell in one filterable, sortable table.
+        Pick a class trio and search by effect — nuke, heal, snare, lifetap,
+        charm, resists and more — plus level and cast type.</span>
+        <span class="feature-go">Open browser →</span>
+      </a>
+      <a class="feature-card" href="#/upgrades">
+        <span class="feature-title">Spell Upgrades</span>
+        <span class="feature-desc">The mote tier system: per-tier benefits by
+        category, plus a tier slider on every spell's detail page to preview
+        upgraded values.</span>
+        <span class="feature-go">View upgrades →</span>
+      </a>
+    </div>
+    <h2>Browse by class</h2>
     <div class="class-grid">${cards}</div>
+    <p class="muted" style="margin-top:1.5em">Reference:
+    <a href="#/targets">Target Types</a> — every targeting type with its exact
+    in-game tooltip string.</p>
   `;
 }
 

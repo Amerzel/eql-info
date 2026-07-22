@@ -76,6 +76,20 @@ footer { color: var(--muted); text-align: center; padding: 1.5em;
   font-size: 1.15rem; letter-spacing: 0.03em; text-align: center; }
 .class-count { color: var(--muted); font-size: 0.9em; }
 
+/* Home feature cards — prominent entry points to Browse Spells / Spell Upgrades. */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px; margin: 0 0 2em; }
+.feature-card { background: var(--bg-2); border: 1px solid var(--border);
+  border-left: 4px solid var(--accent); border-radius: 5px; padding: 1.1em 1.3em;
+  display: flex; flex-direction: column; gap: 0.45em;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s; }
+.feature-card:hover { background: var(--bg-3); border-color: var(--accent);
+  text-decoration: none; transform: translateY(-2px); }
+.feature-title { color: var(--accent); font-family: "Times New Roman", serif;
+  font-size: 1.4rem; letter-spacing: 0.02em; }
+.feature-desc { color: var(--fg); font-size: 0.95em; line-height: 1.45; }
+.feature-go { color: var(--link); font-size: 0.9em; margin-top: 0.2em; }
+
 .spell-table, .effects-table, table.kv {
   width: 100%; border-collapse: collapse; background: var(--bg-2);
   border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
