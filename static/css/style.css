@@ -47,6 +47,13 @@ header { display: flex; align-items: center; justify-content: space-between;
 .search button:hover { background: var(--border); }
 
 main { max-width: 1100px; margin: 1.4em auto; padding: 0 1.4em 3em; }
+/* The Browse page has a wide multi-column table — give it more room. */
+main:has(.wide-page) { max-width: min(1680px, 96vw); }
+/* "All classes" pill button on the Browse filter bar. */
+.classbtn { display: inline-block; padding: .25em .8em; border: 1px solid var(--border);
+  border-radius: 1em; background: var(--bg-3); color: var(--accent); font-size: .9em; cursor: pointer; }
+.classbtn:hover { background: var(--border); }
+.classbtn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 footer { color: var(--muted); text-align: center; padding: 1.5em;
   border-top: 1px solid var(--border); margin-top: 2em; font-size: 0.9em; }
 

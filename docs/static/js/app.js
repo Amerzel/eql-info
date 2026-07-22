@@ -7,7 +7,7 @@
 import {
   renderHome, renderClass, renderSpell, renderGroup, renderEffect,
   renderSkills, renderSkill, renderAAs, renderAA, renderSearch,
-  renderRaces, renderRace,
+  renderRaces, renderRace, renderBrowse,
 } from "./views.js";
 import { initDb } from "./db.js";
 import { prefetchSpells } from "./tooltip.js";
@@ -55,6 +55,7 @@ async function route() {
     if (segs.length === 0) return setHtml(await renderHome());
     const [head, arg1, arg2] = segs;
     switch (head) {
+      case "spells": return setHtml(await renderBrowse(params));
       case "class":  return setHtml(await renderClass(classIndexFromArg(arg1), params));
       case "spell":  return setHtml(await renderSpell(parseInt(arg1, 10)));
       case "group":  return setHtml(await renderGroup(parseInt(arg1, 10)));
@@ -76,24 +77,40 @@ async function route() {
   }
 }
 
+// Turn a dynamically-rendered filter form into a hash navigation.
+function navigateForm(form) {
+  const kind = form.dataset.form;
+  // Drop empty values (e.g. unset class dropdown slots) so URLs stay clean.
+  const usp = new URLSearchParams();
+  for (const [k, v] of new FormData(form).entries()) if (v !== "") usp.append(k, v);
+  const qs = usp.toString();
+  if (kind === "class") {
+    const { segs } = parseHash();
+    const idx = classIndexFromArg(segs[1]);
+    window.location.hash = "#/class/" + classSlug(idx) + (qs ? "?" + qs : "");
+  } else if (kind === "browse") {
+    window.location.hash = "#/spells" + (qs ? "?" + qs : "");
+  } else if (kind === "aas") {
+    window.location.hash = "#/aas" + (qs ? "?" + qs : "");
+  } else if (kind === "search") {
+    window.location.hash = "#/search" + (qs ? "?" + qs : "");
+  }
+}
+
 // Intercept form submissions on dynamically-rendered pages to navigate
 // without a full reload.
 app.addEventListener("submit", (e) => {
   const form = e.target.closest("form[data-form]");
   if (!form) return;
   e.preventDefault();
-  const kind = form.dataset.form;
-  const fd = new FormData(form);
-  const qs = new URLSearchParams(fd).toString();
-  if (kind === "class") {
-    const { segs } = parseHash();
-    const idx = classIndexFromArg(segs[1]);
-    window.location.hash = "#/class/" + classSlug(idx) + (qs ? "?" + qs : "");
-  } else if (kind === "aas") {
-    window.location.hash = "#/aas" + (qs ? "?" + qs : "");
-  } else if (kind === "search") {
-    window.location.hash = "#/search" + (qs ? "?" + qs : "");
-  }
+  navigateForm(form);
+});
+
+// Browse page: apply filters the moment a control changes (no Apply click).
+// `change` (not `input`) so number fields fire on commit, not per keystroke.
+app.addEventListener("change", (e) => {
+  const form = e.target.closest('form[data-form="browse"]');
+  if (form) navigateForm(form);
 });
 
 // Spell-upgrade tier slider (spell detail page) — recompute displayed

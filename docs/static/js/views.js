@@ -4,8 +4,9 @@
 import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
-  targetName, resistName, className, spaName, skillName, classSlug, displayedValue,
-  confidenceTier, limitValueLabel,
+  targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
+  displayedValue, confidenceTier, limitValueLabel,
+  EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -63,7 +64,9 @@ export async function renderHome() {
     <h1>EverQuest Legends — Spell Explorer</h1>
     <p class="lede">${total.toLocaleString()} spells obtainable at L1–${MAX_LEVEL}.
     Pick a class to browse its spell list by level, or search by name above.
-    <br>New: <a href="#/upgrades">Spell Upgrades (motes)</a> — per-tier
+    <br>New: <a href="#/spells">Browse all spells</a> — every class in one
+    filterable, sortable table, including search by effect (nuke, heal, ATK, …).
+    <br><a href="#/upgrades">Spell Upgrades (motes)</a> — per-tier
     benefits by category, plus a tier slider on every spell page.
     <br>Reference: <a href="#/targets">Target Types</a> — every targeting
     type with its exact in-game tooltip string.</p>
@@ -194,6 +197,271 @@ export async function renderClass(classIndex, params) {
     ${filterForm}
     <p class="muted">${rows.length} spells match, grouped by minimum level.</p>
     ${body}`;
+}
+
+// ---------------------------------------------------------------------------
+// BROWSE — all spells in one flat, sortable, filterable table (also the
+// effect-search entry point). Class pages are left untouched.
+// ---------------------------------------------------------------------------
+
+// All 16 classes appear in the trio picker (EQL lets you play three at once).
+// This page shows spells only — disciplines are out of scope — so pure-melee
+// classes contribute no rows, but they stay selectable so any trio is shareable.
+const CLASS_ABBR = ["WAR", "CLR", "PAL", "RNG", "SHD", "DRU", "MNK", "BRD",
+                    "ROG", "SHM", "NEC", "WIZ", "MAG", "ENC", "BST", "BER"];
+
+// Sortable columns → the SQL expression to ORDER BY.
+const BROWSE_SORTS = { name: "s.name", level: "min_level", mana: "s.mana", cast: "s.cast_time" };
+
+// SPAs whose base_value is an id/reference/flag, not a magnitude — show the
+// label alone (e.g. "Summon Item", not "CreateItem 22,502"). Covers item/pet/
+// form references, proc/trigger spell ids, and stacking directives.
+const NO_VALUE_SPAS = new Set([
+  32, 33, 44, 58, 71, 85, 106, 109, 146, 148, 149, 289, 340, 374, 475, 537,
+]);
+
+// Compact per-effect label for the Effects summary column (eqltools-style).
+function shortEffectLabel(id, sign) {
+  if (id === 0 || id === 79) return sign < 0 ? "Dmg" : "Heal";
+  if (id === 100) return "HoT";
+  return spaName(id);
+}
+
+// "AC 15 · MaxHp 20 · Heal 20" — up to 5 effects, each valued at `level`.
+function effectsSummary(effs, level) {
+  // Skip blank slots: SPA 254, and padding effects that carry no magnitude
+  // (base 0 & max 0 — e.g. unused CHA slots, redundant portal-location rows).
+  const meaningful = effs.filter(e =>
+    e.effect_id !== 254 && !(e.base_value === 0 && e.max_value === 0));
+  const parts = meaningful.slice(0, 5).map(e => {
+    const src = e.base_value !== 0 ? e.base_value : e.max_value;
+    const lbl = escapeHtml(shortEffectLabel(e.effect_id, src));
+    if (NO_VALUE_SPAS.has(e.effect_id)) return lbl;   // base is an id, not a value
+    let v = displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, level, false);
+    if (e.effect_id === 0 || e.effect_id === 79 || e.effect_id === 100) v = Math.abs(v);
+    return v ? `${lbl} ${v.toLocaleString()}` : lbl;
+  });
+  const extra = meaningful.length - parts.length;
+  return parts.join(" · ") + (extra > 0 ? ` <span class="muted">+${extra}</span>` : "");
+}
+
+// Duration ticks → "27m" / "18s" (tick = 6s). This is the cap value.
+function fmtDur(ticks) {
+  if (!ticks || ticks <= 0) return "—";
+  const s = ticks * 6;
+  if (s < 60) return `${s}s`;
+  const m = Math.floor(s / 60), r = s % 60;
+  return r ? `${m}m${r}s` : `${m}m`;
+}
+
+// Build a "#/spells?…" URL from the current params with a set of overrides.
+// An override of "" or null drops the key.
+function browseUrl(params, overrides) {
+  const p = new URLSearchParams(params);
+  for (const [k, v] of Object.entries(overrides)) {
+    if (v === null || v === "") p.delete(k); else p.set(k, v);
+  }
+  const qs = p.toString();
+  return "#/spells" + (qs ? "?" + qs : "");
+}
+
+// A clickable, sort-toggling column header.
+function sortHeader(params, col, label, curSort, curDir) {
+  const active = curSort === col;
+  const nextDir = active && curDir === "ASC" ? "desc" : "asc";
+  const arrow = active ? (curDir === "ASC" ? " ▲" : " ▼") : "";
+  return `<th><a href="${browseUrl(params, { sort: col, dir: nextDir, page: null })}">${label}${arrow}</a></th>`;
+}
+
+// Resolve the ?effect= param to a SQL predicate (over spell_effects se +
+// spells s). Returns { pred, spa } or null. Bucket predicates expand the
+// {dur}/{V} placeholders; a plain "spa:<n>" becomes an effect_id match.
+function resolveEffect(effect) {
+  if (effect.startsWith("bucket:")) {
+    const b = EFFECT_BUCKETS.find(x => x.key === effect.slice(7));
+    if (b) return { pred: b.pred.replace(/\{dur\}/g, EFFECT_DUR).replace(/\{V\}/g, EFFECT_VAL), spa: null };
+  } else if (effect.startsWith("spa:")) {
+    const n = parseInt(effect.slice(4), 10);
+    if (Number.isInteger(n)) return { pred: "se.effect_id = " + n, spa: n };
+  }
+  return null;
+}
+
+export async function renderBrowse(params) {
+  const clsSlugs = params.getAll("class").filter(Boolean);
+  const clsIdxs = [...new Set(clsSlugs.map(classIndexFromArg)
+    .filter(i => Number.isInteger(i) && i >= 0 && i <= 15))];
+  const clsSet = new Set(clsIdxs);
+  const good = params.get("good") || "all";
+  const lMin = Math.max(1, parseInt(params.get("level_min") || "1", 10) || 1);
+  const lMax = Math.min(MAX_LEVEL,
+                        parseInt(params.get("level_max") || String(MAX_LEVEL), 10) || MAX_LEVEL);
+  const effect = params.get("effect") || "";
+  const sort = BROWSE_SORTS[params.get("sort")] ? params.get("sort") : "level";
+  const dir = params.get("dir") === "desc" ? "DESC" : "ASC";
+
+  // Spells only — disciplines are out of scope for this page.
+  const where = ["sc.verified = 1", "s.is_discipline = 0",
+                 "sc.min_level <= ?", "sc.min_level >= ?", "sc.min_level <= ?"];
+  const args = [MAX_LEVEL, lMin, lMax];
+  if (clsIdxs.length) {
+    where.push(`sc.class_index IN (${clsIdxs.map(() => "?").join(",")})`);
+    args.push(...clsIdxs);
+  }
+  if (good === "buff") where.push("s.good_effect IN (1, 2)");
+  else if (good === "det") where.push("s.good_effect = 0");
+
+  const eff = resolveEffect(effect);
+  if (eff) where.push(`EXISTS (SELECT 1 FROM spell_effects se WHERE se.spell_id = s.id AND ${eff.pred})`);
+
+  const rows = await query(
+    `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, s.buff_duration,
+            s.buff_duration_formula, s.target_type, s.good_effect, s.teleport_zone,
+            MIN(sc.min_level) AS min_level,
+            GROUP_CONCAT(DISTINCT sc.class_index || ':' || sc.min_level) AS class_pairs
+       FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
+      WHERE ${where.join(" AND ")}
+      GROUP BY s.id
+      ORDER BY ${BROWSE_SORTS[sort]} ${dir}, s.name ASC
+      LIMIT 2000`, args);
+
+  // Bulk-fetch category + effects for the result set, filtered by a subquery
+  // (so we never build a giant IN(id,id,…) list that trips the variable cap).
+  const idSubq = `SELECT s.id FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
+                  WHERE ${where.join(" AND ")} GROUP BY s.id`;
+  const catMap = new Map(), effMap = new Map();
+  if (rows.length) {
+    const catRows = await query(
+      `SELECT s.id, dc.text AS cat, de.text AS cat2
+         FROM spells s
+         LEFT JOIN dbstr dc ON dc.id = s.type_description_id AND dc.type = 5
+         LEFT JOIN dbstr de ON de.id = s.effect_description_id AND de.type = 5
+        WHERE s.id IN (${idSubq})`, args);
+    for (const r of catRows) catMap.set(r.id, r);
+    const effRows = await query(
+      `SELECT se.spell_id, se.effect_id, se.base_value, se.max_value, se.formula
+         FROM spell_effects se
+        WHERE se.spell_id IN (${idSubq})
+        ORDER BY se.spell_id, se.slot`, args);
+    for (const e of effRows) {
+      if (!effMap.has(e.spell_id)) effMap.set(e.spell_id, []);
+      effMap.get(e.spell_id).push(e);
+    }
+  }
+
+  // ── filter form ──
+  const sel = (cur, val) => (cur === val ? " selected" : "");
+  // Class picker: an "All" button plus three single-class dropdowns (EQL's
+  // three-class trio). Each dropdown is name="class"; empty slots submit "" and
+  // are dropped when the URL is built, so only chosen classes end up in it.
+  const classOption = (selIdx) => `<option value="">(any)</option>` +
+    Array.from({ length: 16 }, (_, i) => i).map(i =>
+      `<option value="${classSlug(i)}"${selIdx === i ? " selected" : ""}>${escapeHtml(CLASS_NAMES[i])}</option>`).join("");
+  const classPickers = [0, 1, 2].map(slot =>
+    `<select name="class">${classOption(clsIdxs[slot] ?? -1)}</select>`).join(" ");
+  const allParams = new URLSearchParams(params); allParams.delete("class");
+  const allBtn = `<a href="#/spells${allParams.toString() ? "?" + allParams.toString() : ""}"
+    class="classbtn${clsIdxs.length ? "" : " active"}">All classes</a>`;
+  const plainOpts = Object.keys(EFFECT_LABELS).map(Number)
+    .map(spa => ({ spa, label: EFFECT_LABELS[spa] }))
+    .sort((a, b) => a.label.localeCompare(b.label))
+    .map(o => `<option value="spa:${o.spa}"${sel(effect, "spa:" + o.spa)}>${escapeHtml(o.label)}</option>`).join("");
+  const bucketOpts = EFFECT_BUCKETS.map(b =>
+    `<option value="bucket:${b.key}"${sel(effect, "bucket:" + b.key)}>${escapeHtml(b.label)}</option>`).join("");
+  const effectSelect = `
+    <select name="effect">
+      <option value="">Any effect</option>
+      <optgroup label="Damage &amp; Healing">${bucketOpts}</optgroup>
+      <optgroup label="Other effects">${plainOpts}</optgroup>
+    </select>`;
+
+  const filterForm = `
+    <form class="diff-form" data-form="browse">
+      <input type="hidden" name="sort" value="${sort}">
+      <input type="hidden" name="dir" value="${dir === "DESC" ? "desc" : "asc"}">
+      <div class="diff-controls" style="margin-bottom:.5em">
+        <span class="muted">Classes:</span>
+        ${allBtn}
+        <span class="muted">or pick up to 3:</span>
+        ${classPickers}
+      </div>
+      <div class="diff-controls">
+        <label>Effect: ${effectSelect}</label>
+        <label>Mode:
+          <select name="good">
+            <option value="all"${sel(good, "all")}>All</option>
+            <option value="buff"${sel(good, "buff")}>Beneficial</option>
+            <option value="det"${sel(good, "det")}>Detrimental</option>
+          </select></label>
+        <label>Level min: <input type="number" name="level_min" value="${lMin}" min="1" max="${MAX_LEVEL}" style="width:5em"></label>
+        <label>Level max: <input type="number" name="level_max" value="${lMax}" min="1" max="${MAX_LEVEL}" style="width:5em"></label>
+        <button type="submit">Apply</button>
+        <a href="#/spells" class="muted">reset</a>
+      </div>
+    </form>`;
+
+  // ── table ──
+  const body = rows.map(sp => {
+    const tags = [];
+    if (sp.teleport_zone && !sp.teleport_zone.startsWith("PCPet")) tags.push('<span class="tag tag-port">port</span>');
+    else if (sp.teleport_zone) tags.push('<span class="tag tag-pet">pet</span>');
+    const hasDuration = sp.buff_duration > 0 || sp.buff_duration_formula > 0;
+    if ((sp.good_effect === 1 || sp.good_effect === 2) && hasDuration) tags.push('<span class="tag tag-buff">buff</span>');
+    if (sp.good_effect === 0) tags.push('<span class="tag tag-deb">det</span>');
+    // Classes column: "CLR 1 · DRU 5" from the class:level pairs, low level first.
+    const classCell = (sp.class_pairs || "").split(",")
+      .map(p => { const [ci, lv] = p.split(":").map(Number); return { ci, lv }; })
+      .sort((a, b) => a.lv - b.lv || a.ci - b.ci)
+      .map(x => escapeHtml(`${CLASS_ABBR[x.ci] || x.ci} ${x.lv}`)).join(" · ");
+    const cat = catMap.get(sp.id) || {};
+    const catText = cat.cat2 && cat.cat2 !== cat.cat
+      ? `${escapeHtml(cat.cat)} · ${escapeHtml(cat.cat2)}`
+      : (cat.cat ? escapeHtml(cat.cat) : "");
+    const effText = effectsSummary(effMap.get(sp.id) || [], sp.min_level);
+    return `<tr>
+      <td>${levelDisplay(sp.min_level)}</td>
+      <td>${iconImg(sp.new_icon)}</td>
+      <td><a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a> ${tags.join(" ")}</td>
+      <td class="muted">${classCell}</td>
+      <td class="muted">${catText}</td>
+      <td>${effText}</td>
+      <td>${sp.mana}</td>
+      <td>${fmtSeconds(sp.cast_time)}s</td>
+      <td>${fmtDur(sp.buff_duration)}</td>
+      <td>${targetName(sp.target_type)}</td>
+    </tr>`;
+  }).join("");
+
+  const head = `<tr>
+    ${sortHeader(params, "level", "Lvl", sort, dir)}
+    <th>Icon</th>
+    ${sortHeader(params, "name", "Name", sort, dir)}
+    <th>Classes</th>
+    <th>Category</th>
+    <th>Effects</th>
+    ${sortHeader(params, "mana", "Mana", sort, dir)}
+    ${sortHeader(params, "cast", "Cast", sort, dir)}
+    <th>Dur</th>
+    <th>Targets</th></tr>`;
+
+  const effLabel = eff
+    ? (eff.spa !== null ? EFFECT_LABELS[eff.spa] || spaName(eff.spa)
+                        : (EFFECT_BUCKETS.find(b => "bucket:" + b.key === effect) || {}).label)
+    : null;
+  const clsLabel = clsIdxs.length ? clsIdxs.map(i => CLASS_NAMES[i]).join(" / ") : "all classes";
+  const capped = rows.length >= 2000 ? " (showing first 2000)" : "";
+
+  return `<div class="wide-page">
+    <nav class="breadcrumb"><a href="#/">Home</a> › Browse</nav>
+    <h1>Browse Spells</h1>
+    ${filterForm}
+    <p class="muted">${rows.length.toLocaleString()} spell${rows.length === 1 ? "" : "s"}${capped}
+      — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}.
+      Effect values shown at each spell's own level.</p>
+    ${rows.length ? `<table class="spell-table">
+      <thead>${head}</thead><tbody>${body}</tbody></table>`
+      : '<p class="muted">No spells match — pick a caster class or widen the level range.</p>'}
+    </div>`;
 }
 
 // ---------------------------------------------------------------------------

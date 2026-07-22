@@ -278,6 +278,67 @@ export const SPA_NAMES = {"0": "HP", "1": "AC", "2": "AttackPower", "3": "Moveme
 
 export function spaName(id) { return SPA_NAMES[id] || `SE #${id}`; }
 
+// ---------------------------------------------------------------------------
+// Effect-filter model for the #/spells browse page.
+//
+// EFFECT_BUCKETS split the HP SPAs (0/79/100) into player-facing heal/nuke
+// categories. Each carries a SQL predicate over `spell_effects se` + `spells s`;
+// {dur} and {V} are expanded by the browse view (see views.js). Because the
+// buckets consume SPA 0/79/100, those three are absent from EFFECT_LABELS.
+// EFFECT_LABELS maps every other in-use SPA to a friendly dropdown label;
+// Increase/Decrease direction shows via the value sign in the results table.
+// ---------------------------------------------------------------------------
+export const EFFECT_DUR = "(s.buff_duration_formula>0 OR s.buff_duration>0)";
+export const EFFECT_VAL = "COALESCE(NULLIF(se.base_value,0), se.max_value)";
+
+export const EFFECT_BUCKETS = [
+  { key: "nuke", label: "Nuke (Direct Damage)", pred: "(({V}<0) AND ((se.effect_id=79) OR (se.effect_id=0 AND NOT {dur})))" },
+  { key: "dot", label: "Damage over Time (DoT)", pred: "(se.effect_id=0 AND {V}<0 AND {dur})" },
+  { key: "heal", label: "Direct Heal", pred: "(({V}>0) AND ((se.effect_id=79) OR (se.effect_id=0 AND NOT {dur})))" },
+  { key: "hot", label: "Heal over Time / Regen", pred: "(se.effect_id=100 OR (se.effect_id=0 AND {V}>0 AND {dur}))" },
+];
+
+export const EFFECT_LABELS = {
+  1: "Armor Class (AC)", 2: "Attack Power (ATK)", 3: "Movement Speed", 4: "Strength (STR)",
+  5: "Dexterity (DEX)", 6: "Agility (AGI)", 7: "Stamina (STA)", 8: "Intelligence (INT)",
+  9: "Wisdom (WIS)", 10: "Charisma (CHA)", 11: "Melee Haste", 12: "Invisibility",
+  13: "See Invisible", 14: "Enduring Breath (Water Breathing)", 15: "Mana",
+  18: "Add Hate (Aggro)", 19: "Faction Modifier", 20: "Blind", 21: "Stun", 22: "Charm",
+  23: "Fear", 24: "Fatigue (Endurance Drain)", 25: "Bind Affinity", 26: "Gate",
+  27: "Dispel (Cancel Magic)", 28: "Invisibility vs Undead", 29: "Invisibility vs Animals",
+  30: "Reduce Aggro Radius (Lull)", 31: "Mesmerize", 32: "Summon Item", 33: "Summon Pet",
+  35: "Disease Counter", 36: "Poison Counter", 40: "Invulnerability", 42: "Shadow Step",
+  44: "Wolf Form", 46: "Fire Resist", 47: "Cold Resist", 48: "Poison Resist",
+  49: "Disease Resist", 50: "Magic Resist", 52: "Sense Undead", 53: "Sense Summoned",
+  54: "Sense Animals", 55: "Stoneskin", 56: "Sense Heading", 57: "Levitate",
+  58: "Illusion", 59: "Damage Shield", 63: "Memory Blur", 64: "Spin Stun",
+  65: "Infravision", 66: "Ultravision", 67: "Eye of Zomm", 68: "Reclaim Pet Energy",
+  69: "Max Hit Points", 71: "Summon Undead Pet", 73: "Bind Sight", 74: "Feign Death",
+  75: "Ventriloquism", 76: "Sentinel", 78: "Spell Shield (% mitigation)",
+  81: "Resurrection", 83: "Teleport", 84: "Hit Points (NPC only)", 85: "Add Spell Proc",
+  86: "Assist Radius (Pacify)", 87: "Magnify", 88: "Evacuate", 89: "Size",
+  92: "Hate (Aggro)", 94: "Fragile (Fades on Hit)", 97: "Max Mana",
+  98: "Bard Haste (Overhaste)", 99: "Root", 103: "Call Pet", 104: "Translocate",
+  106: "Summon Warder (Beastlord Pet)", 109: "Summon Item", 111: "All Resists",
+  112: "Fizzle Rate", 114: "Modify Hate", 115: "Create Food/Water", 116: "Curse Counter",
+  117: "Attacks Count as Magic", 118: "Amplify Song Effects", 120: "Healing Modifier",
+  121: "Reflect Melee Damage", 124: "Focus: Spell Damage %", 127: "Focus: Cast Time %",
+  134: "Focus Limit: Max Spell Level", 136: "Focus Limit: Target Type",
+  137: "Focus Limit: Effect (SPA)", 138: "Focus Limit: Beneficial/Detrimental",
+  139: "Focus Limit: Specific Spell", 141: "Focus Limit: Instant Only",
+  143: "Focus Limit: Min Cast Time", 146: "Teleport Destination",
+  148: "Stacking: Block Slot", 149: "Stacking: Overwrite Slot", 158: "Spell Reflect",
+  161: "Spell Damage Rune", 162: "Melee Damage Rune", 163: "Absorb Damage (Rune)",
+  184: "Accuracy", 189: "Endurance", 192: "Hate over Time", 289: "Effect on Fade (Doom)",
+  298: "Shrink Pet (Tiny Companion)", 311: "Focus Limit: Combat Skills",
+  314: "Improved Invisibility", 315: "Improved Invis vs Undead", 323: "Defensive Proc",
+  334: "HP Regen While Stationary", 340: "Chance to Cast Spell",
+  374: "Cast Additional Spell (Trigger)", 382: "Suppression",
+  457: "Resource Tap (HP/Mana/End)", 475: "Cast Additional Spell",
+  537: "Promised Heal (Delayed Trigger)",
+};
+export function effectLabel(spa) { return EFFECT_LABELS[spa] || SPA_NAMES[spa] || `SE #${spa}`; }
+
 // Skills (77 entries from EQEmu skills.h)
 const _SKILL_DATA = {"SKILLS": [[0, "Skill1HBlunt", "1H Blunt"], [1, "Skill1HSlashing", "1H Slashing"], [2, "Skill2HBlunt", "2H Blunt"], [3, "Skill2HSlashing", "2H Slashing"], [4, "SkillAbjuration", "Abjuration"], [5, "SkillAlteration", "Alteration"], [6, "SkillApplyPoison", "Apply Poison"], [7, "SkillArchery", "Archery"], [8, "SkillBackstab", "Backstab"], [9, "SkillBindWound", "Bind Wound"], [10, "SkillBash", "Bash"], [11, "SkillBlock", "Block"], [12, "SkillBrassInstruments", "Brass Instruments"], [13, "SkillChanneling", "Channeling"], [14, "SkillConjuration", "Conjuration"], [15, "SkillDefense", "Defense"], [16, "SkillDisarm", "Disarm"], [17, "SkillDisarmTraps", "Disarm Traps"], [18, "SkillDivination", "Divination"], [19, "SkillDodge", "Dodge"], [20, "SkillDoubleAttack", "Double Attack"], [21, "SkillDragonPunch", "Dragon Punch / Tail Rake"], [22, "SkillDualWield", "Dual Wield"], [23, "SkillEagleStrike", "Eagle Strike"], [24, "SkillEvocation", "Evocation"], [25, "SkillFeignDeath", "Feign Death"], [26, "SkillFlyingKick", "Flying Kick"], [27, "SkillForage", "Forage"], [28, "SkillHandtoHand", "Hand to Hand"], [29, "SkillHide", "Hide"], [30, "SkillKick", "Kick"], [31, "SkillMeditate", "Meditate"], [32, "SkillMend", "Mend"], [33, "SkillOffense", "Offense"], [34, "SkillParry", "Parry"], [35, "SkillPickLock", "Pick Lock"], [36, "Skill1HPiercing", "1H Piercing"], [37, "SkillRiposte", "Riposte"], [38, "SkillRoundKick", "Round Kick"], [39, "SkillSafeFall", "Safe Fall"], [40, "SkillSenseHeading", "Sense Heading"], [41, "SkillSinging", "Singing"], [42, "SkillSneak", "Sneak"], [43, "SkillSpecializeAbjure", "Specialize Abjuration"], [44, "SkillSpecializeAlteration", "Specialize Alteration"], [45, "SkillSpecializeConjuration", "Specialize Conjuration"], [46, "SkillSpecializeDivination", "Specialize Divination"], [47, "SkillSpecializeEvocation", "Specialize Evocation"], [48, "SkillPickPockets", "Pick Pockets"], [49, "SkillStringedInstruments", "Stringed Instruments"], [50, "SkillSwimming", "Swimming"], [51, "SkillThrowing", "Throwing"], [52, "SkillTigerClaw", "Tiger Claw"], [53, "SkillTracking", "Tracking"], [54, "SkillWindInstruments", "Wind Instruments"], [55, "SkillFishing", "Fishing"], [56, "SkillMakePoison", "Make Poison"], [57, "SkillTinkering", "Tinkering"], [58, "SkillResearch", "Research"], [59, "SkillAlchemy", "Alchemy"], [60, "SkillBaking", "Baking"], [61, "SkillTailoring", "Tailoring"], [62, "SkillSenseTraps", "Sense Traps"], [63, "SkillBlacksmithing", "Blacksmithing"], [64, "SkillFletching", "Fletching"], [65, "SkillBrewing", "Brewing"], [66, "SkillAlcoholTolerance", "Alcohol Tolerance"], [67, "SkillBegging", "Begging"], [68, "SkillJewelryMaking", "Jewelry Making"], [69, "SkillPottery", "Pottery"], [70, "SkillPercussionInstruments", "Percussion Instruments"], [71, "SkillIntimidation", "Intimidation"], [72, "SkillBerserking", "Berserking"], [73, "SkillTaunt", "Taunt"], [74, "SkillFrenzy", "Frenzy"], [75, "SkillRemoveTraps", "Remove Traps"], [76, "SkillTripleAttack", "Triple Attack"]], "CATEGORIES": {"Combat": [0, 1, 2, 3, 7, 8, 10, 11, 15, 16, 19, 20, 21, 22, 23, 25, 26, 28, 30, 33, 34, 36, 37, 38, 39, 51, 52, 71, 72, 73, 74, 76], "Casting": [4, 5, 13, 14, 18, 24, 31, 43, 44, 45, 46, 47], "Stealth & Utility": [6, 9, 17, 27, 29, 32, 35, 40, 42, 48, 50, 53, 62, 75], "Bardic": [12, 41, 49, 54, 70], "Tradeskill": [55, 56, 57, 58, 59, 60, 61, 63, 64, 65, 66, 67, 68, 69]}};
 export const SKILLS = _SKILL_DATA.SKILLS.map(s => ({ id: s[0], code: s[1], name: s[2] }));
