@@ -16,6 +16,7 @@ import {
 } from "./text.js";
 import { ROMAN, applyUpgrade, classifyUpgradeCategory, levelChip, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
 import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
+import { friendlySummary } from "./friendly.js";
 import { FIELD_SEMANTICS } from "./field_semantics.js";
 
 function iconImg(newIcon, cls = "icon") {
@@ -252,6 +253,23 @@ export async function renderClass(classIndex, params) {
     byLevel.get(r.min_level).push(r);
   }
 
+  // Friendly effects summaries (same generator as Browse) + name resolvers.
+  const effMap = new Map();
+  let clsResolvers = null;
+  if (rows.length) {
+    const effRows = await query(
+      `SELECT se.spell_id, se.effect_id, se.base_value, se.limit_value, se.max_value, se.formula
+         FROM spell_effects se
+        WHERE se.spell_id IN (SELECT s.id FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
+                              WHERE ${where.join(" AND ")})
+        ORDER BY se.spell_id, se.slot`, args);
+    for (const e of effRows) {
+      if (!effMap.has(e.spell_id)) effMap.set(e.spell_id, []);
+      effMap.get(e.spell_id).push(e);
+    }
+    clsResolvers = await buildResolvers(effRows, query);
+  }
+
   const sel = (cur, val) => (cur === val ? " selected" : "");
   const filterForm = `
     <form class="diff-form" data-form="class">
@@ -299,42 +317,38 @@ export async function renderClass(classIndex, params) {
       if ([3, 36, 39, 52].includes(sp.target_type)) tags.push('<span class="tag tag-grp">group</span>');
       if (sp.good_effect === 0) tags.push('<span class="tag tag-deb">det</span>');
       const tag = tags.join(" ");
-      // Category from the client's own dbstr type-5 label. `cat2` (effect
-      // category) is the sub-label — Blast of Cold's cat="Direct Damage",
-      // cat2="Cold". Show cat2 in-line when it differs from cat, else the
-      // top-level cat alone.
-      const catText = sp.cat2 && sp.cat2 !== sp.cat
-        ? `${escapeHtml(sp.cat)} · ${escapeHtml(sp.cat2)}`
-        : (sp.cat ? escapeHtml(sp.cat) : "");
       return `<tr>
         <td>${iconImg(sp.new_icon)}</td>
         <td><a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a> ${tag}</td>
-        <td class="muted">${catText}</td>
+        <td>${friendlySummary(effMap.get(sp.id) || [], sp.min_level, sp, clsResolvers, MAX_LEVEL)}</td>
+        ${shortCategoryCell(sp.cat, sp.cat2)}
         <td>${sp.mana}</td>
         <td>${fmtSeconds(sp.cast_time)}s</td>
-        <td>${sp.buff_duration || '—'}</td>
-        <td>${targetName(sp.target_type)}</td>
+        <td>${fmtDur(sp.buff_duration)}</td>
+        ${shortTargetCell(sp.target_type)}
       </tr>`;
     }).join("");
     body += `<section class="level-block">
       <h2>Level ${levelDisplay(lvl)}</h2>
       <table class="spell-table t-class">
-        <colgroup><col class="c-icon"><col class="c-name"><col class="c-cat"><col
-          class="c-num"><col class="c-num"><col class="c-dur"><col class="c-tgt"></colgroup>
-        <thead><tr><th>Icon</th><th>Name</th><th>Category</th><th>Mana</th><th>Cast</th>
-          <th>Duration</th><th>Targets</th></tr></thead>
+        <colgroup><col class="c-icon"><col class="c-name"><col class="c-eff"><col
+          class="c-cat"><col class="c-num"><col class="c-num"><col class="c-dur"><col
+          class="c-tgt"></colgroup>
+        <thead><tr><th>Icon</th><th>Name</th><th>Effects</th><th>Category</th><th>Mana</th>
+          <th>Cast</th><th>Duration</th><th>Targets</th></tr></thead>
         <tbody>${items}</tbody>
       </table>
     </section>`;
   }
   if (!body) body = `<p class="muted">No spells match this filter.</p>`;
 
-  return `
+  return `<div class="wide-page">
     <nav class="breadcrumb"><a href="#/">Classes</a> › <span>${escapeHtml(CLASS_NAMES[classIndex])}</span></nav>
     <h1>${escapeHtml(CLASS_NAMES[classIndex])} spell list</h1>
     ${filterForm}
     <p class="muted">${rows.length} spells match, grouped by minimum level.</p>
-    ${body}`;
+    <p class="muted disclosure">${DISCLOSURE}</p>
+    ${body}</div>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -350,6 +364,24 @@ const CLASS_ABBR = ["WAR", "CLR", "PAL", "RNG", "SHD", "DRU", "MNK", "BRD",
 
 // Sortable columns → the SQL expression to ORDER BY.
 const BROWSE_SORTS = { name: "s.name", level: "min_level", mana: "s.mana", cast: "s.cast_time" };
+
+// LIST-ONLY short target names (hover shows the exact in-game string; the
+// detail page keeps the verbatim "Target:" text — target_type policy).
+const TARGET_SHORT = { 51: "Friendly", 56: "Group Member", 11: "Construct", 45: "Free AE" };
+function shortTargetCell(t) {
+  const full = targetName(t);
+  const short = TARGET_SHORT[t] || full;
+  return short === full ? `<td>${full}</td>`
+                        : `<td title="${escapeHtml(full)}">${short}</td>`;
+}
+
+// LIST-ONLY compact category: the specific sub-label when present ("Fire",
+// "Blind", "Cure"), the top-level otherwise; full pair on hover.
+function shortCategoryCell(cat, cat2) {
+  const short = cat2 && cat2 !== cat ? cat2 : (cat || "");
+  const full = cat2 && cat2 !== cat ? `${cat} · ${cat2}` : (cat || "");
+  return `<td class="muted"${full !== short ? ` title="${escapeHtml(full)}"` : ""}>${escapeHtml(short)}</td>`;
+}
 
 // Compact per-effect label for the Effects summary column (eqltools-style).
 function shortEffectLabel(id, sign) {
@@ -623,21 +655,18 @@ export async function renderBrowse(params) {
       .sort((a, b) => a.lv - b.lv || a.ci - b.ci)
       .map(x => escapeHtml(`${CLASS_ABBR[x.ci] || x.ci} ${x.lv}`)).join(" · ");
     const cat = catMap.get(sp.id) || {};
-    const catText = cat.cat2 && cat.cat2 !== cat.cat
-      ? `${escapeHtml(cat.cat)} · ${escapeHtml(cat.cat2)}`
-      : (cat.cat ? escapeHtml(cat.cat) : "");
-    const effText = effectsSummary(effMap.get(sp.id) || [], sp.min_level, sp, browseResolvers);
+    const effText = friendlySummary(effMap.get(sp.id) || [], sp.min_level, sp, browseResolvers, MAX_LEVEL);
     return `<tr>
       <td>${levelDisplay(sp.min_level)}</td>
       <td>${iconImg(sp.new_icon)}</td>
       <td><a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a> ${tags.join(" ")}</td>
       <td class="muted">${classCell}</td>
-      <td class="muted">${catText}</td>
+      ${shortCategoryCell(cat.cat, cat.cat2)}
       <td>${effText}</td>
       <td>${sp.mana}</td>
       <td>${fmtSeconds(sp.cast_time)}s</td>
       <td>${fmtDur(sp.buff_duration)}</td>
-      <td>${targetName(sp.target_type)}</td>
+      ${shortTargetCell(sp.target_type)}
     </tr>`;
   }).join("");
 
@@ -666,7 +695,7 @@ export async function renderBrowse(params) {
     ${filterForm}
     <p class="muted">${rows.length.toLocaleString()} spell${rows.length === 1 ? "" : "s"}${capped}
       — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}.
-      Effect values shown at each spell's own level.</p>
+      Scaling values read wiki-style: own-level value to capped value, e.g. “Damage: 8 (L4) to 43 (L26)”.</p>
     <p class="muted disclosure">${DISCLOSURE}</p>
     ${rows.length ? `<table class="spell-table t-browse">
       <colgroup><col class="c-lvl"><col class="c-icon"><col class="c-name"><col

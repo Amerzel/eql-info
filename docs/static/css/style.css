@@ -127,16 +127,24 @@ footer { color: var(--muted); text-align: center; padding: 1.5em;
 .spell-table col.c-dur  { width: 80px; }
 /* Targets gets room for the longest in-game string ("Single Friendly (or
    Self)") on ONE line — wrapped target cells made row heights ragged. */
-.t-class col.c-cat  { width: 19em; }
-.t-class col.c-tgt  { width: 15em; }
+.t-class col.c-name { width: 16%; }
+.t-class col.c-cat  { width: 9em; }
+.t-class col.c-tgt  { width: 8.5em; }
 .t-browse col.c-name { width: 15%; }
 .t-browse col.c-cls  { width: 10%; }
-.t-browse col.c-cat  { width: 15%; }
-.t-browse col.c-tgt  { width: 13em; }
+.t-browse col.c-cat  { width: 9em; }
+.t-browse col.c-tgt  { width: 8.5em; }
+/* Effects summaries: one line per effect (kept tight). */
+.spell-table .fx-line { line-height: 1.3; }
+.spell-table .fx-line + .fx-line { margin-top: 0.1em; }
+/* numbers in the phrases are fixed-width so they pop out of the prose */
+.fx-line .num { font-family: ui-monospace, "Cascadia Mono", Consolas,
+  "Liberation Mono", monospace; font-variant-numeric: tabular-nums;
+  font-size: 0.95em; color: #e2d9c2; }
 /* Mana / Cast / Duration read as a number column: right-aligned, tabular. */
-.t-class th:nth-child(4), .t-class td:nth-child(4),
 .t-class th:nth-child(5), .t-class td:nth-child(5),
 .t-class th:nth-child(6), .t-class td:nth-child(6),
+.t-class th:nth-child(7), .t-class td:nth-child(7),
 .t-browse th:nth-child(7), .t-browse td:nth-child(7),
 .t-browse th:nth-child(8), .t-browse td:nth-child(8),
 .t-browse th:nth-child(9), .t-browse td:nth-child(9) {
