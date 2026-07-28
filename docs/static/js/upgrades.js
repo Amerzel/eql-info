@@ -225,20 +225,24 @@ export function renderUpgradeControl(spell, effects, selTier = 0) {
 
   return `
     <div class="tier-panel" data-upgrade='${payload}' data-spell-id="${spell.id}">
-      <label>Spell Level <output data-u="tier">${ROMAN[selTier]}</output></label>
+      <div class="tier-label-row">
+        <label>Spell Level <output data-u="tier">${ROMAN[selTier]}</output></label>
+        <details class="help-pop"><summary aria-label="How this model works"
+            title="How this model works">?</summary>
+          <div class="help-body"><p class="muted">The upgrade system is
+          <em>server-side</em> — none of these numbers come from client data.
+          Rates are reverse-engineered from community tooltip captures
+          (category: <strong>${escapeHtml(cat.label)}</strong>
+          · cast −${cat.cast * 100}%/tier · mana −${cat.mana * 100}%/tier${cat.dur ? ` · duration +${cat.dur * 100}%/tier` : ""}
+          · recovery/reuse −2%/tier). Damage/heal scaling is combat-observed at
+          L${MAX_LEVEL} and is not combined with the caster-level column (order of
+          operations unverified). Tier cap assumed ${TIER_MAX}. Your own AAs and
+          stances further modify costs. <a href="#/upgrades">Full model →</a></p></div>
+        </details>
+      </div>
       <input type="range" min="0" max="${TIER_MAX}" value="${selTier}" step="1"
              data-upgrade-slider aria-label="Spell Level"
              aria-valuemin="0" aria-valuemax="${TIER_MAX}" aria-valuenow="${selTier}">
-      <details class="raw-detail upg-details"><summary>How this model works</summary>
-        <p class="muted">The upgrade system is <em>server-side</em> — none of these
-        numbers come from client data. Rates are reverse-engineered from
-        community tooltip captures (category: <strong>${escapeHtml(cat.label)}</strong>
-        · cast −${cat.cast * 100}%/tier · mana −${cat.mana * 100}%/tier${cat.dur ? ` · duration +${cat.dur * 100}%/tier` : ""}
-        · recovery/reuse −2%/tier). Damage/heal scaling is combat-observed at
-        L${MAX_LEVEL} and is not combined with the caster-level column (order of
-        operations unverified). Tier cap assumed ${TIER_MAX}. Your own AAs and
-        stances further modify costs. <a href="#/upgrades">Full model →</a></p>
-      </details>
     </div>`;
 }
 
@@ -259,18 +263,21 @@ export function updateUpgradePanel(slider) {
   slider.setAttribute("aria-valuenow", String(tier));
   const t = d.tiers[tier];
 
-  // 1) main Stats cells (data-s hooks): base stays, modeled value swaps in
-  const setStat = (key, text, modeled) => {
+  // 1) main Stats cells (data-s hooks): base stays, modeled value swaps in.
+  //    ONE Level chip in the section heading marks the modeled state — the
+  //    per-cell chips ran ragged (James, design feedback).
+  const setStat = (key, text) => {
     const cell = document.querySelector(`[data-s=${key}]`);
-    if (!cell) return;
-    cell.innerHTML = modeled ? `${text}${levelChip(tier)}` : text;
+    if (cell) cell.innerHTML = text;
   };
-  setStat("mana", t.mana !== null ? String(t.mana) : "", tier > 0);
-  setStat("cast", `${t.cast}s`, tier > 0);
-  setStat("rec", `${t.rec}s`, tier > 0);
-  setStat("reuse", `${t.reuse}s`, tier > 0);
-  if (t.resist !== null) setStat("resist", String(t.resist), tier > 0);
-  if (d.hasDur && t.dur !== null) setStat("dur", fmtTicks(t.dur), tier > 0);
+  setStat("mana", t.mana !== null ? String(t.mana) : "");
+  setStat("cast", `${t.cast}s`);
+  setStat("rec", `${t.rec}s`);
+  setStat("reuse", `${t.reuse}s`);
+  if (t.resist !== null) setStat("resist", String(t.resist));
+  if (d.hasDur && t.dur !== null) setStat("dur", fmtTicks(t.dur));
+  const headChip = document.querySelector("[data-s-chip]");
+  if (headChip) headChip.innerHTML = tier > 0 ? levelChip(tier).trim() : "";
 
   // 2) the Scaling-values grid composes caster level x Spell Level
   refreshValueCells();

@@ -60,11 +60,14 @@ BYTE-IDENTICAL to the npm `sql.js-httpvfs@0.8.12` package's `dist/` artifacts
 
 ---
 
-## §6.7 audit (publication blocker — still open)
+## §6.7 audit
 
-- Vendor the **verbatim upstream `LICENSE` files** here as
-  `LICENSE-sql.js.txt` (MIT) and `LICENSE-sql.js-httpvfs.txt` (the full canonical
-  Apache-2.0 text), rather than relying on this summary.
+- ~~Vendor the verbatim upstream LICENSE files~~ **DONE (2026-07-27):**
+  `LICENSE-sql.js.txt` (MIT, fetched verbatim from sql-js/sql.js) and
+  `LICENSE-sql.js-httpvfs.txt` (Apache-2.0 full text, fetched verbatim from
+  phiresky/sql.js-httpvfs @ v0.8.12) now ship alongside the artifacts.
 - ~~Pin the exact sql.js release compiled into `sql-wasm.wasm`~~ **DONE at the
-  npm-package level** (byte-identity above); the upstream sql.js tag INSIDE the
-  0.8.12 build remains to record from its lockfile at the licensing gate.
+  npm-package level** (byte-identity above). The sql.js build inside 0.8.12 is
+  fixed by upstream's v0.8.12 build (sql.js is bundled into dist, not a runtime
+  dependency); its exact tag is upstream's lockfile concern — our provenance
+  boundary is the byte-identical npm artifact, which is recorded.

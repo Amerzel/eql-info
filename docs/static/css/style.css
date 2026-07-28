@@ -21,7 +21,7 @@
 }
 * { box-sizing: border-box; }
 html, body { background: var(--bg); color: var(--fg); margin: 0;
-  font-family: "Segoe UI", system-ui, sans-serif; font-size: 13.5px; }
+  font-family: "Segoe UI", system-ui, sans-serif; font-size: 15px; }
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1, h2 { color: var(--accent); font-family: Georgia, "Times New Roman", serif;
@@ -102,16 +102,45 @@ footer { color: var(--muted); text-align: center; padding: 1.5em;
   border: 0; border-radius: 0; overflow: hidden;
   margin-bottom: 1.4em; }
 .spell-table th, .effects-table th, .kv th {
-  text-align: left; padding: 0.3em 0.7em; background: transparent;
+  text-align: left; padding: 0.28em 0.55em; background: transparent;
   color: #a89658; font-weight: 600; font-size: 0.85em;
   font-variant: small-caps; text-transform: none; letter-spacing: 0.08em;
   border-bottom: 2px solid var(--accent-2); }
 .spell-table td, .effects-table td, .kv td {
-  padding: 0.34em 0.7em; border-bottom: 1px solid var(--bg-3); }
+  padding: 0.24em 0.55em; border-bottom: 1px solid var(--bg-3);
+  line-height: 1.35; }
 .spell-table tr:last-child td, .effects-table tr:last-child td,
 .kv tr:last-child td, .kv tr:last-child th { border-bottom: 0; }
 .spell-table tr:nth-child(even) { background: #202028; }
 .spell-table tr:hover { background: #2a2a24; }
+
+/* Listing tables use an explicit column plan (colgroup in views.js) so every
+   level block on a class page lines up and numeric columns stay compact
+   instead of stretching to fill the page. The unsized column (Name on class
+   pages, Effects on Browse) absorbs the leftover width. */
+.spell-table { table-layout: fixed; }
+.spell-table td, .spell-table th { overflow-wrap: break-word; }
+.spell-table th { white-space: nowrap; }
+.spell-table col.c-icon { width: 38px; }
+.spell-table col.c-lvl  { width: 44px; }
+.spell-table col.c-num  { width: 60px; }
+.spell-table col.c-dur  { width: 80px; }
+/* Targets gets room for the longest in-game string ("Single Friendly (or
+   Self)") on ONE line — wrapped target cells made row heights ragged. */
+.t-class col.c-cat  { width: 19em; }
+.t-class col.c-tgt  { width: 15em; }
+.t-browse col.c-name { width: 15%; }
+.t-browse col.c-cls  { width: 10%; }
+.t-browse col.c-cat  { width: 15%; }
+.t-browse col.c-tgt  { width: 13em; }
+/* Mana / Cast / Duration read as a number column: right-aligned, tabular. */
+.t-class th:nth-child(4), .t-class td:nth-child(4),
+.t-class th:nth-child(5), .t-class td:nth-child(5),
+.t-class th:nth-child(6), .t-class td:nth-child(6),
+.t-browse th:nth-child(7), .t-browse td:nth-child(7),
+.t-browse th:nth-child(8), .t-browse td:nth-child(8),
+.t-browse th:nth-child(9), .t-browse td:nth-child(9) {
+  text-align: right; font-variant-numeric: tabular-nums; }
 
 table.kv { display: table; }
 .kv th { width: 35%; font-weight: 500; letter-spacing: 0.06em;
@@ -290,18 +319,71 @@ ul.sem-effects { list-style: none; padding: 0; margin: 0 0 1.4em;
 .sim-panel { display: flex; gap: 2em; flex-wrap: wrap; align-items: flex-start;
   background: var(--bg-2); border: 1px solid var(--border); border-radius: 4px;
   padding: 0.7em 1em; margin-bottom: 1em; }
-.sim-panel .level-panel, .sim-panel .tier-panel { margin: 0; flex: 1 1 260px; }
+/* Both controls stack label-over-slider so the two sliders sit on the
+   same line at the same height. */
+.sim-panel .level-panel, .sim-panel .tier-panel { margin: 0; flex: 1 1 260px;
+  display: flex; flex-direction: column; align-items: stretch;
+  flex-wrap: nowrap; gap: 0.3em; }
+.sim-panel .level-panel label, .sim-panel .tier-panel label {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sim-panel input[type=range] { width: 100%; flex: none; min-width: 0; }
 .tier-panel input[type=range] { width: 100%; }
 .upg-chip { display: inline-block; background: var(--tag-disc); color: #f0e6d4;
   border-radius: 3px; padding: 0.02em 0.4em; font-size: 0.72em;
   letter-spacing: 0.03em; vertical-align: middle; cursor: help; }
 .upg-modeled { margin: 0.3em 0 0; font-size: 0.9em; }
-.upg-details { margin-top: 0.4em; font-size: 0.88em; }
+/* "?" help popover beside the Spell Level label (replaces the old
+   "How this model works" details block under the slider). */
+.tier-label-row { display: flex; align-items: center; gap: 0.5em;
+  white-space: nowrap; }
+details.help-pop { position: relative; display: inline-block; }
+details.help-pop summary { list-style: none; cursor: help;
+  display: inline-flex; width: 1.25em; height: 1.25em; align-items: center;
+  justify-content: center; font-family: Georgia, serif; font-size: 0.85em;
+  font-weight: 700; color: var(--accent-2); border: 1px solid var(--accent-2); }
+details.help-pop summary::-webkit-details-marker { display: none; }
+details.help-pop summary:hover,
+details.help-pop[open] summary { color: var(--bg); background: var(--accent-2); }
+details.help-pop .help-body { position: absolute; z-index: 60; top: 1.8em;
+  left: 0; width: 28em; max-width: 80vw; background: var(--bg);
+  border: 1px solid var(--accent-2); padding: 0.6em 0.9em;
+  white-space: normal; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  font-size: 0.9em; line-height: 1.45; }
+.help-body p { margin: 0; }
 
 /* Design pass D3 */
 .feature-card.feature-primary { grid-column: 1 / -1; border-left-width: 6px;
   background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); }
 .feature-primary .feature-title { font-size: 1.7rem; }
+
+/* Class-trio banners: a "?" banner per unpicked slot so the three-class
+   pick reads at a glance. Shared by the home Browse card (tease) and the
+   Browse page picker (live slots over the dropdowns). */
+.trio-banner { width: 48px; height: 96px; image-rendering: pixelated;
+  border: 1px solid var(--border); background: #000; display: flex;
+  align-items: center; justify-content: center; }
+.trio-q { color: var(--accent-2); font-family: Georgia, serif;
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(180deg, #26262e, #17171d); }
+.trio-tease { display: flex; gap: 6px; flex: 0 0 auto; }
+.feature-card.feature-primary { flex-direction: row; align-items: center;
+  gap: 1.5em; }
+.feature-body { display: flex; flex-direction: column; gap: 0.45em; flex: 1; }
+.feature-primary:hover .trio-q { border-color: var(--accent);
+  color: var(--accent); }
+.feature-primary .feature-go { align-self: flex-start; margin-top: 0.3em;
+  border: 1px solid var(--accent-2); color: var(--accent);
+  padding: 0.3em 0.9em; letter-spacing: 0.03em; }
+/* Browse picker: banner above its dropdown, "All classes" as a real button. */
+.trio-row { align-items: flex-start; }
+.trio-slot { display: inline-flex; flex-direction: column; align-items: center;
+  gap: 0.35em; }
+.trio-slot select { max-width: 9em; }
+.trio-slot:hover .trio-q { border-color: var(--accent); color: var(--accent); }
+.trio-row .classbtn { align-self: center; padding: 0.45em 1.1em;
+  border-color: var(--accent-2); font-variant: small-caps;
+  font-family: Georgia, serif; font-size: 1rem; letter-spacing: 0.05em; }
+.trio-row > .muted { align-self: center; }
 .search { position: relative; }
 .search-suggest { position: absolute; top: 100%; left: 0; right: 0; z-index: 40;
   background: var(--bg-2); border: 1px solid var(--border); border-radius: 0 0 4px 4px;

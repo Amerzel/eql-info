@@ -187,12 +187,19 @@ export async function renderHome() {
     Search by name above, jump into a tool below, or browse by class.</p>
     <div class="feature-grid">
       <a class="feature-card feature-primary" href="#/spells">
-        <span class="feature-title">Browse Spells — all classes</span>
-        <span class="feature-desc">Every spell in one filterable,
-        sortable table. <strong>Pick your class trio</strong>, search by effect —
-        nuke, heal, snare, lifetap, charm, resists and more — filter by level,
-        and preview values at any caster level.</span>
-        <span class="feature-go">Start browsing →</span>
+        <span class="trio-tease" aria-hidden="true">
+          <span class="trio-banner trio-q">?</span><span
+            class="trio-banner trio-q">?</span><span
+            class="trio-banner trio-q">?</span>
+        </span>
+        <span class="feature-body">
+          <span class="feature-title">Browse Spells — all classes</span>
+          <span class="feature-desc">Every spell in one filterable,
+          sortable table. <strong>Pick your class trio</strong>, search by effect —
+          nuke, heal, snare, lifetap, charm, resists and more — filter by level,
+          and preview values at any caster level.</span>
+          <span class="feature-go">Start browsing →</span>
+        </span>
       </a>
     </div>
     <h2>Browse by class</h2>
@@ -311,7 +318,9 @@ export async function renderClass(classIndex, params) {
     }).join("");
     body += `<section class="level-block">
       <h2>Level ${levelDisplay(lvl)}</h2>
-      <table class="spell-table">
+      <table class="spell-table t-class">
+        <colgroup><col class="c-icon"><col class="c-name"><col class="c-cat"><col
+          class="c-num"><col class="c-num"><col class="c-dur"><col class="c-tgt"></colgroup>
         <thead><tr><th>Icon</th><th>Name</th><th>Category</th><th>Mana</th><th>Cast</th>
           <th>Duration</th><th>Targets</th></tr></thead>
         <tbody>${items}</tbody>
@@ -539,8 +548,18 @@ export async function renderBrowse(params) {
   const classOption = (selIdx) => `<option value="">(any)</option>` +
     Array.from({ length: 16 }, (_, i) => i).map(i =>
       `<option value="${classSlug(i)}"${selIdx === i ? " selected" : ""}>${escapeHtml(CLASS_NAMES[i])}</option>`).join("");
-  const classPickers = [0, 1, 2].map(slot =>
-    `<select name="class">${classOption(clsIdxs[slot] ?? -1)}</select>`).join(" ");
+  // Each slot is a vertical class banner (the class's own banner art when
+  // picked, a "?" placeholder when empty) over its dropdown — the trio reads
+  // as "pick 3" at a glance. The form navigates on change, so the re-render
+  // swaps in the picked class's banner.
+  const classPickers = [0, 1, 2].map(slot => {
+    const idx = clsIdxs[slot] ?? -1;
+    const banner = idx >= 0
+      ? `<img class="trio-banner" alt=""
+           src="static/icons/classes/${String(idx).padStart(2, "0")}.png">`
+      : `<span class="trio-banner trio-q">?</span>`;
+    return `<label class="trio-slot">${banner}<select name="class">${classOption(idx)}</select></label>`;
+  }).join(" ");
   const allParams = new URLSearchParams(params); allParams.delete("class");
   const allBtn = `<a href="#/spells${allParams.toString() ? "?" + allParams.toString() : ""}"
     class="classbtn${clsIdxs.length ? "" : " active"}">All classes</a>`;
@@ -570,10 +589,9 @@ export async function renderBrowse(params) {
     <form class="diff-form" data-form="browse">
       <input type="hidden" name="sort" value="${sort}">
       <input type="hidden" name="dir" value="${dir === "DESC" ? "desc" : "asc"}">
-      <div class="diff-controls" style="margin-bottom:.5em">
-        <span class="muted">Classes:</span>
+      <div class="diff-controls trio-row" style="margin-bottom:.5em">
         ${allBtn}
-        <span class="muted">or pick up to 3:</span>
+        <span class="muted">or pick your trio:</span>
         ${classPickers}
       </div>
       <div class="diff-controls">
@@ -650,7 +668,10 @@ export async function renderBrowse(params) {
       — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}.
       Effect values shown at each spell's own level.</p>
     <p class="muted disclosure">${DISCLOSURE}</p>
-    ${rows.length ? `<table class="spell-table">
+    ${rows.length ? `<table class="spell-table t-browse">
+      <colgroup><col class="c-lvl"><col class="c-icon"><col class="c-name"><col
+        class="c-cls"><col class="c-cat"><col class="c-eff"><col class="c-num"><col
+        class="c-num"><col class="c-dur"><col class="c-tgt"></colgroup>
       <thead>${head}</thead><tbody>${body}</tbody></table>`
       : '<p class="muted">No spells match — pick a caster class or widen the level range.</p>'}
     </div>`;
@@ -863,7 +884,7 @@ export async function renderSpell(spellId, params) {
         ${msgsHtml}
       </section>
       <aside class="col-right">
-        <h2>Stats</h2>
+        <h2>Stats <span data-s-chip></span></h2>
         <table class="kv">
           <tr><th>Mana</th><td data-s="mana">${spell.mana}</td></tr>
           ${spell.endurance_cost ? `<tr><th>Endurance</th><td>${spell.endurance_cost}</td></tr>` : ""}
