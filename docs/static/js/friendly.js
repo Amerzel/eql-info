@@ -18,6 +18,24 @@ const MOVEMENT_SPA = 3;
 const ATTACK_SPEED_SPAS = new Set([11, 98]);  // §3 approved delta wording
 const DAMAGE_SHIELD_SPA = 59;
 
+// James's reviewed label shortening for the effect lines
+// (scratch/effect-verb-shortening.md, 2026-07-28). LISTS/wiki only — the
+// Browse effect-filter dropdown keeps the full EFFECT_LABELS names.
+const SHORT_LABELS = new Map([
+  ["Damage", "Dmg"], ["Healing", "Heal"], ["Armor Class", "AC"],
+  ["Strength", "STR"], ["Max Hit Points", "Max HP"], ["Damage Shield", "DS"],
+  ["Fire Resist", "FR"], ["Magic Resist", "MR"], ["Cold Resist", "CR"],
+  ["Poison Resist", "PR"], ["Disease Resist", "DR"],
+  ["Movement Speed", "Move"], ["Agility", "AGI"], ["Dexterity", "DEX"],
+  ["Attack Power", "Attack"], ["Charisma", "CHA"], ["Endurance", "END"],
+  ["Stamina", "STA"], ["Wisdom", "WIS"], ["Intelligence", "INT"],
+  ["Faction Modifier", "Faction"], ["Modify Hate", "Hate"],
+  ["Reflect Melee Damage", "Reflect"],
+  ["HP Regen While Stationary", "HP Regen"],
+  ["Spell Shield", "SS"], ["Spell Damage Rune", "SDR"],
+]);
+const L = (name) => SHORT_LABELS.get(name) || name;
+
 // "Strength (STR)" -> "STR"; "Melee Haste" -> "Melee Haste".
 function abbrev(spa) {
   const label = EFFECT_LABELS[spa] || spaName(spa);
@@ -55,10 +73,10 @@ function valuePhrase(e, v, sp, rng) {
     const src = e.base_value !== 0 ? e.base_value : e.max_value;
     const harmful = src < 0;
     const perTick = spa === 100 || (spa === 0 && isDot);
-    return `${harmful ? "Damage" : "Healing"}: ${r}${perTick ? " per tick" : ""}`;
+    return `${L(harmful ? "Damage" : "Healing")}: ${r}${perTick ? " per tick" : ""}`;
   }
   if (spa === MANA_SPA) {
-    return `Mana: ${fr(signed(), v, v2)}${isDot ? " per tick" : ""}`;
+    return `${L("Mana")}: ${fr(signed(), v, v2)}${isDot ? " per tick" : ""}`;
   }
   if (spa in COUNTER_SPAS) {
     const kind = COUNTER_SPAS[spa];
@@ -68,21 +86,21 @@ function valuePhrase(e, v, sp, rng) {
   }
   if (spa === MOVEMENT_SPA) {
     if (v <= -95) return "Stops movement";   // e.g. Minor Illusion's −7000
-    return `Movement Speed: ${fr(signed("%"), v, v2)}`;
+    return `${L("Movement Speed")}: ${fr(signed("%"), v, v2)}`;
   }
   if (ATTACK_SPEED_SPAS.has(spa)) {
     // §3 delta semantics (value − 100%-of-normal); the label carries the
     // direction (James): Slow when negative, Haste when positive.
     const d = v - 100, d2 = v2 === undefined ? undefined : v2 - 100;
     if (d === 0) return formatValue(spa, v);
-    return `${d < 0 ? "Slow" : "Haste"}: ${fr(plain("%"), d, d2)}`;
+    return `${L(d < 0 ? "Slow" : "Haste")}: ${fr(plain("%"), d, d2)}`;
   }
   if (spa === DAMAGE_SHIELD_SPA) {
     // damage shields store harm as negative (client renders abs)
-    return v < 0 ? `Damage Shield: ${fr(plain(), v, v2)}`
-                 : `Damage Shield Mitigation: ${fr(plain(), v, v2)}`;
+    return v < 0 ? `${L("Damage Shield")}: ${fr(plain(), v, v2)}`
+                 : `${L("Damage Shield")} Mitigation: ${fr(plain(), v, v2)}`;
   }
-  return `${plainLabel(spa)}: ${fr(signed(), v, v2)}`;
+  return `${L(plainLabel(spa))}: ${fr(signed(), v, v2)}`;
 }
 
 // "≤L55" cap parts become a trailing "(up to L55)" qualifier.

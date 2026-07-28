@@ -1,12 +1,12 @@
 {
   "tool": "eql explorer deploy",
-  "build_time": "2026-07-27T22:06:36",
+  "build_time": "2026-07-28T10:27:25",
   "deploy_subdir": "docs",
-  "deploy_tool_revision": "8005d55f42157c383824d24fc6a898a571eba480",
+  "deploy_tool_revision": "7075d00b6b6b8986c14f8018fcd346fc490e59bb",
   "deploy_tool_dirty": false,
-  "site_build_revision": "8005d55f42157c383824d24fc6a898a571eba480",
+  "site_build_revision": "7075d00b6b6b8986c14f8018fcd346fc490e59bb",
   "site_source_dirty": false,
-  "db_revision": "0e7eb0ed00e8f0e3ca1db6cc7be957d2f8749ccd",
+  "db_revision": "a67b4f911645adab18573e331605fb2b1401d001",
   "schema": {
     "catalog_schema_version": "1",
     "explorer_schema_version": "1",
@@ -14,16 +14,16 @@
   },
   "catalog_digest": "50b36fd85f2d0a393226698648512c350bff876e845fc9ed1003d8c2a14edf8a",
   "source_hashes": {
-    "spells_sha256": "f9c815c8dcc15bb5ebcd4ee41465a29882741695f59ffefd3d65b9324edeaed4",
-    "spells_str_sha256": "d9216897b19f6ade9f892ab4790edde25f0e9e2abdb1fde6608142a3458e1544",
-    "dbstr_sha256": "870e976d7cfbe629471a15b2008d5462571c648b66aa025ae1ac02a9d20a1541"
+    "spells_sha256": "2d797411b94fddd2e5c6a3be18df7e6aef471a4945173839a861a6ddeda29c3a",
+    "spells_str_sha256": "579c52180260392841cb4e40c0039490fc75f1938f78893a3e7025ac19f21401",
+    "dbstr_sha256": "33cafdc1b5518d418112ed084cee416ec17f8974ca2503742326d17381fed106"
   },
   "counts": {
-    "spell_count": "73961",
+    "spell_count": "73963",
     "class_row_count": "50120",
-    "effect_count": "274981",
-    "dbstr_count": "72896",
-    "aa_count": "2576"
+    "effect_count": "274983",
+    "dbstr_count": "72915",
+    "aa_count": "2584"
   },
   "manifest": {
     "404.html": "2b0c6cf3c6c9c5a3880caaa3ce3ec49658d81318c5b89e264ac90946221d6701",
@@ -44,7 +44,7 @@
     "data/spells.json": "3f9c0af9c39a6d04a72374d7ad2e893ca66a390bb722f11f2ad38f60f90e1ab7",
     "index.html": "b3ccf2a8b36731c991690368867f72957fecda25293bad94a358026d85236fb9",
     "static/css/style.css": "f30e8b4c46d02ed9571bcf7ddf57d4833770478b6a331b3499db6e75d64f0bbe",
-    "static/data/spells.sqlite": "f2467d0a2364f046c05011384e1beaa7c7307ee26673cca78cc461647c83ed23",
+    "static/data/spells.sqlite": "6849f54f8f700d2c4482bf2c9199c4dae85fc72f401432f30524d996cb604cec",
     "static/icons/classes/00.png": "61dbec7c7ef5c445a3fd8bdff3e0886e4dac6d82a6e9cb4dcb2833ee9eda2c27",
     "static/icons/classes/01.png": "af0cb1f5f87e7146f72cdbfc51b2609563e3f6c39bb081b14c0020c36632560b",
     "static/icons/classes/02.png": "8c63a14d080996df67ade5f27eda40df122075761fe55fae2496fb37cecef169",
@@ -2332,9 +2332,9 @@
     "static/js/app.js": "709dd8b928e968e3ae85d4413b26d0757b06adf27d9e55710238a75c8a346bac",
     "static/js/data.js": "0059638693a266fde06c15130ecdf87d4384fd2553a2f0ccabb185c34a8c9a10",
     "static/js/db.js": "8d7009d776277c24caaa78accf3f9aa8848dac5033799efc4c066502adc1ac8b",
-    "static/js/db_pin.js": "e324635b60fc942a40f65bfa0a90540eb11ca159dd22c1aecb6fb03289db14f1",
+    "static/js/db_pin.js": "97dfb49de21f7df7b91bdb7dae8a551a67ba20c88c7bbbc558f0e88656706c5e",
     "static/js/field_semantics.js": "7b9ce33e62fe520f3c768ae6ffe9148d7eee3c0a6c61ef74499bf179d09edb88",
-    "static/js/friendly.js": "ee3c8b47526cfaf36a65f7131d070f53cd02be70d65b877b782836da517fff43",
+    "static/js/friendly.js": "130b921b9aa3b60244fc5e9da594093960d8fde350260cde1c99f998924b4d16",
     "static/js/presentation.js": "c9c9380cafcc522af6b03dcd4942b3bb9d97305024b5629baf2d253f9924f266",
     "static/js/races_data.js": "1169ac810af6b83a2e73bf34b0a2b1ba7436442e22e53e2ec82a20b06063a711",
     "static/js/targets.js": "437c44bbb2216ee026f3e26144d9e8ef02bb2cbe9da7397d529f06a3438d5438",
