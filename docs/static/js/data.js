@@ -68,7 +68,8 @@ const HP_DAMAGE_EFFECTS = new Set([0, 69, 79]);
 // Formula 121 is `level/3` per EQEmu source but `level/4` per the
 // content-creator gist; EQL's behavior not yet observed. Going with /3 to
 // match EQEmu canon — flag if a Bard L1 Chant-of-* observation contradicts.
-export function calcSpellValue(base, formula, max, level) {
+// The pre-clamp scaling term at `level` (twin of values.py `_delta`).
+function spellDelta(formula, level, base, max) {
   let delta = 0;
   if (formula === 0 || formula === 100) {
     delta = 0;
@@ -123,6 +124,32 @@ export function calcSpellValue(base, formula, max, level) {
       default:  delta = 0; break;
     }
   }
+  return delta;
+}
+
+// True if the formula's delta grows with level, so `max` is a genuine magnitude
+// floor/cap (twin of values.py `_scales_with_level`). A property of the FORMULA,
+// evaluated independently of any single level's rounded delta — integer-division
+// formulas (101=/2, 109=/4) round to 0 at low levels yet still scale, so testing
+// this level's delta would wrongly skip them and produce a discontinuity.
+function scalesWithLevel(formula) {
+  return spellDelta(formula, 1, 0, 0) !== spellDelta(formula, 10000, 0, 0);
+}
+
+export function calcSpellValue(base, formula, max, level) {
+  const delta = spellDelta(formula, level, base, max);
+  // Decreasing-effect fix: a genuinely-scaling effect whose cap magnitude is
+  // below the base magnitude (SPA-11 Slows: base=90, max=30) shrinks from
+  // |base| toward the |max| FLOOR — it does NOT grow from base and clamp at the
+  // cap. The old sign(base)-only direction collapsed these to the cap value at
+  // every level. Gated on the FORMULA scaling (not this level's rounded delta)
+  // so non-scaling formula-0/100 slots keep their existing behavior AND
+  // integer-division formulas (101=/2, 109=/4) whose delta rounds to 0 at low
+  // levels still shrink smoothly from base rather than jumping off the cap.
+  if (max !== 0 && Math.abs(max) < Math.abs(base) && scalesWithLevel(formula)) {
+    const sign = base < 0 ? -1 : 1;
+    return sign * Math.max(Math.abs(base) - delta, Math.abs(max));
+  }
   let result = base >= 0 ? base + delta : base - delta;
   if (max !== 0) {
     if (base >= 0) {
@@ -133,6 +160,37 @@ export function calcSpellValue(base, formula, max, level) {
     }
   }
   return result;
+}
+
+// The level at which an effect stops changing — its natural design cap, which
+// MAY exceed EQL's L50. Returns the plateau level (1..scanMax), or null if the
+// effect never caps within scanMax (uncapped scaling, typically max===0). Uses
+// the LAST level at which the value changes, so a pre-threshold-flat breakpoint
+// formula (111-118/124-126/139-140) isn't mistaken for capped-at-L1. Twin of
+// values.py cap_level — keep in sync (§6.6).
+export function capLevel(base, formula, max, scanMax = 300) {
+  let prev = calcSpellValue(base, formula, max, 1);
+  let lastChange = 1, topChanged = false;
+  for (let lvl = 2; lvl <= scanMax; lvl++) {
+    const cur = calcSpellValue(base, formula, max, lvl);
+    topChanged = cur !== prev;
+    if (topChanged) lastChange = lvl;
+    prev = cur;
+  }
+  return topChanged ? null : lastChange;   // still climbing at the top → uncapped
+}
+
+// Caster-level slider helpers (shared by renderSpell's init + updateLevelView so
+// the two can't drift). clampLevel maps a raw ?level input to [1, maxLevel],
+// defaulting to maxLevel; spellLevelHash builds the shareable detail-page hash,
+// omitting the param at the default level so the canonical URL stays clean.
+export function clampLevel(raw, maxLevel) {
+  const n = parseInt(raw, 10);
+  return Math.min(maxLevel, Math.max(1, Number.isNaN(n) ? maxLevel : n));
+}
+
+export function spellLevelHash(id, level, maxLevel) {
+  return "#/spell/" + id + (level !== maxLevel ? "?level=" + level : "");
 }
 
 // Formulas whose value shrinks each tick (107, 108, 120, 122). For these

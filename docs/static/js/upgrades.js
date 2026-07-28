@@ -19,8 +19,13 @@
 //
 // Combat-observed only (tooltip-hidden): nuke damage floor(base*(1+0.06t))
 // (exact on Expulse Undead T1-T5); heals ~+3%/t (single datapoint).
+//
+// PROC RULE (James, 2026-07-27): a parent's Spell Level applies to its
+// proc'd spell at HALF rate — Level X parent -> Level V proc (floor(N/2)).
 
 import { MAX_LEVEL, displayedValue } from "./data.js";
+import { formatValue } from "./presentation.js";
+import { renderDuration, substitute } from "./text.js";
 import { escapeHtml } from "./text.js";
 
 const TIER_MAX = 10; // reagent-skip patch note implies cap 10; unverified.
@@ -133,65 +138,193 @@ function valCell(base, upgraded, unit = "") {
   return `${base}${unit} <span class="upg-paren">(${upgraded}${unit})</span>`;
 }
 
-export function renderUpgradePanel(spell, effects) {
-  // Disciplines use endurance and a different advancement system; the mote
-  // UI has only been observed on spells so far.
+// ── D2 (design pass §7): Modeled Upgrades as a FIRST-CLASS control ─────────
+// The tier slider sits beside the caster-level slider; the MAIN Stats table
+// updates in place; the Description re-renders through the EXISTING substitute
+// pipeline fed with MODELED inputs (uniform base+cap scaling keeps ranges as
+// ranges — the 4.4/§7 description contract; tier 0 is byte-identical to the
+// source render). Damage/heal/initial-hit are at-cap quantities and are NOT
+// composed with the caster-level column (order of operations unverified — the
+// same discipline as focus effects); they render as their own modeled line.
+
+// Spell Levels display as roman numerals (in-game style): blank at 0, I..X.
+export const ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
+// Level chip shared by stats/description/value cells.
+export function levelChip(upg) {
+  return upg > 0
+    ? ` <span class="upg-chip" title="Modeled Spell Level — server-side upgrade system, reverse-engineered rates">Level ${ROMAN[upg]}</span>`
+    : "";
+}
+
+// Which model quantity (if any) scales this effect row.
+export function upgradeKind(eid, base) {
+  if (eid === 0 && base < 0) return "dmg";
+  if ((eid === 0 && base > 0) || eid === 100) return "heal";
+  if (eid === 79 && base < 0) return "init";
+  return "none";
+}
+
+// James's direction (D2 review): caster level gives the BASE value; the Spell
+// Level multiplies it. The per-tier multiplier is level-independent by model
+// assumption (multiplicative % system; rates observed at L50).
+export function applyUpgrade(kind, value, upg, rates) {
+  if (!upg || !rates || kind === "none" || value === null) return value;
+  const sign = value < 0 ? -1 : 1;
+  const mag = Math.abs(value);
+  if (kind === "dmg") return sign * Math.floor(mag * (1 + rates.dmgRate * upg));
+  if (kind === "init") return sign * Math.floor(mag * (1 + 0.06 * upg));
+  if (kind === "heal") return sign * Math.round(mag * (1 + rates.healRate * upg));
+  return value;
+}
+
+// Live refresh of the Scaling-values grid: composes the caster-level slider
+// (base value) with the Spell Level (multiplier). Shared by BOTH sliders.
+export function refreshValueCells() {
+  const lvlSlider = document.querySelector("[data-level-slider]");
+  const level = lvlSlider ? Math.max(1, Math.min(+(/** @type {HTMLInputElement} */ (lvlSlider)).value || MAX_LEVEL, MAX_LEVEL)) : MAX_LEVEL;
+  const panel = document.querySelector("[data-upgrade]");
+  const upgSlider = document.querySelector("[data-upgrade-slider]");
+  const upg = (panel && upgSlider) ? Math.max(0, Math.min(+(/** @type {HTMLInputElement} */ (upgSlider)).value || 0, TIER_MAX)) : 0;
+  const rates = panel ? JSON.parse(panel.getAttribute("data-upgrade")) : null;
+  for (const cell of document.querySelectorAll("[data-level-cell]")) {
+    const d = /** @type {HTMLElement} */ (cell).dataset;
+    const mark = cell.querySelector(".fact-mark");
+    const base = displayedValue(+d.eid, +d.base, +d.formula, +d.max, level, d.dur === "1");
+    const kind = d.upg || "none";
+    const scaled = applyUpgrade(kind, base, upg, rates);
+    cell.innerHTML = escapeHtml(formatValue(+d.eid, scaled)) +
+      (kind !== "none" ? levelChip(upg) : "");
+    if (mark) cell.appendChild(mark);
+  }
+  for (const cell of document.querySelectorAll("[data-cap-cell]")) {
+    const d = /** @type {HTMLElement} */ (cell).dataset;
+    const capVal = displayedValue(+d.eid, +d.base, +d.formula, +d.max, +d.cap, d.dur === "1");
+    const kind = d.upg || "none";
+    const scaled = applyUpgrade(kind, capVal, upg, rates);
+    cell.innerHTML = `Caps at L${d.cap}: ${escapeHtml(formatValue(+d.eid, scaled))}` +
+      (kind !== "none" ? levelChip(upg) : "");
+  }
+}
+
+export function renderUpgradeControl(spell, effects, selTier = 0) {
   if (spell.is_discipline) return "";
   const cat = classifyUpgradeCategory(spell, effects);
   const c = computeTiers(spell, effects, cat);
 
   const payload = escapeHtml(JSON.stringify({
     tiers: c.tiers,
-    castBase: fmt2((spell.cast_time || 0) / 1000),
-    recBase: ((spell.recovery_time || 0) / 1000).toFixed(1),
-    reuseBase: Math.max(0, Math.floor((spell.recast_time || 0) / 1000)),
-    manaBase: spell.mana,
-    durBase: c.hasDur ? spell.buff_duration : null,
+    hasDur: c.hasDur, isPerm: c.isPerm,
+    durFormula: spell.buff_duration_formula || 0,
+    durTicks: spell.buff_duration || 0,
+    durRate: cat.dur,
+    dmgRate: cat.key === "dot" ? 0.03 : 0.06,
+    healRate: 0.03,
+    catLabel: cat.label,
   }));
 
-  const catBadge = cat.conf === "solid" ? "" : ` ${Q}`;
-  const durBadge = cat.durConf === "inferred" ? ` ${Q}` : "";
-  const dmgBadge = (cat.key === "nuke" || cat.key === "dot") ? "" : ` ${Q}`;
-  const dmgLabel = cat.key === "dot" ? "Damage/tick" : "Damage";
-
-  // CC spells: SPA 22 (charm) / 31 (mez) max_value = max target level. It
-  // rises with tier (patch notes) but the rate is unknown and the tooltip
-  // text never updates — show the base with a note.
-  const ccEff = effects.find(e => (e.effect_id === 22 || e.effect_id === 31) && e.max_value > 0);
-
-  // Level-scaled uncapped durations (formula > 0, cap = 0, e.g. Boon of the
-  // Garou durf=7) — we can't show absolute ticks, but the rate still applies.
-  const levelScaledDur = !c.hasDur && !c.isPerm && cat.dur !== null &&
-    (spell.buff_duration_formula || 0) > 0 && !(spell.buff_duration > 0);
-
-  const t0 = c.tiers[0];
   return `
-    <h2>Spell upgrades <span class="muted">(motes)</span></h2>
-    <div class="upgrade-panel" data-upgrade='${payload}'>
-      <div class="upgrade-slider-row">
-        <label>Tier <output data-u="tier">0</output></label>
-        <input type="range" min="0" max="${TIER_MAX}" value="0" step="1"
-               data-upgrade-slider aria-label="Upgrade tier">
-      </div>
-      <p class="muted upg-cat">Category: <strong><a href="#/upgrades">${escapeHtml(cat.label)}</a></strong>${catBadge}
-        · cast −${cat.cast * 100}%/tier · mana −${cat.mana * 100}%/tier${cat.dur ? ` · duration +${cat.dur * 100}%/tier` : ""}</p>
-      <table class="kv">
-        ${spell.mana > 0 ? `<tr><th>Mana</th><td data-u="mana">${spell.mana}</td></tr>` : ""}
-        ${spell.cast_time > 0 ? `<tr><th>Cast</th><td data-u="cast">${t0.cast}s</td></tr>` : `<tr><th>Cast</th><td class="muted">Instant (exempt)</td></tr>`}
-        <tr><th>Recovery</th><td data-u="rec">${t0.rec}s</td></tr>
-        <tr><th>Reuse <span class="muted">(in-game)</span></th><td data-u="reuse">${t0.reuse}s</td></tr>
-        ${c.hasDur ? `<tr><th>Duration${durBadge}</th><td data-u="dur">${fmtTicks(spell.buff_duration)}</td></tr>` : ""}
-        ${c.isPerm ? `<tr><th>Duration</th><td class="muted">Permanent (exempt from tier scaling)</td></tr>` : ""}
-        ${levelScaledDur ? `<tr><th>Duration</th><td class="muted">Level-scaled — +${cat.dur * 100}%/tier applies on top</td></tr>` : ""}
-        ${t0.resist !== null ? `<tr><th>Resist mod</th><td data-u="resist">${t0.resist}</td></tr>` : ""}
-        ${cat.key === "pet" ? `<tr><th>Pet level</th><td class="muted">+1 per tier, capped at your level −1</td></tr>` : ""}
-        ${ccEff ? `<tr><th>Max target level</th><td>${ccEff.max_value} <span class="muted">— rises with tier (rate unknown; tooltip text doesn't update)</span></td></tr>` : ""}
-        ${t0.init ? `<tr><th>Initial hit @L${MAX_LEVEL} ${Q}</th><td data-u="init">${t0.init}</td></tr>` : ""}
-        ${t0.dmg ? `<tr><th>${dmgLabel} @L${MAX_LEVEL}${dmgBadge}</th><td data-u="dmg">${t0.dmg}</td></tr>` : ""}
-        ${t0.heal ? `<tr><th>Heal @L${MAX_LEVEL} ${Q}</th><td data-u="heal">${t0.heal}</td></tr>` : ""}
-      </table>
-      ${UPGRADE_CAVEAT}
+    <div class="tier-panel" data-upgrade='${payload}' data-spell-id="${spell.id}">
+      <label>Spell Level <output data-u="tier">${ROMAN[selTier]}</output></label>
+      <input type="range" min="0" max="${TIER_MAX}" value="${selTier}" step="1"
+             data-upgrade-slider aria-label="Spell Level"
+             aria-valuemin="0" aria-valuemax="${TIER_MAX}" aria-valuenow="${selTier}">
+      <details class="raw-detail upg-details"><summary>How this model works</summary>
+        <p class="muted">The upgrade system is <em>server-side</em> — none of these
+        numbers come from client data. Rates are reverse-engineered from
+        community tooltip captures (category: <strong>${escapeHtml(cat.label)}</strong>
+        · cast −${cat.cast * 100}%/tier · mana −${cat.mana * 100}%/tier${cat.dur ? ` · duration +${cat.dur * 100}%/tier` : ""}
+        · recovery/reuse −2%/tier). Damage/heal scaling is combat-observed at
+        L${MAX_LEVEL} and is not combined with the caster-level column (order of
+        operations unverified). Tier cap assumed ${TIER_MAX}. Your own AAs and
+        stances further modify costs. <a href="#/upgrades">Full model →</a></p>
+      </details>
     </div>`;
+}
+
+// Per-tier stat values for the MAIN Stats table (base shown, modeled swap-in).
+export function tierStats(tiers, tier) {
+  return tiers[Math.max(0, Math.min(tier, tiers.length - 1))];
+}
+
+// Live update: tier slider moved. Rewrites the Stats cells, the modeled line,
+// and re-renders the Description through substitute() with MODELED inputs.
+export function updateUpgradePanel(slider) {
+  const panel = slider.closest("[data-upgrade]");
+  if (!panel) return;
+  const d = JSON.parse(panel.getAttribute("data-upgrade"));
+  const tier = Math.max(0, Math.min(+slider.value || 0, TIER_MAX));
+  const out = panel.querySelector("[data-u=tier]");
+  if (out) out.textContent = ROMAN[tier];
+  slider.setAttribute("aria-valuenow", String(tier));
+  const t = d.tiers[tier];
+
+  // 1) main Stats cells (data-s hooks): base stays, modeled value swaps in
+  const setStat = (key, text, modeled) => {
+    const cell = document.querySelector(`[data-s=${key}]`);
+    if (!cell) return;
+    cell.innerHTML = modeled ? `${text}${levelChip(tier)}` : text;
+  };
+  setStat("mana", t.mana !== null ? String(t.mana) : "", tier > 0);
+  setStat("cast", `${t.cast}s`, tier > 0);
+  setStat("rec", `${t.rec}s`, tier > 0);
+  setStat("reuse", `${t.reuse}s`, tier > 0);
+  if (t.resist !== null) setStat("resist", String(t.resist), tier > 0);
+  if (d.hasDur && t.dur !== null) setStat("dur", fmtTicks(t.dur), tier > 0);
+
+  // 2) the Scaling-values grid composes caster level x Spell Level
+  refreshValueCells();
+  // notify proc summaries (they upgrade at HALF the parent's Spell Level)
+  document.dispatchEvent(new CustomEvent("eql:upgrade-changed"));
+
+  // 3) Description: re-render via the ORIGINAL pipeline with modeled inputs.
+  //    Uniform base+cap scaling per supported slot keeps ranges as ranges
+  //    (§7 contract); tier 0 restores the exact source render.
+  const desc = /** @type {HTMLElement|null} */ (document.querySelector(".desc-rendered"));
+  if (desc && desc.dataset.descTemplate !== undefined) {
+    const tmpl = desc.dataset.descTemplate;
+    const effs = JSON.parse(desc.dataset.descEffects || "[]");
+    const durBase = desc.dataset.descDuration || "";
+    if (tier === 0) {
+      desc.innerHTML = desc.dataset.descOriginal;
+    } else {
+      const scaled = effs.map(e => {
+        const r = { ...e };
+        if (e.effect_id === 0 && e.base_value < 0) {          // damage slots
+          r.base_value = -Math.floor(Math.abs(e.base_value) * (1 + d.dmgRate * tier));
+          r.max_value = e.max_value < 0
+            ? -Math.floor(Math.abs(e.max_value) * (1 + d.dmgRate * tier))
+            : Math.floor(e.max_value * (1 + d.dmgRate * tier));
+        } else if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100) {
+          r.base_value = Math.round(e.base_value * (1 + d.healRate * tier));
+          r.max_value = Math.round(e.max_value * (1 + d.healRate * tier));
+        } else if (e.effect_id === 79 && e.base_value < 0) {
+          r.base_value = -Math.floor(Math.abs(e.base_value) * (1 + 0.06 * tier));
+          r.max_value = -Math.floor(Math.abs(e.max_value) * (1 + 0.06 * tier));
+        }
+        return r;
+      });
+      let dur = durBase;
+      if (d.hasDur && d.durRate) {
+        const ticks = Math.round(d.durTicks * (1 + d.durRate * tier));
+        dur = renderDuration(d.durFormula, ticks, MAX_LEVEL);
+      }
+      desc.innerHTML = substitute(tmpl, scaled, dur) +
+        ` <span class="upg-chip" title="Description quantities scaled by the modeled upgrade rates; ranges stay ranges">Level ${ROMAN[tier]}</span>`;
+    }
+  }
+
+  // 4) URL persistence (?tier=N alongside ?level=N)
+  const sid = panel.getAttribute("data-spell-id");
+  if (sid) {
+    try {
+      const base = window.location.hash.split("?")[0];
+      const usp = new URLSearchParams((window.location.hash.split("?")[1] || ""));
+      if (tier > 0) usp.set("upgrade", String(tier)); else usp.delete("upgrade");
+      const qs = usp.toString();
+      history.replaceState(null, "", qs ? `${base}?${qs}` : base);
+    } catch { /* sandboxed */ }
+  }
 }
 
 const UPGRADE_CAVEAT = `
@@ -202,7 +335,7 @@ const UPGRADE_CAVEAT = `
     marked <span class="tier-badge tier-inferred">?</span> are extrapolated
     or combat-observed rather than tooltip-confirmed; your own AAs and
     stances further modify mana costs. Tier cap assumed 10 (unverified past
-    8). <a href="#/upgrades">Full details →</a>
+    8).
   </aside>`;
 
 // ---- general "Spell Upgrades" summary page (#/upgrades) ------------------
@@ -300,25 +433,3 @@ export function renderUpgradesPage() {
 
 // Called from app.js on slider input. Reads the precomputed tier table off
 // the panel's data attribute and rewrites the value cells.
-export function updateUpgradePanel(slider) {
-  const panel = slider.closest(".upgrade-panel");
-  if (!panel) return;
-  let data;
-  try { data = JSON.parse(panel.dataset.upgrade); } catch { return; }
-  const t = Math.max(0, Math.min(data.tiers.length - 1, parseInt(slider.value, 10) || 0));
-  const v = data.tiers[t];
-  const set = (key, html) => {
-    const el = panel.querySelector(`[data-u="${key}"]`);
-    if (el) el.innerHTML = html;
-  };
-  set("tier", String(t));
-  if (v.mana !== null) set("mana", t === 0 ? String(data.manaBase) : valCell(data.manaBase, v.mana));
-  set("cast", t === 0 ? `${data.castBase}s` : valCell(`${data.castBase}s`, `${v.cast}s`));
-  set("rec",  t === 0 ? `${data.recBase}s` : valCell(`${data.recBase}s`, `${v.rec}s`));
-  set("reuse", t === 0 ? `${Math.max(1, data.reuseBase)}s` : valCell(`${Math.max(1, data.reuseBase)}s`, `${v.reuse}s`));
-  if (v.dur !== null) set("dur", t === 0 ? fmtTicks(data.durBase) : valCell(fmtTicks(data.durBase), fmtTicks(v.dur)));
-  if (v.resist !== null) set("resist", String(v.resist));
-  if (v.init) set("init", String(v.init));
-  if (v.dmg) set("dmg", String(v.dmg));
-  if (v.heal) set("heal", String(v.heal));
-}

@@ -1,18 +1,18 @@
 // Description substitution + duration rendering.
 // Ported from app.py (render_duration + substitute).
 
-export function renderDuration(formula, cap) {
-  // buff_duration_formula = 50 marks a permanent buff. Applies to
-  // Shielding lines, Damage Shield coats, Combat Innates, all Rogue
-  // poisons, various perma-buffs — the game shows "Permanent".
-  // The flag overrides any numeric cap (verified in-game on Phantom
-  // Plate cap=720 and Dark Temptation cap=600 — both show "Permanent").
+// Mirrors eqltools.explorer.render.render_duration (Phase 4.5): OBSERVED-ONLY
+// publication. Only formula 3 (30*level per tick, observed via Assiduous Vision)
+// is level-scaled; formula 50 is permanent; a zero cap is instant. EVERY other
+// (EQEmu-reference / unverified) formula keeps the deployed naive cap×6 — we do
+// NOT publish unverified per-level durations. LEVEL IS REQUIRED (no hidden
+// default); callers pass MAX_LEVEL since the SPA has no per-level UI yet.
+export function renderDuration(formula, cap, level) {
+  if (level === undefined) throw new Error("renderDuration: level is required");
   if (formula === 50) return "permanent";
   if (!cap) return "instant";
-  // 1 tick = 6 seconds. We don't try to map every EQ formula precisely; we
-  // expose the cap-as-ticks since that's what the live client shows for most
-  // buffs. If you want true per-level duration it's a formula table lookup.
-  const ticks = cap;
+  const ticks = formula === 3 ? Math.min(30 * level, cap) : cap;
+  if (ticks <= 0) return "instant";
   const secs = ticks * 6;
   if (secs >= 60) {
     const m = Math.floor(secs / 60);

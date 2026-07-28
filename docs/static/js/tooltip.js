@@ -6,6 +6,8 @@ import { query, queryOne, dbstr } from "./db.js";
 import {
   targetName, resistName, MAX_LEVEL, spaName, displayedValue, limitValueLabel,
 } from "./data.js";
+import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
+import { buildResolvers } from "./views.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, escapeHtml,
 } from "./text.js";
@@ -33,16 +35,17 @@ async function loadSpell(spellId) {
     if (!spell) throw new Error("not found");
     const effects = await query(
       "SELECT * FROM spell_effects WHERE spell_id = ? ORDER BY slot", [spellId]);
+    const resolvers = await buildResolvers(effects, query);
     const classes = await query(
       `SELECT class_index, class_name, min_level FROM spell_classes
         WHERE spell_id = ? AND min_level <= ?
         ORDER BY min_level, class_index`, [spellId, MAX_LEVEL]);
-    const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration);
+    const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration, MAX_LEVEL);
     const descRaw = await dbstr(spell.description_id, 6);
     const description = descRaw ? substitute(descRaw, effects, duration) : "";
     const category = spell.spell_category > 0
       ? await dbstr(spell.spell_category, 27) : null;
-    return { spell, effects, classes, duration, description, category };
+    return { spell, effects, classes, duration, description, category, resolvers };
   })();
   cache.set(spellId, p);
   return p;
@@ -64,7 +67,7 @@ export function prefetchSpells(spellIds) {
 }
 
 function renderTooltip(data) {
-  const { spell, effects, classes, duration, description, category } = data;
+  const { spell, effects, classes, duration, description, category, resolvers } = data;
   const padded = String(spell.new_icon || 0).padStart(4, "0");
   const iconHtml = spell.new_icon
     ? `<img src="static/icons/icon_${padded}.png" class="tt-icon" alt="">` : "";
@@ -72,17 +75,35 @@ function renderTooltip(data) {
     ? `<dt>Endurance</dt><dd>${spell.endurance_cost || 0}</dd>`
     : `<dt>Mana</dt><dd>${spell.mana || 0}</dd>`;
   const isDuration = (spell.buff_duration_formula || 0) > 0;
-  const effectsHtml = effects.length
+  const visEffects = effects.filter(e => !isPaddingRow(
+    e.effect_id, e.base_value, e.limit_value, e.max_value, e.formula));
+  const effectsHtml = visEffects.length
     ? `<table class="tt-effects">
          <thead><tr><th>#</th><th>Effect</th><th>@L1</th><th>@L${MAX_LEVEL}</th><th>Lim</th><th>Form</th></tr></thead>
-         <tbody>${effects.map(e => `<tr>
+         <tbody>${visEffects.map(e => {
+           const pres = presentEffect(e.effect_id, e.base_value || 0,
+             e.limit_value || 0, e.max_value || 0, e.formula || 0,
+             { level: MAX_LEVEL, isDuration,
+               beneficial: !!(spell.good_effect),
+               teleportZone: spell.teleport_zone || null,
+               spellName: resolvers.spellName, raceName: resolvers.raceName });
+           const factMark = pres.publication === "fact"
+             ? ' <span class="fact-mark" title="EQL-grounded">✓</span>' : "";
+           const cells = pres.kind === "value"
+             ? `<td>${escapeHtml(formatValue(e.effect_id, displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)))}</td>
+                <td>${escapeHtml(formatValue(e.effect_id, displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)))}${factMark}</td>`
+             : `<td colspan="2"${pres.rawDetail ? ` title="${escapeHtml(pres.rawDetail)}"` : ""}>${
+                 pres.kind === "suppressed" ? "" :
+                 (escapeHtml(presentationText(pres)) || "—")}${factMark}</td>`;
+           return `<tr>
            <td>${e.slot + 1}</td>
            <td>${escapeHtml(spaName(e.effect_id))} <span class="muted">#${e.effect_id}</span></td>
-           <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)}</td>
-           <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)}</td>
+           ${cells}
            <td>${escapeHtml(limitValueLabel(e.effect_id, e.limit_value))}</td>
-           <td>${e.formula}</td></tr>`).join("")}
-         </tbody></table>`
+           <td>${e.formula}</td></tr>`;
+         }).join("")}
+         </tbody></table>
+         <div class="tt-note muted">${DISCLOSURE}</div>`
     : '<p class="muted">No effects.</p>';
   const classesHtml = classes.length
     ? `<div class="tt-classes">${classes.map(c =>
@@ -164,7 +185,7 @@ function hide() {
 }
 
 document.addEventListener("mouseover", (evt) => {
-  const link = evt.target.closest('a[href^="#/spell/"]');
+  const link = /** @type {Element} */ (evt.target).closest('a[href^="#/spell/"]');
   if (!link) return;
   activeLink = link;
   clearTimeout(hoverTimer);
@@ -175,7 +196,7 @@ document.addEventListener("mouseover", (evt) => {
   }, HOVER_DELAY_MS);
 });
 document.addEventListener("mouseout", (evt) => {
-  const link = evt.target.closest('a[href^="#/spell/"]');
+  const link = /** @type {Element} */ (evt.target).closest('a[href^="#/spell/"]');
   if (!link) return;
   activeLink = null;
   clearTimeout(hoverTimer);

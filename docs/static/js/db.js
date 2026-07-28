@@ -2,34 +2,46 @@
 // static/data/spells.sqlite; the browser issues HTTP Range requests to read
 // only the b-tree pages it needs.
 //
-// We import the library from jsDelivr to avoid an npm build step. Pin the
-// version explicitly so we don't accidentally break on upgrades.
+// SERVED-SURFACE GATE (docs/SERVED-SURFACE.md): production consumes ONLY
+// manifest-authenticated resources —
+//   * the library is VENDORED byte-exact from npm sql.js-httpvfs@0.8.12
+//     (dist/index.js, UMD; loaded as a classic script because no ESM build
+//     exists — the exact-bytes vendoring is what keeps provenance clean);
+//   * the production DB URL is pinned to an IMMUTABLE commit (db_pin.js,
+//     enforced by the deploy flow), never a mutable branch.
+import { DB_PIN_COMMIT } from "./db_pin.js";
 
-// We import the main library via esm.sh (it ESM-wraps the UMD bundle).
-// The Web Worker and WASM binary are vendored locally because the Worker
-// constructor enforces same-origin — loading sqlite.worker.js from a CDN
-// throws a SecurityError. esm.sh only re-exports the UMD result as
-// `default`, so we destructure createDbWorker off it.
-import sqlJsHttpvfs from "https://esm.sh/sql.js-httpvfs@0.8.12";
-const { createDbWorker } = sqlJsHttpvfs;
-
+const LIB_URL = new URL("static/vendor/sql.js-httpvfs-0.8.12.js", document.baseURI).href;
 const WORKER_URL = new URL("static/vendor/sqlite.worker.js", document.baseURI).href;
 const WASM_URL   = new URL("static/vendor/sql-wasm.wasm",   document.baseURI).href;
 
-// GitHub Pages opportunistically gzips application/octet-stream and serves
-// byte ranges in the compressed-byte space, which makes sql.js-httpvfs fail
-// (it expects ranges in uncompressed bytes). raw.githubusercontent.com does
-// not gzip and sends proper Range responses with CORS, so we route the
-// DB fetch through it when running on Pages. Local dev keeps the relative
-// path so serve_docs.py (range-capable) can serve the file directly.
-const RAW_URL = "https://raw.githubusercontent.com/Amerzel/eql-info/main/docs/static/data/spells.sqlite";
-
+// GitHub Pages gzips application/octet-stream when the client negotiates it
+// and then serves ranges in COMPRESSED-byte space, which breaks sql.js-httpvfs
+// (it needs ranges over the uncompressed file). raw.githubusercontent.com
+// serves proper uncompressed Range responses with CORS — pinned to the exact
+// deployed-DB commit so the bytes are immutable and audit-bound.
 function dbUrl() {
   const host = window.location.hostname;
   if (host === "localhost" || host === "127.0.0.1" || host === "") {
     return new URL("static/data/spells.sqlite", document.baseURI).href;
   }
-  return RAW_URL;
+  return "https://raw.githubusercontent.com/Amerzel/eql-info/" +
+         DB_PIN_COMMIT + "/docs/static/data/spells.sqlite";
+}
+
+// The vendored UMD attaches its exports (createDbWorker) to window when loaded
+// as a classic script. Loaded lazily, once.
+let _libPromise = null;
+function loadLib() {
+  if (_libPromise) return _libPromise;
+  _libPromise = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = LIB_URL;
+    s.onload = () => resolve(/** @type {any} */ (window).createDbWorker);
+    s.onerror = () => reject(new Error("failed to load sql.js-httpvfs"));
+    document.head.appendChild(s);
+  });
+  return _libPromise;
 }
 
 let _workerPromise = null;
@@ -41,7 +53,7 @@ const REQUEST_CHUNK_SIZE = 65536;
 
 export function initDb() {
   if (_workerPromise) return _workerPromise;
-  _workerPromise = createDbWorker(
+  _workerPromise = loadLib().then((createDbWorker) => createDbWorker(
     [{
       from: "inline",
       config: {
@@ -52,7 +64,7 @@ export function initDb() {
     }],
     WORKER_URL,
     WASM_URL,
-  );
+  ));
   return _workerPromise;
 }
 

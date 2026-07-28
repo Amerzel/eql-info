@@ -5,7 +5,7 @@ import { query, queryOne, dbstr } from "./db.js";
 import {
   CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
   targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
-  displayedValue, confidenceTier, limitValueLabel,
+  displayedValue, capLevel, clampLevel, spellLevelHash, confidenceTier, limitValueLabel,
   EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
   EFFECT_LIFETAP, EFFECT_MANATAP, EFFECT_GROUPS,
 } from "./data.js";
@@ -14,12 +14,132 @@ import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
   escapeHtml,
 } from "./text.js";
-import { renderUpgradePanel } from "./upgrades.js";
+import { ROMAN, applyUpgrade, classifyUpgradeCategory, levelChip, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
+import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
+import { FIELD_SEMANTICS } from "./field_semantics.js";
 
 function iconImg(newIcon, cls = "icon") {
   if (!newIcon || newIcon < 1) return "";
   const padded = String(newIcon).padStart(4, "0");
   return `<img src="static/icons/icon_${padded}.png" class="${cls}" alt="">`;
+}
+
+// Render presentation parts (5A.4): link spell-ref parts; suppressed -> "";
+// conservative -> an em dash with the labelled raw detail in the title.
+// Collect spell-id / race-id targets from effects (per the registry roles)
+// and prefetch their names — the honest resolver contract: display-only,
+// degrades to #id when absent.
+export async function buildResolvers(effects, queryFn) {
+  const spellIds = new Set(), raceIds = new Set();
+  for (const e of effects) {
+    const ent = FIELD_SEMANTICS[String(e.effect_id)];
+    if (!ent) continue;
+    const raws = { base: e.base_value, limit: e.limit_value,
+                   max: e.max_value, formula: e.formula };
+    for (const [f, fm] of Object.entries(ent.fields)) {
+      const v = raws[f];
+      if (!v) continue;
+      if (fm.role === "spell-id") spellIds.add(v);
+      if (fm.role === "race-id") raceIds.add(v);
+    }
+  }
+  const spellNames = new Map(), raceNames = new Map();
+  if (spellIds.size) {
+    const rows = await queryFn(
+      `SELECT id, name FROM spells WHERE id IN (${[...spellIds].join(",")})`);
+    for (const r of rows) spellNames.set(r.id, r.name);
+  }
+  if (raceIds.size) {
+    const rows = await queryFn(
+      `SELECT id, text FROM dbstr WHERE type = 11 AND id IN (${[...raceIds].join(",")})`);
+    for (const r of rows) raceNames.set(r.id, r.text);
+  }
+  return { spellName: id => spellNames.get(id) || null,
+           raceName: id => raceNames.get(id) || null };
+}
+
+// D3 §4 (+ James's D3 review): a COMPACT summary of the proc's triggered
+// spell — expanded by default, one level deep (text only, no nested
+// expansions). PROC UPGRADE RULE (James, 2026-07-27): the parent's Spell
+// Level applies to the proc'd spell at HALF RATE — a Level X spell procs a
+// Level V triggered spell (floor(N/2)). Base proc chance stays server-side.
+function _currentUpgradeLevel() {
+  const s = /** @type {HTMLInputElement|null} */ (
+    document.querySelector("[data-upgrade-slider]"));
+  return s ? Math.max(0, Math.min(+s.value || 0, 10)) : 0;
+}
+
+function _currentCasterLevel() {
+  const s = /** @type {HTMLInputElement|null} */ (
+    document.querySelector("[data-level-slider]"));
+  return s ? Math.max(1, Math.min(+s.value || MAX_LEVEL, MAX_LEVEL)) : MAX_LEVEL;
+}
+
+export async function loadProcInline(det, force = false) {
+  const el = /** @type {HTMLElement} */ (det);
+  if (el.dataset.loaded && !force) return;
+  el.dataset.loaded = "1";
+  const body = el.querySelector(".proc-body");
+  const sid = +el.dataset.procSpell;
+  try {
+    const sp = await queryOne("SELECT * FROM spells WHERE id = ?", [sid]);
+    if (!sp) { body.textContent = "Triggered spell not found."; return; }
+    const effs = await query(
+      "SELECT * FROM spell_effects WHERE spell_id = ? ORDER BY slot", [sid]);
+    const resolvers = await buildResolvers(effs, query);
+    const procLevel = Math.floor(_currentUpgradeLevel() / 2);   // HALF rate
+    const casterLevel = _currentCasterLevel();                   // base values follow it
+    const cat = classifyUpgradeCategory(sp, effs);
+    const rates = { dmgRate: cat.key === "dot" ? 0.03 : 0.06, healRate: 0.03 };
+    const parts = effs
+      .filter(e => e.effect_id !== 254 && !isPaddingRow(
+        e.effect_id, e.base_value, e.limit_value, e.max_value, e.formula))
+      .slice(0, 5).map(e => {
+        const pres = presentEffect(e.effect_id, e.base_value || 0,
+          e.limit_value || 0, e.max_value || 0, e.formula || 0,
+          { level: casterLevel,
+            isDuration: (sp.buff_duration_formula || 0) > 0,
+            beneficial: !!sp.good_effect,
+            teleportZone: sp.teleport_zone || null,
+            spellName: resolvers.spellName, raceName: resolvers.raceName });
+        if (pres.kind === "value") {
+          const kind = upgradeKind(e.effect_id, e.base_value);
+          const v = applyUpgrade(kind, pres.value, procLevel, rates);
+          const src = e.base_value !== 0 ? e.base_value : e.max_value;
+          const lbl = escapeHtml(shortEffectLabel(e.effect_id, src));
+          const chip = kind !== "none" && procLevel > 0 ? levelChip(procLevel) : "";
+          return (v ? `${lbl} ${Math.abs(v).toLocaleString()}` : lbl) + chip;
+        }
+        if (pres.kind === "suppressed") return "";
+        return escapeHtml(presentationText(pres));
+      }).filter(Boolean);
+    const dur = renderDuration(sp.buff_duration_formula, sp.buff_duration, MAX_LEVEL);
+    const half = procLevel > 0
+      ? `<span class="muted"> · procs upgrade at half the spell's Level → Level ${ROMAN[procLevel]}</span>` : "";
+    body.innerHTML = `
+      ${iconImg(sp.new_icon)} <a href="#/spell/${sp.id}">${escapeHtml(sp.name)}</a>
+      <span class="muted">— ${parts.join(" · ") || "no effects"}${dur && !/^instant$/i.test(dur) ? ` · ${escapeHtml(dur)}` : ""}</span>${half}
+      <div class="muted proc-note">Base proc chance is server-side (DEX-dependent) and
+      not present in spell data.</div>`;
+  } catch (err) {
+    body.textContent = "Could not load the triggered spell.";
+  }
+}
+
+// The parent Spell Level slider moved: re-render every loaded proc summary at
+// the new half-rate level (upgrades.js dispatches; no import cycle).
+document.addEventListener("eql:upgrade-changed", () => {
+  for (const det of document.querySelectorAll("details[data-proc-spell]")) {
+    if (/** @type {HTMLElement} */ (det).dataset.loaded) loadProcInline(det, true);
+  }
+});
+
+function presPartsHtml(pres) {
+  if (pres.kind === "suppressed") return "";
+  if (!pres.parts.length) return '<span class="muted">—</span>';
+  return pres.parts.map(p => p.linkSpellId
+    ? `<a href="#/spell/${p.linkSpellId}">${escapeHtml(p.text)}</a>`
+    : escapeHtml(p.text)).join(" · ");
 }
 
 function link(href, text) {
@@ -66,19 +186,13 @@ export async function renderHome() {
     <p class="lede">${total.toLocaleString()} spells obtainable at L1–${MAX_LEVEL}.
     Search by name above, jump into a tool below, or browse by class.</p>
     <div class="feature-grid">
-      <a class="feature-card" href="#/spells">
-        <span class="feature-title">Browse Spells</span>
-        <span class="feature-desc">Every spell in one filterable, sortable table.
-        Pick a class trio and search by effect — nuke, heal, snare, lifetap,
-        charm, resists and more — plus level and cast type.</span>
-        <span class="feature-go">Open browser →</span>
-      </a>
-      <a class="feature-card" href="#/upgrades">
-        <span class="feature-title">Spell Upgrades</span>
-        <span class="feature-desc">The mote tier system: per-tier benefits by
-        category, plus a tier slider on every spell's detail page to preview
-        upgraded values.</span>
-        <span class="feature-go">View upgrades →</span>
+      <a class="feature-card feature-primary" href="#/spells">
+        <span class="feature-title">Browse Spells — all classes</span>
+        <span class="feature-desc">Every spell in one filterable,
+        sortable table. <strong>Pick your class trio</strong>, search by effect —
+        nuke, heal, snare, lifetap, charm, resists and more — filter by level,
+        and preview values at any caster level.</span>
+        <span class="feature-go">Start browsing →</span>
       </a>
     </div>
     <h2>Browse by class</h2>
@@ -228,13 +342,6 @@ const CLASS_ABBR = ["WAR", "CLR", "PAL", "RNG", "SHD", "DRU", "MNK", "BRD",
 // Sortable columns → the SQL expression to ORDER BY.
 const BROWSE_SORTS = { name: "s.name", level: "min_level", mana: "s.mana", cast: "s.cast_time" };
 
-// SPAs whose base_value is an id/reference/flag, not a magnitude — show the
-// label alone (e.g. "Summon Item", not "CreateItem 22,502"). Covers item/pet/
-// form references, proc/trigger spell ids, and stacking directives.
-const NO_VALUE_SPAS = new Set([
-  32, 33, 44, 58, 71, 85, 106, 109, 146, 148, 149, 289, 340, 374, 475, 537,
-]);
-
 // Compact per-effect label for the Effects summary column (eqltools-style).
 function shortEffectLabel(id, sign) {
   if (id === 0 || id === 79) return sign < 0 ? "Dmg" : "Heal";
@@ -243,20 +350,49 @@ function shortEffectLabel(id, sign) {
 }
 
 // "AC 15 · MaxHp 20 · Heal 20" — up to 5 effects, each valued at `level`.
-function effectsSummary(effs, level) {
-  // Skip blank slots: SPA 254, and padding effects that carry no magnitude
-  // (base 0 & max 0 — e.g. unused CHA slots, redundant portal-location rows).
+// `sp` supplies the SPELL context the core requires (good_effect,
+// buff_duration_formula, teleport_zone) — 5A.4 hardening finding 1.
+function effectsSummary(effs, level, sp, resolvers) {
+  // Skip SPA 254 and ONLY the approved exact padding signature (5A.1 sign-off);
+  // the generic base==0&&max==0 filter was REJECTED (hid 34 real rows).
   const meaningful = effs.filter(e =>
-    e.effect_id !== 254 && !(e.base_value === 0 && e.max_value === 0));
-  const parts = meaningful.slice(0, 5).map(e => {
-    const src = e.base_value !== 0 ? e.base_value : e.max_value;
-    const lbl = escapeHtml(shortEffectLabel(e.effect_id, src));
-    if (NO_VALUE_SPAS.has(e.effect_id)) return lbl;   // base is an id, not a value
-    let v = displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, level, false);
-    if (e.effect_id === 0 || e.effect_id === 79 || e.effect_id === 100) v = Math.abs(v);
-    return v ? `${lbl} ${v.toLocaleString()}` : lbl;
-  });
-  const extra = meaningful.length - parts.length;
+    e.effect_id !== 254 && !isPaddingRow(e.effect_id, e.base_value,
+                                         e.limit_value, e.max_value, e.formula));
+  const shown = meaningful.slice(0, 5);
+  const parts = shown.map(e => {
+    // registry-driven (5A.4): the presentation core decides what each field
+    // MEANS; magnitudes keep the legacy label+value form for parity.
+    const pres = presentEffect(e.effect_id, e.base_value || 0, e.limit_value || 0,
+                               e.max_value || 0, e.formula || 0, {
+                                 level,
+                                 isDuration: (sp?.buff_duration_formula || 0) > 0,
+                                 beneficial: !!(sp?.good_effect),
+                                 teleportZone: sp?.teleport_zone || null,
+                                 spellName: resolvers?.spellName || null,
+                                 raceName: resolvers?.raceName || null });
+    if (pres.kind === "value") {
+      const src = e.base_value !== 0 ? e.base_value : e.max_value;
+      const lbl = escapeHtml(shortEffectLabel(e.effect_id, src));
+      let v = pres.value;
+      if (e.effect_id === 0 || e.effect_id === 79 || e.effect_id === 100) v = Math.abs(v);
+      const vmark = pres.publication === "fact"
+        ? ' <span class="fact-mark" title="EQL-grounded">✓</span>' : "";
+      if (e.effect_id === 11 || e.effect_id === 98) {
+        return escapeHtml(formatValue(e.effect_id, v)) + vmark;   // §3 delta wording
+      }
+      return (v ? `${lbl} ${v.toLocaleString()}` : lbl) + vmark;
+    }
+    if (pres.kind === "suppressed") return "";
+    const mark = pres.publication === "fact"
+      ? ' <span class="fact-mark" title="EQL-grounded">✓</span>' : "";
+    return (escapeHtml(presentationText(pres)) || escapeHtml(spaName(e.effect_id))) + mark;
+  }).filter(Boolean);
+  // one semantic claim once: identical part strings collapse (e.g. a spell
+  // with several rows resolving to the same displayed claim)
+  const seen = new Set();
+  const deduped = parts.filter(p => !seen.has(p) && seen.add(p));
+  parts.length = 0; parts.push(...deduped);
+  const extra = meaningful.length - shown.length;
   return parts.join(" · ") + (extra > 0 ? ` <span class="muted">+${extra}</span>` : "");
 }
 
@@ -352,6 +488,7 @@ export async function renderBrowse(params) {
   const idSubq = `SELECT s.id FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
                   WHERE ${where.join(" AND ")} GROUP BY s.id`;
   const catMap = new Map(), effMap = new Map();
+  let browseResolvers = null;
   if (rows.length) {
     const catRows = await query(
       `SELECT s.id, dc.text AS cat, de.text AS cat2
@@ -361,7 +498,7 @@ export async function renderBrowse(params) {
         WHERE s.id IN (${idSubq})`, args);
     for (const r of catRows) catMap.set(r.id, r);
     const effRows = await query(
-      `SELECT se.spell_id, se.effect_id, se.base_value, se.max_value, se.formula
+      `SELECT se.spell_id, se.effect_id, se.base_value, se.limit_value, se.max_value, se.formula
          FROM spell_effects se
         WHERE se.spell_id IN (${idSubq})
         ORDER BY se.spell_id, se.slot`, args);
@@ -369,6 +506,7 @@ export async function renderBrowse(params) {
       if (!effMap.has(e.spell_id)) effMap.set(e.spell_id, []);
       effMap.get(e.spell_id).push(e);
     }
+    browseResolvers = await buildResolvers(effRows, query);
   }
 
   // Class-aware effect list: when a trio is selected, restrict the Effect
@@ -470,7 +608,7 @@ export async function renderBrowse(params) {
     const catText = cat.cat2 && cat.cat2 !== cat.cat
       ? `${escapeHtml(cat.cat)} · ${escapeHtml(cat.cat2)}`
       : (cat.cat ? escapeHtml(cat.cat) : "");
-    const effText = effectsSummary(effMap.get(sp.id) || [], sp.min_level);
+    const effText = effectsSummary(effMap.get(sp.id) || [], sp.min_level, sp, browseResolvers);
     return `<tr>
       <td>${levelDisplay(sp.min_level)}</td>
       <td>${iconImg(sp.new_icon)}</td>
@@ -511,6 +649,7 @@ export async function renderBrowse(params) {
     <p class="muted">${rows.length.toLocaleString()} spell${rows.length === 1 ? "" : "s"}${capped}
       — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}.
       Effect values shown at each spell's own level.</p>
+    <p class="muted disclosure">${DISCLOSURE}</p>
     ${rows.length ? `<table class="spell-table">
       <thead>${head}</thead><tbody>${body}</tbody></table>`
       : '<p class="muted">No spells match — pick a caster class or widen the level range.</p>'}
@@ -521,7 +660,11 @@ export async function renderBrowse(params) {
 // SPELL DETAIL
 // ---------------------------------------------------------------------------
 
-export async function renderSpell(spellId) {
+export async function renderSpell(spellId, params) {
+  // Caster-level slider selection (1..MAX_LEVEL), from the URL hash so it is
+  // shareable and survives reload. Defaults to MAX_LEVEL (no behavior change).
+  const selLevel = clampLevel(params && params.get("level"), MAX_LEVEL);
+  const selUpgrade = Math.max(0, Math.min(+(params && params.get("upgrade")) || 0, 10));
   const spell = await queryOne("SELECT * FROM spells WHERE id = ?", [spellId]);
   if (!spell) return `<p>Spell #${spellId} not found.</p>`;
   const effects = await query(
@@ -540,7 +683,13 @@ export async function renderSpell(spellId) {
         ORDER BY rank, id`, [spell.spell_group]);
   }
 
-  const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration);
+  // Duration is rendered at the L50 cap and does NOT track the level slider.
+  // Only f3 (and f50 permanent) are OBSERVED; the plan records f3's sub-L50
+  // values as extrapolated, not observed (OPEN_SOURCE_PLAN §4.2). Publishing a
+  // scaled duration below L50 (and desyncing it from the fixed L50 description
+  // %z token) is deferred until lower-level duration publication is approved.
+  // The description likewise stays at L50 (its #N/@N are base/max — Phase 4.4).
+  const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration, MAX_LEVEL);
   const descText = await dbstr(spell.description_id, 6);
   const typeText = await dbstr(spell.type_description_id, 5);
   const effectText = await dbstr(spell.effect_description_id, 5);
@@ -557,23 +706,108 @@ export async function renderSpell(spellId) {
     if (tier === "unknown")  return `<span class="tier-badge tier-unknown"  title="Unknown formula or SPA — value may be wrong">!</span>`;
     return "";
   };
-  const effectsHtml = effects.length ? `
+  // Per-effect natural design cap (the level it stops scaling). The @Lcap
+  // column only appears when at least one effect scales past L50 or never caps —
+  // no visual noise on spells that fully cap by 50.
+  // 5A.4: the presentation core (registry-driven) decides each row's meaning.
+  // The TABLE hides only the approved exact padding signature; the full effect
+  // list still feeds description substitution and the upgrade panel.
+  const visEffects = effects.filter(e => !isPaddingRow(
+    e.effect_id, e.base_value, e.limit_value, e.max_value, e.formula));
+  const resolvers = await buildResolvers(visEffects, query);
+  const press = visEffects.map(e => presentEffect(
+    e.effect_id, e.base_value || 0, e.limit_value || 0, e.max_value || 0,
+    e.formula || 0, { level: MAX_LEVEL, isDuration,
+                      beneficial: !!spell.good_effect,
+                      teleportZone: spell.teleport_zone || null,
+                      spellName: resolvers.spellName,
+                      raceName: resolvers.raceName }));
+  // ── adaptive sections (design pass D1): the corpus splits nearly evenly
+  //    into value rows and semantic rows — render only the sections this
+  //    spell actually has (backlog §1, approved). Column model per §2:
+  //    one slider-driven value column + a level-led Scaling limit.
+  const valueRows = [], semanticRows = [];
+  visEffects.forEach((e, i) => {
+    const pres = press[i];
+    if (pres.kind === "value") valueRows.push([e, pres]);
+    else if (pres.kind !== "suppressed") semanticRows.push([e, pres]);
+  });
+  const dv = (e, lvl) => displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, lvl, isDuration);
+  const scalingLimit = (e) => {
+    const c = capLevel(e.base_value, e.formula, e.max_value);
+    if (c === null)
+      return `<td class="val val-cap beyond" title="Scales every level with no ceiling">No formula cap</td>`;
+    if (c <= 1)
+      return `<td class="val val-cap" title="Does not scale with caster level">Fixed</td>`;
+    if (c > MAX_LEVEL)
+      return `<td class="val val-cap beyond" data-cap-cell data-eid="${e.effect_id}" data-base="${e.base_value}"
+        data-formula="${e.formula}" data-max="${e.max_value}" data-cap="${c}" data-dur="${isDuration ? 1 : 0}"
+        data-upg="${upgradeKind(e.effect_id, e.base_value)}"
+        title="EQL caps at L${MAX_LEVEL}; the full classic value needs L${c}">Caps at L${c}: ${escapeHtml(formatValue(e.effect_id, dv(e, c)))}</td>`;
+    return `<td class="val val-cap" title="Stops scaling at L${c} (within EQL's L${MAX_LEVEL})">Caps at L${c}</td>`;
+  };
+  const factOf = (pres) => pres.publication === "fact"
+    ? ' <span class="fact-mark" title="EQL-grounded">✓</span>' : "";
+  // non-base parts of a VALUE row (e.g. Accuracy's skill qualifier) ride
+  // along in the Effect cell as muted context
+  const sideParts = (pres) => {
+    const extra = pres.parts.filter(p => p.field !== "base" && p.text);
+    return extra.length
+      ? ` <span class="muted">· ${extra.map(p => escapeHtml(p.text)).join(" · ")}</span>` : "";
+  };
+  const hasProc = semanticRows.some(([, pres]) => pres.parts.some(p => p.linkSpellId));
+  const levelSlider = (valueRows.length || hasProc) ? `
+    <div class="level-panel" data-level-panel data-spell-id="${spell.id}">
+      <label for="lvlSlider">Caster level: <output id="lvlOut" data-level-out>${selLevel}</output>
+        <span class="muted">(the value column follows this)</span></label>
+      <input id="lvlSlider" type="range" min="1" max="${MAX_LEVEL}" value="${selLevel}"
+             data-level-slider aria-label="Caster level"
+             aria-valuemin="1" aria-valuemax="${MAX_LEVEL}" aria-valuenow="${selLevel}">
+    </div>` : "";
+  const valuesHtml = valueRows.length ? `
+    <h3 class="fx-section">Scaling values</h3>
     <table class="effects-table">
-      <thead><tr><th>Slot</th><th>Effect</th><th>@L1</th><th>@L${MAX_LEVEL}</th>
-        <th>Limit</th><th>Formula</th></tr></thead>
-      <tbody>${effects.map(e => {
+      <thead><tr><th>Slot</th><th>Effect</th>
+        <th class="val" data-level-col-head>At L${selLevel}</th>
+        <th class="val">Scaling limit</th></tr></thead>
+      <tbody>${valueRows.map(([e, pres]) => {
         const tier = confidenceTier(e.effect_id, e.formula);
         return `<tr class="tier-${tier}">
         <td>${e.slot + 1}</td>
         <td><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
-            <span class="muted">#${e.effect_id}</span></td>
-        <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, 1, isDuration)} ${tierBadge(tier)}</td>
-        <td>${displayedValue(e.effect_id, e.base_value, e.formula, e.max_value, MAX_LEVEL, isDuration)}</td>
-        <td>${escapeHtml(limitValueLabel(e.effect_id, e.limit_value))}</td>
-        <td>${e.formula}</td>
+            <span class="muted">#${e.effect_id}</span>${sideParts(pres)} ${tierBadge(tier)}</td>
+        <td class="val val-live" data-level-cell data-eid="${e.effect_id}" data-base="${e.base_value}"
+            data-formula="${e.formula}" data-max="${e.max_value}" data-dur="${isDuration ? 1 : 0}"
+            data-upg="${upgradeKind(e.effect_id, e.base_value)}">${escapeHtml(formatValue(e.effect_id, dv(e, selLevel)))}${factOf(pres)}</td>
+        ${scalingLimit(e)}
       </tr>`;
       }).join("")}</tbody>
-    </table>` : `<p class="muted">No effects recorded.</p>`;
+    </table>` : "";
+  const semanticHtml = semanticRows.length ? `
+    <h3 class="fx-section">Other effects</h3>
+    <ul class="sem-effects">${semanticRows.map(([e, pres]) => `
+      <li class="sem-effect">
+        <span class="pres-cell"><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
+          <span class="muted">—</span> ${presPartsHtml(pres) || '<span class="muted">—</span>'}${factOf(pres)}</span>
+        ${(() => {
+          const proc = pres.parts.find(p => p.linkSpellId);
+          return proc ? `
+        <details class="proc-inline" data-proc-spell="${proc.linkSpellId}" open>
+          <summary>Triggered effect</summary>
+          <div class="proc-body muted">Loading…</div>
+        </details>` : "";
+        })()}
+        <details class="raw-detail"><summary>Technical details</summary>
+          <span class="muted">slot ${e.slot + 1} · base ${e.base_value} · limit ${e.limit_value}
+          · max ${e.max_value} · formula ${e.formula}${pres.rawDetail ? ` · ${escapeHtml(pres.rawDetail)}` : ""}</span>
+        </details>
+      </li>`).join("")}</ul>` : "";
+  const tierControl = renderUpgradeControl(spell, effects, selUpgrade);
+  const simPanel = (levelSlider || tierControl)
+    ? `<div class="sim-panel">${levelSlider}${tierControl}</div>` : "";
+  const effectsHtml = (valueRows.length || semanticRows.length)
+    ? `${simPanel}${valuesHtml}${semanticHtml}`
+    : `${simPanel}<p class="muted">No effects recorded.</p>`;
 
   const classesHtml = classes.length ? `
     <table class="kv">${classes.map(c => `<tr>
@@ -612,28 +846,35 @@ export async function renderSpell(spellId) {
     <div class="cols">
       <section class="col-left">
         <h2>Description</h2>
-        ${rendered ? `<div class="desc desc-rendered">${rendered}</div>` : ""}
+        ${rendered ? `<div class="desc desc-rendered"
+          data-desc-original="${escapeHtml(rendered)}"
+          data-desc-template="${escapeHtml(descText || "")}"
+          data-desc-duration="${escapeHtml(duration)}"
+          data-desc-effects="${escapeHtml(JSON.stringify(effects.map(e => ({
+            slot: e.slot, effect_id: e.effect_id, base_value: e.base_value,
+            limit_value: e.limit_value, max_value: e.max_value, formula: e.formula,
+          }))))}">${rendered}</div>` : ""}
         ${descText ? `<details class="raw-detail"><summary>Template text (placeholders visible)</summary><pre class="desc-raw">${escapeHtml(descText)}</pre></details>` : ""}
         ${catText ? `<p class="muted"><strong>Category:</strong> ${escapeHtml(catText)} <span class="muted">(code ${spell.spell_category})</span></p>` : ""}
         ${typeText ? `<p class="muted"><strong>Type:</strong> ${escapeHtml(typeText)}</p>` : ""}
         ${effectText ? `<p class="muted"><strong>Effect:</strong> ${escapeHtml(effectText)}</p>` : ""}
         ${secText ? `<p class="muted"><strong>Secondary:</strong> ${escapeHtml(secText)}</p>` : ""}
-        <h2>Effects</h2>${effectsHtml}
+        <h2>Effects</h2>\n        <p class="muted disclosure">${DISCLOSURE}</p>${effectsHtml}
         ${msgsHtml}
       </section>
       <aside class="col-right">
         <h2>Stats</h2>
         <table class="kv">
-          <tr><th>Mana</th><td>${spell.mana}</td></tr>
+          <tr><th>Mana</th><td data-s="mana">${spell.mana}</td></tr>
           ${spell.endurance_cost ? `<tr><th>Endurance</th><td>${spell.endurance_cost}</td></tr>` : ""}
-          <tr><th>Cast time</th><td>${fmtSeconds(spell.cast_time)}s</td></tr>
-          <tr><th>Reuse <span class="muted">(in-game)</span></th><td>${Math.floor((spell.recast_time || 0) / 1000)}s
+          <tr><th>Cast time</th><td data-s="cast">${fmtSeconds(spell.cast_time)}s</td></tr>
+          <tr><th>Reuse <span class="muted">(in-game)</span></th><td data-s="reuse">${Math.floor((spell.recast_time || 0) / 1000)}s
               <span class="muted">(raw recast: ${fmtSeconds(spell.recast_time)}s)</span></td></tr>
-          <tr><th>Recovery <span class="muted">(internal)</span></th><td>${fmtSeconds(spell.recovery_time)}s</td></tr>
-          <tr><th>Duration</th><td>${duration}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
+          <tr><th>Recovery <span class="muted">(internal)</span></th><td data-s="rec">${fmtSeconds(spell.recovery_time)}s</td></tr>
+          <tr><th>Duration <span class="muted">(@L${MAX_LEVEL})</span></th><td data-s="dur">${duration}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
           <tr><th>Range</th><td>${spell.range}</td></tr>
           ${spell.aoe_range ? `<tr><th>AoE range</th><td>${spell.aoe_range}</td></tr>` : ""}
-          <tr><th>Resist diff</th><td>${spell.resist_difficulty}</td></tr>
+          <tr><th>Resist diff</th><td data-s="resist">${spell.resist_difficulty}</td></tr>
           ${spell.timer_id ? `<tr><th>Timer (shared cooldown)</th><td>${spell.timer_id}</td></tr>` : ""}
           ${spell.reflectable === -1 ? `<tr><th>Reflectable</th><td>Yes</td></tr>` :
             (spell.reflectable === 0 && spell.good_effect === 0
@@ -642,11 +883,35 @@ export async function renderSpell(spellId) {
           ${spell.teleport_zone ? `<tr><th>Teleport / pet</th><td>${escapeHtml(spell.teleport_zone)}</td></tr>` : ""}
           ${spell.recourse_link ? `<tr><th>Recourse</th><td><a href="#/spell/${spell.recourse_link}">spell #${spell.recourse_link}</a></td></tr>` : ""}
         </table>
-        ${renderUpgradePanel(spell, effects)}
         <h2>Classes</h2>${classesHtml}
         ${lineHtml}
       </aside>
     </div>`;
+}
+
+// Live-recompute the spell detail page when the caster-level slider moves — no
+// re-route (mirrors the upgrade-tier slider). Updates ONLY the @L{selected}
+// effect-value column. Duration and description are deliberately NOT rerendered:
+// duration is observed-only at L50 (sub-L50 values are extrapolated, not
+// approved for publication — §4.2), and the description's #N/@N are base/max,
+// level-independent (§4.4). Persists ?level in the hash via replaceState so it
+// stays shareable without triggering a navigation.
+export function updateLevelView(slider) {
+  const level = clampLevel(slider.value, MAX_LEVEL);
+  slider.setAttribute("aria-valuenow", String(level));
+  const out = document.querySelector("[data-level-out]");
+  if (out) out.textContent = String(level);
+  for (const h of document.querySelectorAll("[data-level-col-head]")) h.textContent = "At L" + level;
+  refreshValueCells();                    // composes caster level × Spell Level
+  for (const det of document.querySelectorAll("details[data-proc-spell]")) {
+    if (/** @type {HTMLElement} */ (det).dataset.loaded) loadProcInline(det, true);
+  }
+  const panel = slider.closest("[data-level-panel]");
+  const id = panel && panel.dataset.spellId;
+  if (id) {
+    try { history.replaceState(null, "", spellLevelHash(id, level, MAX_LEVEL)); }
+    catch { /* file:// — ignore */ }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -686,16 +951,16 @@ export async function renderEffect(eid) {
     [eid, MAX_LEVEL]);
   return `<nav class="breadcrumb"><a href="#/">Classes</a> › Effect ${escapeHtml(spaName(eid))}</nav>
     <h1>Spells using ${escapeHtml(spaName(eid))} <span class="muted">#${eid}</span></h1>
-    <p class="muted">First 500 spells matching this spell-affect, restricted to L≤${MAX_LEVEL}.</p>
+    <p class="muted">First 500 spells matching this spell-affect, restricted to L≤${MAX_LEVEL}.\n      Raw field values shown verbatim (unverified corpus). ${DISCLOSURE}</p>
     <table class="spell-table">
       <thead><tr><th>Icon</th><th>Name</th><th>Slot</th>
-        <th>Base</th><th>Limit</th><th>Formula</th><th>Max</th></tr></thead>
+        <th>Raw Base</th><th>Raw Limit</th><th>Formula</th><th>Raw Max</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td>${iconImg(r.new_icon)}</td>
         <td><a href="#/spell/${r.id}">${escapeHtml(r.name)}</a></td>
         <td>${r.slot + 1}</td>
         <td>${r.base_value}</td>
-        <td>${escapeHtml(limitValueLabel(eid, r.limit_value))}</td>
+        <td>${r.limit_value} <span class="muted">${escapeHtml(limitValueLabel(eid, r.limit_value))}</span></td>
         <td>${r.formula}</td><td>${r.max_value}</td>
       </tr>`).join("")}</tbody>
     </table>`;
@@ -715,8 +980,8 @@ export async function renderSkills() {
   const all = new Set();
   const groups = Object.entries(SKILL_CATEGORIES).map(([cat, ids]) => {
     ids.forEach(i => all.add(i));
-    const items = SKILLS.filter(s => ids.includes(s.id))
-      .sort((a, b) => a.name.localeCompare(b.name));
+    const items = SKILLS.filter(s => ids.includes(/** @type {number} */ (s.id)))
+      .sort((a, b) => String(a.name).localeCompare(String(b.name)));
     return { cat, items };
   });
   const uncategorized = SKILLS.filter(s => !all.has(s.id));
