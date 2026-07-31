@@ -624,7 +624,7 @@ export async function renderBrowse(params) {
       <div class="diff-controls trio-row" style="margin-bottom:.5em">
         ${allBtn}
         <span class="muted">or pick your trio:</span>
-        ${classPickers}
+        <span class="trio-slots">${classPickers}</span>
       </div>
       <div class="diff-controls">
         <label>Effect: ${effectSelect}</label>

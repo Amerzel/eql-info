@@ -328,9 +328,10 @@ ul.sem-effects { list-style: none; padding: 0; margin: 0 0 1.4em;
   background: var(--bg-2); border: 1px solid var(--border); border-radius: 4px;
   padding: 0.7em 1em; margin-bottom: 1em; }
 /* Both controls stack label-over-slider so the two sliders sit on the
-   same line at the same height. */
+   same line at the same height. min-width:0 lets the nowrap labels
+   ellipsize instead of forcing the panel (and the page) wide on phones. */
 .sim-panel .level-panel, .sim-panel .tier-panel { margin: 0; flex: 1 1 260px;
-  display: flex; flex-direction: column; align-items: stretch;
+  min-width: 0; display: flex; flex-direction: column; align-items: stretch;
   flex-wrap: nowrap; gap: 0.3em; }
 .sim-panel .level-panel label, .sim-panel .tier-panel label {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -382,7 +383,10 @@ details.help-pop .help-body { position: absolute; z-index: 60; top: 1.8em;
 .feature-primary .feature-go { align-self: flex-start; margin-top: 0.3em;
   border: 1px solid var(--accent-2); color: var(--accent);
   padding: 0.3em 0.9em; letter-spacing: 0.03em; }
-/* Browse picker: banner above its dropdown, "All classes" as a real button. */
+/* Browse picker: banner above its dropdown, "All classes" as a real button.
+   .trio-slots is a grouping wrapper: invisible on desktop (display:contents),
+   it lets the three slots wrap as ONE unit on mobile. */
+.trio-slots { display: contents; }
 .trio-row { align-items: flex-start; }
 .trio-slot { display: inline-flex; flex-direction: column; align-items: center;
   gap: 0.35em; }
@@ -441,3 +445,80 @@ input[type=range]::-moz-range-track { height: 4px;
 input[type=range]::-moz-range-thumb { width: 13px; height: 13px;
   border-radius: 0; background: var(--accent); border: 1px solid #17171d;
   box-shadow: 0 0 4px rgba(216,194,122,.5); }
+
+/* ── Mobile (≤720px) ─────────────────────────────────────────────────────
+   The desktop column plan is unreadable at phone widths, so the LISTING
+   tables become stacked cards: icon + name headline, effects lines
+   full-width, then one labeled meta line. Pure CSS — the markup and the
+   desktop layout are untouched. */
+@media (max-width: 720px) {
+  main { padding: 0 0.7em 2em; margin-top: 0.8em; }
+  h1 { font-size: 1.45rem; }
+  header { flex-wrap: wrap; gap: 0.5em; padding: 0.6em 0.7em; }
+  .brand { font-size: 1.15rem; }
+  .search { flex: 1 1 100%; display: flex; }
+  .search input { flex: 1; width: auto; min-width: 0; }
+  .search-suggest { position: fixed; left: 0.7em; right: 0.7em; top: auto; }
+
+  /* listing tables → cards */
+  .spell-table { table-layout: auto; }
+  .spell-table, .spell-table tbody { display: block; width: 100%; }
+  .spell-table thead, .spell-table colgroup { display: none; }
+  .spell-table tr { display: flex; flex-wrap: wrap; align-items: baseline;
+    column-gap: 0.55em; row-gap: 0.1em; padding: 0.55em 0.1em;
+    border-bottom: 1px solid var(--bg-3); }
+  .spell-table td { display: block; border: 0; padding: 0; width: auto;
+    text-align: left !important; }
+  .spell-table tr:nth-child(even) { background: transparent; }
+
+  /* shared card roles: icon leads, name is the headline, effects and the
+     meta cells take their own lines below */
+  .t-class td:nth-child(1), .t-browse td:nth-child(2) { order: 1;
+    align-self: center; }
+  .t-class td:nth-child(2), .t-browse td:nth-child(3) { order: 2;
+    flex: 1; font-size: 1.05em; }
+  .t-class td:nth-child(3), .t-browse td:nth-child(6) { order: 3;
+    flex-basis: 100%; padding-left: 30px; }
+  /* meta cells: small, muted, labeled via ::before */
+  .t-class td:nth-child(n+4), .t-browse td:nth-child(n+7),
+  .t-browse td:nth-child(4), .t-browse td:nth-child(5) {
+    order: 4; font-size: 0.82em; color: var(--muted); padding-left: 0; }
+  .t-class td:nth-child(4)::before  { content: none; }        /* category shows bare */
+  .t-class td:nth-child(5)::before  { content: "Mana "; }
+  .t-class td:nth-child(6)::before  { content: "Cast "; }
+  .t-class td:nth-child(7)::before  { content: "Dur "; }
+  .t-browse td:nth-child(7)::before { content: "Mana "; }
+  .t-browse td:nth-child(8)::before { content: "Cast "; }
+  .t-browse td:nth-child(9)::before { content: "Dur "; }
+  /* browse's level chip folds into the name line, before the icon */
+  .t-browse td:nth-child(1) { order: 0; color: var(--accent-2);
+    font-weight: 600; }
+  .t-browse td:nth-child(1)::before { content: "L"; }
+  .t-browse td:nth-child(4) { flex-basis: 100%; order: 5; }   /* classes */
+  .spell-table .fx-line { line-height: 1.35; }
+
+  /* wide pages have nothing to be wide about anymore */
+  main:has(.wide-page) { max-width: 100%; }
+
+  /* detail page: the two-column grid becomes plain blocks (a stacked GRID
+     still inherits child min-content and forces the page wide); data tables
+     scroll inside themselves, never the page */
+  .cols { display: block; }
+  .effects-table, table.kv { display: block; overflow-x: auto; }
+  .effects-table tbody, .kv tbody { display: table; width: 100%; }
+  .spell-header { flex-wrap: wrap; }
+  .sim-panel { gap: 0.8em; }
+  .sim-panel .level-panel, .sim-panel .tier-panel { flex-basis: 100%; }
+  .spell-tooltip { display: none; }   /* hover tooltips have no hover on touch */
+
+  /* trio picker: button + text head the block, the three slots sit
+     together on their own row with smaller banners */
+  .trio-banner { width: 34px; height: 68px; }
+  .trio-q { font-size: 1.3rem; }
+  .trio-slot select { max-width: 6.2em; }
+  .trio-row { column-gap: 0.5em; }
+  .trio-slots { display: flex; gap: 0.5em; flex: 1 1 100%; }
+  .feature-card.feature-primary { flex-direction: column;
+    align-items: flex-start; gap: 0.7em; }
+  .class-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
