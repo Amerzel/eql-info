@@ -135,12 +135,18 @@ document.addEventListener("eql:upgrade-changed", () => {
   }
 });
 
-function presPartsHtml(pres) {
+function presPartsHtml(pres, spa) {
   if (pres.kind === "suppressed") return "";
   if (!pres.parts.length) return '<span class="muted">—</span>';
-  return pres.parts.map(p => p.linkSpellId
-    ? `<a href="#/spell/${p.linkSpellId}">${escapeHtml(p.text)}</a>`
-    : escapeHtml(p.text)).join(" · ");
+  return pres.parts.map(p => {
+    if (p.linkSpellId) return `<a href="#/spell/${p.linkSpellId}">${escapeHtml(p.text)}</a>`;
+    // CHARM RULE hook: charm's target-level cap scales +1 per Spell Level —
+    // tag the cap so the upgrade slider can rewrite it live (upgrades.js).
+    if (spa === 22 && p.role === "target-level-cap" && p.rawValue) {
+      return `<span data-charm-cap data-cap-base="${p.rawValue}">${escapeHtml(p.text)}</span>`;
+    }
+    return escapeHtml(p.text);
+  }).join(" · ");
 }
 
 function link(href, text) {
@@ -838,7 +844,7 @@ export async function renderSpell(spellId, params) {
     <ul class="sem-effects">${semanticRows.map(([e, pres]) => `
       <li class="sem-effect">
         <span class="pres-cell"><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
-          <span class="muted">—</span> ${presPartsHtml(pres) || '<span class="muted">—</span>'}${factOf(pres)}</span>
+          <span class="muted">—</span> ${presPartsHtml(pres, e.effect_id) || '<span class="muted">—</span>'}${factOf(pres)}</span>
         ${(() => {
           const proc = pres.parts.find(p => p.linkSpellId);
           return proc ? `

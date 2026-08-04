@@ -22,6 +22,8 @@
 //
 // PROC RULE (James, 2026-07-27): a parent's Spell Level applies to its
 // proc'd spell at HALF rate — Level X parent -> Level V proc (floor(N/2)).
+// CHARM RULE (James, 2026-08-03, in-game): each Spell Level raises a charm
+// spell's target-level cap (SPA 22 max_value) by +1.
 
 import { MAX_LEVEL, displayedValue } from "./data.js";
 import { formatValue } from "./presentation.js";
@@ -205,6 +207,12 @@ export function refreshValueCells() {
     cell.innerHTML = `Caps at L${d.cap}: ${escapeHtml(formatValue(+d.eid, scaled))}` +
       (kind !== "none" ? levelChip(upg) : "");
   }
+  // CHARM RULE (James, in-game, 2026-08-03): upgrading a charm spell raises
+  // its target-level cap by +1 per Spell Level rank.
+  for (const el of document.querySelectorAll("[data-charm-cap]")) {
+    const base = +(/** @type {HTMLElement} */ (el).dataset.capBase) || 0;
+    el.innerHTML = `≤L${base + upg}${upg > 0 ? levelChip(upg) : ""}`;
+  }
 }
 
 export function renderUpgradeControl(spell, effects, selTier = 0) {
@@ -237,7 +245,9 @@ export function renderUpgradeControl(spell, effects, selTier = 0) {
           · recovery/reuse −2%/tier). Damage/heal scaling is combat-observed at
           L${MAX_LEVEL} and is not combined with the caster-level column (order of
           operations unverified). Tier cap assumed ${TIER_MAX}. Your own AAs and
-          stances further modify costs. <a href="#/upgrades">Full model →</a></p></div>
+          stances further modify costs.${effects.some(e => e.effect_id === 22)
+            ? " <strong>Charm:</strong> each Spell Level raises the charmable target-level cap by 1 (in-game observed)."
+            : ""} <a href="#/upgrades">Full model →</a></p></div>
         </details>
       </div>
       <input type="range" min="0" max="${TIER_MAX}" value="${selTier}" step="1"
