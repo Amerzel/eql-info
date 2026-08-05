@@ -2,4 +2,4 @@
 // deploy flow whenever the DB payload changes (deploy refuses a payload whose
 // DB does not match this pin — see explorer/deploy.py). Never point at a
 // mutable ref: production must consume only manifest-authenticated bytes.
-export const DB_PIN_COMMIT = "cc375ccf13030aa549aef655577409adee33e2bc";
+export const DB_PIN_COMMIT = "446284d136d2920129fc93db47305882c2a25bcb";
