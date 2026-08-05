@@ -2,10 +2,10 @@
 // Source of truth: src/eqltools/spells/tables/field_semantics.py
 // Regenerate: python -m eqltools.spells.tables.field_semantics --emit-js
 //   > web/static/js/field_semantics.js
-// version=1 digest=d65420041dd2cd255ee6887ff3d09bef7c394dd657a6ae70b6755d8b0db380fd
+// version=1 digest=819cc6f9664e0813c09e3a577cf8922babb73d80d0f040db7af5a7e603be293c
 // eqemu_reference_revision=b69fa9cbcd7517f5f9d909d93de4778164268f0d
 export const FIELD_SEMANTICS_VERSION = 1;
-export const FIELD_SEMANTICS_DIGEST = "d65420041dd2cd255ee6887ff3d09bef7c394dd657a6ae70b6755d8b0db380fd";
+export const FIELD_SEMANTICS_DIGEST = "819cc6f9664e0813c09e3a577cf8922babb73d80d0f040db7af5a7e603be293c";
 export const APPROVED_INVENTORY_DIGEST = "8844d7f8137177babd7604d20fd2710236859e1aa9595852da4605015ddbc403";
 export const BOUND_RAW_CORPUS_DIGEST = "c28f2b0dd8751701fd55fa5c2e826b8600db29e18287d802bd45839df71b7178";
 export const OBS_CITATION_SYNTAX = "^obs:OBS-\\d{4}-\\d{3}$";
@@ -49,8 +49,8 @@ export const FIELD_SEMANTICS = {
     "family": "magnitude",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 1 SpellEffect::ArmorClass",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-025",
+        "evidence": "OBSERVED",
         "role": "magnitude"
       },
       "formula": {
@@ -2090,17 +2090,17 @@ export const FIELD_SEMANTICS = {
     "resolver_citation": "eqemu-spdat:SPA 42 SpellEffect::ShadowStep"
   },
   "44": {
-    "family": "unknown",
+    "family": "magnitude",
     "fields": {
       "base": {
-        "citation": "",
-        "evidence": "UNKNOWN",
-        "role": "unresolved"
+        "citation": "obs:OBS-2026-012",
+        "evidence": "OBSERVED",
+        "role": "magnitude"
       },
       "formula": {
-        "citation": "",
-        "evidence": "UNKNOWN",
-        "role": "unresolved"
+        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
+        "evidence": "REFERENCE",
+        "role": "scaling"
       },
       "limit": {
         "citation": "",
@@ -2108,13 +2108,13 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "max": {
-        "citation": "",
-        "evidence": "UNKNOWN",
-        "role": "unresolved"
+        "citation": "eql-canonical-corpus:SPA 44 max=0 on every row",
+        "evidence": "EQL_DATA",
+        "role": "unused"
       }
     },
-    "note": "EQL overload in promised-heal data; runtime marker meaning not established",
-    "resolver": "'\u2014' plus labelled raw detail",
+    "note": "EQL repurposing of the promised-heal line OBSERVED 2026-08-05: a delayed heal fired at buff expiry; base = the heal amount (Budding Heal desc substitutes it via #3: 'and then healing for 18')",
+    "resolver": "value core (number); render as the FINAL heal fired at buff expiry",
     "resolver_citation": "eqemu-spdat:SPA 44 SpellEffect::Lycanthropy"
   },
   "457": {
@@ -2793,8 +2793,8 @@ export const FIELD_SEMANTICS = {
     "family": "magnitude",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 69 SpellEffect::TotalHP",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-026",
+        "evidence": "OBSERVED",
         "role": "magnitude"
       },
       "formula": {

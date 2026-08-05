@@ -27,7 +27,7 @@
 
 import { MAX_LEVEL, displayedValue } from "./data.js";
 import { formatValue } from "./presentation.js";
-import { renderDuration, substitute } from "./text.js";
+import { durationTicks, renderDuration, substitute } from "./text.js";
 import { escapeHtml } from "./text.js";
 
 const TIER_MAX = 10; // reagent-skip patch note implies cap 10; unverified.
@@ -261,6 +261,77 @@ export function tierStats(tiers, tier) {
   return tiers[Math.max(0, Math.min(tier, tiers.length - 1))];
 }
 
+// Level+tier description composition (client-accurate, OBS-2026-027):
+// the client substitutes #N with the LEVEL-SCALED value (Minor Healing reads
+// "healing 12" at CLR1), while %z prose stays the CAP duration (Strengthen
+// prose says 27:00 at an actual 12:00 — OBS-2026-001/024). Tier scaling
+// (the modeled upgrade rates) composes on top; ranges stay ranges (§7).
+export function descEffectsAt(effects, level, tier, rates) {
+  return effects.map(e => {
+    const r = { ...e };
+    r.base_value = displayedValue(e.effect_id, e.base_value, e.formula,
+                                  e.max_value, level, false);
+    if (tier > 0 && rates) {
+      if (e.effect_id === 0 && (e.base_value < 0)) {
+        r.base_value = Math.floor(Math.abs(r.base_value) * (1 + rates.dmgRate * tier));
+        r.max_value = Math.floor(Math.abs(e.max_value) * (1 + rates.dmgRate * tier));
+      } else if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100 ||
+                 e.effect_id === 44) {
+        r.base_value = Math.round(Math.abs(r.base_value) * (1 + rates.healRate * tier));
+        r.max_value = Math.round(Math.abs(e.max_value) * (1 + rates.healRate * tier));
+      } else if (e.effect_id === 79 && e.base_value < 0) {
+        r.base_value = Math.floor(Math.abs(r.base_value) * (1 + 0.06 * tier));
+        r.max_value = Math.floor(Math.abs(e.max_value) * (1 + 0.06 * tier));
+      }
+    }
+    return r;
+  });
+}
+
+function _sliderState() {
+  const lvlSlider = /** @type {HTMLInputElement|null} */ (document.querySelector("[data-level-slider]"));
+  const level = lvlSlider ? Math.max(1, Math.min(+lvlSlider.value || MAX_LEVEL, MAX_LEVEL)) : MAX_LEVEL;
+  const panel = document.querySelector("[data-upgrade]");
+  const upgSlider = /** @type {HTMLInputElement|null} */ (document.querySelector("[data-upgrade-slider]"));
+  const tier = (panel && upgSlider) ? Math.max(0, Math.min(+upgSlider.value || 0, TIER_MAX)) : 0;
+  const rates = panel ? JSON.parse(panel.getAttribute("data-upgrade")) : null;
+  return { level, tier, rates };
+}
+
+export function refreshDescription() {
+  const desc = /** @type {HTMLElement|null} */ (document.querySelector(".desc-rendered"));
+  if (!desc || desc.dataset.descTemplate === undefined) return;
+  const { level, tier, rates } = _sliderState();
+  const effs = JSON.parse(desc.dataset.descEffects || "[]");
+  const scaled = descEffectsAt(effs, level, tier, rates);
+  let dur = desc.dataset.descDuration || "";      // %z = CAP prose (client behavior)
+  if (tier > 0 && rates && rates.hasDur && rates.durRate) {
+    const ticks = Math.round(rates.durTicks * (1 + rates.durRate * tier));
+    dur = renderDuration(rates.durFormula, ticks, MAX_LEVEL);
+  }
+  desc.innerHTML = substitute(desc.dataset.descTemplate, scaled, dur) +
+    (tier > 0 ? ` <span class="upg-chip" title="Description quantities scaled by the modeled upgrade rates; ranges stay ranges">Level ${ROMAN[tier]}</span>` : "");
+}
+
+// The Stats Duration row follows the caster level (f3/f11 are OBSERVED
+// level-scaling) and composes the modeled tier duration bonus.
+export function refreshDurationStat() {
+  const cell = /** @type {HTMLElement|null} */ (document.querySelector("[data-s=dur]"));
+  if (!cell || cell.dataset.durFormula === undefined) return;
+  const { level, tier, rates } = _sliderState();
+  const f = +cell.dataset.durFormula, cap = +cell.dataset.durCap;
+  let ticks = durationTicks(f, cap, level);
+  if (ticks < 0) { cell.innerHTML = "permanent"; return; }
+  if (tier > 0 && rates && rates.hasDur && rates.durRate) {
+    ticks = Math.round(ticks * (1 + rates.durRate * tier));
+  }
+  const label = document.querySelector("[data-dur-level]");
+  if (label) label.textContent = "@L" + level;
+  cell.innerHTML = (ticks <= 0 ? "instant" : fmtTicks(ticks)) +
+    (tier > 0 ? levelChip(tier) : "") +
+    (cap ? ` <span class="muted">(formula ${f}, cap ${cap})</span>` : "");
+}
+
 // Live update: tier slider moved. Rewrites the Stats cells, the modeled line,
 // and re-renders the Description through substitute() with MODELED inputs.
 export function updateUpgradePanel(slider) {
@@ -285,7 +356,6 @@ export function updateUpgradePanel(slider) {
   setStat("rec", `${t.rec}s`);
   setStat("reuse", `${t.reuse}s`);
   if (t.resist !== null) setStat("resist", String(t.resist));
-  if (d.hasDur && t.dur !== null) setStat("dur", fmtTicks(t.dur));
   const headChip = document.querySelector("[data-s-chip]");
   if (headChip) headChip.innerHTML = tier > 0 ? levelChip(tier).trim() : "";
 
@@ -294,42 +364,9 @@ export function updateUpgradePanel(slider) {
   // notify proc summaries (they upgrade at HALF the parent's Spell Level)
   document.dispatchEvent(new CustomEvent("eql:upgrade-changed"));
 
-  // 3) Description: re-render via the ORIGINAL pipeline with modeled inputs.
-  //    Uniform base+cap scaling per supported slot keeps ranges as ranges
-  //    (§7 contract); tier 0 restores the exact source render.
-  const desc = /** @type {HTMLElement|null} */ (document.querySelector(".desc-rendered"));
-  if (desc && desc.dataset.descTemplate !== undefined) {
-    const tmpl = desc.dataset.descTemplate;
-    const effs = JSON.parse(desc.dataset.descEffects || "[]");
-    const durBase = desc.dataset.descDuration || "";
-    if (tier === 0) {
-      desc.innerHTML = desc.dataset.descOriginal;
-    } else {
-      const scaled = effs.map(e => {
-        const r = { ...e };
-        if (e.effect_id === 0 && e.base_value < 0) {          // damage slots
-          r.base_value = -Math.floor(Math.abs(e.base_value) * (1 + d.dmgRate * tier));
-          r.max_value = e.max_value < 0
-            ? -Math.floor(Math.abs(e.max_value) * (1 + d.dmgRate * tier))
-            : Math.floor(e.max_value * (1 + d.dmgRate * tier));
-        } else if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100) {
-          r.base_value = Math.round(e.base_value * (1 + d.healRate * tier));
-          r.max_value = Math.round(e.max_value * (1 + d.healRate * tier));
-        } else if (e.effect_id === 79 && e.base_value < 0) {
-          r.base_value = -Math.floor(Math.abs(e.base_value) * (1 + 0.06 * tier));
-          r.max_value = -Math.floor(Math.abs(e.max_value) * (1 + 0.06 * tier));
-        }
-        return r;
-      });
-      let dur = durBase;
-      if (d.hasDur && d.durRate) {
-        const ticks = Math.round(d.durTicks * (1 + d.durRate * tier));
-        dur = renderDuration(d.durFormula, ticks, MAX_LEVEL);
-      }
-      desc.innerHTML = substitute(tmpl, scaled, dur) +
-        ` <span class="upg-chip" title="Description quantities scaled by the modeled upgrade rates; ranges stay ranges">Level ${ROMAN[tier]}</span>`;
-    }
-  }
+  // 3) Description + Duration stat: ONE composer for both sliders.
+  refreshDescription();
+  refreshDurationStat();
 
   // 4) URL persistence (?tier=N alongside ?level=N)
   const sid = panel.getAttribute("data-spell-id");

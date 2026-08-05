@@ -2,16 +2,25 @@
 // Ported from app.py (render_duration + substitute).
 
 // Mirrors eqltools.explorer.render.render_duration (Phase 4.5): OBSERVED-ONLY
-// publication. Only formula 3 (30*level per tick, observed via Assiduous Vision)
-// is level-scaled; formula 50 is permanent; a zero cap is instant. EVERY other
-// (EQEmu-reference / unverified) formula keeps the deployed naive cap×6 — we do
-// NOT publish unverified per-level durations. LEVEL IS REQUIRED (no hidden
-// default); callers pass MAX_LEVEL since the SPA has no per-level UI yet.
+// publication. Level-scaled formulas are exactly the OBSERVED ones:
+// f3 (30*level, Assiduous Vision) and f11 (30*(level+3); Strengthen &
+// Skin like Wood @L1 show 12:00 vs the 27:00 cap — obs:OBS-2026-001/024,
+// 2026-08-05). Formula 50 is permanent; a zero cap is instant. Every other
+// (EQEmu-reference / unverified) formula keeps the naive cap×6 — we do NOT
+// publish unverified per-level durations. LEVEL IS REQUIRED (no hidden
+// default).
+export function durationTicks(formula, cap, level) {
+  if (level === undefined) throw new Error("durationTicks: level is required");
+  if (formula === 50) return -1;                       // permanent sentinel
+  if (!cap) return 0;
+  if (formula === 3) return Math.min(30 * level, cap);
+  if (formula === 11) return Math.min(30 * (level + 3), cap);
+  return cap;
+}
+
 export function renderDuration(formula, cap, level) {
-  if (level === undefined) throw new Error("renderDuration: level is required");
   if (formula === 50) return "permanent";
-  if (!cap) return "instant";
-  const ticks = formula === 3 ? Math.min(30 * level, cap) : cap;
+  const ticks = durationTicks(formula, cap, level);
   if (ticks <= 0) return "instant";
   const secs = ticks * 6;
   if (secs >= 60) {

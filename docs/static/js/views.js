@@ -14,7 +14,7 @@ import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
   escapeHtml,
 } from "./text.js";
-import { ROMAN, applyUpgrade, classifyUpgradeCategory, levelChip, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
+import { ROMAN, applyUpgrade, classifyUpgradeCategory, descEffectsAt, levelChip, refreshDescription, refreshDurationStat, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
 import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
 import { friendlySummary } from "./friendly.js";
 import { FIELD_SEMANTICS } from "./field_semantics.js";
@@ -501,6 +501,7 @@ export async function renderBrowse(params) {
   const lMin = Math.max(1, parseInt(params.get("level_min") || "1", 10) || 1);
   const lMax = Math.min(MAX_LEVEL,
                         parseInt(params.get("level_max") || String(MAX_LEVEL), 10) || MAX_LEVEL);
+  const lineId = parseInt(params.get("line") || "0", 10) || 0;
   const effect = params.get("effect") || "";
   const sort = BROWSE_SORTS[params.get("sort")] ? params.get("sort") : "level";
   const dir = params.get("dir") === "desc" ? "DESC" : "ASC";
@@ -515,6 +516,7 @@ export async function renderBrowse(params) {
   }
   if (good === "buff") where.push("s.good_effect IN (1, 2)");
   else if (good === "det") where.push("s.good_effect = 0");
+  if (lineId) { where.push("s.spell_category = ?"); args.push(lineId); }
 
   const eff = resolveEffect(effect);
   if (eff) where.push(`EXISTS (SELECT 1 FROM spell_effects se WHERE se.spell_id = s.id AND ${eff.pred})`);
@@ -625,6 +627,7 @@ export async function renderBrowse(params) {
 
   const filterForm = `
     <form class="diff-form" data-form="browse">
+      ${lineId ? `<input type="hidden" name="line" value="${lineId}">` : ""}
       <input type="hidden" name="sort" value="${sort}">
       <input type="hidden" name="dir" value="${dir === "DESC" ? "desc" : "asc"}">
       <div class="diff-controls trio-row" style="margin-bottom:.5em">
@@ -692,6 +695,7 @@ export async function renderBrowse(params) {
     ? (eff.spa !== null ? EFFECT_LABELS[eff.spa] || spaName(eff.spa)
                         : (EFFECT_BUCKETS.find(b => "bucket:" + b.key === effect) || {}).label)
     : null;
+  const lineName = lineId ? await dbstr(lineId, 27) : null;
   const clsLabel = clsIdxs.length ? clsIdxs.map(i => CLASS_NAMES[i]).join(" / ") : "all classes";
   const capped = rows.length >= 2000 ? " (showing first 2000)" : "";
 
@@ -700,7 +704,7 @@ export async function renderBrowse(params) {
     <h1>Browse Spells</h1>
     ${filterForm}
     <p class="muted">${rows.length.toLocaleString()} spell${rows.length === 1 ? "" : "s"}${capped}
-      — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}.
+      — ${escapeHtml(clsLabel)}${effLabel ? ` · effect: ${escapeHtml(effLabel)}` : ""}${lineName ? ` · spell line: ${escapeHtml(lineName)} <a href="#/spells">×</a>` : ""}.
       Scaling values read wiki-style: own-level value to capped value, e.g. “Damage: 8 (L4) to 43 (L26)”.</p>
     <p class="muted disclosure">${DISCLOSURE}</p>
     ${rows.length ? `<table class="spell-table t-browse">
@@ -746,13 +750,17 @@ export async function renderSpell(spellId, params) {
   // %z token) is deferred until lower-level duration publication is approved.
   // The description likewise stays at L50 (its #N/@N are base/max — Phase 4.4).
   const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration, MAX_LEVEL);
+  const durationAtLevel = renderDuration(spell.buff_duration_formula, spell.buff_duration, selLevel);
   const descText = await dbstr(spell.description_id, 6);
   const typeText = await dbstr(spell.type_description_id, 5);
   const effectText = await dbstr(spell.effect_description_id, 5);
   const secText = await dbstr(spell.secondary_category_2, 5);
   const catText = spell.spell_category > 0
     ? await dbstr(spell.spell_category, 27) : null;
-  const rendered = descText ? substitute(descText, effects, duration) : "";
+  // Client-accurate render (OBS-2026-027): #N substitutes the LEVEL-SCALED
+  // value; %z prose stays the cap duration. Same composer as the live sliders.
+  const rendered = descText
+    ? substitute(descText, descEffectsAt(effects, selLevel, 0, null), duration) : "";
 
   const isDuration = (spell.buff_duration_formula || 0) > 0;
   const tierBadge = (tier) => {
@@ -872,9 +880,21 @@ export async function renderSpell(spellId, params) {
     : `<p class="muted">No player classes can cast this at L≤${MAX_LEVEL}.</p>`;
 
   const lineHtml = groupSiblings.length > 1 ? `
-    <h2>Spell line</h2>
+    <h2>Ranks</h2>
     <ul class="line">${groupSiblings.map(s => `<li${s.id === spell.id ? ' class="current"' : ''}>
       Rk.${s.rank}: <a href="#/spell/${s.id}">${escapeHtml(s.name)}</a></li>`).join("")}</ul>` : "";
+
+  // The in-game "Spell Line" (spell_category -> dbstr type 27): level-ordered
+  // mates, e.g. Holy Remedy = Minor -> Light -> Healing -> Greater -> Superior.
+  const lineMates = spell.spell_category > 0 ? await query(
+    `SELECT s.id, s.name, MIN(sc.min_level) AS lvl
+       FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
+      WHERE s.spell_category = ? AND sc.verified = 1 AND sc.min_level <= ?
+      GROUP BY s.id ORDER BY lvl, s.id`, [spell.spell_category, MAX_LEVEL]) : [];
+  const lineMatesHtml = (catText && lineMates.length > 1) ? `
+    <h2>Spell line — ${escapeHtml(catText)}</h2>
+    <ul class="line">${lineMates.map(s => `<li${s.id === spell.id ? ' class="current"' : ''}>
+      L${s.lvl}: <a href="#/spell/${s.id}">${escapeHtml(s.name)}</a></li>`).join("")}</ul>` : "";
 
   const msgsHtml = msgs ? `
     <h2>Messages</h2>
@@ -911,7 +931,7 @@ export async function renderSpell(spellId, params) {
             limit_value: e.limit_value, max_value: e.max_value, formula: e.formula,
           }))))}">${rendered}</div>` : ""}
         ${descText ? `<details class="raw-detail"><summary>Template text (placeholders visible)</summary><pre class="desc-raw">${escapeHtml(descText)}</pre></details>` : ""}
-        ${catText ? `<p class="muted"><strong>Category:</strong> ${escapeHtml(catText)} <span class="muted">(code ${spell.spell_category})</span></p>` : ""}
+        ${catText ? `<p class="muted"><strong>Spell line:</strong> <a href="#/spells?line=${spell.spell_category}">${escapeHtml(catText)}</a></p>` : ""}
         ${typeText ? `<p class="muted"><strong>Type:</strong> ${escapeHtml(typeText)}</p>` : ""}
         ${effectText ? `<p class="muted"><strong>Effect:</strong> ${escapeHtml(effectText)}</p>` : ""}
         ${secText ? `<p class="muted"><strong>Secondary:</strong> ${escapeHtml(secText)}</p>` : ""}
@@ -927,7 +947,7 @@ export async function renderSpell(spellId, params) {
           <tr><th>Reuse <span class="muted">(in-game)</span></th><td data-s="reuse">${Math.floor((spell.recast_time || 0) / 1000)}s
               <span class="muted">(raw recast: ${fmtSeconds(spell.recast_time)}s)</span></td></tr>
           <tr><th>Recovery <span class="muted">(internal)</span></th><td data-s="rec">${fmtSeconds(spell.recovery_time)}s</td></tr>
-          <tr><th>Duration <span class="muted">(@L${MAX_LEVEL})</span></th><td data-s="dur">${duration}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
+          <tr><th>Duration <span class="muted" data-dur-level>@L${selLevel}</span></th><td data-s="dur" data-dur-formula="${spell.buff_duration_formula}" data-dur-cap="${spell.buff_duration}">${durationAtLevel}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
           <tr><th>Range</th><td>${spell.range}</td></tr>
           ${spell.aoe_range ? `<tr><th>AoE range</th><td>${spell.aoe_range}</td></tr>` : ""}
           <tr><th>Resist diff</th><td data-s="resist">${spell.resist_difficulty}</td></tr>
@@ -940,17 +960,17 @@ export async function renderSpell(spellId, params) {
           ${spell.recourse_link ? `<tr><th>Recourse</th><td><a href="#/spell/${spell.recourse_link}">spell #${spell.recourse_link}</a></td></tr>` : ""}
         </table>
         <h2>Classes</h2>${classesHtml}
+        ${lineMatesHtml}
         ${lineHtml}
       </aside>
     </div>`;
 }
 
 // Live-recompute the spell detail page when the caster-level slider moves — no
-// re-route (mirrors the upgrade-tier slider). Updates ONLY the @L{selected}
-// effect-value column. Duration and description are deliberately NOT rerendered:
-// duration is observed-only at L50 (sub-L50 values are extrapolated, not
-// approved for publication — §4.2), and the description's #N/@N are base/max,
-// level-independent (§4.4). Persists ?level in the hash via replaceState so it
+// re-route (mirrors the upgrade-tier slider). Updates the value column, the
+// DESCRIPTION (#N substitutes the level-scaled value — client behavior,
+// OBS-2026-027) and the Duration stat (f3/f11 are OBSERVED level-scaling —
+// OBS-2026-001/024). Persists ?level in the hash via replaceState so it
 // stays shareable without triggering a navigation.
 export function updateLevelView(slider) {
   const level = clampLevel(slider.value, MAX_LEVEL);
@@ -959,14 +979,21 @@ export function updateLevelView(slider) {
   if (out) out.textContent = String(level);
   for (const h of document.querySelectorAll("[data-level-col-head]")) h.textContent = "At L" + level;
   refreshValueCells();                    // composes caster level × Spell Level
+  refreshDescription();
+  refreshDurationStat();
   for (const det of document.querySelectorAll("details[data-proc-spell]")) {
     if (/** @type {HTMLElement} */ (det).dataset.loaded) loadProcInline(det, true);
   }
   const panel = slider.closest("[data-level-panel]");
   const id = panel && panel.dataset.spellId;
   if (id) {
-    try { history.replaceState(null, "", spellLevelHash(id, level, MAX_LEVEL)); }
-    catch { /* file:// — ignore */ }
+    try {
+      let hash = spellLevelHash(id, level, MAX_LEVEL);
+      // preserve ?upgrade — the two sliders share the URL
+      const upg = /** @type {HTMLInputElement|null} */ (document.querySelector("[data-upgrade-slider]"));
+      if (upg && +upg.value > 0) hash += (hash.includes("?") ? "&" : "?") + "upgrade=" + upg.value;
+      history.replaceState(null, "", hash);
+    } catch { /* file:// — ignore */ }
   }
 }
 

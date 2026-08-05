@@ -405,7 +405,7 @@ export const EFFECT_LABELS = {
   27: "Dispel (Cancel Magic)", 28: "Invisibility vs Undead", 29: "Invisibility vs Animals",
   30: "Reduce Aggro Radius (Lull)", 31: "Mesmerize", 32: "Summon Item", 33: "Summon Pet",
   35: "Disease Counter", 36: "Poison Counter", 40: "Invulnerability", 42: "Shadow Step",
-  44: "Wolf Form", 46: "Fire Resist", 47: "Cold Resist", 48: "Poison Resist",
+  44: "Final Heal", 46: "Fire Resist", 47: "Cold Resist", 48: "Poison Resist",
   49: "Disease Resist", 50: "Magic Resist", 52: "Sense Undead", 53: "Sense Summoned",
   54: "Sense Animals", 55: "Stoneskin", 56: "Sense Heading", 57: "Levitate",
   58: "Illusion", 59: "Damage Shield", 63: "Memory Blur", 64: "Spin Stun",
