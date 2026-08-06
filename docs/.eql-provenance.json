@@ -1,10 +1,10 @@
 {
   "tool": "eql explorer deploy",
-  "build_time": "2026-08-05T16:18:29",
+  "build_time": "2026-08-05T17:11:06",
   "deploy_subdir": "docs",
-  "deploy_tool_revision": "20f858a40c915f2889f63ac649cce6a3697f8237",
+  "deploy_tool_revision": "08f8f3ccf6aca00476354d4d022e53b78b775621",
   "deploy_tool_dirty": false,
-  "site_build_revision": "20f858a40c915f2889f63ac649cce6a3697f8237",
+  "site_build_revision": "08f8f3ccf6aca00476354d4d022e53b78b775621",
   "site_source_dirty": false,
   "db_revision": "4667dc179435f5bb212a94d41aa1319015724166",
   "schema": {
@@ -2333,7 +2333,7 @@
     "static/js/data.js": "935ce46c682c56428f93fa472bc2f9a0a0af750522df9b64e25785636c5184a1",
     "static/js/db.js": "8d7009d776277c24caaa78accf3f9aa8848dac5033799efc4c066502adc1ac8b",
     "static/js/db_pin.js": "b5a92f814d99a8afc6aef217d2b6e26fc15c532bf49a168f0f6a958db9307b71",
-    "static/js/field_semantics.js": "6105c4de7530957636d03aefc7b21767d599f5f1f407f37a3212c696a83c97ec",
+    "static/js/field_semantics.js": "19abd535549fd1908b7bdea49a207cd7bd0a1e4492595ede9747a11531893e55",
     "static/js/friendly.js": "130b921b9aa3b60244fc5e9da594093960d8fde350260cde1c99f998924b4d16",
     "static/js/presentation.js": "c9c9380cafcc522af6b03dcd4942b3bb9d97305024b5629baf2d253f9924f266",
     "static/js/races_data.js": "1169ac810af6b83a2e73bf34b0a2b1ba7436442e22e53e2ec82a20b06063a711",

@@ -2,10 +2,10 @@
 // Source of truth: src/eqltools/spells/tables/field_semantics.py
 // Regenerate: python -m eqltools.spells.tables.field_semantics --emit-js
 //   > web/static/js/field_semantics.js
-// version=1 digest=819cc6f9664e0813c09e3a577cf8922babb73d80d0f040db7af5a7e603be293c
+// version=1 digest=ff931900e04bad7a074f89cad404939ed8fc2505bf709b26cbbb41f079aa318d
 // eqemu_reference_revision=b69fa9cbcd7517f5f9d909d93de4778164268f0d
 export const FIELD_SEMANTICS_VERSION = 1;
-export const FIELD_SEMANTICS_DIGEST = "819cc6f9664e0813c09e3a577cf8922babb73d80d0f040db7af5a7e603be293c";
+export const FIELD_SEMANTICS_DIGEST = "ff931900e04bad7a074f89cad404939ed8fc2505bf709b26cbbb41f079aa318d";
 export const APPROVED_INVENTORY_DIGEST = "8844d7f8137177babd7604d20fd2710236859e1aa9595852da4605015ddbc403";
 export const BOUND_RAW_CORPUS_DIGEST = "c28f2b0dd8751701fd55fa5c2e826b8600db29e18287d802bd45839df71b7178";
 export const OBS_CITATION_SYNTAX = "^obs:OBS-\\d{4}-\\d{3}$";
@@ -21,8 +21,8 @@ export const FIELD_SEMANTICS = {
     "family": "magnitude",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 0 SpellEffect::CurrentHP",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-034",
+        "evidence": "OBSERVED",
         "role": "magnitude"
       },
       "formula": {
@@ -36,8 +36,8 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "max": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-035",
+        "evidence": "OBSERVED",
         "role": "cap"
       }
     },
@@ -54,8 +54,8 @@ export const FIELD_SEMANTICS = {
         "role": "magnitude"
       },
       "formula": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-030",
+        "evidence": "OBSERVED",
         "role": "scaling"
       },
       "limit": {
@@ -64,8 +64,8 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "max": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-031",
+        "evidence": "OBSERVED",
         "role": "cap"
       }
     },
@@ -245,8 +245,8 @@ export const FIELD_SEMANTICS = {
     "family": "magnitude",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 11 SpellEffect::AttackSpeed",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-028",
+        "evidence": "OBSERVED",
         "role": "magnitude"
       },
       "formula": {
@@ -861,8 +861,8 @@ export const FIELD_SEMANTICS = {
     "family": "teleport",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 146 SpellEffect::ElectricityResist",
-        "evidence": "INFERRED",
+        "citation": "obs:OBS-2026-037",
+        "evidence": "OBSERVED",
         "role": "coord-component"
       },
       "formula": {
@@ -881,7 +881,7 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       }
     },
-    "note": "EQEmu labels SPA 146 unimplemented and only tentatively notes teleport xyz; four-slot EQL pattern is not runtime proof; teleport_zone is spell-level EQL data",
+    "note": "OBSERVED 2026-08-05: the runtime landing point matches the slot coordinates (North Karana /loc, obs:OBS-2026-037); the EQEmu-unimplemented caveat is superseded; teleport_zone is spell-level EQL data",
     "resolver": "'PortalLocations target: <teleport_zone>'; labelled raw coordinates",
     "resolver_citation": "eql-canonical-corpus:SPA 146 signatures"
   },
@@ -2121,8 +2121,8 @@ export const FIELD_SEMANTICS = {
     "family": "resource-tap",
     "fields": {
       "base": {
-        "citation": "eqemu-spdat:SPA 457 SpellEffect::ResourceTap",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-029",
+        "evidence": "OBSERVED",
         "role": "scale-permille"
       },
       "formula": {
@@ -2798,8 +2798,8 @@ export const FIELD_SEMANTICS = {
         "role": "magnitude"
       },
       "formula": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-032",
+        "evidence": "OBSERVED",
         "role": "scaling"
       },
       "limit": {
@@ -2808,8 +2808,8 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "max": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-033",
+        "evidence": "OBSERVED",
         "role": "cap"
       }
     },
@@ -3101,8 +3101,8 @@ export const FIELD_SEMANTICS = {
     "family": "teleport",
     "fields": {
       "base": {
-        "citation": "eqemu-effects:SpellEffect::Teleport",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-036",
+        "evidence": "OBSERVED",
         "role": "coord-component"
       },
       "formula": {
