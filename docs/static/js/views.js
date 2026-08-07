@@ -16,7 +16,7 @@ import {
 } from "./text.js";
 import { ROMAN, applyUpgrade, classifyUpgradeCategory, descEffectsAt, levelChip, refreshDescription, refreshDurationStat, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
 import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
-import { friendlySummary } from "./friendly.js";
+import { friendlySummary, focusPhrase } from "./friendly.js";
 import { FIELD_SEMANTICS } from "./field_semantics.js";
 
 function iconImg(newIcon, cls = "icon") {
@@ -40,7 +40,8 @@ export async function buildResolvers(effects, queryFn) {
     for (const [f, fm] of Object.entries(ent.fields)) {
       const v = raws[f];
       if (!v) continue;
-      if (fm.role === "spell-id") spellIds.add(v);
+      // spell-selector (focus limit 139) stores exclusions as negative ids
+      if (fm.role === "spell-id" || fm.role === "spell-selector") spellIds.add(Math.abs(v));
       if (fm.role === "race-id") raceIds.add(v);
     }
   }
@@ -134,6 +135,38 @@ document.addEventListener("eql:upgrade-changed", () => {
     if (/** @type {HTMLElement} */ (det).dataset.loaded) loadProcInline(det, true);
   }
 });
+
+// Detail-page proc rows (SPA 85/323): readable phrase with the proc link
+// kept. Rate = 100+limit (EQEmu AddProcToWeapon/AddDefensiveProc) —
+// reference, unverified in EQL. The rate itself lives in the Stats "Proc
+// rate" field (procRateKv), where a "?" popover explains the mechanics.
+function procMult(e) { return (100 + (e.limit_value || 0)) / 100; }
+
+function procRowHtml(e, pres) {
+  if (e.effect_id !== 85 && e.effect_id !== 323) return null;
+  const proc = pres.parts.find(p => p.linkSpellId);
+  if (!proc) return null;
+  const struck = e.effect_id === 323 ? " when struck" : "";
+  const rate = procMult(e) > 1 ? ` (${procMult(e)}× rate)` : "";
+  return `Procs <a href="#/spell/${proc.linkSpellId}">${escapeHtml(proc.text)}</a>${escapeHtml(struck + rate)}`;
+}
+
+// Stats-panel "Proc rate" row for any spell granting a proc: "Normal" or
+// "2.5× normal", so the unmodified case is explicit (James 2026-08-07).
+function procRateKv(effects) {
+  const pr = effects.find(e => e.effect_id === 85 || e.effect_id === 323);
+  if (!pr) return "";
+  const mult = procMult(pr);
+  const label = mult === 1 ? "Normal" : `${mult}× normal`;
+  return `<tr><th>Proc rate</th><td>${label} <details class="help-pop">
+    <summary aria-label="About proc rates" title="About proc rates">?</summary>
+    <div class="help-body"><p class="muted">Proc chances are normalized
+    per-minute — slow and fast weapons land about the same procs per minute;
+    DEX raises the chance, and offhand weapons proc at half rate. This
+    spell's proc fires at <strong>${mult === 1 ? "the normal rate" : `${mult}× that normal rate`}</strong>
+    (EQEmu reference — not yet verified in EQL).</p></div>
+  </details></td></tr>`;
+}
 
 function presPartsHtml(pres, spa) {
   if (pres.kind === "suppressed") return "";
@@ -852,7 +885,8 @@ export async function renderSpell(spellId, params) {
     <ul class="sem-effects">${semanticRows.map(([e, pres]) => `
       <li class="sem-effect">
         <span class="pres-cell"><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
-          <span class="muted">—</span> ${presPartsHtml(pres, e.effect_id) || '<span class="muted">—</span>'}${factOf(pres)}</span>
+          <span class="muted">—</span> ${(fp => fp != null ? escapeHtml(fp)
+            : (procRowHtml(e, pres) ?? (presPartsHtml(pres, e.effect_id) || '<span class="muted">—</span>')))(focusPhrase(e, resolvers))}${factOf(pres)}</span>
         ${(() => {
           const proc = pres.parts.find(p => p.linkSpellId);
           return proc ? `
@@ -949,6 +983,7 @@ export async function renderSpell(spellId, params) {
           <tr><th>Recovery <span class="muted">(internal)</span></th><td data-s="rec">${fmtSeconds(spell.recovery_time)}s</td></tr>
           <tr><th>Duration <span class="muted" data-dur-level>@L${selLevel}</span></th><td data-s="dur" data-dur-formula="${spell.buff_duration_formula}" data-dur-cap="${spell.buff_duration}">${durationAtLevel}${spell.buff_duration ? ` <span class="muted">(formula ${spell.buff_duration_formula}, cap ${spell.buff_duration})</span>` : ""}</td></tr>
           <tr><th>Range</th><td>${spell.range}</td></tr>
+          ${procRateKv(visEffects)}
           ${spell.aoe_range ? `<tr><th>AoE range</th><td>${spell.aoe_range}</td></tr>` : ""}
           <tr><th>Resist diff</th><td data-s="resist">${spell.resist_difficulty}</td></tr>
           ${spell.timer_id ? `<tr><th>Timer (shared cooldown)</th><td>${spell.timer_id}</td></tr>` : ""}

@@ -8,7 +8,7 @@
 // scratch/FRIENDLY-SUMMARY-DESIGN.md. The wiki description regeneration will
 // port this table to Python beside presentation.py (same twin pattern).
 
-import { EFFECT_LABELS, spaName, capLevel } from "./data.js";
+import { EFFECT_LABELS, spaName, capLevel, TARGET_TYPES } from "./data.js";
 import { formatValue, isPaddingRow, presentEffect } from "./presentation.js";
 
 // SPA groupings for verb-led magnitude phrases.
@@ -130,7 +130,74 @@ function rangeUsable(spa, v, v2) {
 // contract of the legacy summary branch in views.js. With `rangeTo` set
 // (list pages), a level-scaling magnitude reads as its growth range with the
 // levels annotated: "Deals 8→43 damage (L4→L26)".
+// ── Focus effects (wearable-focus buffs: Blessing of Piety/Faith, Rizlona's) ──
+// The payload SPAs (124-132) and their limit SPAs render as readable lines
+// instead of the registry's technical parts ("spa-selector -147"). Semantics
+// from the focus research model (eql-spell-tools-focus focus.py, REFERENCE):
+// 124/125/131/132 are RANDOM modifiers — base..limit is a per-cast roll range.
+const FOCUS_MODIFIERS = new Map([
+  [124, "Spell Dmg"], [125, "Healing"], [127, "Spell Haste"],
+  [128, "Buff Duration"], [129, "Range"], [131, "Reagent Conservation"],
+  [132, "Mana Cost"],
+]);
+const FOCUS_RANDOM = new Set([124, 125, 131, 132]);
+
+// SPA 137 references another SPA; name the common ones in plain words.
+function spaPhrase(id) {
+  if (id === 0) return "damage & healing";
+  if (id === 147) return "percent-heal";
+  return EFFECT_LABELS[id] || spaName(id);
+}
+
+// Returns a finished line (string), "" to hide the row, or null when the
+// effect is not focus-related (normal path continues). Exported: the detail
+// page substitutes these for the registry's technical parts (James 2026-08-07).
+export function focusPhrase(e, resolvers) {
+  const spa = e.effect_id, base = e.base_value || 0, lim = e.limit_value || 0;
+  const mod = FOCUS_MODIFIERS.get(spa);
+  if (mod) {
+    const pct = v => `${Math.abs(v)}%`;
+    const sign = spa === 132 ? "−" : "+";
+    const span = (FOCUS_RANDOM.has(spa) && lim > base)
+      ? `${sign}${pct(base)} to ${sign}${pct(lim)}` :
+      spa === 127 ? pct(base) : `${sign}${pct(base)}`;
+    return `Focus — ${mod}: ${span}`;
+  }
+  switch (spa) {
+    case 134:
+      return `Only spells up to L${base}` +
+             (lim > 0 ? ` (fades ${lim}%/level above)` : "");
+    case 136: {
+      const t = TARGET_TYPES[Math.abs(base)] || `target #${Math.abs(base)}`;
+      return base < 0 ? `Not ${t} spells` : `Only ${t} spells`;
+    }
+    case 137: {
+      const x = spaPhrase(Math.abs(base));
+      return base < 0 ? `Not ${x} spells` : `Only ${x} spells`;
+    }
+    case 138:
+      return base === 1 ? "Beneficial spells only" : "Detrimental spells only";
+    case 139: {
+      const name = resolvers?.spellName?.(Math.abs(base)) || `spell #${Math.abs(base)}`;
+      return base < 0 ? `Not ${name}` : `Only ${name}`;
+    }
+    case 140:
+      return `Only buffs lasting ${base * 6}s+`;
+    case 141:
+      return base === 1 ? "Instant spells only" : "Duration spells only";
+    case 143:
+      return `Only cast times ${base / 1000}s+`;
+    case 311:
+      return base === 0 ? "Excludes weapon procs" : null;
+  }
+  return null;
+}
+
 export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
+  // Focus payload/limit rows get their own readable lines (never a ✓ —
+  // the focus model is REFERENCE).
+  const focus = focusPhrase(e, resolvers);
+  if (focus !== null) return focus && wrapNums(escapeHtml(focus));
   const ctx = { level,
                 isDuration: (sp?.buff_duration_formula || 0) > 0,
                 beneficial: !!(sp?.good_effect),
@@ -163,6 +230,19 @@ export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
       !(sp?.buff_duration || sp?.buff_duration_formula)) {
     return "Cure Blindness" + mark;
   }
+  // Weapon (85) / defensive (323) procs read as one phrase. The limit is a
+  // rate BONUS on 100 (EQEmu AddProcToWeapon/AddDefensiveProc: 100+limit),
+  // so limit 50 = 1.5× the normalized per-minute proc rate. The proc-type
+  // enum stays detail-only (technical disclosure).
+  if (e.effect_id === 85 || e.effect_id === 323) {
+    const proc = pres.parts.find(p => p.linkSpellId);
+    if (proc) {
+      const lim = e.limit_value || 0;
+      const rate = lim > 0 ? ` (${(100 + lim) / 100}× rate)` : "";
+      const struck = e.effect_id === 323 ? " when struck" : "";
+      return wrapNums(escapeHtml(`Procs ${proc.text}${struck}${rate}`)) + mark;
+    }
+  }
   // Semantic rows: friendly-case the bare label, fold caps into a qualifier,
   // keep every other part's text verbatim (reference wording stays qualified).
   const { caps, rest } = splitCaps(pres.parts);
@@ -176,8 +256,21 @@ export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
   if (texts[0] === "stun" && /^[\d.]+s$/.test(texts[1] || "")) {
     texts.splice(0, 2, `Stun: ${texts[1]}`);
   }
-  // "item #10342" (approved CreateItem form) reads as "Summons item #10342"
-  if (/^item #\d+$/.test(texts[0] || "")) texts[0] = `Summons ${texts[0]}`;
+  // "item #10342" (approved CreateItem form) reads as "Summons item #10342";
+  // a charge count folds in: "Summons item #13079 (×4)"
+  if (/^item #\d+$/.test(texts[0] || "")) {
+    texts[0] = `Summons ${texts[0]}`;
+    if (/^×\d+$/.test(texts[1] || "")) {
+      texts[0] += ` (${texts[1]})`;
+      texts.splice(1, 1);
+    }
+  }
+  // "Feign Death · success threshold 87" reads "Feign Death (87% success)"
+  const th = texts.findIndex(t => /^success threshold \d+$/.test(t || ""));
+  if (th > 0) {
+    texts[0] = `${texts[0]} (${texts[th].match(/\d+/)[0]}% success)`;
+    texts.splice(th, 1);
+  }
   let out = wrapNums(escapeHtml(texts.join(" · ")));
   // a row whose parts carry no text stays hidden (raw-only rows, e.g.
   // teleport coordinates) — same as the legacy summary
@@ -197,14 +290,13 @@ export function friendlySummary(effs, level, sp, resolvers, rangeTo) {
     e.effect_id !== 254 && e.effect_id !== 148 && e.effect_id !== 149 &&
     !isPaddingRow(e.effect_id, e.base_value,
                   e.limit_value, e.max_value, e.formula));
-  const shown = meaningful.slice(0, 5);
-  const parts = shown.map(e => friendlyEffect(e, level, sp, resolvers, rangeTo)).filter(Boolean);
+  // ALL meaningful rows show — no "+N more" fold (James, 2026-08-07; the
+  // legacy first-5 cap hid focus fine print and Shielding-line stats).
+  const parts = meaningful.map(e => friendlyEffect(e, level, sp, resolvers, rangeTo)).filter(Boolean);
   const seen = new Set();
   const deduped = parts.filter(p => !seen.has(p) && seen.add(p));
-  const extra = meaningful.length - shown.length;
   // one line per effect (James); an effect's own qualifiers stay inline
-  return deduped.map(p => `<div class="fx-line">${p}</div>`).join("") +
-         (extra > 0 ? `<div class="fx-line muted">+${extra} more</div>` : "");
+  return deduped.map(p => `<div class="fx-line">${p}</div>`).join("");
 }
 
 // Numeric tokens (values, %/s units, "(LN)" markers) get a fixed-width face

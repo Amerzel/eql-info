@@ -2,10 +2,10 @@
 // Source of truth: src/eqltools/spells/tables/field_semantics.py
 // Regenerate: python -m eqltools.spells.tables.field_semantics --emit-js
 //   > web/static/js/field_semantics.js
-// version=1 digest=8576f270165525521ee6bda7a24a410737c110fcf28d99587f994df36827530a
+// version=1 digest=efa579d6163b9ba202febdf04bc676028a342fc1838f7dbeed067c5c0523f3d7
 // eqemu_reference_revision=b69fa9cbcd7517f5f9d909d93de4778164268f0d
 export const FIELD_SEMANTICS_VERSION = 1;
-export const FIELD_SEMANTICS_DIGEST = "8576f270165525521ee6bda7a24a410737c110fcf28d99587f994df36827530a";
+export const FIELD_SEMANTICS_DIGEST = "efa579d6163b9ba202febdf04bc676028a342fc1838f7dbeed067c5c0523f3d7";
 export const APPROVED_INVENTORY_DIGEST = "8844d7f8137177babd7604d20fd2710236859e1aa9595852da4605015ddbc403";
 export const BOUND_RAW_CORPUS_DIGEST = "c28f2b0dd8751701fd55fa5c2e826b8600db29e18287d802bd45839df71b7178";
 export const OBS_CITATION_SYNTAX = "^obs:OBS-\\d{4}-\\d{3}$";
@@ -1291,9 +1291,9 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "limit": {
-        "citation": "eqemu-effects:SpellEffect::Stun",
-        "evidence": "REFERENCE",
-        "role": "push"
+        "citation": "eql-canonical-corpus:SPA 21 limit is ms-shaped with the 5.25s PvP cap (5250 across all base durations); EQEmu handler never reads it",
+        "evidence": "INFERRED",
+        "role": "pvp-duration-ms"
       },
       "max": {
         "citation": "eqemu-effects:SpellEffect::Stun",
@@ -2663,9 +2663,9 @@ export const FIELD_SEMANTICS = {
         "role": "unresolved"
       },
       "limit": {
-        "citation": "eqemu-effects:SpellEffect::SpinTarget",
-        "evidence": "REFERENCE",
-        "role": "push"
+        "citation": "eql-canonical-corpus:SPA 64 limit follows the SPA 21 PvP-duration pattern (7500/5250)",
+        "evidence": "INFERRED",
+        "role": "pvp-duration-ms"
       },
       "max": {
         "citation": "eqemu-effects:SpellEffect::SpinTarget",

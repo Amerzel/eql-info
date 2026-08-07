@@ -99,8 +99,11 @@ footer { color: var(--muted); text-align: center; padding: 1.5em;
 
 .spell-table, .effects-table, table.kv {
   width: 100%; border-collapse: collapse; background: transparent;
-  border: 0; border-radius: 0; overflow: hidden;
+  border: 0; border-radius: 0;
   margin-bottom: 1.4em; }
+/* overflow:hidden is a pre-Ledger radius vestige — kv must stay visible so
+   the absolutely-positioned help-pop (Proc rate "?") isn't clipped */
+.spell-table, .effects-table { overflow: hidden; }
 .spell-table th, .effects-table th, .kv th {
   text-align: left; padding: 0.28em 0.55em; background: transparent;
   color: #a89658; font-weight: 600; font-size: 0.85em;
@@ -359,6 +362,9 @@ details.help-pop .help-body { position: absolute; z-index: 60; top: 1.8em;
   white-space: normal; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
   font-size: 0.9em; line-height: 1.45; }
 .help-body p { margin: 0; }
+/* In the right-hand Stats column the popover hangs LEFT from the "?" so a
+   28em box stays on-screen. */
+.kv details.help-pop .help-body { left: auto; right: 0; }
 
 /* Design pass D3 */
 .feature-card.feature-primary { grid-column: 1 / -1; border-left-width: 6px;
@@ -504,7 +510,10 @@ input[type=range]::-moz-range-thumb { width: 13px; height: 13px;
      still inherits child min-content and forces the page wide); data tables
      scroll inside themselves, never the page */
   .cols { display: block; }
-  .effects-table, table.kv { display: block; overflow-x: auto; }
+  .effects-table { display: block; overflow-x: auto; }
+  /* kv is a narrow label/value table — block for the stacked layout but NO
+     scroll container, so the help-pop popover isn't clipped on mobile */
+  table.kv { display: block; }
   .effects-table tbody, .kv tbody { display: table; width: 100%; }
   .spell-header { flex-wrap: wrap; }
   .sim-panel { gap: 0.8em; }

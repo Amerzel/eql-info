@@ -53,7 +53,8 @@ const VALUE_ROLES = new Set(["magnitude", "movement-magnitude", "modifier-magnit
 const VALUE_CONSUMED = new Set(["scaling", "cap"]);
 const SILENT_ROLES = new Set(["unused", "enable-flag", "instant-flag",
   "beneficial-flag", "unconsumed-parameter", "unconsumed-sentinel",
-  "self-reference-equality", "scale-permille", "resource-selector", "cap-amount"]);
+  "self-reference-equality", "scale-permille", "resource-selector", "cap-amount",
+  "pvp-duration-ms"]);  // EQL has no PvP — stun PvP duration never displays
 const RAW_ROLES = new Set(["coord-component", "flight-mode", "gender/texture",
   "helm/variant", "target-code", "evac-target"]);
 
@@ -67,7 +68,6 @@ const PART_BUILDERS = {
   "proc-rate-modifier": v => (v ? `proc-rate mod ${v}` : null),
   "proc-type": v => (v ? `proc type ${v}` : null),
   "duration-ms": v => `${gfmt(v / 1000)}s`,
-  "push": v => (v ? `push ${v}` : null),
   "item-id": v => `item #${v}`,
   "spa-id": v => `${spaName(v)} (#${v})`,
   "slot": v => `slot ${v}`,
