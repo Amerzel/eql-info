@@ -2,10 +2,10 @@
 // Source of truth: src/eqltools/spells/tables/field_semantics.py
 // Regenerate: python -m eqltools.spells.tables.field_semantics --emit-js
 //   > web/static/js/field_semantics.js
-// version=1 digest=ff931900e04bad7a074f89cad404939ed8fc2505bf709b26cbbb41f079aa318d
+// version=1 digest=8576f270165525521ee6bda7a24a410737c110fcf28d99587f994df36827530a
 // eqemu_reference_revision=b69fa9cbcd7517f5f9d909d93de4778164268f0d
 export const FIELD_SEMANTICS_VERSION = 1;
-export const FIELD_SEMANTICS_DIGEST = "ff931900e04bad7a074f89cad404939ed8fc2505bf709b26cbbb41f079aa318d";
+export const FIELD_SEMANTICS_DIGEST = "8576f270165525521ee6bda7a24a410737c110fcf28d99587f994df36827530a";
 export const APPROVED_INVENTORY_DIGEST = "8844d7f8137177babd7604d20fd2710236859e1aa9595852da4605015ddbc403";
 export const BOUND_RAW_CORPUS_DIGEST = "c28f2b0dd8751701fd55fa5c2e826b8600db29e18287d802bd45839df71b7178";
 export const OBS_CITATION_SYNTAX = "^obs:OBS-\\d{4}-\\d{3}$";
@@ -26,8 +26,8 @@ export const FIELD_SEMANTICS = {
         "role": "magnitude"
       },
       "formula": {
-        "citation": "eqemu-value-formulas:CalcSpellEffectValue_formula",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-041",
+        "evidence": "OBSERVED",
         "role": "scaling"
       },
       "limit": {
@@ -1281,8 +1281,8 @@ export const FIELD_SEMANTICS = {
     "family": "stun",
     "fields": {
       "base": {
-        "citation": "eqemu-effects:SpellEffect::Stun",
-        "evidence": "REFERENCE",
+        "citation": "obs:OBS-2026-042",
+        "evidence": "OBSERVED",
         "role": "duration-ms"
       },
       "formula": {
