@@ -142,6 +142,22 @@ const FOCUS_MODIFIERS = new Map([
 ]);
 const FOCUS_RANDOM = new Set([124, 125, 131, 132]);
 
+// Pet template type-suffix -> the community's wiki phrasing (live class-page
+// descriptions, 2026-08-07). Skeleton variants (Ice/Char) are model skins.
+const PET_TYPES = {
+  ElemWat: "Summons a Water Elemental Pet",
+  ElemHeat: "Summons a Fire Elemental Pet",
+  ElemAir: "Summons an Air Elemental Pet",
+  ElemErf: "Summons an Earth Elemental Pet",
+  MonSum: "Summons a Monster Pet",
+  Skel2: "Summons a Skeleton Pet",
+  Skel2Ice: "Summons a Skeleton Pet",
+  Skel2Char: "Summons a Skeleton Pet",
+  Anim: "Summons an Animation Pet",
+  Ward: "Summons a Warder Pet",
+  WolfGho: "Summons a Spirit Wolf Pet",
+};
+
 // SPA 137 references another SPA; name the common ones in plain words.
 function spaPhrase(id) {
   if (id === 0) return "damage & healing";
@@ -193,6 +209,18 @@ export function focusPhrase(e, resolvers) {
   return null;
 }
 
+// Pet summons: decode the teleport_zone template ("PCPetMagS01L002ElemWat")
+// to the community's phrasing. OUR reading of the template -> no fact-mark;
+// unknown suffixes return null (verbatim path continues). Exported: the
+// detail page substitutes it for the raw part text too.
+export function petPhrase(pres) {
+  if (pres.kind !== "pet") return null;
+  const part = pres.parts.find(p => (p.text || "").startsWith("Summons: PCPet"));
+  if (!part) return null;
+  const m = /^Summons: PCPet[A-Za-z]{3}S\d+L\d+(.+)$/.exec(part.text);
+  return (m && PET_TYPES[m[1]]) || null;
+}
+
 export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
   // Focus payload/limit rows get their own readable lines (never a ✓ —
   // the focus model is REFERENCE).
@@ -203,7 +231,8 @@ export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
                 beneficial: !!(sp?.good_effect),
                 teleportZone: sp?.teleport_zone || null,
                 spellName: resolvers?.spellName || null,
-                raceName: resolvers?.raceName || null };
+                raceName: resolvers?.raceName || null,
+                itemName: resolvers?.itemName || null };
   const pres = presentEffect(e.effect_id, e.base_value || 0, e.limit_value || 0,
                              e.max_value || 0, e.formula || 0, ctx);
   if (pres.kind === "suppressed") return "";
@@ -230,6 +259,14 @@ export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
       !(sp?.buff_duration || sp?.buff_duration_formula)) {
     return "Cure Blindness" + mark;
   }
+  // Pet summons: the template string in teleport_zone (PCPetMagS01L002ElemWat)
+  // decodes to the community's phrasing ("Summons a Water Elemental Pet",
+  // matching the live wiki pages). The decoded name is OUR reading of the
+  // template — no fact-mark; unknown suffixes keep the verbatim string.
+  {
+    const pet = petPhrase(pres);
+    if (pet) return wrapNums(escapeHtml(pet));
+  }
   // Weapon (85) / defensive (323) procs read as one phrase. The limit is a
   // rate BONUS on 100 (EQEmu AddProcToWeapon/AddDefensiveProc: 100+limit),
   // so limit 50 = 1.5× the normalized per-minute proc rate. The proc-type
@@ -250,20 +287,21 @@ export function friendlyEffect(e, level, sp, resolvers, rangeTo) {
     if (p.role === "label" && p.text === spaName(e.effect_id)) {
       return caps.length ? plainLabel(e.effect_id) : (EFFECT_LABELS[e.effect_id] || p.text);
     }
+    // summoned items (dbstr type 44): "Summons: Waterstone", or the honest
+    // "Summons item #10342" when the resolver has no name
+    if (p.role === "item-id") {
+      return /^item #\d+$/.test(p.text) ? `Summons ${p.text}` : `Summons: ${p.text}`;
+    }
     return p.text;
   }).filter(Boolean);
   // "stun · 1s · …" reads label-first: "Stun: 1s · …"
   if (texts[0] === "stun" && /^[\d.]+s$/.test(texts[1] || "")) {
     texts.splice(0, 2, `Stun: ${texts[1]}`);
   }
-  // "item #10342" (approved CreateItem form) reads as "Summons item #10342";
-  // a charge count folds in: "Summons item #13079 (×4)"
-  if (/^item #\d+$/.test(texts[0] || "")) {
-    texts[0] = `Summons ${texts[0]}`;
-    if (/^×\d+$/.test(texts[1] || "")) {
-      texts[0] += ` (${texts[1]})`;
-      texts.splice(1, 1);
-    }
+  // a summoned item's charge count folds in: "Summons: Waterstone (×4)"
+  if ((texts[0] || "").startsWith("Summons") && /^×\d+$/.test(texts[1] || "")) {
+    texts[0] += ` (${texts[1]})`;
+    texts.splice(1, 1);
   }
   // "Feign Death · success threshold 87" reads "Feign Death (87% success)"
   const th = texts.findIndex(t => /^success threshold \d+$/.test(t || ""));

@@ -24,6 +24,35 @@ export const TARGET_TYPES = {
   52: "All Group Members", 56: "Target Group Member or Self",
 };
 
+// James-reviewed category label aliases (scratch/category-label-map.md,
+// 2026-08-10): shared vocabulary with the wiki Type column. Applied wherever
+// the client category texts render (lists, detail Type/Effect rows).
+export const CATEGORY_ALIASES = {
+  "Damage Over Time": "Damage Over Time (DoT)",
+  "Direct Damage": "Direct Damage (DD)",
+  "HP type one": "HP Buff (Line 1)",
+  "HP type two": "HP Buff (Line 2)",
+  "Indirect": "Blessings",
+};
+// PAIR-scoped: "Health" exists under BOTH Taps (lifetaps) and Regen (Hymn of
+// Restoration) — only the Taps pair reads "Lifetap" (James, 2026-08-10).
+export const CATEGORY_PAIR_ALIASES = { "Taps|Health": "Lifetap" };
+export function categoryLabel(text) {
+  return CATEGORY_ALIASES[text] || text || "";
+}
+
+// Sub-first COMPACT category (James 2026-08-10, shared with the wiki Type
+// column): "Fire DD", "Snare DoT", "Lifetap"; the top-level when the sub is
+// absent, identical, or the uninformative "Misc".
+const CAT_SUFFIX = { "Direct Damage": "DD", "Damage Over Time": "DoT" };
+export function categoryDisplay(cat, cat2) {
+  const a = categoryLabel(cat);
+  const b = CATEGORY_PAIR_ALIASES[`${cat}|${cat2}`] || categoryLabel(cat2);
+  if (!b || b === a || cat2 === "Misc") return a;
+  const sfx = CAT_SUFFIX[cat || ""];
+  return sfx ? `${b} ${sfx}` : b;
+}
+
 export const RESIST_TYPES = {
   0: "Unresistable", 1: "Magic", 2: "Fire", 3: "Cold",
   4: "Poison", 5: "Disease", 6: "Chromatic", 7: "Prismatic",

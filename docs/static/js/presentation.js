@@ -111,13 +111,14 @@ function nameOrId(resolver, ident, prefix) {
  * @param {number} formula
  * @param {{level: number, isDuration?: boolean, beneficial?: boolean,
  *          spellName?: ((id: number) => string|null)|null,
+ *          itemName?: ((id: number) => string|null)|null,
  *          raceName?: ((id: number) => string|null)|null,
  *          teleportZone?: string|null}} opts
  */
 export function presentEffect(spa, base, limit, mx, formula,
                               { level, isDuration = false, beneficial = false,
                                 spellName = null, raceName = null,
-                                teleportZone = null }) {
+                                itemName = null, teleportZone = null }) {
   const ent = FIELD_SEMANTICS[String(spa)];
   const raws = { base, limit, max: mx, formula };
   const mk = (over) => Object.assign({ kind: "unknown", parts: [],
@@ -173,6 +174,13 @@ export function presentEffect(spa, base, limit, mx, formula,
     if (role === "race-id") {
       parts.push({ field: fname, role, text: nameOrId(raceName, v, "race"),
                    qualification: QUAL[fm.evidence], linkSpellId: null, rawValue: null });
+      continue;
+    }
+    // dbstr type 44 ("Summoned: <name>" by ITEM id) — client data; absence
+    // degrades to the honest "item #id".
+    if (role === "item-id") {
+      parts.push({ field: fname, role, text: nameOrId(itemName, v, "item"),
+                   qualification: QUAL[fm.evidence], linkSpellId: null, rawValue: v });
       continue;
     }
     if (role === "target-level-cap") {

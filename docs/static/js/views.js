@@ -7,7 +7,7 @@ import {
   targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
   displayedValue, capLevel, clampLevel, spellLevelHash, confidenceTier, limitValueLabel,
   EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
-  EFFECT_LIFETAP, EFFECT_MANATAP, EFFECT_GROUPS,
+  EFFECT_LIFETAP, EFFECT_MANATAP, EFFECT_GROUPS, categoryLabel, categoryDisplay,
 } from "./data.js";
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
@@ -16,7 +16,7 @@ import {
 } from "./text.js";
 import { ROMAN, applyUpgrade, classifyUpgradeCategory, descEffectsAt, levelChip, refreshDescription, refreshDurationStat, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
 import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
-import { friendlySummary, focusPhrase } from "./friendly.js";
+import { friendlySummary, focusPhrase, petPhrase } from "./friendly.js";
 import { FIELD_SEMANTICS } from "./field_semantics.js";
 
 function iconImg(newIcon, cls = "icon") {
@@ -31,7 +31,7 @@ function iconImg(newIcon, cls = "icon") {
 // and prefetch their names — the honest resolver contract: display-only,
 // degrades to #id when absent.
 export async function buildResolvers(effects, queryFn) {
-  const spellIds = new Set(), raceIds = new Set();
+  const spellIds = new Set(), raceIds = new Set(), itemIds = new Set();
   for (const e of effects) {
     const ent = FIELD_SEMANTICS[String(e.effect_id)];
     if (!ent) continue;
@@ -43,9 +43,10 @@ export async function buildResolvers(effects, queryFn) {
       // spell-selector (focus limit 139) stores exclusions as negative ids
       if (fm.role === "spell-id" || fm.role === "spell-selector") spellIds.add(Math.abs(v));
       if (fm.role === "race-id") raceIds.add(v);
+      if (fm.role === "item-id" && v > 0) itemIds.add(v);
     }
   }
-  const spellNames = new Map(), raceNames = new Map();
+  const spellNames = new Map(), raceNames = new Map(), itemNames = new Map();
   if (spellIds.size) {
     const rows = await queryFn(
       `SELECT id, name FROM spells WHERE id IN (${[...spellIds].join(",")})`);
@@ -56,8 +57,15 @@ export async function buildResolvers(effects, queryFn) {
       `SELECT id, text FROM dbstr WHERE type = 11 AND id IN (${[...raceIds].join(",")})`);
     for (const r of rows) raceNames.set(r.id, r.text);
   }
+  if (itemIds.size) {
+    // dbstr type 44: "Summoned: <name>" keyed by ITEM id (client data)
+    const rows = await queryFn(
+      `SELECT id, text FROM dbstr WHERE type = 44 AND id IN (${[...itemIds].join(",")})`);
+    for (const r of rows) itemNames.set(r.id, r.text.replace(/^Summoned: /, ""));
+  }
   return { spellName: id => spellNames.get(id) || null,
-           raceName: id => raceNames.get(id) || null };
+           raceName: id => raceNames.get(id) || null,
+           itemName: id => itemNames.get(id) || null };
 }
 
 // D3 §4 (+ James's D3 review): a COMPACT summary of the proc's triggered
@@ -103,7 +111,8 @@ export async function loadProcInline(det, force = false) {
             isDuration: (sp.buff_duration_formula || 0) > 0,
             beneficial: !!sp.good_effect,
             teleportZone: sp.teleport_zone || null,
-            spellName: resolvers.spellName, raceName: resolvers.raceName });
+            spellName: resolvers.spellName, raceName: resolvers.raceName,
+               itemName: resolvers.itemName });
         if (pres.kind === "value") {
           const kind = upgradeKind(e.effect_id, e.base_value);
           const v = applyUpgrade(kind, pres.value, procLevel, rates);
@@ -416,8 +425,9 @@ function shortTargetCell(t) {
 
 // LIST-ONLY compact category: the specific sub-label when present ("Fire",
 // "Blind", "Cure"), the top-level otherwise; full pair on hover.
-function shortCategoryCell(cat, cat2) {
-  const short = cat2 && cat2 !== cat ? cat2 : (cat || "");
+function shortCategoryCell(rawCat, rawCat2) {
+  const cat = categoryLabel(rawCat), cat2 = categoryLabel(rawCat2);
+  const short = categoryDisplay(rawCat, rawCat2);
   const full = cat2 && cat2 !== cat ? `${cat} · ${cat2}` : (cat || "");
   return `<td class="muted"${full !== short ? ` title="${escapeHtml(full)}"` : ""}>${escapeHtml(short)}</td>`;
 }
@@ -449,7 +459,8 @@ function effectsSummary(effs, level, sp, resolvers) {
                                  beneficial: !!(sp?.good_effect),
                                  teleportZone: sp?.teleport_zone || null,
                                  spellName: resolvers?.spellName || null,
-                                 raceName: resolvers?.raceName || null });
+                                 raceName: resolvers?.raceName || null,
+                                 itemName: resolvers?.itemName || null });
     if (pres.kind === "value") {
       const src = e.base_value !== 0 ? e.base_value : e.max_value;
       const lbl = escapeHtml(shortEffectLabel(e.effect_id, src));
@@ -818,7 +829,8 @@ export async function renderSpell(spellId, params) {
                       beneficial: !!spell.good_effect,
                       teleportZone: spell.teleport_zone || null,
                       spellName: resolvers.spellName,
-                      raceName: resolvers.raceName }));
+                      raceName: resolvers.raceName,
+                      itemName: resolvers.itemName }));
   // ── adaptive sections (design pass D1): the corpus splits nearly evenly
   //    into value rows and semantic rows — render only the sections this
   //    spell actually has (backlog §1, approved). Column model per §2:
@@ -885,8 +897,14 @@ export async function renderSpell(spellId, params) {
     <ul class="sem-effects">${semanticRows.map(([e, pres]) => `
       <li class="sem-effect">
         <span class="pres-cell"><a href="#/effect/${e.effect_id}">${escapeHtml(spaName(e.effect_id))}</a>
-          <span class="muted">—</span> ${(fp => fp != null ? escapeHtml(fp)
-            : (procRowHtml(e, pres) ?? (presPartsHtml(pres, e.effect_id) || '<span class="muted">—</span>')))(focusPhrase(e, resolvers))}${factOf(pres)}</span>
+          <span class="muted">—</span> ${(() => {
+            const fp = focusPhrase(e, resolvers);
+            if (fp != null) return escapeHtml(fp) + factOf(pres);
+            const pp = petPhrase(pres);
+            if (pp != null) return escapeHtml(pp);   // decoded template: no ✓
+            return (procRowHtml(e, pres)
+              ?? (presPartsHtml(pres, e.effect_id) || '<span class="muted">—</span>')) + factOf(pres);
+          })()}</span>
         ${(() => {
           const proc = pres.parts.find(p => p.linkSpellId);
           return proc ? `
@@ -966,8 +984,8 @@ export async function renderSpell(spellId, params) {
           }))))}">${rendered}</div>` : ""}
         ${descText ? `<details class="raw-detail"><summary>Template text (placeholders visible)</summary><pre class="desc-raw">${escapeHtml(descText)}</pre></details>` : ""}
         ${catText ? `<p class="muted"><strong>Spell line:</strong> <a href="#/spells?line=${spell.spell_category}">${escapeHtml(catText)}</a></p>` : ""}
-        ${typeText ? `<p class="muted"><strong>Type:</strong> ${escapeHtml(typeText)}</p>` : ""}
-        ${effectText ? `<p class="muted"><strong>Effect:</strong> ${escapeHtml(effectText)}</p>` : ""}
+        ${typeText ? `<p class="muted"><strong>Type:</strong> ${escapeHtml(categoryLabel(typeText))}</p>` : ""}
+        ${effectText ? `<p class="muted"><strong>Effect:</strong> ${escapeHtml(categoryLabel(effectText))}</p>` : ""}
         ${secText ? `<p class="muted"><strong>Secondary:</strong> ${escapeHtml(secText)}</p>` : ""}
         <h2>Effects</h2>\n        <p class="muted disclosure">${DISCLOSURE}</p>${effectsHtml}
         ${msgsHtml}

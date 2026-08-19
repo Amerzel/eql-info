@@ -86,7 +86,8 @@ function renderTooltip(data) {
              { level: MAX_LEVEL, isDuration,
                beneficial: !!(spell.good_effect),
                teleportZone: spell.teleport_zone || null,
-               spellName: resolvers.spellName, raceName: resolvers.raceName });
+               spellName: resolvers.spellName, raceName: resolvers.raceName,
+               itemName: resolvers.itemName });
            const factMark = pres.publication === "fact"
              ? ' <span class="fact-mark" title="EQL-grounded">✓</span>' : "";
            const cells = pres.kind === "value"
