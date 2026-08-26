@@ -1722,19 +1722,21 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
       const cycle = (r.buff_duration_formula && isFinite(t) && t > 0)
         ? Math.max(t * 6, castS + reuseS) : (castS + reuseS);
       const dpsV = cycle > 0 ? total / cycle : null;
-      return `<td>${cell(perManaV)}</td><td>${cell(dpsV)}</td>`;
+      return `<td data-l="DPM">${cell(perManaV)}</td><td data-l="DPS">${cell(dpsV)}</td>`;
     })() : "";
+    const targetCell = (aeCap ? shortTargetCell(r.target_type).replace("</td>",
+        ` <span class="muted">×${aeCap}</span></td>`) : shortTargetCell(r.target_type))
+      .replace("<td", '<td data-l="Target"');
     return `<td>${iconImg(r.new_icon)}</td>
       <td>${nameHtml}</td>
       <td class="muted">${classCell}</td>
       <td>${eff}</td>
       ${effCols}
-      <td>${manaAt(r)}</td>
-      <td>${fmtSeconds(castMsAt(r))}s${recastMsAt(r) > 0
+      <td data-l="Mana">${manaAt(r)}</td>
+      <td data-l="Cast">${fmtSeconds(castMsAt(r))}s${recastMsAt(r) > 0
         ? ` <span class="muted">/ ${fmtSeconds(recastMsAt(r))}s</span>` : ""}</td>
-      <td>${fmtDur(durCapAt(r))}</td>
-      ${aeCap ? shortTargetCell(r.target_type).replace("</td>",
-          ` <span class="muted">×${aeCap}</span></td>`) : shortTargetCell(r.target_type)}`;
+      <td data-l="Dur">${fmtDur(durCapAt(r))}</td>
+      ${targetCell}`;
   };
   const rowHtml = (id) => {
     const r = byId.get(id);

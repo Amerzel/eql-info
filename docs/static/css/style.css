@@ -470,6 +470,7 @@ input[type=range]::-moz-range-thumb { width: 13px; height: 13px;
   .spell-table { table-layout: auto; }
   .spell-table, .spell-table tbody { display: block; width: 100%; }
   .spell-table thead, .spell-table colgroup { display: none; }
+  .spell-table tr[hidden] { display: none; }   /* cards must not defeat the fold chips */
   .spell-table tr { display: flex; flex-wrap: wrap; align-items: baseline;
     column-gap: 0.55em; row-gap: 0.1em; padding: 0.55em 0.1em;
     border-bottom: 1px solid var(--bg-3); }
@@ -496,6 +497,18 @@ input[type=range]::-moz-range-thumb { width: 13px; height: 13px;
   .t-browse td:nth-child(7)::before { content: "Mana "; }
   .t-browse td:nth-child(8)::before { content: "Cast "; }
   .t-browse td:nth-child(9)::before { content: "Dur "; }
+  /* stacks cards: icon leads, name+chip headline, effects on its own
+     line; meta cells labeled via data-l (indices shift between the buffs
+     and det layouts, so labels ride the cells, not nth-child) */
+  .t-stacks td:nth-child(1) { order: 1; align-self: center; }
+  .t-stacks td:nth-child(2) { order: 2; flex: 1; font-size: 1.05em; }
+  .t-stacks td:nth-child(4) { order: 3; flex-basis: 100%; padding-left: 30px; }
+  .t-stacks td:nth-child(3), .t-stacks td[data-l] {
+    order: 4; font-size: 0.82em; color: var(--muted); padding-left: 0;
+    white-space: nowrap; }
+  .t-stacks td[data-l]::before { content: attr(data-l) " "; }
+  .t-stacks tr.stack-sub { padding-left: 26px; }
+
   /* browse's level chip folds into the name line, before the icon */
   .t-browse td:nth-child(1) { order: 0; color: var(--accent-2);
     font-weight: 600; }
