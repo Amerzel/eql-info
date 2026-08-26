@@ -1604,6 +1604,84 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
     return t < 0 ? Infinity : t;
   };
   const durOk = (winner, loser) => durTicks(winner) * 10 >= durTicks(loser);
+  // ── uniform Spell Level (upgrade tier) modeling — DISPLAY + sort only.
+  // Stacking/fold verdicts stay at base values: a uniform tier scales both
+  // sides of every comparison, and the engine's reference semantics stay
+  // honest to client data. Rates = the solved n=94 category model
+  // (upgrades.js); scaled values are MODELED, so fact marks are stripped.
+  const upCat = new Map();   // spell id -> classifyUpgradeCategory result
+  const catOf = (r) => {
+    if (!upCat.has(r.id)) upCat.set(r.id, classifyUpgradeCategory(r, effMap.get(r.id) || []));
+    return upCat.get(r.id);
+  };
+  const scaleEffs = (r) => {
+    const effs = effMap.get(r.id) || [];
+    if (!upg) return effs;
+    // model semantics (D2 review): caster level gives the BASE value, the
+    // Spell Level MULTIPLIES it — so scale the FINAL leveled value and emit
+    // a flat (formula-100) effect. Lossless here: this page renders at one
+    // fixed level, so ranges are single values anyway. Matches the detail
+    // page's slider exactly (Upheaval 638 -> 1020 at tier 10).
+    const dmgRate = catOf(r).key === "dot" ? 0.03 : 0.06;
+    const flat = (e, rate, rnd) => {
+      const v = calcSpellValue(e.base_value, e.formula, e.max_value, level);
+      const scaled = (v < 0 ? -1 : 1) * rnd(Math.abs(v) * (1 + rate * upg));
+      return { ...e, base_value: scaled, formula: 100, max_value: 0 };
+    };
+    return effs.map(e => {
+      if (e.effect_id === 0 && e.base_value < 0) return flat(e, dmgRate, Math.floor);
+      if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100 || e.effect_id === 44)
+        return flat(e, 0.03, Math.round);
+      if (e.effect_id === 79 && e.base_value < 0) return flat(e, 0.06, Math.floor);
+      return e;
+    });
+  };
+  const manaAt = (r) => (upg && r.mana > 0)
+    ? Math.round(r.mana * (1 - catOf(r).mana * upg)) : r.mana;
+  const castMsAt = (r) => upg ? r.cast_time * (1 - catOf(r).cast * upg) : r.cast_time;
+  const recastMsAt = (r) => (upg && r.recast_time > 0)
+    ? Math.max(1000, Math.floor(r.recast_time * (1 - 0.02 * upg))) : r.recast_time;
+  const durEligible = (r) => catOf(r).dur !== null &&
+    (r.buff_duration_formula || 0) > 0 && r.buff_duration_formula !== 50 &&
+    (r.buff_duration || 0) > 0;
+  const durTicksAt = (r) => {
+    const t = durTicks(r);
+    if (!upg || !durEligible(r) || !isFinite(t)) return t;
+    return Math.round(t * (1 + catOf(r).dur * upg));
+  };
+  const durCapAt = (r) => (upg && durEligible(r))
+    ? Math.round(r.buff_duration * (1 + catOf(r).dur * upg)) : r.buff_duration;
+  const damageAt = (r) => {
+    let best = 0;
+    for (const e of scaleEffs(r)) {
+      if ((e.effect_id === 0 || e.effect_id === 79) && e.base_value < 0) {
+        const val = Math.abs(calcSpellValue(e.base_value, e.formula, e.max_value, level));
+        const t = r.buff_duration_formula && e.effect_id === 0
+          ? Math.max(1, Math.min(durTicksAt(r), 1e6)) : 1;
+        best = Math.max(best, val * t);
+      }
+    }
+    return best;
+  };
+  // det damage sections: a line-fold may only swallow a spell DOMINATED on
+  // every visible metric — Garrison's Mighty Mana Shock shares the client's
+  // Force line with Thunder Strike but beats it on DPS (1.5s recast, no
+  // stun), so it must surface as its own row (James 2026-08-26)
+  const metricsOf = (r) => {
+    const total = damageAt(r);
+    const castS = castMsAt(r) / 1000, reuseS = recastMsAt(r) / 1000;
+    const t = durTicksAt(r);
+    const cycle = (r.buff_duration_formula && isFinite(t) && t > 0)
+      ? Math.max(t * 6, castS + reuseS) : (castS + reuseS);
+    return { dmg: total, dpm: manaAt(r) > 0 ? total / manaAt(r) : 0,
+             dps: cycle > 0 ? total / cycle : 0 };
+  };
+  const dominates = (a, b) => {
+    if (layout !== "det") return true;
+    const ma = metricsOf(a), mb = metricsOf(b);
+    if (!mb.dmg) return true;                    // non-damage rows: rank order rules
+    return ma.dmg >= mb.dmg && ma.dpm >= mb.dpm && ma.dps >= mb.dps;
+  };
   const lineFolded = new Map();          // survivor id -> folded lower ranks
   const lineRows = [];
   for (const members of byLine.values()) {
@@ -1612,7 +1690,7 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
     while (unclaimed.length) {
       const head = unclaimed.shift();
       lineRows.push(head);
-      const folds = unclaimed.filter(m => durOk(head, m));
+      const folds = unclaimed.filter(m => durOk(head, m) && dominates(head, m));
       if (folds.length) {
         lineFolded.set(head.id, folds);
         for (const f of folds) unclaimed.splice(unclaimed.indexOf(f), 1);
@@ -1774,65 +1852,6 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
   const stackTable = (rowsHtml) =>
     `<table class="spell-table t-stacks">${stackCols}${tableHead}${rowsHtml}</table>`;
 
-  // ── uniform Spell Level (upgrade tier) modeling — DISPLAY + sort only.
-  // Stacking/fold verdicts stay at base values: a uniform tier scales both
-  // sides of every comparison, and the engine's reference semantics stay
-  // honest to client data. Rates = the solved n=94 category model
-  // (upgrades.js); scaled values are MODELED, so fact marks are stripped.
-  const upCat = new Map();   // spell id -> classifyUpgradeCategory result
-  const catOf = (r) => {
-    if (!upCat.has(r.id)) upCat.set(r.id, classifyUpgradeCategory(r, effMap.get(r.id) || []));
-    return upCat.get(r.id);
-  };
-  const scaleEffs = (r) => {
-    const effs = effMap.get(r.id) || [];
-    if (!upg) return effs;
-    // model semantics (D2 review): caster level gives the BASE value, the
-    // Spell Level MULTIPLIES it — so scale the FINAL leveled value and emit
-    // a flat (formula-100) effect. Lossless here: this page renders at one
-    // fixed level, so ranges are single values anyway. Matches the detail
-    // page's slider exactly (Upheaval 638 -> 1020 at tier 10).
-    const dmgRate = catOf(r).key === "dot" ? 0.03 : 0.06;
-    const flat = (e, rate, rnd) => {
-      const v = calcSpellValue(e.base_value, e.formula, e.max_value, level);
-      const scaled = (v < 0 ? -1 : 1) * rnd(Math.abs(v) * (1 + rate * upg));
-      return { ...e, base_value: scaled, formula: 100, max_value: 0 };
-    };
-    return effs.map(e => {
-      if (e.effect_id === 0 && e.base_value < 0) return flat(e, dmgRate, Math.floor);
-      if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100 || e.effect_id === 44)
-        return flat(e, 0.03, Math.round);
-      if (e.effect_id === 79 && e.base_value < 0) return flat(e, 0.06, Math.floor);
-      return e;
-    });
-  };
-  const manaAt = (r) => (upg && r.mana > 0)
-    ? Math.round(r.mana * (1 - catOf(r).mana * upg)) : r.mana;
-  const castMsAt = (r) => upg ? r.cast_time * (1 - catOf(r).cast * upg) : r.cast_time;
-  const recastMsAt = (r) => (upg && r.recast_time > 0)
-    ? Math.max(1000, Math.floor(r.recast_time * (1 - 0.02 * upg))) : r.recast_time;
-  const durEligible = (r) => catOf(r).dur !== null &&
-    (r.buff_duration_formula || 0) > 0 && r.buff_duration_formula !== 50 &&
-    (r.buff_duration || 0) > 0;
-  const durTicksAt = (r) => {
-    const t = durTicks(r);
-    if (!upg || !durEligible(r) || !isFinite(t)) return t;
-    return Math.round(t * (1 + catOf(r).dur * upg));
-  };
-  const durCapAt = (r) => (upg && durEligible(r))
-    ? Math.round(r.buff_duration * (1 + catOf(r).dur * upg)) : r.buff_duration;
-  const damageAt = (r) => {
-    let best = 0;
-    for (const e of scaleEffs(r)) {
-      if ((e.effect_id === 0 || e.effect_id === 79) && e.base_value < 0) {
-        const val = Math.abs(calcSpellValue(e.base_value, e.formula, e.max_value, level));
-        const t = r.buff_duration_formula && e.effect_id === 0
-          ? Math.max(1, Math.min(durTicksAt(r), 1e6)) : 1;
-        best = Math.max(best, val * t);
-      }
-    }
-    return best;
-  };
   const groupBlock = (members) => {
     const names = members.map(id => byId.get(id).name);
     const label = names.every(n => /^(Illusion|Minor Illusion|Phantom|Wolf Form|Treeform|Form of)/.test(n))
