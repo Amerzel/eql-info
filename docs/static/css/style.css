@@ -566,3 +566,28 @@ h4.stack-section.stack-pickone { font-size: .95em; margin: .55em 0 .2em; }
 .t-stacks col.c-cast { width: 7.5em; }
 .t-stacks col.c-eff { width: 8em; }
 .t-stacks td:nth-child(5), .t-stacks td:nth-child(6) { white-space: nowrap; }
+
+/* ── header quick nav — pill buttons in the site's classbtn idiom ── */
+.topnav { display: flex; gap: .6em; align-items: center; flex-wrap: wrap; }
+.topnav > a, .nav-classes > summary {
+  display: inline-block; padding: .3em .95em; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 1em;
+  background: var(--bg-3); color: var(--accent); font-size: .92em;
+  text-decoration: none; }
+.topnav > a:hover, .nav-classes > summary:hover,
+.nav-classes[open] > summary { background: var(--border); }
+.nav-classes { position: relative; }
+.nav-classes > summary { list-style: none; }
+.nav-classes > summary::-webkit-details-marker { display: none; }
+.nav-classes > summary::after { content: " ▾"; font-size: .8em; opacity: .8; }
+.nav-classes-list { position: absolute; left: 0; top: 2.5em; z-index: 60;
+  display: flex; flex-direction: column; min-width: 12.5em;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: .5em;
+  padding: .4em; box-shadow: 0 6px 18px rgba(0, 0, 0, .35); }
+.nav-classes-list a { display: block; padding: .38em .8em; border-radius: .35em;
+  color: var(--fg); white-space: nowrap; text-decoration: none; }
+.nav-classes-list a:hover { background: var(--bg-3); color: var(--accent); }
+@media (max-width: 720px) {
+  header { flex-wrap: wrap; row-gap: .45em; }
+  .nav-classes-list { left: auto; right: 0; max-height: 60vh; overflow-y: auto; }
+}

@@ -648,7 +648,8 @@ export async function renderBrowse(params) {
     return `<label class="trio-slot">${banner}<select name="class">${classOption(idx)}</select></label>`;
   }).join(" ");
   const allParams = new URLSearchParams(params); allParams.delete("class");
-  const allBtn = `<a href="#/spells${allParams.toString() ? "?" + allParams.toString() : ""}"
+  allParams.set("all", "1");   // explicit trio-clear (beats the saved-trio restore)
+  const allBtn = `<a href="#/spells?${allParams.toString()}"
     class="classbtn${clsIdxs.length ? "" : " active"}">All classes</a>`;
   // Build the Effect dropdown as one <optgroup> per EFFECT_GROUPS entry:
   // buckets first (in listed order), then that group's SPAs sorted by label.
@@ -681,6 +682,8 @@ export async function renderBrowse(params) {
         ${allBtn}
         <span class="muted">or pick your trio:</span>
         <span class="trio-slots">${classPickers}</span>
+        ${clsIdxs.length ? `<a class="muted" style="margin-left:.6em"
+          href="#/stacks?${clsIdxs.map(i => "class=" + classSlug(i)).join("&")}">→ What stacks for this trio</a>` : ""}
       </div>
       <div class="diff-controls">
         <label>Effect: ${effectSelect}</label>
@@ -1471,6 +1474,8 @@ export async function renderStacks(params) {
       <div class="diff-controls trio-row" style="margin-bottom:.5em">
         <span class="muted">Your trio:</span>
         <span class="trio-slots">${classPickers}</span>
+        ${clsIdxs.length ? `<a class="muted" style="margin-left:.6em"
+          href="#/spells?${clsIdxs.map(i => "class=" + classSlug(i)).join("&")}">→ Browse this trio's spells</a>` : ""}
         <label>at level <input type="number" name="level" value="${level}" min="1" max="${MAX_LEVEL}" style="width:5em"></label>
         <label title="apply the upgrade model as if EVERY spell were at this Spell Level (0 = unupgraded client values)">Spell Level
           <output data-stacks-upg-out>${upg ? ROMAN[upg] : "0"}</output>
@@ -1484,7 +1489,7 @@ export async function renderStacks(params) {
       ${modeTab("det", "Debuffs & Damage")}
     </div>`;
 
-  const intro = `<h2>What Stacks</h2>
+  const intro = `<h2>Spell Stacking</h2>
     <p class="muted">Pick your three classes and a level: the list below is the
     resolved set — every row can be up at the same time. Superseded lower ranks
     are folded into their replacement; mutually exclusive spells are grouped as

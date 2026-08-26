@@ -65,6 +65,29 @@ function parseHash() {
 
 let _routeSeq = 0;
 
+// The last-picked trio is shared between Browse (#/spells) and Spell
+// (#/stacks): saved to localStorage whenever a trio is in the URL, restored
+// when either page is opened without one (header links are bare). Browse's
+// "All classes" button carries ?all=1 so it can clear the trio explicitly.
+function withSavedTrio(head, params) {
+  const KEY = "eqlTrio";
+  const cls = params.getAll("class").filter(Boolean);
+  if (cls.length) {
+    try { localStorage.setItem(KEY, JSON.stringify(cls.slice(0, 3))); } catch { /* private mode */ }
+    return params;
+  }
+  if (params.has("all")) return params;
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (Array.isArray(saved) && saved.length) {
+      for (const c of saved) params.append("class", String(c));
+      const qs = params.toString();
+      history.replaceState(null, "", "#/" + head + (qs ? "?" + qs : ""));
+    }
+  } catch { /* corrupt storage — ignore */ }
+  return params;
+}
+
 async function route() {
   const seq = ++_routeSeq;
   const setHtml = (html) => { if (seq === _routeSeq) _setHtml(html); };
@@ -74,7 +97,7 @@ async function route() {
     if (segs.length === 0) return setHtml(await renderHome());
     const [head, arg1, arg2] = segs;
     switch (head) {
-      case "spells": return setHtml(await renderBrowse(params));
+      case "spells": return setHtml(await renderBrowse(withSavedTrio("spells", params)));
       case "class":  return setHtml(await renderClass(classIndexFromArg(arg1), params));
       case "spell":  return setHtml(await renderSpell(parseInt(arg1, 10), params));
       case "group":  return setHtml(await renderGroup(parseInt(arg1, 10)));
@@ -86,7 +109,7 @@ async function route() {
       case "races":  return setHtml(await renderRaces());
       case "race":   return setHtml(await renderRace(parseInt(arg1, 10)));
       case "search": return setHtml(await renderSearch(params));
-      case "stacks": return setHtml(await renderStacks(params));
+      case "stacks": return setHtml(await renderStacks(withSavedTrio("stacks", params)));
       case "upgrades": return setHtml(renderUpgradesPage());
       case "targets": return setHtml(await renderTargetsPage());
       default:       return setHtml(`<p>Unknown route: ${head}</p>`);
@@ -167,6 +190,16 @@ app.addEventListener("input", (e) => {
   // client-side without a re-route.
   const lvl = /** @type {Element} */ (e.target).closest("input[data-level-slider]");
   if (lvl) updateLevelView(lvl);
+});
+
+// Header Classes dropdown: close after picking a class or clicking away.
+document.addEventListener("click", (e) => {
+  const open = document.querySelector(".nav-classes[open]");
+  if (!open) return;
+  const t = /** @type {Element} */ (e.target);
+  if (t.closest(".nav-classes-list a") || !t.closest(".nav-classes")) {
+    /** @type {HTMLDetailsElement} */ (open).open = false;
+  }
 });
 
 // Top-bar search form (lives outside #app).
