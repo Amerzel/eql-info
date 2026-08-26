@@ -42,7 +42,9 @@ async function loadSpell(spellId) {
         ORDER BY min_level, class_index`, [spellId, MAX_LEVEL]);
     const duration = renderDuration(spell.buff_duration_formula, spell.buff_duration, MAX_LEVEL);
     const descRaw = await dbstr(spell.description_id, 6);
-    const description = descRaw ? substitute(descRaw, effects, duration) : "";
+    const description = descRaw
+      ? substitute(descRaw, effects, duration, spell.aoe_max_targets,
+                   spell.aoe_duration) : "";
     const category = spell.spell_category > 0
       ? await dbstr(spell.spell_category, 27) : null;
     return { spell, effects, classes, duration, description, category, resolvers };

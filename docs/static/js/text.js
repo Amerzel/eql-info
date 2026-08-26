@@ -47,7 +47,7 @@ export function renderDuration(formula, cap, level) {
  * descriptions ("causing 8 damage", not "causing -8 damage"). We follow
  * the same convention.
  */
-export function substitute(text, effects, durationStr) {
+export function substitute(text, effects, durationStr, aoeMaxTargets, aoeDurationMs) {
   if (!text) return "";
   const get = idx => (idx >= 0 && idx < effects.length) ? effects[idx] : null;
   const fmt = v => String(Math.abs(parseInt(v, 10) || 0));
@@ -66,6 +66,12 @@ export function substitute(text, effects, durationStr) {
     return e ? fmt(e.max_value) : m;
   });
   text = text.split("%z").join(durationStr || "");
+  // %T = the AE target cap (aoe_max_targets; OBSERVED: Upheaval 8, Gravity
+  // Flux 4). Left verbatim when unknown/zero.
+  if (aoeMaxTargets) text = text.split("%T").join(String(aoeMaxTargets));
+  // %i = the rain/wave AE's run time in seconds (aoe_duration ms; OBSERVED:
+  // Avalanche 7500 -> "7.5 seconds").
+  if (aoeDurationMs) text = text.split("%i").join(String(aoeDurationMs / 1000));
 
   // Strip the in-client color tags; let the existing CSS handle styling.
   text = text.replace(/<c\s+"#[0-9A-Fa-f]+">/g, "");

@@ -7,7 +7,7 @@
 import {
   renderHome, renderClass, renderSpell, renderGroup, renderEffect,
   renderSkills, renderSkill, renderAAs, renderAA, renderSearch,
-  renderRaces, renderRace, renderBrowse, updateLevelView,
+  renderRaces, renderRace, renderBrowse, renderStacks, updateLevelView,
   loadProcInline,
 } from "./views.js";
 import { initDb, query } from "./db.js";
@@ -86,6 +86,7 @@ async function route() {
       case "races":  return setHtml(await renderRaces());
       case "race":   return setHtml(await renderRace(parseInt(arg1, 10)));
       case "search": return setHtml(await renderSearch(params));
+      case "stacks": return setHtml(await renderStacks(params));
       case "upgrades": return setHtml(renderUpgradesPage());
       case "targets": return setHtml(await renderTargetsPage());
       default:       return setHtml(`<p>Unknown route: ${head}</p>`);
@@ -109,6 +110,8 @@ function navigateForm(form) {
     window.location.hash = "#/class/" + classSlug(idx) + (qs ? "?" + qs : "");
   } else if (kind === "browse") {
     window.location.hash = "#/spells" + (qs ? "?" + qs : "");
+  } else if (kind === "stacks") {
+    window.location.hash = "#/stacks" + (qs ? "?" + qs : "");
   } else if (kind === "aas") {
     window.location.hash = "#/aas" + (qs ? "?" + qs : "");
   } else if (kind === "search") {
@@ -118,6 +121,18 @@ function navigateForm(form) {
 
 // Intercept form submissions on dynamically-rendered pages to navigate
 // without a full reload.
+// #/stacks fold chips: toggle the hidden comparison sub-rows under a parent
+app.addEventListener("click", (e) => {
+  const chip = /** @type {HTMLElement|null} */ (
+    /** @type {Element} */ (e.target).closest("button[data-fold]"));
+  if (!chip) return;
+  const open = chip.getAttribute("aria-expanded") !== "true";
+  chip.setAttribute("aria-expanded", String(open));
+  chip.classList.toggle("open", open);
+  document.querySelectorAll(`tr[data-fold-of="${chip.dataset.fold}"]`)
+    .forEach(tr => { /** @type {HTMLElement} */ (tr).hidden = !open; });
+});
+
 app.addEventListener("submit", (e) => {
   const form = /** @type {Element} */ (e.target).closest("form[data-form]");
   if (!form) return;
@@ -128,13 +143,24 @@ app.addEventListener("submit", (e) => {
 // Browse page: apply filters the moment a control changes (no Apply click).
 // `change` (not `input`) so number fields fire on commit, not per keystroke.
 app.addEventListener("change", (e) => {
-  const form = /** @type {Element} */ (e.target).closest('form[data-form="browse"]');
+  const form = /** @type {Element} */ (e.target).closest(
+    'form[data-form="browse"], form[data-form="stacks"]');
   if (form) navigateForm(form);
 });
 
 // Spell-upgrade tier slider (spell detail page) — recompute displayed
 // values client-side without a re-route.
 app.addEventListener("input", (e) => {
+  // #/stacks Spell Level slider: live roman-numeral readout while dragging
+  // (the page re-renders on release via the change listener below)
+  const stacksUpg = /** @type {HTMLInputElement|null} */ (
+    /** @type {Element} */ (e.target).closest("input[data-stacks-upg]"));
+  if (stacksUpg) {
+    const out = document.querySelector("[data-stacks-upg-out]");
+    const v = +stacksUpg.value || 0;
+    if (out) out.textContent = v ? ("I II III IV V VI VII VIII IX X".split(" ")[v - 1]) : "0";
+    return;
+  }
   const upg = /** @type {Element} */ (e.target).closest("input[data-upgrade-slider]");
   if (upg) { updateUpgradePanel(upg); return; }
   // Caster-level slider (spell detail page) — recompute effect values + duration

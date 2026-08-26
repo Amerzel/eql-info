@@ -531,3 +531,38 @@ input[type=range]::-moz-range-thumb { width: 13px; height: 13px;
     align-items: flex-start; gap: 0.7em; }
   .class-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
+
+/* ── stacking (#/stacks page + detail panel) ── */
+details.stack-group { margin: .6em 0; }
+details.stack-group > summary { cursor: pointer; padding: .3em 0; }
+details.stack-detail { margin: .25em 0; }
+details.stack-detail > summary { cursor: pointer; }
+.stack-detail-list { margin: .3em 0 .5em 1em; font-size: .9em; line-height: 1.6; }
+h4.stack-section { margin: .9em 0 .25em; }
+/* #/stacks: shared fixed plan so every benefit-section table lines up */
+.t-stacks col.c-name { width: 17%; }
+.t-stacks col.c-cls  { width: 9em; }
+.t-stacks col.c-tgt  { width: 8.5em; }
+/* folded-spells disclosure chip on #/stacks rows */
+details.stack-fold { display: inline-block; margin-left: .4em; vertical-align: baseline; }
+details.stack-fold > summary { list-style: none; cursor: pointer; display: inline-block;
+  font-size: .78em; line-height: 1.35; padding: 0 .45em; border-radius: 9px;
+  background: var(--bg-3); color: var(--fg-muted, #999); border: 1px solid var(--bg-3); }
+details.stack-fold > summary::-webkit-details-marker { display: none; }
+details.stack-fold > summary:hover { color: inherit; border-color: currentColor; }
+details.stack-fold[open] > summary { color: inherit; }
+.stack-fold-list { font-size: .85em; color: var(--fg-muted, #999); margin-top: .15em; }
+/* fold chip button + comparison sub-rows */
+button.stack-fold-chip { cursor: pointer; font-size: .78em; line-height: 1.35;
+  padding: 0 .45em; margin-left: .4em; border-radius: 9px;
+  background: var(--bg-3); color: var(--fg-muted, #999);
+  border: 1px solid var(--bg-3); font-family: inherit; }
+button.stack-fold-chip:hover { color: inherit; border-color: currentColor; }
+button.stack-fold-chip.open { color: inherit; }
+tr.stack-sub { background: rgba(128, 128, 128, .07); }
+tr.stack-sub td { font-size: .92em; }
+.stack-sub-mark { color: var(--fg-muted, #999); padding-left: .35em; }
+h4.stack-section.stack-pickone { font-size: .95em; margin: .55em 0 .2em; }
+.t-stacks col.c-cast { width: 7.5em; }
+.t-stacks col.c-eff { width: 8em; }
+.t-stacks td:nth-child(5), .t-stacks td:nth-child(6) { white-space: nowrap; }

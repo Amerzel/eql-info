@@ -309,7 +309,9 @@ export function refreshDescription() {
     const ticks = Math.round(rates.durTicks * (1 + rates.durRate * tier));
     dur = renderDuration(rates.durFormula, ticks, MAX_LEVEL);
   }
-  desc.innerHTML = substitute(desc.dataset.descTemplate, scaled, dur) +
+  desc.innerHTML = substitute(desc.dataset.descTemplate, scaled, dur,
+                              +(desc.dataset.aoeMax || 0),
+                              +(desc.dataset.aoeDur || 0)) +
     (tier > 0 ? ` <span class="upg-chip" title="Description quantities scaled by the modeled upgrade rates; ranges stay ranges">Level ${ROMAN[tier]}</span>` : "");
 }
 

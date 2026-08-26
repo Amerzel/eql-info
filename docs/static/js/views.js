@@ -3,7 +3,7 @@
 
 import { query, queryOne, dbstr } from "./db.js";
 import {
-  CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES,
+  CLASS_NAMES, MAX_LEVEL, SKILLS, SKILL_CATEGORIES, calcSpellValue,
   targetName, resistName, className, spaName, skillName, classSlug, classIndexFromArg,
   displayedValue, capLevel, clampLevel, spellLevelHash, confidenceTier, limitValueLabel,
   EFFECT_BUCKETS, EFFECT_LABELS, EFFECT_DUR, EFFECT_VAL,
@@ -12,11 +12,12 @@ import {
 import { PLAYER_RACES, PLAYER_RACE_IDS } from "./races_data.js";
 import {
   renderDuration, substitute, modeTag, fmtFloat, fmtSeconds, levelDisplay,
-  escapeHtml,
+  escapeHtml, durationTicks,
 } from "./text.js";
 import { ROMAN, applyUpgrade, classifyUpgradeCategory, descEffectsAt, levelChip, refreshDescription, refreshDurationStat, refreshValueCells, renderUpgradeControl, upgradeKind } from "./upgrades.js";
 import { DISCLOSURE, formatValue, isPaddingRow, presentEffect, presentationText } from "./presentation.js";
 import { friendlySummary, focusPhrase, petPhrase } from "./friendly.js";
+import { checkStackConflict, spellView } from "./stacking.js";
 import { FIELD_SEMANTICS } from "./field_semantics.js";
 
 function iconImg(newIcon, cls = "icon") {
@@ -630,8 +631,10 @@ export async function renderBrowse(params) {
   // three-class trio). Each dropdown is name="class"; empty slots submit "" and
   // are dropped when the URL is built, so only chosen classes end up in it.
   const classOption = (selIdx) => `<option value="">(any)</option>` +
-    Array.from({ length: 16 }, (_, i) => i).map(i =>
-      `<option value="${classSlug(i)}"${selIdx === i ? " selected" : ""}>${escapeHtml(CLASS_NAMES[i])}</option>`).join("");
+    Array.from({ length: 16 }, (_, i) => i)
+      .sort((a, b) => CLASS_NAMES[a].localeCompare(CLASS_NAMES[b]))
+      .map(i =>
+        `<option value="${classSlug(i)}"${selIdx === i ? " selected" : ""}>${escapeHtml(CLASS_NAMES[i])}</option>`).join("");
   // Each slot is a vertical class banner (the class's own banner art when
   // picked, a "?" placeholder when empty) over its dropdown — the trio reads
   // as "pick 3" at a glance. The form navigates on change, so the re-render
@@ -804,7 +807,8 @@ export async function renderSpell(spellId, params) {
   // Client-accurate render (OBS-2026-027): #N substitutes the LEVEL-SCALED
   // value; %z prose stays the cap duration. Same composer as the live sliders.
   const rendered = descText
-    ? substitute(descText, descEffectsAt(effects, selLevel, 0, null), duration) : "";
+    ? substitute(descText, descEffectsAt(effects, selLevel, 0, null), duration,
+                 spell.aoe_max_targets, spell.aoe_duration) : "";
 
   const isDuration = (spell.buff_duration_formula || 0) > 0;
   const tierBadge = (tier) => {
@@ -977,6 +981,8 @@ export async function renderSpell(spellId, params) {
         ${rendered ? `<div class="desc desc-rendered"
           data-desc-original="${escapeHtml(rendered)}"
           data-desc-template="${escapeHtml(descText || "")}"
+          data-aoe-max="${spell.aoe_max_targets || 0}"
+          data-aoe-dur="${spell.aoe_duration || 0}"
           data-desc-duration="${escapeHtml(duration)}"
           data-desc-effects="${escapeHtml(JSON.stringify(effects.map(e => ({
             slot: e.slot, effect_id: e.effect_id, base_value: e.base_value,
@@ -1015,8 +1021,75 @@ export async function renderSpell(spellId, params) {
         <h2>Classes</h2>${classesHtml}
         ${lineMatesHtml}
         ${lineHtml}
+        ${await stackingPanel(spell)}
       </aside>
     </div>`;
+}
+
+// ── detail-page stacking panel ───────────────────────────────────────────
+// "Before you buy": what replaces this spell, what it blocks, what it will
+// not land over — computed against every obtainable spell with the same
+// parity-gated engine as #/stacks (verdicts at L50). Answers the community
+// "obsolete due to <xyz>" request on the spell's own page.
+let _stackCorpus = null;
+async function stackCorpus() {
+  if (_stackCorpus) return _stackCorpus;
+  const spells = await query(
+    `SELECT s.id, s.name, s.good_effect, s.buff_duration, s.buff_duration_formula,
+            s.target_type, s.is_discipline
+       FROM spells s
+      WHERE s.id IN (SELECT spell_id FROM spell_classes WHERE verified = 1)
+        AND s.is_discipline = 0`);
+  const effRows = await query(
+    `SELECT spell_id, slot, effect_id, base_value, limit_value, formula, max_value
+       FROM spell_effects
+      WHERE spell_id IN (SELECT spell_id FROM spell_classes WHERE verified = 1)
+      ORDER BY spell_id, slot`);
+  const bardRows = await query(
+    `SELECT DISTINCT spell_id FROM spell_classes
+      WHERE class_index = 7 AND min_level < 255 AND verified = 1`);
+  const effMap = new Map();
+  for (const e of effRows) {
+    if (!effMap.has(e.spell_id)) effMap.set(e.spell_id, []);
+    effMap.get(e.spell_id).push(e);
+  }
+  const bardSet = new Set(bardRows.map(r => r.spell_id));
+  _stackCorpus = spells.map(r => {
+    const classes = Array.from({ length: 16 }, () => 255);
+    if (bardSet.has(r.id)) classes[7] = 1;
+    return { name: r.name, view: spellView({ ...r, classes, effects: effMap.get(r.id) || [] }) };
+  });
+  return _stackCorpus;
+}
+
+async function stackingPanel(spell) {
+  // instants (no duration) do not occupy a buff slot — nothing to show
+  if (!spell.buff_duration_formula) return "";
+  const corpus = await stackCorpus();
+  const mine = corpus.find(c => c.view.id === spell.id);
+  if (!mine) return "";
+  const replacedBy = [], blocks = [], blockedBy = [];
+  for (const other of corpus) {
+    if (other.view.id === spell.id) continue;
+    const out = checkStackConflict(mine.view, other.view, 50, 50);   // other cast over me
+    const back = checkStackConflict(other.view, mine.view, 50, 50); // me cast over other
+    if (out === 1) replacedBy.push(other);
+    if (out === -1) blocks.push(other);
+    if (back === -1) blockedBy.push(other);
+  }
+  if (!replacedBy.length && !blocks.length && !blockedBy.length) return "";
+  const list = (items) => items
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(c => `<a href="#/spell/${c.view.id}">${escapeHtml(c.name)}</a>`).join(", ");
+  const row = (label, items) => items.length ? `
+    <details class="stack-detail"><summary>${label} <span class="muted">(${items.length})</span></summary>
+      <div class="stack-detail-list">${list(items)}</div></details>` : "";
+  return `<h2>Stacking</h2>
+    <div class="muted" style="font-size:.85em;margin-bottom:.35em">vs. all
+    obtainable spells at L50 · reference semantics (EQEmu-derived)</div>
+    ${row("Replaced when these land", replacedBy)}
+    ${row("Blocks these from landing", blocks)}
+    ${row("Will not land over", blockedBy)}`;
 }
 
 // Live-recompute the spell detail page when the caster-level slider moves — no
@@ -1315,4 +1388,520 @@ export async function renderSearch(params) {
         <td><a href="#/spell/${r.id}">${escapeHtml(r.name)}</a></td>
         <td class="muted">${r.id}</td></tr>`).join("")}</tbody></table>`
       : (q ? '<p>No matches.</p>' : '<p class="muted">Type a query above to search.</p>')}`;
+}
+
+// ── #/stacks — "given this trio, what all stacks together?" ──────────────
+// Runs the parity-gated stacking engine (stacking.js — the CheckStackConflict
+// port, REFERENCE semantics) pairwise over the trio's castable duration
+// spells and presents the RESOLVED answer: best-in-line survivors, "pick one"
+// exclusive groups, and per-row expandable notes showing what each survivor
+// replaces or conflicts with. The full verdict matrix is computed anyway, so
+// richer conflict views can be added without reworking the engine plumbing.
+
+async function stacksCandidates(clsIdxs, level, pool) {
+  const ph = clsIdxs.map(() => "?").join(",");
+  const goodPred = pool === "det" ? "s.good_effect = 0" : "s.good_effect IN (1, 2)";
+  // "party" = buffs placeable on one of YOUR characters (self/single/friendly/
+  // group targets); "pet" = pet-only buffs, a separate stacking surface (they
+  // occupy the pet's slots, so they only conflict among themselves);
+  // "det" = every duration detrimental ("what stacks on one target").
+  const targPred = pool === "party" ? "s.target_type IN (5, 6, 40, 41, 51, 56)"
+    : pool === "pet" ? "s.target_type = 14" : "1=1";
+  // buffs must persist to occupy a slot; the detrimental casting view also
+  // wants INSTANT nukes/utilities (they never stack — nothing to resolve)
+  const durPred = pool === "det" ? "1=1" : "s.buff_duration_formula != 0";
+  const rows = await query(
+    `SELECT s.id, s.name, s.new_icon, s.good_effect, s.buff_duration,
+            s.buff_duration_formula, s.target_type, s.is_discipline,
+            s.spell_category, s.mana, s.cast_time, s.recast_time,
+            s.aoe_max_targets,
+            MIN(sc.min_level) AS min_level,
+            GROUP_CONCAT(sc.class_index || ':' || sc.min_level) AS class_pairs
+       FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
+      WHERE sc.verified = 1 AND s.is_discipline = 0
+        AND sc.class_index IN (${ph}) AND sc.min_level <= ?
+        AND ${goodPred} AND ${targPred}
+        AND ${durPred}
+      GROUP BY s.id ORDER BY s.name`, [...clsIdxs, level]);
+  if (!rows.length) return { rows, effMap: new Map(), bardSet: new Set() };
+  const ids = rows.map(r => r.id);
+  const sub = ids.map(() => "?").join(",");
+  const effRows = await query(
+    `SELECT spell_id, slot, effect_id, base_value, limit_value, formula, max_value
+       FROM spell_effects WHERE spell_id IN (${sub}) ORDER BY spell_id, slot`, ids);
+  const effMap = new Map();
+  for (const e of effRows) {
+    if (!effMap.has(e.spell_id)) effMap.set(e.spell_id, []);
+    effMap.get(e.spell_id).push(e);
+  }
+  const bardRows = await query(
+    `SELECT DISTINCT spell_id FROM spell_classes
+      WHERE spell_id IN (${sub}) AND class_index = 7 AND min_level < 255`, ids);
+  return { rows, effMap, bardSet: new Set(bardRows.map(r => r.spell_id)) };
+}
+
+export async function renderStacks(params) {
+  const clsSlugs = params.getAll("class").filter(Boolean);
+  const clsIdxs = [...new Set(clsSlugs.map(classIndexFromArg)
+    .filter(i => Number.isInteger(i) && i >= 0 && i <= 15))];
+  const level = Math.min(MAX_LEVEL,
+    Math.max(1, parseInt(params.get("level") || String(MAX_LEVEL), 10) || MAX_LEVEL));
+  const upg = Math.min(10, Math.max(0, parseInt(params.get("upg") || "0", 10) || 0));
+  const mode = params.get("mode") === "det" ? "det" : "buffs";
+
+  const classOption = (selIdx) => `<option value="">(pick)</option>` +
+    Array.from({ length: 16 }, (_, i) => i)
+      .sort((a, b) => CLASS_NAMES[a].localeCompare(CLASS_NAMES[b]))
+      .map(i =>
+        `<option value="${classSlug(i)}"${selIdx === i ? " selected" : ""}>${escapeHtml(CLASS_NAMES[i])}</option>`).join("");
+  const classPickers = [0, 1, 2].map(slot => {
+    const idx = clsIdxs[slot] ?? -1;
+    const banner = idx >= 0
+      ? `<img class="trio-banner" alt="" src="static/icons/classes/${String(idx).padStart(2, "0")}.png">`
+      : `<span class="trio-banner trio-q">?</span>`;
+    return `<label class="trio-slot">${banner}<select name="class">${classOption(idx)}</select></label>`;
+  }).join(" ");
+  const modeTab = (m, label) => {
+    const p = new URLSearchParams(params); p.set("mode", m);
+    return `<a class="classbtn${mode === m ? " active" : ""}" href="#/stacks?${p.toString()}">${label}</a>`;
+  };
+  const form = `
+    <form class="diff-form" data-form="stacks">
+      <input type="hidden" name="mode" value="${mode}">
+      <div class="diff-controls trio-row" style="margin-bottom:.5em">
+        <span class="muted">Your trio:</span>
+        <span class="trio-slots">${classPickers}</span>
+        <label>at level <input type="number" name="level" value="${level}" min="1" max="${MAX_LEVEL}" style="width:5em"></label>
+        <label title="apply the upgrade model as if EVERY spell were at this Spell Level (0 = unupgraded client values)">Spell Level
+          <output data-stacks-upg-out>${upg ? ROMAN[upg] : "0"}</output>
+          <input type="range" name="upg" value="${upg}" min="0" max="10" step="1"
+            data-stacks-upg style="width:9em;vertical-align:middle"
+            aria-label="Spell Level (upgrade tier for every spell)"></label>
+      </div>
+    </form>
+    <div class="diff-controls" style="margin-bottom:.75em">
+      ${modeTab("buffs", "Buffs you can keep up together")}
+      ${modeTab("det", "Debuffs & Damage")}
+    </div>`;
+
+  const intro = `<h2>What Stacks</h2>
+    <p class="muted">Pick your three classes and a level: the list below is the
+    resolved set — every row can be up at the same time. Superseded lower ranks
+    are folded into their replacement; mutually exclusive spells are grouped as
+    "pick one". Verdicts come from the game's stacking rules (reference
+    semantics, EQEmu-derived).</p>`;
+
+  if (clsIdxs.length === 0) {
+    return `${intro}${form}<p class="muted">Choose at least one class to begin.</p>`;
+  }
+
+  // order (James 2026-08-25): benefit sections -> pet pool -> pick-one
+  // groups -> situational, all expanded
+  const pools = mode === "det" ? [["det", ""]]
+    : [["party", ""], ["pet", "On your pet"]];
+  const parts = [];
+  let partyTail = "";
+  for (const [pool, heading] of pools) {
+    const { rows, effMap, bardSet } = await stacksCandidates(clsIdxs, level, pool);
+    if (!rows.length) continue;
+    const sec = await stacksSection(rows, effMap, bardSet, clsIdxs, level,
+      pool === "party" ? "party" : pool === "det" ? "det" : null, upg);
+    parts.push((heading ? `<h3>${heading}</h3>` : "") + sec.head);
+    if (pool === "party") partyTail = sec.tail;
+    else parts.push(sec.tail);
+  }
+  if (!parts.length) return `${intro}${form}<p>No castable ${mode === "det" ? "duration detrimentals" : "buffs"} for this trio at L${level}.</p>`;
+  const body = parts.join("") + partyTail;
+  return `${intro}${form}${body}
+    <p class="muted" style="font-size:.85em">Stacking verdicts are computed from
+    the game's rules as implemented by the EQEmu project (reference semantics);
+    same-slot arbitration at your chosen level. Methodology cross-checked with
+    <a href="https://eqltools.com/spellmaster" rel="noopener">eqltools.com</a>.</p>`;
+}
+
+// Ordered benefit sections for the buffs view (James, 2026-08-25): the
+// buffs you keep up all the time first, situational utility last. A spell
+// lands in the FIRST section any of its effects matches.
+const STACK_BENEFIT_SECTIONS = [
+  // weapon procs ONLY — trigger SPAs (289/340/374/475) ride delayed-heal
+  // style spells (Efflorescing Heal) and classify by their real effects
+  { label: "Procs", spas: [85, 323] },
+  { label: "Haste", spas: [11, 98] },
+  { label: "Attack", spas: [2] },
+  { label: "HP & Regen", spas: [69, 100, 0, 44] },
+  { label: "Armor Class", spas: [1, 416] },
+  { label: "Stats", spas: [4, 5, 6, 7, 8, 9, 10, 97] },
+  { label: "Resists", spas: [46, 47, 48, 49, 50, 111] },
+  { label: "Mana", spas: [15] },
+  { label: "Damage Shield", spas: [59] },
+  { label: "Runes & Absorbs", spas: [55, 78, 161, 162, 163] },
+];
+const STACK_SITUATIONAL = "Situational & utility";
+
+// Detrimental tab layout (James 2026-08-25): a casting-priority view —
+// Direct Damage / DoTs / Debuffs & Control, damage sorted high-to-low so
+// the player reads "what should I be casting" top-down.
+const STACK_DET_SECTIONS = ["Direct Damage", "Area Damage (AE)",
+                            "Damage over Time", "Debuffs & Control"];
+
+// AE = capped multi-target (rains/PBAE with aoe_max_targets) or an
+// AE-shaped target type (4 PB AE, 8 targeted AE) — separated from
+// single-target nukes so the comparisons stay like-for-like (James).
+const stackIsAe = (r) => r.aoe_max_targets > 1 ||
+  r.target_type === 4 || r.target_type === 8;
+
+function stackDetSection(r, effs) {
+  // roots are CONTROL (James 2026-08-25) even when the spell also damages
+  if (effs.some(e => e.effect_id === 99)) return "Debuffs & Control";
+  // SPA 0 TICKS on duration spells; SPA 79 is a ONE-TIME hit even when the
+  // spell carries a debuff rider with a duration (Fire/Ice are nukes whose
+  // duration belongs to the resist debuff — James 2026-08-25)
+  const ticking = effs.some(e => e.effect_id === 0 && e.base_value < 0);
+  const oneShot = effs.some(e => e.effect_id === 79 && e.base_value < 0);
+  const dd = (!r.buff_duration_formula && (ticking || oneShot)) ||
+             (r.buff_duration_formula && !ticking && oneShot);
+  if (dd) return stackIsAe(r) ? "Area Damage (AE)" : "Direct Damage";
+  if (r.buff_duration_formula && ticking) return "Damage over Time";
+  return "Debuffs & Control";
+}
+
+function stackBenefitSection(effs) {
+  for (const s of STACK_BENEFIT_SECTIONS) {
+    if (effs.some(e => s.spas.includes(e.effect_id) &&
+        !(e.effect_id === 0 && e.base_value < 0) &&
+        !(e.effect_id === 10 && e.base_value === 0))) return s.label;   // CHA spacer
+  }
+  return STACK_SITUATIONAL;
+}
+
+async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg = 0) {
+  // ── same-line rank fold FIRST (the client's own spell-line data) ──
+  // The engine's value arbitration can invert quality where smaller numbers
+  // are better (the lull line: `base` is the reduced assist radius, `max`
+  // the target-level cap — Pacify's radius 1 loses a raw value comparison
+  // to Lull's 15 despite being four ranks higher). Within a line the rank
+  // order is authoritative: keep the highest castable rank, fold the rest.
+  const byLine = new Map();
+  for (const r of rows) {
+    const key = r.spell_category || "solo:" + r.id;
+    if (!byLine.has(key)) byLine.set(key, []);
+    byLine.get(key).push(r);
+  }
+  // a spell may only fold/supersede another when their durations are in the
+  // same regime (James 2026-08-25: Spirit of Cheetah's 48s sprint must not
+  // eat Spirit of Wolf's 36 minutes). Order-of-magnitude tolerance: rank
+  // upgrades legitimately trade some duration (Calm's 42s folds Soothe's
+  // 2.5min — higher lull ranks pulse shorter but reach higher targets); a
+  // 45x burst-vs-sustained gap is a different KIND of spell and never
+  // folds. Negative ticks = permanent.
+  const durTicks = (r) => {
+    const t = durationTicks(r.buff_duration_formula, r.buff_duration, level);
+    return t < 0 ? Infinity : t;
+  };
+  const durOk = (winner, loser) => durTicks(winner) * 10 >= durTicks(loser);
+  const lineFolded = new Map();          // survivor id -> folded lower ranks
+  const lineRows = [];
+  for (const members of byLine.values()) {
+    members.sort((a, b) => b.min_level - a.min_level || b.id - a.id);
+    const unclaimed = [...members];
+    while (unclaimed.length) {
+      const head = unclaimed.shift();
+      lineRows.push(head);
+      const folds = unclaimed.filter(m => durOk(head, m));
+      if (folds.length) {
+        lineFolded.set(head.id, folds);
+        for (const f of folds) unclaimed.splice(unclaimed.indexOf(f), 1);
+      }
+    }
+  }
+  rows = lineRows;
+  const byId = new Map(rows.map(r => [r.id, r]));
+
+  // engine views straight from DB rows (same shape the parity gate proves)
+  const views = new Map(rows.map(r => {
+    const classes = Array.from({ length: 16 }, () => 255);
+    if (bardSet.has(r.id)) classes[7] = 1;
+    return [r.id, spellView({
+      id: r.id, name: r.name, good_effect: r.good_effect,
+      buff_duration_formula: r.buff_duration_formula,
+      buff_duration: r.buff_duration, target_type: r.target_type,
+      is_discipline: r.is_discipline, classes,
+      effects: effMap.get(r.id) || [],
+    })];
+  }));
+  const ids = rows.map(r => r.id);
+  const verdict = new Map();     // "a:b" -> conflict(a worn, b cast)
+  for (const a of ids) for (const b of ids) {
+    if (a !== b) verdict.set(a + ":" + b,
+      checkStackConflict(views.get(a), views.get(b), level, level));
+  }
+  const v = (a, b) => verdict.get(a + ":" + b);
+
+  // a is SUPERSEDED by b when casting b replaces a AND a cannot reclaim its
+  // slot (the clean one-way upgrade shape: same line ranks, Temperance-style
+  // directives, higher-value same-slot buffs).
+  // instants occupy no buff slot: engine verdicts between them are
+  // meaningless for a loadout — only duration spells contest slots
+  const hasDur = (r) => !!r.buff_duration_formula;
+  const supersededBy = new Map();
+  for (const a of ids) for (const b of ids) {
+    if (a !== b && hasDur(byId.get(a)) && hasDur(byId.get(b)) &&
+        v(a, b) === 1 && v(b, a) === -1 &&
+        durOk(byId.get(b), byId.get(a))) {
+      if (!supersededBy.has(a)) supersededBy.set(a, []);
+      supersededBy.get(a).push(b);
+    }
+  }
+  // survivorship is a FIXPOINT against surviving spells only: a spell is
+  // dropped iff some spell that itself survives supersedes it. (A spell
+  // superseded only by dropped spells is castable in game — e.g. an illusion
+  // blocked by Phantom Chain stays available once Guard replaces the Chain.)
+  let dropped = new Set();
+  for (let pass = 0; pass < ids.length; pass++) {
+    const next = new Set(ids.filter(a =>
+      (supersededBy.get(a) || []).some(b => !dropped.has(b))));
+    if (next.size === dropped.size && [...next].every(x => dropped.has(x))) break;
+    dropped = next;
+  }
+  const survivors = ids.filter(a => !dropped.has(a));
+
+  // exclusive relation among survivors: any remaining nonzero verdict either
+  // direction (mutual blocks, one-way blocks, last-cast-wins overwrites)
+  const parent = new Map(survivors.map(x => [x, x]));
+  const find = (x) => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
+  const union = (x, y) => { const rx = find(x), ry = find(y); if (rx !== ry) parent.set(rx, ry); };
+  for (let i = 0; i < survivors.length; i++) for (let j = i + 1; j < survivors.length; j++) {
+    const a = survivors[i], b = survivors[j];
+    if (hasDur(byId.get(a)) && hasDur(byId.get(b)) &&
+        (v(a, b) !== 0 || v(b, a) !== 0)) union(a, b);
+  }
+  const groups = new Map();
+  for (const s of survivors) {
+    const root = find(s);
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(s);
+  }
+  const soloRows = [], pickOne = [];
+  for (const members of groups.values()) {
+    if (members.length === 1) soloRows.push(members[0]);
+    else pickOne.push(members);
+  }
+
+  const resolvers = await buildResolvers(
+    [...effMap.values()].flat(), query);
+  const cells = (r, nameHtml) => {
+    const classCell = (r.class_pairs || "").split(",")
+      .map(p => { const [ci, lv] = p.split(":").map(Number); return { ci, lv }; })
+      .filter(x => clsIdxs.includes(x.ci))
+      .sort((a, b) => a.lv - b.lv)
+      .map(x => escapeHtml(`${CLASS_ABBR[x.ci] || x.ci} ${x.lv}`)).join(" · ");
+    let eff = friendlySummary(scaleEffs(r), level, r, resolvers, level);
+    // modeled values must not wear the EQL-grounded mark
+    if (upg) eff = eff.replace(/\s*<span class="fact-mark"[^>]*>[^<]*<\/span>/g, "");
+    const aeCap = r.aoe_max_targets > 1 ? r.aoe_max_targets : 0;
+    const effCols = layout === "det" ? (() => {
+      const total = damageAt(r);
+      if (!total) return `<td class="muted">—</td><td class="muted">—</td>`;
+      // AE spells show the FULL-CAP number as the headline (James: the
+      // largest number is the comparison that matters); the per-target
+      // figure lives in the hover title
+      const cell = (v) => {
+        if (v === null) return "—";
+        if (!aeCap) return v.toFixed(1);
+        return `${(v * aeCap).toFixed(1)} <span class="muted"
+          title="at the full ${aeCap}-target cap; per target: ${v.toFixed(1)}">×${aeCap}</span>`;
+      };
+      const perManaV = manaAt(r) > 0 ? total / manaAt(r) : null;
+      const castS = castMsAt(r) / 1000, reuseS = recastMsAt(r) / 1000;
+      const t = durTicksAt(r);
+      const cycle = (r.buff_duration_formula && isFinite(t) && t > 0)
+        ? Math.max(t * 6, castS + reuseS) : (castS + reuseS);
+      const dpsV = cycle > 0 ? total / cycle : null;
+      return `<td>${cell(perManaV)}</td><td>${cell(dpsV)}</td>`;
+    })() : "";
+    return `<td>${iconImg(r.new_icon)}</td>
+      <td>${nameHtml}</td>
+      <td class="muted">${classCell}</td>
+      <td>${eff}</td>
+      ${effCols}
+      <td>${manaAt(r)}</td>
+      <td>${fmtSeconds(castMsAt(r))}s${recastMsAt(r) > 0
+        ? ` <span class="muted">/ ${fmtSeconds(recastMsAt(r))}s</span>` : ""}</td>
+      <td>${fmtDur(durCapAt(r))}</td>
+      ${aeCap ? shortTargetCell(r.target_type).replace("</td>",
+          ` <span class="muted">×${aeCap}</span></td>`) : shortTargetCell(r.target_type)}`;
+  };
+  const rowHtml = (id) => {
+    const r = byId.get(id);
+    // "replaces" = folded same-line lower ranks (client line data) + spells
+    // the engine says this one strictly supersedes
+    const engineReps = ids.filter(x => v(x, id) === 1 && v(id, x) === -1);
+    const lineReps = (lineFolded.get(id) || []).map(x => x.id);
+    const reps = [...new Set([...lineReps, ...engineReps])]
+      .map(x => byId.get(x) || (lineFolded.get(id) || []).find(m => m.id === x))
+      .filter(Boolean)
+      .sort((a, b) => b.min_level - a.min_level);
+    // replaced spells expand as FULL comparison sub-rows under the parent
+    // (James 2026-08-25) — the +N chip toggles them
+    const chip = reps.length ? ` <button type="button" class="stack-fold-chip"
+        data-fold="${r.id}" aria-expanded="false"
+        title="replaces ${reps.length} lower-rank spell${reps.length > 1 ? "s" : ""} — click to compare">+${reps.length}</button>` : "";
+    const parent = `<tr>${cells(r,
+      `<a href="#/spell/${r.id}">${escapeHtml(r.name)}</a>${chip}`)}</tr>`;
+    const subs = reps.map(x => `<tr class="stack-sub" data-fold-of="${r.id}" hidden>
+      ${cells(x, `<span class="stack-sub-mark">↳</span> <a href="#/spell/${x.id}">${escapeHtml(x.name)}</a>`)}</tr>`).join("");
+    return parent + subs;
+  };
+  // shared fixed column plan (site listing-table system): every section
+  // table lines up; Effects absorbs the leftover width; mobile card layer
+  // applies via .spell-table
+  const detCols = layout === "det"
+    ? `<col class="c-eff"><col class="c-eff">` : "";
+  const detHead = layout === "det"
+    ? `<th title="DPM — Damage per Mana: total damage per point of mana spent">DPM</th>
+       <th title="DPS — Damage per Second, sustained: nukes over cast+recast, DoTs spread over their running duration">DPS</th>` : "";
+  const stackCols = `<colgroup><col class="c-icon"><col class="c-name">
+    <col class="c-cls"><col>${detCols}<col class="c-num"><col class="c-cast"><col class="c-dur"><col class="c-tgt"></colgroup>`;
+  const tableHead = `<tr><th>Icon</th><th>Name</th><th>Your classes</th><th>Effects</th>${detHead}<th>Mana</th>
+    <th title="cast time / recast cooldown">Cast / Recast</th><th>Dur</th><th>Target</th></tr>`;
+  const stackTable = (rowsHtml) =>
+    `<table class="spell-table t-stacks">${stackCols}${tableHead}${rowsHtml}</table>`;
+
+  // ── uniform Spell Level (upgrade tier) modeling — DISPLAY + sort only.
+  // Stacking/fold verdicts stay at base values: a uniform tier scales both
+  // sides of every comparison, and the engine's reference semantics stay
+  // honest to client data. Rates = the solved n=94 category model
+  // (upgrades.js); scaled values are MODELED, so fact marks are stripped.
+  const upCat = new Map();   // spell id -> classifyUpgradeCategory result
+  const catOf = (r) => {
+    if (!upCat.has(r.id)) upCat.set(r.id, classifyUpgradeCategory(r, effMap.get(r.id) || []));
+    return upCat.get(r.id);
+  };
+  const scaleEffs = (r) => {
+    const effs = effMap.get(r.id) || [];
+    if (!upg) return effs;
+    // model semantics (D2 review): caster level gives the BASE value, the
+    // Spell Level MULTIPLIES it — so scale the FINAL leveled value and emit
+    // a flat (formula-100) effect. Lossless here: this page renders at one
+    // fixed level, so ranges are single values anyway. Matches the detail
+    // page's slider exactly (Upheaval 638 -> 1020 at tier 10).
+    const dmgRate = catOf(r).key === "dot" ? 0.03 : 0.06;
+    const flat = (e, rate, rnd) => {
+      const v = calcSpellValue(e.base_value, e.formula, e.max_value, level);
+      const scaled = (v < 0 ? -1 : 1) * rnd(Math.abs(v) * (1 + rate * upg));
+      return { ...e, base_value: scaled, formula: 100, max_value: 0 };
+    };
+    return effs.map(e => {
+      if (e.effect_id === 0 && e.base_value < 0) return flat(e, dmgRate, Math.floor);
+      if ((e.effect_id === 0 && e.base_value > 0) || e.effect_id === 100 || e.effect_id === 44)
+        return flat(e, 0.03, Math.round);
+      if (e.effect_id === 79 && e.base_value < 0) return flat(e, 0.06, Math.floor);
+      return e;
+    });
+  };
+  const manaAt = (r) => (upg && r.mana > 0)
+    ? Math.round(r.mana * (1 - catOf(r).mana * upg)) : r.mana;
+  const castMsAt = (r) => upg ? r.cast_time * (1 - catOf(r).cast * upg) : r.cast_time;
+  const recastMsAt = (r) => (upg && r.recast_time > 0)
+    ? Math.max(1000, Math.floor(r.recast_time * (1 - 0.02 * upg))) : r.recast_time;
+  const durEligible = (r) => catOf(r).dur !== null &&
+    (r.buff_duration_formula || 0) > 0 && r.buff_duration_formula !== 50 &&
+    (r.buff_duration || 0) > 0;
+  const durTicksAt = (r) => {
+    const t = durTicks(r);
+    if (!upg || !durEligible(r) || !isFinite(t)) return t;
+    return Math.round(t * (1 + catOf(r).dur * upg));
+  };
+  const durCapAt = (r) => (upg && durEligible(r))
+    ? Math.round(r.buff_duration * (1 + catOf(r).dur * upg)) : r.buff_duration;
+  const damageAt = (r) => {
+    let best = 0;
+    for (const e of scaleEffs(r)) {
+      if ((e.effect_id === 0 || e.effect_id === 79) && e.base_value < 0) {
+        const val = Math.abs(calcSpellValue(e.base_value, e.formula, e.max_value, level));
+        const t = r.buff_duration_formula && e.effect_id === 0
+          ? Math.max(1, Math.min(durTicksAt(r), 1e6)) : 1;
+        best = Math.max(best, val * t);
+      }
+    }
+    return best;
+  };
+  const groupBlock = (members) => {
+    const names = members.map(id => byId.get(id).name);
+    const label = names.every(n => /^(Illusion|Minor Illusion|Phantom|Wolf Form|Treeform|Form of)/.test(n))
+      ? "Illusions & forms" : escapeHtml(names[0]) + " group";
+    return `<h4 class="stack-section stack-pickone">Pick one — ${label}
+      <span class="muted">(${members.length} options; they replace each other)</span></h4>
+      ${stackTable(members.map(id => rowHtml(id)).join(""))}`;
+  };
+  const sortedGroups = pickOne.sort((a, b) => b.length - a.length);
+  // a group belongs to the benefit section of its best member (James
+  // 2026-08-25: Berserker Spirit and Firefist are stat/attack CHOICES, not
+  // bottom-of-page noise)
+  const groupSection = (members) =>
+    stackBenefitSection(effMap.get(members[0]) || []);
+  const groupHtml = sortedGroups
+    .map(members => groupBlock(members)).join("");
+  const soloSpells = soloRows.map(id => byId.get(id))
+    .sort((a, b) => a.min_level - b.min_level || a.name.localeCompare(b.name));
+  let soloHtml, situHtml = "", groupsPlaced = false;
+  if (layout) {
+    const classify = layout === "party"
+      ? (r) => stackBenefitSection(effMap.get(r.id) || [])
+      : (r) => stackDetSection(r, effMap.get(r.id) || []);
+    const order = layout === "party"
+      ? STACK_BENEFIT_SECTIONS.map(x => x.label) : STACK_DET_SECTIONS;
+    const sortFor = (label, arr) =>
+      (layout === "det" && label !== "Debuffs & Control")
+        ? arr.sort((a, b) => damageAt(b) - damageAt(a) || a.name.localeCompare(b.name))
+        : arr;
+    const bySection = new Map();
+    for (const r of soloSpells) {
+      const label = classify(r);
+      if (!bySection.has(label)) bySection.set(label, []);
+      bySection.get(label).push(r);
+    }
+    const groupsBy = new Map();
+    for (const members of sortedGroups) {
+      const label = classify(byId.get(members[0]));
+      if (!groupsBy.has(label)) groupsBy.set(label, []);
+      groupsBy.get(label).push(members);
+    }
+    groupsPlaced = true;
+    const parts = [];
+    for (const label of order) {
+      const members = bySection.get(label);
+      const groups = groupsBy.get(label) || [];
+      if (!members && !groups.length) continue;
+      parts.push(`<h4 class="stack-section">${label}</h4>`);
+      if (members) parts.push(stackTable(
+        sortFor(label, members).map(r => rowHtml(r.id)).join("")));
+      for (const g of groups) parts.push(groupBlock(g));
+    }
+    const situ = layout === "party" ? bySection.get(STACK_SITUATIONAL) : null;
+    const situGroups = layout === "party" ? (groupsBy.get(STACK_SITUATIONAL) || []) : [];
+    situHtml = (situ || situGroups.length) ? `<h4 class="stack-section">${STACK_SITUATIONAL}
+      <span class="muted">(${(situ || []).length + situGroups.flat().length} — invis, vision,
+      levitate, illusions, lulls…)</span></h4>
+      ${situ ? stackTable(situ.map(r => rowHtml(r.id)).join("")) : ""}
+      ${situGroups.map(g => groupBlock(g)).join("")}` : "";
+    soloHtml = parts.join("");
+  } else {
+    soloHtml = stackTable(soloSpells.map(r => rowHtml(r.id)).join(""));
+  }
+
+
+  const foldedCount = (ids.length - survivors.length) +
+    [...lineFolded.values()].reduce((n, m) => n + m.length, 0);
+  const modeled = upg ? ` <span class="muted">· values MODELED at Spell Level ${upg}
+    (upgrade model; fact marks off)</span>` : "";
+  const summary = layout === "det"
+    ? `<p>${survivors.length} spells in the casting toolkit, damage sorted high to low${modeled}` +
+      (foldedCount ? ` <span class="muted">(${foldedCount} superseded lower ranks folded in)</span>` : "") + `.</p>`
+    : `<p>${survivors.length - pickOne.flat().length} spells stack freely${modeled}` +
+      (pickOne.length ? ` + ${pickOne.length} "pick one" group${pickOne.length > 1 ? "s" : ""}` : "") +
+      (foldedCount ? ` <span class="muted">(${foldedCount} superseded lower ranks folded in)</span>` : "") + `.</p>`;
+
+  return { head: `${summary}${soloHtml}`,
+           tail: `${groupsPlaced ? "" : groupHtml}${situHtml}` };
 }
