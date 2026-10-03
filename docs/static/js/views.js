@@ -285,7 +285,7 @@ export async function renderClass(classIndex, params) {
   else if (good === "det") where.push("s.good_effect = 0");
 
   const rows = await query(
-    `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time,
+    `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, s.aoe_duration, s.aoe_max_targets,
             s.buff_duration, s.buff_duration_formula, s.target_type,
             s.good_effect, s.is_discipline, s.teleport_zone,
             sc.min_level,
@@ -374,7 +374,7 @@ export async function renderClass(classIndex, params) {
         <td>${sp.mana}</td>
         <td>${fmtSeconds(sp.cast_time)}s</td>
         <td>${fmtDur(sp.buff_duration)}</td>
-        ${shortTargetCell(sp.target_type)}
+        ${shortTargetCell(sp.target_type, sp.aoe_duration)}
       </tr>`;
     }).join("");
     body += `<section class="level-block">
@@ -417,9 +417,12 @@ const BROWSE_SORTS = { name: "s.name", level: "min_level", mana: "s.mana", cast:
 // LIST-ONLY short target names (hover shows the exact in-game string; the
 // detail page keeps the verbatim "Target:" text — target_type policy).
 const TARGET_SHORT = { 51: "Friendly", 56: "Group Member", 11: "Construct", 45: "Free AE" };
-function shortTargetCell(t) {
+function shortTargetCell(t, aoeDurMs) {
   const full = targetName(t);
-  const short = TARGET_SHORT[t] || full;
+  // rains (waves over aoe_duration) read "Rain"; one-shot targeted AEs
+  // (pillars/columns, 0-10ms) keep the plain label — the mechanic matters
+  const short = (t === 8 && (aoeDurMs || 0) > 1000) ? "Rain"
+    : (TARGET_SHORT[t] || full);
   return short === full ? `<td>${full}</td>`
                         : `<td title="${escapeHtml(full)}">${short}</td>`;
 }
@@ -567,7 +570,7 @@ export async function renderBrowse(params) {
   if (eff) where.push(`EXISTS (SELECT 1 FROM spell_effects se WHERE se.spell_id = s.id AND ${eff.pred})`);
 
   const rows = await query(
-    `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, s.buff_duration,
+    `SELECT s.id, s.name, s.new_icon, s.mana, s.cast_time, s.aoe_duration, s.aoe_max_targets, s.buff_duration,
             s.buff_duration_formula, s.target_type, s.good_effect, s.teleport_zone,
             MIN(sc.min_level) AS min_level,
             GROUP_CONCAT(DISTINCT sc.class_index || ':' || sc.min_level) AS class_pairs
@@ -725,7 +728,7 @@ export async function renderBrowse(params) {
       <td>${sp.mana}</td>
       <td>${fmtSeconds(sp.cast_time)}s</td>
       <td>${fmtDur(sp.buff_duration)}</td>
-      ${shortTargetCell(sp.target_type)}
+      ${shortTargetCell(sp.target_type, sp.aoe_duration)}
     </tr>`;
   }).join("");
 
@@ -1417,7 +1420,7 @@ async function stacksCandidates(clsIdxs, level, pool) {
     `SELECT s.id, s.name, s.new_icon, s.good_effect, s.buff_duration,
             s.buff_duration_formula, s.target_type, s.is_discipline,
             s.spell_category, s.mana, s.cast_time, s.recast_time,
-            s.aoe_max_targets,
+            s.aoe_max_targets, s.aoe_duration,
             MIN(sc.min_level) AS min_level,
             GROUP_CONCAT(sc.class_index || ':' || sc.min_level) AS class_pairs
        FROM spells s JOIN spell_classes sc ON sc.spell_id = s.id
@@ -1749,25 +1752,48 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
   const survivors = ids.filter(a => !dropped.has(a));
 
   // exclusive relation among survivors: any remaining nonzero verdict either
-  // direction (mutual blocks, one-way blocks, last-cast-wins overwrites)
-  const parent = new Map(survivors.map(x => [x, x]));
-  const find = (x) => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
-  const union = (x, y) => { const rx = find(x), ry = find(y); if (rx !== ry) parent.set(rx, ry); };
+  // direction (mutual blocks, one-way blocks, last-cast-wins overwrites).
+  // IMPORTANT (community bug report, Despayre via Discord 2026-10-02): a
+  // connected component of conflict edges is NOT always a mutual-exclusion
+  // clique. Shaman's Harnessing of Spirit conflicts with Arch Shielding,
+  // Infusion of Spirit, Strength, AND Dexterity individually (a star graph —
+  // Harnessing is the hub) — but those four do NOT conflict with each other
+  // and all four stack together in-game. Plain transitive union-find merged
+  // all 5 into one false "pick one" blob. Fix: only render a component as a
+  // "pick one" group when EVERY pair inside it actually conflicts (a true
+  // clique — same-line ranks, illusions, etc.); otherwise each spell stays
+  // its own row with a "won't stack with" cross-reference note per edge.
+  const conflictsOf = new Map(survivors.map(x => [x, new Set()]));
   for (let i = 0; i < survivors.length; i++) for (let j = i + 1; j < survivors.length; j++) {
     const a = survivors[i], b = survivors[j];
     if (hasDur(byId.get(a)) && hasDur(byId.get(b)) &&
-        (v(a, b) !== 0 || v(b, a) !== 0)) union(a, b);
+        (v(a, b) !== 0 || v(b, a) !== 0)) {
+      conflictsOf.get(a).add(b);
+      conflictsOf.get(b).add(a);
+    }
   }
-  const groups = new Map();
+  const parent = new Map(survivors.map(x => [x, x]));
+  const find = (x) => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
+  const union = (x, y) => { const rx = find(x), ry = find(y); if (rx !== ry) parent.set(rx, ry); };
+  for (const [a, conflicts] of conflictsOf) for (const b of conflicts) union(a, b);
+  const components = new Map();
   for (const s of survivors) {
     const root = find(s);
-    if (!groups.has(root)) groups.set(root, []);
-    groups.get(root).push(s);
+    if (!components.has(root)) components.set(root, []);
+    components.get(root).push(s);
   }
-  const soloRows = [], pickOne = [];
-  for (const members of groups.values()) {
-    if (members.length === 1) soloRows.push(members[0]);
-    else pickOne.push(members);
+  const isClique = (members) => members.every(a =>
+    members.every(b => a === b || conflictsOf.get(a).has(b)));
+  const soloRows = [], pickOne = [], conflictNotes = new Map();
+  for (const members of components.values()) {
+    if (members.length > 1 && isClique(members)) {
+      pickOne.push(members);
+    } else {
+      for (const s of members) {
+        soloRows.push(s);
+        if (conflictsOf.get(s).size) conflictNotes.set(s, [...conflictsOf.get(s)]);
+      }
+    }
   }
 
   const resolvers = await buildResolvers(
@@ -1802,8 +1828,8 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
       const dpsV = cycle > 0 ? total / cycle : null;
       return `<td data-l="DPM">${cell(perManaV)}</td><td data-l="DPS">${cell(dpsV)}</td>`;
     })() : "";
-    const targetCell = (aeCap ? shortTargetCell(r.target_type).replace("</td>",
-        ` <span class="muted">×${aeCap}</span></td>`) : shortTargetCell(r.target_type))
+    const targetCell = (aeCap ? shortTargetCell(r.target_type, r.aoe_duration).replace("</td>",
+        ` <span class="muted">×${aeCap}</span></td>`) : shortTargetCell(r.target_type, r.aoe_duration))
       .replace("<td", '<td data-l="Target"');
     return `<td>${iconImg(r.new_icon)}</td>
       <td>${nameHtml}</td>
@@ -1831,8 +1857,15 @@ async function stacksSection(rows, effMap, bardSet, clsIdxs, level, layout, upg 
     const chip = reps.length ? ` <button type="button" class="stack-fold-chip"
         data-fold="${r.id}" aria-expanded="false"
         title="replaces ${reps.length} lower-rank spell${reps.length > 1 ? "s" : ""} — click to compare">+${reps.length}</button>` : "";
+    // non-clique conflicts: this spell stacks with everything ELSE on the
+    // page except the ones named here (Despayre's Harnessing-of-Spirit
+    // report, 2026-10-02) — one-off exclusions don't earn a "pick one" group
+    const conflicts = conflictNotes.get(id);
+    const conflictNote = conflicts ? `<div class="stack-conflict-note muted">
+        won't stack with: ${conflicts.map(x =>
+          `<a href="#/spell/${x}">${escapeHtml(byId.get(x).name)}</a>`).join(", ")}</div>` : "";
     const parent = `<tr>${cells(r,
-      `<a href="#/spell/${r.id}">${escapeHtml(r.name)}</a>${chip}`)}</tr>`;
+      `<a href="#/spell/${r.id}">${escapeHtml(r.name)}</a>${chip}${conflictNote}`)}</tr>`;
     const subs = reps.map(x => `<tr class="stack-sub" data-fold-of="${r.id}" hidden>
       ${cells(x, `<span class="stack-sub-mark">↳</span> <a href="#/spell/${x.id}">${escapeHtml(x.name)}</a>`)}</tr>`).join("");
     return parent + subs;

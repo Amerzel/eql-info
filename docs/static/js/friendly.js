@@ -333,8 +333,26 @@ export function friendlySummary(effs, level, sp, resolvers, rangeTo) {
   const parts = meaningful.map(e => friendlyEffect(e, level, sp, resolvers, rangeTo)).filter(Boolean);
   const seen = new Set();
   const deduped = parts.filter(p => !seen.has(p) && seen.add(p));
+  const ae = aePhrase(sp);
+  if (ae) deduped.push(wrapNums(escapeHtml(ae)));
   // one line per effect (James); an effect's own qualifiers stay inline
   return deduped.map(p => `<div class="fx-line">${p}</div>`).join("");
+}
+
+// The AE-mechanic line from the client's aoe fields (twin of friendly.py
+// ae_phrase — parity-locked). Rains strike in waves and may repeat on one
+// target up to the TOTAL cap; other capped AEs hit up to N targets once.
+// The "every 3 seconds" cadence exists only in description prose, not data.
+export function aePhrase(sp) {
+  if (!sp) return "";
+  const cap = sp.aoe_max_targets || 0;
+  if (cap <= 1) return "";
+  const durMs = sp.aoe_duration || 0;
+  if (sp.target_type === 8 && durMs > 1000) {
+    const secs = durMs / 1000;
+    return `Rain: strikes in waves for ${secs}s — up to ${cap} total hits, repeats on the same target`;
+  }
+  return `Hits up to ${cap} targets`;
 }
 
 // Numeric tokens (values, %/s units, "(LN)" markers) get a fixed-width face

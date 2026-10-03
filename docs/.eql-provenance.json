@@ -1,12 +1,12 @@
 {
   "tool": "eql explorer deploy",
-  "build_time": "2026-08-26T15:47:11",
+  "build_time": "2026-10-02T22:41:50",
   "deploy_subdir": "docs",
-  "deploy_tool_revision": "b61deebb52963c231e61c31a022d344e771d8c7b",
+  "deploy_tool_revision": "effe99c53dbbe3a634e6eb020398a22c9838c6e7",
   "deploy_tool_dirty": false,
-  "site_build_revision": "b61deebb52963c231e61c31a022d344e771d8c7b",
+  "site_build_revision": "effe99c53dbbe3a634e6eb020398a22c9838c6e7",
   "site_source_dirty": false,
-  "db_revision": "329c64e0315bb1a325b6c71b869d9f83ea701232",
+  "db_revision": "2f0e5c77fab7affcf40fc1b39a7db90c15b69dfc",
   "schema": {
     "catalog_schema_version": "1",
     "explorer_schema_version": "1",
@@ -16,14 +16,14 @@
   "source_hashes": {
     "spells_sha256": "ced02852737503eceab558d12b436ead3a838f54bfb24ef96f263f565a36f5ac",
     "spells_str_sha256": "a43349804ef9c3442a2d7943f440238a99f520c9adff1fb3ab4997aa6f30416a",
-    "dbstr_sha256": "f8c866d71af19e08df0507976bea22dff1dacf2dbdc6a39f0dd89dfdbf4f9de9"
+    "dbstr_sha256": "793855833207428a34b309e8807d90d065b6e5ea99e7f4e473c64f1cc9e5c51f"
   },
   "counts": {
     "spell_count": "73975",
     "class_row_count": "50122",
     "effect_count": "275017",
-    "dbstr_count": "72927",
-    "aa_count": "2585"
+    "dbstr_count": "72936",
+    "aa_count": "2587"
   },
   "manifest": {
     "404.html": "2b0c6cf3c6c9c5a3880caaa3ce3ec49658d81318c5b89e264ac90946221d6701",
@@ -43,8 +43,8 @@
     "data/by_class/wizard.json": "7d7d216015b1f9c05f3ba77e4da08294dc02229968cff5636c488a8b6b52646f",
     "data/spells.json": "168f2dbe29748418cc6be165f7fb6ff1e5ec4a5d475ecb11e910f3633955400f",
     "index.html": "797122811e981a73e2e91539bfbbd0eb9f5e1c0c55641488e060affeec6ed168",
-    "static/css/style.css": "6a37c528c88a54ddedfef02ff15e6d5f3e77a3ec20cdb8604b59984b178e9b57",
-    "static/data/spells.sqlite": "464c3be49aa4921987073ec657e67b6afd0db3d1508c8ba6d10fe23d2bb7f86b",
+    "static/css/style.css": "036339c4aaf6505acb636a1c2779c59a116dc7486dd73daa0998a03c9a25a679",
+    "static/data/spells.sqlite": "feafe235132421ce70bf257213cea50e1bcf19e5eb1a226acfc5224772fbbc2b",
     "static/icons/classes/00.png": "61dbec7c7ef5c445a3fd8bdff3e0886e4dac6d82a6e9cb4dcb2833ee9eda2c27",
     "static/icons/classes/01.png": "af0cb1f5f87e7146f72cdbfc51b2609563e3f6c39bb081b14c0020c36632560b",
     "static/icons/classes/02.png": "8c63a14d080996df67ade5f27eda40df122075761fe55fae2496fb37cecef169",
@@ -2332,9 +2332,9 @@
     "static/js/app.js": "16a40db9e0890c3db8929ce981f6ea79e7c795db4ee401370c3191c37935f6c5",
     "static/js/data.js": "8d92fe2111e536ab1049971c3bc6bf5d9f30f390d374a62121489316fe48a616",
     "static/js/db.js": "8d7009d776277c24caaa78accf3f9aa8848dac5033799efc4c066502adc1ac8b",
-    "static/js/db_pin.js": "5d676223d6dc75abd118339872be3dd3caa4733fc9e294175b7d49dfc428f9fb",
+    "static/js/db_pin.js": "ab778d3bd95374f02eae62a0b51e7522a19b401a7743c55b6360619a18a1811c",
     "static/js/field_semantics.js": "cf08a2dce74a121941d1453f00d0f7c97eeb0145cd135e052b6b4ef54eb22cf1",
-    "static/js/friendly.js": "1981fd493f8adc6d75badf6a3f1e61dc642c7495fc57bf565f351faa164aa5bd",
+    "static/js/friendly.js": "1361613468b434bfe78b3ac6ae51a79ae8d2028d0597ff4e78750fa659fdf245",
     "static/js/presentation.js": "8cabbd59ae478cce31419479e4b934c404fa4c4db87e188d2b392d88c9b38631",
     "static/js/races_data.js": "1169ac810af6b83a2e73bf34b0a2b1ba7436442e22e53e2ec82a20b06063a711",
     "static/js/stacking.js": "5bf391fe49e57accdee6fef8aab793032585797a1d25f6d7961a6ddc732967cf",
@@ -2343,7 +2343,7 @@
     "static/js/text.js": "00787f4f75e261405d0d9a4b59b502d6169acdd5ad8a10812030fbc25f019da6",
     "static/js/tooltip.js": "dcc3fc683313ef6658b84e0fb20d5a72ebdabf9be09a63588b8df429584f4591",
     "static/js/upgrades.js": "d10f4c7a38fb1f012d4e56a42311a37df468a5a85c24f2e31c9734401d5322e8",
-    "static/js/views.js": "b13ee41201264c6caa78a3283043c7f550b64629a8e09468f555cd9af1f78241",
+    "static/js/views.js": "a8cc415fbdd661d71e09d6b13e9a3da986a3372207011d7637dfcd35e5fdc4df",
     "static/vendor/LICENSE-sql.js-httpvfs.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "static/vendor/LICENSE-sql.js.txt": "60a3f6e4d7b29b4321359e683b36cf198d24f58e24582070f56e6fa89d5ee2be",
     "static/vendor/THIRD_PARTY_NOTICES.md": "3b02e882a18b998a157158ed3ace15739947e546bf63836e7c30455dfacf3788",

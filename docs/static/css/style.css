@@ -576,6 +576,7 @@ tr.stack-sub { background: rgba(128, 128, 128, .07); }
 tr.stack-sub td { font-size: .92em; }
 .stack-sub-mark { color: var(--fg-muted, #999); padding-left: .35em; }
 h4.stack-section.stack-pickone { font-size: .95em; margin: .55em 0 .2em; }
+.stack-conflict-note { font-size: .82em; margin-top: .15em; }
 .t-stacks col.c-cast { width: 7.5em; }
 .t-stacks col.c-eff { width: 8em; }
 .t-stacks td:nth-child(5), .t-stacks td:nth-child(6) { white-space: nowrap; }
